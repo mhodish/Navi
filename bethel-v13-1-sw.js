@@ -1,44 +1,28 @@
-const CACHE_NAME = 'bethel-roadbook-v13-1';
-const APP_SHELL = [
-  './Bethel_Roadbook_V13_1_Offline_Diagnostic.html',
-  './bethel-v13-1.webmanifest',
-  './bethel-v13-1-icon-192.png',
-  './bethel-v13-1-icon-512.png'
-];
+// One-time cleanup service worker for old Bethel Roadbook builds.
+// Replaces the old worker at the SAME URL so Safari can update it,
+// clears old roadbook caches, stops intercepting navigation, then unregisters itself.
+
+const PREFIX = 'bethel-roadbook-v';
 
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(APP_SHELL))
-      .then(() => self.skipWaiting())
-  );
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(
-        keys.filter(k => k.startsWith('bethel-roadbook-v13-') && k !== CACHE_NAME)
-            .map(k => caches.delete(k))
-      ))
-      .then(() => self.clients.claim())
-  );
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(
+      keys.filter(k => k.startsWith(PREFIX)).map(k => caches.delete(k))
+    );
+    await self.clients.claim();
+    await self.registration.unregister();
+  })());
 });
 
+// While any already-open page is still controlled by this cleanup worker,
+// always go to the network instead of substituting an old cached roadbook.
 self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') return;
-
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      caches.match('./Bethel_Roadbook_V13_1_Offline_Diagnostic.html')
-        .then(cached => cached || fetch(event.request))
-        .catch(() => caches.match('./Bethel_Roadbook_V13_1_Offline_Diagnostic.html'))
-    );
-    return;
+  if (event.request.method === 'GET') {
+    event.respondWith(fetch(event.request));
   }
-
-  event.respondWith(
-    caches.match(event.request, {ignoreSearch:true})
-      .then(cached => cached || fetch(event.request))
-  );
 });
