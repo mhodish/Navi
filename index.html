@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Europe GPS Roadbook V18</title>
+<title>Europe GPS Roadbook V18.2</title>
 <meta name="theme-color" content="#fffdf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18">
-<link rel="manifest" href="europe-v18.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.2">
+<link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="europe-v18-icon-192.png">
 <style>
 :root{
@@ -65,6 +65,10 @@ button.running{background:#166534}
 .poiKey{width:24px;height:24px;display:inline-grid;place-items:center;border-radius:50%;background:var(--poi);color:#fff;flex:0 0 auto}
 .poiBody{font-size:13px;line-height:1.4;padding:5px 3px 8px}.poiSource{font-size:11px;color:#77705f;border-top:1px dashed #d7ceb8;padding-top:7px;margin-top:8px}
 .poiPhoto{margin:7px 0 10px}.poiPhoto img{width:100%;max-height:300px;object-fit:cover;border-radius:10px;display:block;background:#eee}.poiPhoto figcaption{font-size:9px;color:#6b665b;margin-top:3px}
+.evPanel{background:#eef6fb;border:1px solid #b8d3e3;border-left:5px solid #0b6a88;border-radius:12px;margin:10px 0 14px;padding:10px}
+.evPanel h3{margin:0 0 5px;font-size:16px;color:#0b4f6c}.evIntro{font-size:12px;color:#4e5d66;margin-bottom:8px}
+.evGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}.evCard{background:#fff;border:1px solid #cbd9e1;border-radius:10px;padding:9px}
+.evCard h4{margin:0 0 4px;font-size:14px}.evTag{display:inline-block;font-size:9px;font-weight:900;letter-spacing:.04em;padding:3px 5px;border-radius:5px;background:#e5edf3;margin-right:4px}.evCard p{font-size:12px;line-height:1.35;margin:5px 0}.evPay{font-weight:800;color:#14532d}.evWarn{font-weight:800;color:#8a4b08}.evNav{display:inline-block;margin-top:4px;background:#0b6a88;color:#fff;text-decoration:none;padding:6px 8px;border-radius:7px;font-weight:750;font-size:11px}
 footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
 @media(max-width:700px){
   .roadbook-shell{display:block;padding:8px}.stripPane{position:relative;top:auto;height:48vh;margin-bottom:10px}
@@ -73,13 +77,13 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
 </style>
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18 Research Build</h1>
+<header><h1>Europe GPS Roadbook — V18.2 EV Charger Update</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18</strong>
+    <strong>EUROPE ROADBOOK · V18.2</strong>
     <div>Classic paper-road-map inspired · 53 active route stops</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -438,6 +442,21 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
         <div class="countryDivider" id="country-norway">
           <span>Norway</span>
         </div>
+
+    <section class="evPanel" id="norway-fast-chargers" aria-label="Norway high-speed EV charger reference points">
+      <h3>⚡ High-speed EV chargers — Norway</h3>
+      <div class="evIntro"><b>Reference POIs only — they do not change the active navigation sequence or auto-advance.</b> Tesla Superchargers are included as requested. Non-Tesla entries are limited to Circle K fast chargers where Circle K supports drop-in Visa/Mastercard payment without requiring its app. Charger details checked 8 Sep 2026. The “Details &amp; site photos” link opens the Google Maps place/search card so you can inspect photographs, entrances and surrounding landmarks before driving in; internet is required for those photos.</div>
+      <div class="evGrid">
+        <div class="evCard"><h4>Evenes — Tesla Supercharger</h4><span class="evTag">TESLA</span><span class="evTag">250 kW</span><p>Aiden by Best Western, Normann Skoglunds vei 19, 8536 Evenes · 8 stalls · 24/7 · CCS, open to Tesla and other compatible EVs.</p><p class="evWarn">Non-Tesla use normally follows Tesla's charging/payment system; this entry is included because you specifically asked to include Tesla sites.</p><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Evenes+Normann+Skoglunds+vei+19" target="_blank" rel="noopener">Details &amp; site photos</a><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Evenes+Normann+Skoglunds+vei+19" target="_blank" rel="noopener">Open charger in Google Maps</a></div>
+        <div class="evCard"><h4>Evenes — Circle K</h4><span class="evTag">CIRCLE K</span><span class="evTag">up to 150 kW</span><p>Bedringens vei 1, 8536 Evenes · CCS fast charging · 24/7 station.</p><p class="evPay">Credit/debit card: Visa or Mastercard drop-in; no Circle K app required.</p><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Circle+K+Evenes+Bedringens+vei+1" target="_blank" rel="noopener">Details &amp; site photos</a><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Circle+K+Evenes+Bedringens+vei+1" target="_blank" rel="noopener">Open charger in Google Maps</a></div>
+        <div class="evCard"><h4>Svolvær — Tesla Supercharger</h4><span class="evTag">TESLA</span><span class="evTag">250 kW</span><p>Shell, Caroline Harveys vei 8, 8300 Svolvær · 16 stalls · 24/7 · CCS, open to Tesla and other compatible EVs.</p><p class="evWarn">Non-Tesla use normally follows Tesla's charging/payment system.</p><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Svolvaer+Caroline+Harveys+vei+8" target="_blank" rel="noopener">Details &amp; site photos</a><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Svolvaer+Caroline+Harveys+vei+8" target="_blank" rel="noopener">Open charger in Google Maps</a></div>
+        <div class="evCard"><h4>Svolvær — Circle K</h4><span class="evTag">CIRCLE K</span><span class="evTag">400 kW</span><p>Repslagergata 20, 8300 Svolvær · 6 CCS charge points; a very useful high-power backup near your route.</p><p class="evPay">Credit/debit card: Visa or Mastercard drop-in; no Circle K app required.</p><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Circle+K+Svolvaer+Repslagergata+20" target="_blank" rel="noopener">Details &amp; site photos</a><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Circle+K+Svolvaer+Repslagergata+20" target="_blank" rel="noopener">Open charger in Google Maps</a></div>
+        <div class="evCard"><h4>Leknes — Tesla Supercharger</h4><span class="evTag">TESLA</span><span class="evTag">250 kW</span><p>REMA 1000, Idrettsgata 61, 8370 Leknes · 12 stalls · 24/7 · CCS, open to Tesla and other compatible EVs.</p><p class="evWarn">Non-Tesla use normally follows Tesla's charging/payment system.</p><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Leknes+Idrettsgata+61" target="_blank" rel="noopener">Details &amp; site photos</a><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Leknes+Idrettsgata+61" target="_blank" rel="noopener">Open charger in Google Maps</a></div>
+        <div class="evCard"><h4>Leknes — Circle K</h4><span class="evTag">CIRCLE K</span><span class="evTag">400 kW</span><p>Storgata 35, 8370 Leknes · 4 CCS charge points · convenient for the Haukland/Uttakleiv/Ramberg transfer.</p><p class="evPay">Credit/debit card: Visa or Mastercard drop-in; no Circle K app required.</p><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Circle+K+Leknes+Storgata+35" target="_blank" rel="noopener">Details &amp; site photos</a><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Circle+K+Leknes+Storgata+35" target="_blank" rel="noopener">Open charger in Google Maps</a></div>
+        <div class="evCard"><h4>Reine — Tesla Supercharger</h4><span class="evTag">TESLA</span><span class="evTag">250 kW</span><p>Parking Reinebringen, Sverdrups vei 7, 8390 Reine · 6 stalls · 24/7 · CCS, open to Tesla and other compatible EVs.</p><p class="evWarn">Non-Tesla use normally follows Tesla's charging/payment system.</p><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Reine+Sverdrups+vei+7" target="_blank" rel="noopener">Details &amp; site photos</a><a class="evNav" href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Reine+Sverdrups+vei+7" target="_blank" rel="noopener">Open charger in Google Maps</a></div>
+      </div>
+      <div class="poiSource">Sources stored as offline notes: Tesla official Supercharger listings; Circle K official station/payment pages; power cross-checks from current charger-network telemetry. Payment methods and availability can change.</div>
+    </section>
 
     <section class="stop" id="stop-eve_house" data-stop="eve_house">
       <div class="stophead"><span class="badge">STOP 1</span><h2>House near Evenes Airport</h2></div>
@@ -1212,7 +1231,7 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-V18 is the first European content build. GPS/ETE/warning/near-destination/auto-advance/Moira behavior is inherited from the validated V17.1 framework.
+V18.2 adds Norway high-speed EV-charger reference POIs. GPS/ETE/warning/near-destination/auto-advance/Moira behavior is inherited unchanged from the validated V17.1 framework.
 The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Oud-Beijerland funeral; the hour is still TBD.
 Photo credits are shown under each image and the image responses are cached for offline use when the package reaches READY.
 </footer>
@@ -1809,19 +1828,19 @@ if(jumpSelect){
 }
 
 renderActive();
-show('Europe Roadbook V18 loaded. Frozen V17.1 navigation/ETE/Moira logic is unchanged.');
+show('Europe Roadbook V18.2 loaded. EV charger POIs added; frozen V17.1 navigation/ETE/Moira logic is unchanged.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const box=document.getElementById('offlineBox'), detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='europe-roadbook-v18';
-  const LOCAL=['./','./index.html','./europe-v18.webmanifest','./europe-v18-icon-192.png','./europe-v18-icon-512.png'];
+  const CACHE_NAME='europe-roadbook-v18-2';
+  const LOCAL=['./','./index.html','./manifest.json','./europe-v18-icon-192.png','./europe-v18-icon-512.png'];
   const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Het%20oude%20raadhuis%20van%20Oud-Beijerland.png?width=960"];
   function stage(t,e=''){if(box)box.firstChild.nodeValue='Offline package: '+t;if(detail)detail.textContent=e;}
   async function verify(){
     try{
       const keys=await caches.keys();
-      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18 cache.');return false;}
+      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.2 cache.');return false;}
       const c=await caches.open(CACHE_NAME), missing=[];
       for(const n of LOCAL){
         const u=new URL(n,location.href).href;
@@ -1836,8 +1855,8 @@ show('Europe Roadbook V18 loaded. Frozen V17.1 navigation/ETE/Moira logic is unc
     if(!window.isSecureContext){stage('FAILED','Not running over HTTPS.');return;}
     if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
     try{
-      stage('registering V18…','europe-v18-sw.js');
-      await navigator.serviceWorker.register('./europe-v18-sw.js',{scope:'./'});
+      stage('registering V18.2…','europe-v18-2-sw.js');
+      await navigator.serviceWorker.register('./europe-v18-2-sw.js',{scope:'./'});
       await navigator.serviceWorker.ready;
       await new Promise(r=>setTimeout(r,1000));
       await verify();
