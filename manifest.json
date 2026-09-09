@@ -1,6 +1,6 @@
 {
-  "name": "Europe Roadbook V18.3.2 Full Travel Build",
-  "short_name": "Europe V18.3.2",
+  "name": "Europe Roadbook V18.3.3 GPS Startup Fix",
+  "short_name": "Europe V18.3.3",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
