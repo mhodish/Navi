@@ -1,6 +1,6 @@
 {
-  "name": "Europe Roadbook V18.3.1 Full Travel Build",
-  "short_name": "Europe V18.3.1",
+  "name": "Europe Roadbook V18.3.2 Full Travel Build",
+  "short_name": "Europe V18.3.2",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -9,8 +9,14 @@
   "theme_color": "#fffdf6",
   "icons": [
     {
-      "src": "./europe-v18-3-1-icon.png",
+      "src": "./europe-v18-icon-192.png",
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./europe-v18-icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     }
