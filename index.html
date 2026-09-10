@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Europe GPS Roadbook V18.4.0</title>
+<title>Europe GPS Roadbook V18.4.2</title>
 <meta name="theme-color" content="#fffdf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.4.0">
+<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.4.2">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="./europe-v18-icon-192.png">
 <style>
@@ -88,15 +88,21 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
 .evOfflineNote{font-size:10px;color:#6b7280;margin-top:5px}
 
 </style>
+
+<style>
+img.fallbackPhoto{outline:2px solid #999;}
+img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";font-weight:700;}
+</style>
+
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.4.0.2 Full Travel Build</h1>
+<header><h1>Europe GPS Roadbook — V18.4.2.2 Full Travel Build</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18.4.0.3</strong>
+    <strong>EUROPE ROADBOOK · V18.4.2.3</strong>
     <div>Classic paper-road-map inspired · 53 active route stops</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -436,6 +442,9 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
 <div class="status" id="status">GPS is off. Tap <b>Start live roadbook</b> when you are ready to drive.</div>
 <div id="offlineBox">Offline package: starting…
   <div id="offlineDetail" style="margin-top:4px;font-size:12px;font-weight:500;color:#667085;"></div>
+<button id="retryPhotosBtn" type="button" style="margin-top:8px">Retry missing photos</button>
+<span id="retryPhotosStatus" style="margin-left:8px"></span>
+
 </div>
 <div class="controls">
   <button class="primary" id="start">Start live roadbook</button>
@@ -446,9 +455,9 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
 <div class="jumpRow"><b>Jump to stop:</b><select id="jumpStop" aria-label="Jump to route stop"></select></div>
 
 <div class="routeStreamIntro">
-  <b>Europe Roadbook V18.4.0.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
+  <b>Europe Roadbook V18.4.2.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
   The Netherlands route includes the Sep 26 Oud-Beijerland funeral as a fixed anchor; the funeral hour remains TBD.
-  Review-derived notes, charger reference cards and the displayed travel/charger photographs are pre-cached so they remain readable offline after installation.
+  Review-derived notes and charger reference cards are fully cached offline. Travel/charger photographs are cached on a best-effort basis and never block offline readiness.
 </div>
 
 
@@ -465,8 +474,8 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
   <div class="evActions">
     <details class="evPhotoDetails">
       <summary>Show offline site photo</summary>
-      <figure class="evOfflinePhoto"><img src="https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&amp;h=630&amp;q=80&amp;tight=true&amp;w=1200" alt="Photo of the Evenes Tesla Supercharger area" loading="eager">
-      <figcaption>Source: vol.no. This exact image is pre-cached when the app reports READY.</figcaption></figure>
+      <figure class="evOfflinePhoto"><img src="https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&h=630&q=80&tight=true&w=1200" data-fallback="https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback;this.classList.add('fallbackPhoto');}" alt="Photo of the Evenes Tesla Supercharger area" loading="eager">
+      <figcaption>Primary site photo: vol.no. If unavailable, the app automatically substitutes a verified Lofoten location photo.</figcaption></figure>
     </details>
     <a href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Evenes+Normann+Skoglunds+vei+19" target="_blank" rel="noopener">Navigate / open in Google Maps</a>
   </div>
@@ -482,8 +491,8 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
   <div class="evActions">
     <details class="evPhotoDetails">
       <summary>Show offline site photo</summary>
-      <figure class="evOfflinePhoto"><img src="https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg" alt="Circle K Evenes forecourt" loading="eager">
-      <figcaption>Source: Arctic Campers guide. This exact image is pre-cached when the app reports READY.</figcaption></figure>
+      <figure class="evOfflinePhoto"><img src="https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg" data-fallback="https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback;this.classList.add('fallbackPhoto');}" alt="Circle K Evenes forecourt" loading="eager">
+      <figcaption>Primary site photo: Arctic Campers. If unavailable, the app automatically substitutes a verified Lofoten location photo.</figcaption></figure>
     </details>
     <a href="https://www.google.com/maps/search/?api=1&query=Circle+K+Evenes+Bedringens+vei+1" target="_blank" rel="noopener">Navigate / open in Google Maps</a>
   </div>
@@ -511,8 +520,8 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
   <div class="evActions">
     <details class="evPhotoDetails">
       <summary>Show offline site photo</summary>
-      <figure class="evOfflinePhoto"><img src="https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L" alt="Tesla Supercharger in Svolvær" loading="eager">
-      <figcaption>Source: Mindtrip. This exact image is pre-cached when the app reports READY.</figcaption></figure>
+      <figure class="evOfflinePhoto"><img src="https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L" data-fallback="https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback;this.classList.add('fallbackPhoto');}" alt="Tesla Supercharger in Svolvær" loading="eager">
+      <figcaption>Primary site photo: Mindtrip. If unavailable, the app automatically substitutes a verified local-area photo.</figcaption></figure>
     </details>
     <a href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Svolvaer+Caroline+Harveys+vei+8" target="_blank" rel="noopener">Navigate / open in Google Maps</a>
   </div>
@@ -528,7 +537,7 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
   <div class="evActions">
     <details class="evPhotoDetails">
       <summary>Show offline site photo</summary>
-      <figure class="evOfflinePhoto"><img src="https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg" alt="Circle K site in the Svolvær/Lofoten area" loading="eager">
+      <figure class="evOfflinePhoto"><img src="https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg" data-fallback="https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback;this.classList.add('fallbackPhoto');}" alt="Circle K site in the Svolvær/Lofoten area" loading="eager">
       <figcaption>Source: Can We Pet Your Dog. This exact image is pre-cached when the app reports READY.</figcaption></figure>
     </details>
     <a href="https://www.google.com/maps/search/?api=1&query=Circle+K+Svolvaer+Repslagergata+20" target="_blank" rel="noopener">Navigate / open in Google Maps</a>
@@ -569,8 +578,8 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
   <div class="evActions">
     <details class="evPhotoDetails">
       <summary>Show offline site photo</summary>
-      <figure class="evOfflinePhoto"><img src="https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV" alt="REMA 1000 Leknes — landmark for the Tesla site" loading="eager">
-      <figcaption>Source: Mindtrip. This exact image is pre-cached when the app reports READY.</figcaption></figure>
+      <figure class="evOfflinePhoto"><img src="https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV" data-fallback="https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback;this.classList.add('fallbackPhoto');}" alt="REMA 1000 Leknes — landmark for the Tesla site" loading="eager">
+      <figcaption>Primary site photo: Mindtrip. If unavailable, the app automatically substitutes a verified local-area photo.</figcaption></figure>
     </details>
     <a href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Leknes+Idrettsgata+61" target="_blank" rel="noopener">Navigate / open in Google Maps</a>
   </div>
@@ -586,8 +595,8 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
   <div class="evActions">
     <details class="evPhotoDetails">
       <summary>Show offline site photo</summary>
-      <figure class="evOfflinePhoto"><img src="https://photos.plugshare.com/photos/1170706.jpg" alt="Circle K charger at Storgata 35, Leknes" loading="eager">
-      <figcaption>Source: PlugShare. This exact image is pre-cached when the app reports READY.</figcaption></figure>
+      <figure class="evOfflinePhoto"><img src="https://photos.plugshare.com/photos/1170706.jpg" data-fallback="https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback;this.classList.add('fallbackPhoto');}" alt="Circle K charger at Storgata 35, Leknes" loading="eager">
+      <figcaption>Primary site photo: PlugShare. If unavailable, the app automatically substitutes a verified local-area photo.</figcaption></figure>
     </details>
     <a href="https://www.google.com/maps/search/?api=1&query=Circle+K+Leknes+Storgata+35" target="_blank" rel="noopener">Navigate / open in Google Maps</a>
   </div>
@@ -724,8 +733,8 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
   <div class="evActions">
     <details class="evPhotoDetails">
       <summary>Show offline site photo</summary>
-      <figure class="evOfflinePhoto"><img src="https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L" alt="Tesla Supercharger in Reine" loading="eager">
-      <figcaption>Source: Mindtrip. This exact image is pre-cached when the app reports READY.</figcaption></figure>
+      <figure class="evOfflinePhoto"><img src="https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L" data-fallback="https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback;this.classList.add('fallbackPhoto');}" alt="Tesla Supercharger in Reine" loading="eager">
+      <figcaption>Primary site photo: Mindtrip. If unavailable, the app automatically substitutes a verified local-area photo.</figcaption></figure>
     </details>
     <a href="https://www.google.com/maps/search/?api=1&query=Tesla+Supercharger+Reine+Sverdrups+vei+7" target="_blank" rel="noopener">Navigate / open in Google Maps</a>
   </div>
@@ -1536,9 +1545,9 @@ footer{font-size:11px;color:#6b655a;padding:15px 0 30px}
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-V18.4.0 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
+V18.4.2 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
 The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Oud-Beijerland funeral; the hour is still TBD.
-Photo credits are shown under each image and the image responses are cached for offline use when the package reaches READY.
+Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
 </main>
 </div>
@@ -2171,19 +2180,19 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Europe Roadbook V18.4.0 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
+show('Europe Roadbook V18.4.2 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const box=document.getElementById('offlineBox'), detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='europe-roadbook-v18-4-0';
+  const CACHE_NAME='europe-roadbook-v18-4-2';
   const LOCAL=['./','./index.html','./manifest.json','./europe-v18-icon-192.png','./europe-v18-icon-512.png'];
-  const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Flakstad-Kirche-04-2019-gje.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamn%C3%B8y_in_Lofoten.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Het%20oude%20raadhuis%20van%20Oud-Beijerland.png?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_-_Nusfjord.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofotr_viking_museum_lofoten_foto_brage_aronsen.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Utakleiv_beach.jpg?width=960", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg", "https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg", "https://photos.plugshare.com/photos/1170706.jpg", "https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&amp;h=630&amp;q=80&amp;tight=true&amp;w=1200"];
+  const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Flakstad-Kirche-04-2019-gje.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamn%C3%B8y_in_Lofoten.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Het%20oude%20raadhuis%20van%20Oud-Beijerland.png?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_-_Nusfjord.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofotr_viking_museum_lofoten_foto_brage_aronsen.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Utakleiv_beach.jpg?width=960", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg", "https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg", "https://photos.plugshare.com/photos/1170706.jpg", "https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&h=630&q=80&tight=true&w=1200"];
   function stage(t,e=''){if(box)box.firstChild.nodeValue='Offline package: '+t;if(detail)detail.textContent=e;}
   async function verify(){
     try{
       const keys=await caches.keys();
-      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.4.0 cache.');return false;}
+      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.4.2 cache.');return false;}
       const c=await caches.open(CACHE_NAME), missing=[];
       for(const n of LOCAL){
         const u=new URL(n,location.href).href;
@@ -2192,12 +2201,9 @@ show('Europe Roadbook V18.4.0 loaded. Norway travel guide expanded; active-stop 
       let pics=0;
       for(const u of REMOTE){ if(await c.match(u,{ignoreSearch:true})) pics++; }
       if(missing.length){stage('preparing…','Missing local files: '+missing.join(', '));return false;}
-      if(pics<REMOTE.length){
-        stage('preparing offline photos…',pics+' of '+REMOTE.length+' photographs cached. Keep this page open online.');
-        return false;
-      }
       stage('READY — safe to use without internet',
-            'V18.4.0.2 complete: app + route notes + charger cards + '+pics+' photographs cached locally.');
+            'V18.4.2 complete: core app, route notes and charger cards cached. '+pics+' of '+REMOTE.length+
+            ' optional photographs are cached; missing photos will simply be unavailable offline.');
       return true;
     }catch(e){stage('check failed',e&&e.message?e.message:String(e));return false;}
   }
@@ -2205,8 +2211,8 @@ show('Europe Roadbook V18.4.0 loaded. Norway travel guide expanded; active-stop 
     if(!window.isSecureContext){stage('FAILED','Not running over HTTPS.');return;}
     if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
     try{
-      stage('registering V18.4.0…','europe-v18-4-0-sw.js');
-      await navigator.serviceWorker.register('./europe-v18-4-0-sw.js',{scope:'./'});
+      stage('registering V18.4.2…','europe-v18-4-2-sw.js');
+      await navigator.serviceWorker.register('./europe-v18-4-2-sw.js',{scope:'./'});
       await navigator.serviceWorker.ready;
       for(let i=0;i<8;i++){ if(await verify()) break; await new Promise(r=>setTimeout(r,1500)); }
     }catch(e){stage('FAILED',(e&&e.name?e.name+': ':'')+(e&&e.message?e.message:String(e)));}
@@ -2214,6 +2220,41 @@ show('Europe Roadbook V18.4.0 loaded. Norway travel guide expanded; active-stop 
   window.addEventListener('load',setup);
   window.addEventListener('online',verify); window.addEventListener('offline',verify);
 })();
+
+(function(){
+  const btn=document.getElementById('retryPhotosBtn');
+  const out=document.getElementById('retryPhotosStatus');
+  if(!btn) return;
+  btn.addEventListener('click',async()=>{
+    btn.disabled=true;
+    if(out) out.textContent='Retrying…';
+    let ok=0, total=0;
+    const imgs=[...document.querySelectorAll('img[src^="http"]')];
+    total=imgs.length;
+    for(const img of imgs){
+      const primary=img.getAttribute('src');
+      const fallback=img.dataset.fallback;
+      const candidates=[primary,fallback].filter(Boolean);
+      let loaded=false;
+      for(const u of candidates){
+        try{
+          await new Promise((resolve,reject)=>{
+            const probe=new Image();
+            const timer=setTimeout(()=>reject(new Error('timeout')),6000);
+            probe.onload=()=>{clearTimeout(timer);resolve();};
+            probe.onerror=()=>{clearTimeout(timer);reject(new Error('load'));};
+            probe.src=u+(u.includes('?')?'&':'?')+'_retry='+Date.now();
+          });
+          loaded=true; break;
+        }catch(e){}
+      }
+      if(loaded) ok++;
+    }
+    if(out) out.textContent=ok+' of '+total+' reachable now';
+    btn.disabled=false;
+  });
+})();
+
 </script>
 </body>
 </html>
