@@ -1,6 +1,6 @@
 {
-  "name": "Europe Roadbook V18.3.4 GPS Fix",
-  "short_name": "Europe V18.3.4",
+  "name": "Europe Roadbook",
+  "short_name": "Europe Roadbook",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
