@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Europe GPS Roadbook V18.6.1</title>
+<title>Europe GPS Roadbook V18.6.2</title>
 <meta name="theme-color" content="#fffdf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.6.1">
+<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.6.2">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="./europe-v18-icon-192.png">
 <style>
@@ -136,15 +136,31 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 .restaurantTierLegend{margin:7px 10px 10px;padding:8px;border:1px solid #bbb;background:#fafafa;font-size:12px;line-height:1.35}
 </style>
 
+
+<style>
+.driverTopNote{
+  margin:4px 0 6px;
+  padding:5px 8px;
+  font-size:11px;
+  line-height:1.25;
+  color:#4b5563;
+}
+@media(max-width:700px){
+  #offlineBox{margin-top:4px}
+  .controls{margin-bottom:6px}
+  .jumpRow{margin-bottom:10px}
+}
+</style>
+
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.6.1.2 Full Travel Build</h1>
+<header><h1>Europe GPS Roadbook — V18.6.2.2 Full Travel Build</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18.6.1.3</strong>
+    <strong>EUROPE ROADBOOK · V18.6.2.3</strong>
     <div>Classic paper-road-map inspired · 53 active route stops</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -481,6 +497,25 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 </aside>
 
 <main class="contentPane">
+
+<div class="driverTopNote">
+  <b>DRIVING CONTROLS</b> — Start GPS, offline status and stop controls stay at the top.
+</div>
+<div class="status" id="status">GPS is off. Tap <b>Start live roadbook</b> when you are ready to drive.</div>
+<div id="offlineBox">Offline package: starting…
+  <div id="offlineDetail" style="margin-top:4px;font-size:12px;font-weight:500;color:#667085;"></div>
+<button id="retryPhotosBtn" type="button" style="margin-top:8px">Retry missing photos</button>
+<span id="retryPhotosStatus" style="margin-left:8px"></span>
+
+</div>
+<div class="controls">
+  <button class="primary" id="start">Start live roadbook</button>
+  <button id="prev" type="button">Previous stop</button>
+  <button id="next" type="button">Next stop</button>
+  <button id="testaudio" type="button">Test voice</button>
+</div>
+<div class="jumpRow"><b>Jump to stop:</b><select id="jumpStop" aria-label="Jump to route stop"></select></div>
+
 
 <section id="routePoiRail" class="routePoiRail" aria-label="Route points of interest">
   <div class="routePoiHeader">
@@ -855,23 +890,10 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
 </section>
 
 
-<div class="status" id="status">GPS is off. Tap <b>Start live roadbook</b> when you are ready to drive.</div>
-<div id="offlineBox">Offline package: starting…
-  <div id="offlineDetail" style="margin-top:4px;font-size:12px;font-weight:500;color:#667085;"></div>
-<button id="retryPhotosBtn" type="button" style="margin-top:8px">Retry missing photos</button>
-<span id="retryPhotosStatus" style="margin-left:8px"></span>
 
-</div>
-<div class="controls">
-  <button class="primary" id="start">Start live roadbook</button>
-  <button id="prev" type="button">Previous stop</button>
-  <button id="next" type="button">Next stop</button>
-  <button id="testaudio" type="button">Test voice</button>
-</div>
-<div class="jumpRow"><b>Jump to stop:</b><select id="jumpStop" aria-label="Jump to route stop"></select></div>
 
 <div class="routeStreamIntro">
-  <b>Europe Roadbook V18.6.1 — route POI redesign.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
+  <b>Europe Roadbook V18.6.2 — route POI redesign.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
   The Netherlands route includes the Sep 26 Oud-Beijerland funeral as a fixed anchor; the funeral hour remains TBD.
   Review-derived notes and charger reference cards are fully cached offline. Travel/charger photographs are cached on a best-effort basis and never block offline readiness.
 </div>
@@ -1961,7 +1983,7 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-V18.6.1 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
+V18.6.2 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
 The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Oud-Beijerland funeral; the hour is still TBD.
 Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
@@ -2596,19 +2618,19 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Europe Roadbook V18.6.1 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
+show('Europe Roadbook V18.6.2 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const box=document.getElementById('offlineBox'), detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='europe-roadbook-v18-6-1';
+  const CACHE_NAME='europe-roadbook-v18-6-2';
   const LOCAL=['./','./index.html','./manifest.json','./europe-v18-icon-192.png','./europe-v18-icon-512.png'];
   const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Flakstad-Kirche-04-2019-gje.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamn%C3%B8y_in_Lofoten.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Het%20oude%20raadhuis%20van%20Oud-Beijerland.png?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_-_Nusfjord.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofotr_viking_museum_lofoten_foto_brage_aronsen.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Utakleiv_beach.jpg?width=960", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg", "https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg", "https://photos.plugshare.com/photos/1170706.jpg", "https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&h=630&q=80&tight=true&w=1200"];
   function stage(t,e=''){if(box)box.firstChild.nodeValue='Offline package: '+t;if(detail)detail.textContent=e;}
   async function verify(){
     try{
       const keys=await caches.keys();
-      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.6.1 cache.');return false;}
+      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.6.2 cache.');return false;}
       const c=await caches.open(CACHE_NAME), missing=[];
       for(const n of LOCAL){
         const u=new URL(n,location.href).href;
@@ -2618,7 +2640,7 @@ show('Europe Roadbook V18.6.1 loaded. Norway travel guide expanded; active-stop 
       for(const u of REMOTE){ if(await c.match(u,{ignoreSearch:true})) pics++; }
       if(missing.length){stage('preparing…','Missing local files: '+missing.join(', '));return false;}
       stage('READY — safe to use without internet',
-            'V18.6.1 complete: core app, route notes and charger cards cached. '+pics+' of '+REMOTE.length+
+            'V18.6.2 complete: core app, route notes and charger cards cached. '+pics+' of '+REMOTE.length+
             ' optional photographs are cached; missing photos will simply be unavailable offline.');
       return true;
     }catch(e){stage('check failed',e&&e.message?e.message:String(e));return false;}
@@ -2627,8 +2649,8 @@ show('Europe Roadbook V18.6.1 loaded. Norway travel guide expanded; active-stop 
     if(!window.isSecureContext){stage('FAILED','Not running over HTTPS.');return;}
     if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
     try{
-      stage('registering V18.6.1…','europe-v18-6-1-sw.js');
-      await navigator.serviceWorker.register('./europe-v18-6-1-sw.js',{scope:'./'});
+      stage('registering V18.6.2…','europe-v18-6-2-sw.js');
+      await navigator.serviceWorker.register('./europe-v18-6-2-sw.js',{scope:'./'});
       await navigator.serviceWorker.ready;
       for(let i=0;i<8;i++){ if(await verify()) break; await new Promise(r=>setTimeout(r,1500)); }
     }catch(e){stage('FAILED',(e&&e.name?e.name+': ':'')+(e&&e.message?e.message:String(e)));}
