@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Europe GPS Roadbook V18.5.1</title>
+<title>Europe GPS Roadbook V18.6.1</title>
 <meta name="theme-color" content="#fffdf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.5.1">
+<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.6.1">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="./europe-v18-icon-192.png">
 <style>
@@ -106,13 +106,13 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 .routePoiList{display:flex;flex-direction:column}
 .routePoi{display:flex;width:100%;text-align:left;align-items:flex-start;gap:10px;border:0;border-bottom:1px solid #ddd;background:#fff;padding:9px 10px}
 .routePoi:last-child{border-bottom:0}
-.routePoiType{flex:0 0 88px;font-size:11px;font-weight:800;letter-spacing:.03em;border:1px solid #555;padding:4px 6px;text-align:center;background:#fafafa}
+.routePoiType{flex:0 0 102px;font-size:11px;font-weight:800;letter-spacing:.03em;border:1px solid #555;padding:4px 6px;text-align:center;background:#fafafa}
 .routePoiText{display:flex;flex-direction:column;gap:2px}
 .routePoiText b{font-size:15px}
 .routePoiText small{font-size:12px;color:#444;line-height:1.25}
 .routePoi-hidden{display:none!important}
 .poiFlash{outline:4px solid #111;outline-offset:3px}
-@media(max-width:700px){.routePoiHeader{align-items:flex-start;flex-direction:column}.routePoiType{flex-basis:76px}}
+@media(max-width:700px){.routePoiHeader{align-items:flex-start;flex-direction:column}.routePoiType{flex-basis:90px}}
 </style>
 
 
@@ -127,15 +127,24 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 .routePoi-ev-charger .routePoiType{font-weight:900}
 </style>
 
+
+<style>
+.restaurantTier{display:inline-block;margin-top:3px;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:800;letter-spacing:.02em}
+.tier-destination{background:#111;color:#fff}
+.tier-good{background:#e8e8e8;color:#111;border:1px solid #777}
+.tier-casual{background:#f7f7f7;color:#333;border:1px dashed #999}
+.restaurantTierLegend{margin:7px 10px 10px;padding:8px;border:1px solid #bbb;background:#fafafa;font-size:12px;line-height:1.35}
+</style>
+
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.5.1.2 Full Travel Build</h1>
+<header><h1>Europe GPS Roadbook — V18.6.1.2 Full Travel Build</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18.5.1.3</strong>
+    <strong>EUROPE ROADBOOK · V18.6.1.3</strong>
     <div>Classic paper-road-map inspired · 53 active route stops</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -475,119 +484,365 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 
 <section id="routePoiRail" class="routePoiRail" aria-label="Route points of interest">
   <div class="routePoiHeader">
-    <div><b>ROUTE AHEAD</b><span>Hikes, scenic stops and EV chargers — informational only; they do not change automatic navigation.</span></div>
+    <div><b>ROUTE AHEAD</b><span>Hikes, scenic stops, EV chargers, restaurants and supermarkets in TRIP DRIVING ORDER. Food, groceries and chargers appear beside the places you are approaching. Informational POIs do not change automatic navigation.</span></div>
     <div class="routePoiFilters">
       <button type="button" data-filter="ALL" class="active">ALL</button>
       <button type="button" data-filter="HIKE">HIKES</button>
       <button type="button" data-filter="SCENIC POI">SCENIC</button>
-      <button type="button" data-filter="EV CHARGER">EV</button>
+      <button type="button" data-filter="EV CHARGER">EV</button><button type="button" data-filter="RESTAURANT">RESTAURANTS</button><button type="button" data-filter="SUPERMARKET">SUPERMARKETS</button>
     </div>
   </div>
-  <div class="routePoiList"><button class="routePoi routePoi-hike" type="button" data-target="stop-haukland">
-<span class="routePoiType">HIKE</span>
-<span class="routePoiText"><b>Haukland → Uttakleiv coastal road</b><small>Easy • ~4 km one way • ~1 hr • flat gravel coastal road</small></span>
-</button><button class="routePoi routePoi-hike" type="button" data-target="stop-haukland">
-<span class="routePoiType">HIKE</span>
-<span class="routePoiText"><b>Mannen</b><small>~400 m • ~1.75 km one way • 2–3 hr return • exposed sections</small></span>
-</button><button class="routePoi routePoi-hike" type="button" data-target="stop-haukland">
-<span class="routePoiType">HIKE</span>
-<span class="routePoiText"><b>Himmeltinden</b><small>931 m • major hike • ~3 hr one way</small></span>
-</button><button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-ramberg">
-<span class="routePoiType">SCENIC POI</span>
-<span class="routePoiText"><b>Ramberg Beach</b><small>Fast roadside stop • white sand • village services nearby</small></span>
-</button><button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-flakstad">
-<span class="routePoiType">SCENIC POI</span>
-<span class="routePoiText"><b>Skagsanden + Flakstad Church</b><small>Quick roadside scenic/cultural stop</small></span>
-</button><button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-hamnoy">
-<span class="routePoiType">SCENIC POI</span>
-<span class="routePoiText"><b>Hamnøy bridge viewpoint</b><small>Classic rorbuer + mountain composition</small></span>
-</button><button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-reine">
-<span class="routePoiType">SCENIC POI</span>
-<span class="routePoiText"><b>Sakrisøy + Reinehalsen</b><small>Very high-value short photo stops</small></span>
-</button><button class="routePoi routePoi-hike" type="button" data-target="stop-reine">
-<span class="routePoiType">HIKE</span>
-<span class="routePoiText"><b>Reinebringen</b><small>448 m • ~1 km one way • 1,978 stone steps • strenuous</small></span>
-</button><button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-aa">
-<span class="routePoiType">SCENIC POI</span>
-<span class="routePoiText"><b>Å fishing-village walk</b><small>Harbour lanes, rorbuer and preserved fishing structures</small></span>
-</button><button class="routePoi routePoi-hike" type="button" data-target="stop-aa">
-<span class="routePoiType">HIKE</span>
-<span class="routePoiText"><b>Sørvågen easy walk</b><small>Gentler option: Studalselva waterfall or Sørvågvatnet</small></span>
-</button><button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-nusfjord">
-<span class="routePoiType">SCENIC POI</span>
-<span class="routePoiText"><b>Nusfjord historic fishing village</b><small>Preserved harbour settlement • worthwhile detour</small></span>
-</button><button class="routePoi routePoi-hike" type="button" data-target="stop-fredvang">
-<span class="routePoiType">HIKE</span>
-<span class="routePoiText"><b>Kvalvika + Ryten</b><small>Several hours • signature west-Lofoten hike</small></span>
-</button><button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-fredvang">
-<span class="routePoiType">SCENIC POI</span>
-<span class="routePoiText"><b>Ytresand / Fredvang Bridges</b><small>Low-effort scenic stop</small></span>
-</button><button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-lofotr">
-<span class="routePoiType">SCENIC POI</span>
-<span class="routePoiText"><b>Lofotr Viking Museum</b><small>Allow ~1.5–3 hr</small></span>
-</button><button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-svolvaer">
-<span class="routePoiType">SCENIC POI</span>
-<span class="routePoiText"><b>Lofoten Krigsminne Museum</b><small>Top-rated Svolvær attraction</small></span>
-</button><button class="routePoi routePoi-hike" type="button" data-target="stop-svolvaer">
-<span class="routePoiType">HIKE</span>
-<span class="routePoiText"><b>Linken</b><small>Easy • 3.8 km return • ~1 hr • 152 m</small></span>
-</button><button class="routePoi routePoi-hike" type="button" data-target="stop-svolvaer">
-<span class="routePoiType">HIKE</span>
-<span class="routePoiText"><b>Tjeldbergtind</b><small>~367 m • ~2 hr return • fairly demanding</small></span>
-</button><button class="routePoi routePoi-hike" type="button" data-target="stop-svolvaer">
-<span class="routePoiType">HIKE</span>
-<span class="routePoiText"><b>Fløya + Djevelporten</b><small>~590 m • steep/exposed upper route</small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Tesla Supercharger — Svolvær</b><small>250 kW • 16 CCS • Caroline Harveys vei 8 • 24/7 • open to CCS-compatible non-Tesla EVs</small><small><strong>Tesla app/payment for non-Tesla</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Recharge Shell — Svolvær</b><small>200 kW • 8 CCS + CHAdeMO • near Tesla/Marina Hotel</small><small><strong>CARD: direct card/drop-in; no app required</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Eviny/Bilkraft Alti — Svolvær</b><small>200 kW • 8 CCS plus CHAdeMO • Lofotgata 33 • 24/7</small><small><strong>Drop-in availability varies; Bilkraft/Vipps commonly used</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Kople Aust-Lofoten school — Svolvær</b><small>60 kW CCS • Gymnasgata 13 • 24/7</small><small><strong>CARD/WEB: Kople drop-in with bank card; no registration</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Recharge Kiwi Osan — Svolvær</b><small>50 kW CCS/CHAdeMO • Måseveien 1 • 24/7</small><small><strong>CARD: Recharge drop-in; no app required</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Kople LAD OPP Lofoten Basecamp — Leknes</b><small>400 kW • 4 CCS HPC + 4 Type 2 • Skreda 49</small><small><strong>CARD/WEB: Kople drop-in with bank card; no registration</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Eviny Rema 1000 — Leknes</b><small>350–360 kW • 5 CCS + CHAdeMO • Idrettsgata 61 • 24/7</small><small><strong>Bilkraft/Vipps; app may be the most reliable start method</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Tesla Supercharger — Leknes</b><small>250 kW • Idrettsgata 61 / Rema 1000 area</small><small><strong>Tesla app/payment for non-Tesla</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Mer Lofotsenteret — Leknes</b><small>150 kW • 4 CCS + CHAdeMO • Storgata 8 • 24/7</small><small><strong>Drop-in/card where terminal is enabled; otherwise Mer/roaming</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Circle K — Leknes</b><small>50 kW CCS/CHAdeMO • Storgata 35</small><small><strong>CARD: Visa/Mastercard drop-in; no app required</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Eviny Alstad Kro og Camping</b><small>350 kW • 5 CCS + CHAdeMO • Vestvågøy / E10 corridor</small><small><strong>Bilkraft/Vipps; app may be the most reliable start method</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Kople Bodø Energi — Ramberg</b><small>150 kW • 2×150 kW CCS + 75 kW CCS + CHAdeMO • Flakstadveien</small><small><strong>CARD/WEB: Kople ad-hoc/drop-in; no registration</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Tesla Supercharger — Reine</b><small>250 kW • 6 CCS • Parking Reinebringen • Sverdrups vei 7 • 24/7</small><small><strong>Tesla app/payment for non-Tesla</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Kople Parkering Ytre Havn — Reine</b><small>200 kW • 2×200 kW CCS + 75 kW CCS • Sverdrups vei 5 • 24/7</small><small><strong>CARD/WEB: Kople ad-hoc/drop-in; no registration</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
-<span class="routePoiType">EV CHARGER</span>
-<span class="routePoiText"><b>Eviny Reine Sentrum</b><small>200 kW • 6 CCS + CHAdeMO • Reineveien 109 • 24/7</small><small><strong>Bilkraft/Vipps; app may be the most reliable start method</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+  <div class="routePoiList">
+<div class="restaurantTierLegend">
+<b>Restaurant key:</b>
+<span class="restaurantTier tier-destination">★★★★★ DESTINATION</span> worth choosing deliberately;
+<span class="restaurantTier tier-good">★★★★ GOOD VALUE</span> solid food/value;
+<span class="restaurantTier tier-casual">★★★ CASUAL / BUDGET</span> simpler, cheaper, convenient.
+These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripadvisor score. Where a current Tripadvisor score was checked, it is shown separately in the description.
+</div>
+
+<div class="routePoiLegend">
+<b>Tip:</b> use the category buttons to show only HIKES, SCENIC, EV, RESTAURANTS or SUPERMARKETS. The full ALL view remains in trip order.
+</div>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
 <span class="routePoiType">EV CHARGER</span>
 <span class="routePoiText"><b>Tesla Supercharger — Evenes</b><small>250 kW • 8 CCS • Aiden/Best Western area • 24/7</small><small><strong>Tesla app/payment for non-Tesla</strong></small></span>
-</button><button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
 <span class="routePoiType">EV CHARGER</span>
 <span class="routePoiText"><b>Circle K — Evenes</b><small>Fast DC • Bedringens vei 1 • 24/7 station</small><small><strong>CARD: Visa/Mastercard/drop-in; no app required</strong></small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-eve_house">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Evenes Grill &amp; Bar</b><small>Bedringens vei 2 • convenient airport-area meal</small></span>
+</button>
+<button class="routePoi routePoi-hike" type="button" data-target="stop-haukland">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b>Haukland → Uttakleiv coastal road</b><small>Easy • ~4 km one way • ~1 hr • flat gravel coastal road</small></span>
+</button>
+<button class="routePoi routePoi-hike" type="button" data-target="stop-haukland">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b>Mannen</b><small>~400 m • ~1.75 km one way • 2–3 hr return • exposed sections</small></span>
+</button>
+<button class="routePoi routePoi-hike" type="button" data-target="stop-haukland">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b>Himmeltinden</b><small>931 m • major hike • ~3 hr one way</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-henningsvaer">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Fiskekrogen — Henningsvær</b><span class="restaurantTier tier-destination">★★★★★ DESTINATION</span><small>Harbour seafood • highly rated Lofoten classic</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-henningsvaer">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Klatrekafeen — Henningsvær</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>4.1/5 Tripadvisor • bar/café • less formal alternative to Fiskekrogen</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-henningsvaer">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Trevarefabrikken — Henningsvær</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>4.0/5 Tripadvisor • pizza/bar • relaxed atmosphere</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-henningsvaer">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Joker Henningsvær</b><small>Dreyers gate 59 • small but useful village grocery</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-haukland">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Haukland Beach Café</b><span class="restaurantTier tier-casual">★★★ CASUAL / BUDGET</span><small>Visitor centre café • useful before/after coastal walks</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-ramberg">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b>Ramberg Beach</b><small>Fast roadside stop • white sand • village services nearby</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-ramberg">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Ramberg Resort Restaurant</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>Ramberg Beach • lunch and dinner • local seafood/meat</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-ramberg">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Bunnpris Ramberg</b><small>Flakstadveien 457 • full grocery plus hiking basics</small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Kople Bodø Energi — Ramberg</b><small>150 kW • 2×150 kW CCS + 75 kW CCS + CHAdeMO • Flakstadveien</small><small><strong>CARD/WEB: Kople ad-hoc/drop-in; no registration</strong></small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-flakstad">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b>Skagsanden + Flakstad Church</b><small>Quick roadside scenic/cultural stop</small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Circle K — Leknes</b><small>50 kW CCS/CHAdeMO • Storgata 35</small><small><strong>CARD: Visa/Mastercard drop-in; no app required</strong></small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Kople LAD OPP Lofoten Basecamp — Leknes</b><small>400 kW • 4 CCS HPC + 4 Type 2 • Skreda 49</small><small><strong>CARD/WEB: Kople drop-in with bank card; no registration</strong></small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Eviny Rema 1000 — Leknes</b><small>350–360 kW • 5 CCS + CHAdeMO • Idrettsgata 61 • 24/7</small><small><strong>Bilkraft/Vipps; app may be the most reliable start method</strong></small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Mer Lofotsenteret — Leknes</b><small>150 kW • 4 CCS + CHAdeMO • Storgata 8 • 24/7</small><small><strong>Drop-in/card where terminal is enabled; otherwise Mer/roaming</strong></small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Eviny Alstad Kro og Camping</b><small>350 kW • 5 CCS + CHAdeMO • Vestvågøy / E10 corridor</small><small><strong>Bilkraft/Vipps; app may be the most reliable start method</strong></small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-arctic_resort">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>REMA 1000 Leknes</b><small>Idrettsgata 61 • large grocery • long hours</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-arctic_resort">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Extra Leknes</b><small>Storgata 8 • central grocery</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-arctic_resort">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>DIGG — Leknes</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>Central modern restaurant/bar option</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-hamnoy">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b>Hamnøy bridge viewpoint</b><small>Classic rorbuer + mountain composition</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-reine">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b>Sakrisøy + Reinehalsen</b><small>Very high-value short photo stops</small></span>
+</button>
+<button class="routePoi routePoi-hike" type="button" data-target="stop-reine">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b>Reinebringen</b><small>448 m • ~1 km one way • 1,978 stone steps • strenuous</small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Kople Parkering Ytre Havn — Reine</b><small>200 kW • 2×200 kW CCS + 75 kW CCS • Sverdrups vei 5 • 24/7</small><small><strong>CARD/WEB: Kople ad-hoc/drop-in; no registration</strong></small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Eviny Reine Sentrum</b><small>200 kW • 6 CCS + CHAdeMO • Reineveien 109 • 24/7</small><small><strong>Bilkraft/Vipps; app may be the most reliable start method</strong></small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-reine">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Gammelbua — Reine</b><span class="restaurantTier tier-destination">★★★★★ DESTINATION</span><small>Historic Reine restaurant • fish/local ingredients</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-reine">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Coop Prix Reine</b><small>Moskenesveien 394 • last substantial grocery toward Å</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-aa">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b>Å fishing-village walk</b><small>Harbour lanes, rorbuer and preserved fishing structures</small></span>
+</button>
+<button class="routePoi routePoi-hike" type="button" data-target="stop-aa">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b>Sørvågen easy walk</b><small>Gentler option: Studalselva waterfall or Sørvågvatnet</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-aa">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Bakeriet Å</b><span class="restaurantTier tier-casual">★★★ CASUAL / BUDGET</span><small>Bakery/café in Å • convenient light meal/coffee</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-nusfjord">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b>Nusfjord historic fishing village</b><small>Preserved harbour settlement • worthwhile detour</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-nusfjord">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Restaurant Karoline — Nusfjord</b><span class="restaurantTier tier-destination">★★★★★ DESTINATION</span><small>Historic fishing-village restaurant</small></span>
+</button>
+<button class="routePoi routePoi-hike" type="button" data-target="stop-fredvang">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b>Kvalvika + Ryten</b><small>Several hours • signature west-Lofoten hike</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-fredvang">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b>Ytresand / Fredvang Bridges</b><small>Low-effort scenic stop</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-lofotr">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b>Lofotr Viking Museum</b><small>Allow ~1.5–3 hr</small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Recharge Shell — Svolvær</b><small>200 kW • 8 CCS + CHAdeMO • near Tesla/Marina Hotel</small><small><strong>CARD: direct card/drop-in; no app required</strong></small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Eviny/Bilkraft Alti — Svolvær</b><small>200 kW • 8 CCS plus CHAdeMO • Lofotgata 33 • 24/7</small><small><strong>Drop-in availability varies; Bilkraft/Vipps commonly used</strong></small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Kople Aust-Lofoten school — Svolvær</b><small>60 kW CCS • Gymnasgata 13 • 24/7</small><small><strong>CARD/WEB: Kople drop-in with bank card; no registration</strong></small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Recharge Kiwi Osan — Svolvær</b><small>50 kW CCS/CHAdeMO • Måseveien 1 • 24/7</small><small><strong>CARD: Recharge drop-in; no app required</strong></small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi" type="button" data-target="stop-svolvaer">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b>Lofoten Krigsminne Museum</b><small>Top-rated Svolvær attraction</small></span>
+</button>
+<button class="routePoi routePoi-hike" type="button" data-target="stop-svolvaer">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b>Linken</b><small>Easy • 3.8 km return • ~1 hr • 152 m</small></span>
+</button>
+<button class="routePoi routePoi-hike" type="button" data-target="stop-svolvaer">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b>Tjeldbergtind</b><small>~367 m • ~2 hr return • fairly demanding</small></span>
+</button>
+<button class="routePoi routePoi-hike" type="button" data-target="stop-svolvaer">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b>Fløya + Djevelporten</b><small>~590 m • steep/exposed upper route</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-svolvaer">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Børsen Spiseri — Svolvær</b><span class="restaurantTier tier-destination">★★★★★ DESTINATION</span><small>One of Lofoten’s best-known seafood restaurants</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-svolvaer">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Restaurant Kjøkkenet — Svolvær</b><span class="restaurantTier tier-destination">★★★★★ DESTINATION</span><small>Seafood/European • well-reviewed</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-svolvaer">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Extra Svolvær</b><small>Lofotgata 33 • large central grocery • 07:00–23:00 most days</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-svolvaer">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>REMA 1000 Svolvær</b><small>Valgata 10 • central grocery</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-svolvaer">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Kringla Bakeri & Konditori — Svolvær</b><span class="restaurantTier tier-casual">★★★ CASUAL / BUDGET</span><small>3.8/5 Tripadvisor • bakery/café • inexpensive</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-svolvaer">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Telegrafen Pub Og Bar — Svolvær</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>4.1/5 Tripadvisor • pub/bar • inexpensive</small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Tesla Supercharger — Svolvær</b><small>250 kW • 16 CCS • Caroline Harveys vei 8 • 24/7 • open to CCS-compatible non-Tesla EVs</small><small><strong>Tesla app/payment for non-Tesla</strong></small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Tesla Supercharger — Leknes</b><small>250 kW • Idrettsgata 61 / Rema 1000 area</small><small><strong>Tesla app/payment for non-Tesla</strong></small></span>
+</button>
+<button class="routePoi routePoi-ev-charger" type="button" data-target="chargerDirectory">
+<span class="routePoiType">EV CHARGER</span>
+<span class="routePoiText"><b>Tesla Supercharger — Reine</b><small>250 kW • 6 CCS • Parking Reinebringen • Sverdrups vei 7 • 24/7</small><small><strong>Tesla app/payment for non-Tesla</strong></small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-pitlochry">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Co-op — Pitlochry</b><small>West Moulin Road • 06:00–22:00 daily</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-aviemore">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Old Bridge Inn — Aviemore</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>Popular pub/restaurant • British/Scottish</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-aviemore">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Delaneys&#x27; — Aviemore</b><small>Highly rated contemporary Scottish/international</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-aviemore">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Tesco Superstore — Aviemore</b><small>PH22 1RH • major resupply stop • 07:00–22:00 Mon–Sat</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-uig">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>The Ferry Inn — Uig</b><span class="restaurantTier tier-destination">★★★★★ DESTINATION</span><small>Very highly rated • right at your lodging</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-uig">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Rankins Supermarket — Uig</b><small>PO Buildings, Uig • useful Skye resupply</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-fortwilliam">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Morrisons — Fort William</b><small>An Aird Road • large supermarket • 07:00–22:00 Mon–Sat</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-fortwilliam">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Tesco Express — Fort William</b><small>Unit 2 Airds Crossing • convenient smaller top-up</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-fortwilliam">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Nevis Bakery — Fort William</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>4.6/5 Tripadvisor • bakery/takeaway • inexpensive</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-rocklee">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>The Laroch — Ballachulish</b><span class="restaurantTier tier-destination">★★★★★ DESTINATION</span><small>Well-rated local restaurant/bar</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-rocklee">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Co-op — Ballachulish</b><small>Old Station Yard, Park Road • 07:00–22:00 daily</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-rocklee">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>The Quarry Centre Café — Ballachulish</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>4.3/5 Tripadvisor • café • inexpensive</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-hotel_indigo">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>The Dukes Umbrella — Glasgow</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>~0.1 mi from Hotel Indigo • highly rated British/pub food</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-hotel_indigo">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Rumi Bar &amp; Restaurant — Glasgow</b><small>~0.2 mi from Hotel Indigo • highly rated Turkish</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-hotel_indigo">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Turbine 75 — Hotel Indigo</b><span class="restaurantTier tier-casual">★★★ CASUAL / BUDGET</span><small>In-hotel option • breakfast/lunch/dinner</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-hotel_indigo">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Drouthy's — Glasgow</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>4.6/5 Tripadvisor • pub food • inexpensive</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-vlissingen">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Albert Heijn XL — Vlissingen</b><small>Gildeweg 6 • large supermarket • generally 08:00–22:00</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-delft">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Delft centre dining — live choice</b><span class="restaurantTier tier-casual">★★★ CASUAL / BUDGET</span><small>Use the historic-centre stop for canalside dining; check live availability</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-denhaag">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Den Haag dining — live choice</b><span class="restaurantTier tier-casual">★★★ CASUAL / BUDGET</span><small>Many choices near centre/friend visit; use live map when online</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-cuijk">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>Albert Heijn — Cuijk</b><small>Smidstraat 70 • open late</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-cuijk">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Het Boothuys — Cuijk</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>Highly rated Dutch/seafood</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-cuijk">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Restaurant Smaak — Cuijk</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>Well-rated Dutch/seafood</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-nieuwegein">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Restaurant Huis de Wiers — Nieuwegein</b><span class="restaurantTier tier-destination">★★★★★ DESTINATION</span><small>Highly rated Dutch/French</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-nieuwegein">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Restaurant Celine — Nieuwegein</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>Highly rated Dutch/seafood</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-oudbeijerland">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Restaurant Oostkade — Oud-Beijerland</b><span class="restaurantTier tier-destination">★★★★★ DESTINATION</span><small>Top-rated local option</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-oudbeijerland">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Divina Cucina — Oud-Beijerland</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>Popular Italian/seafood option</small></span>
+</button>
+<button class="routePoi routePoi-supermarket" type="button" data-target="stop-vienna_house">
+<span class="routePoiType">SUPERMARKET</span>
+<span class="routePoiText"><b>AH to Go — Hoofddorp Kruisweg</b><small>Kruisweg 450 • very long hours • useful before Schiphol</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-vienna_house">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Dine With Florian — Hoofddorp</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>~0.1 mi from Vienna House Easy • local/seasonal</small></span>
+</button>
+<button class="routePoi routePoi-restaurant" type="button" data-target="stop-vienna_house">
+<span class="routePoiType">RESTAURANT</span>
+<span class="routePoiText"><b>Den Burgh — Hoofddorp</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>~0.7 mi from Vienna House Easy • Dutch/seafood</small></span>
 </button></div>
 </section>
 <section id="chargerDirectory" class="chargerDirectory">
@@ -616,7 +871,7 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <div class="jumpRow"><b>Jump to stop:</b><select id="jumpStop" aria-label="Jump to route stop"></select></div>
 
 <div class="routeStreamIntro">
-  <b>Europe Roadbook V18.5.1 — route POI redesign.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
+  <b>Europe Roadbook V18.6.1 — route POI redesign.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
   The Netherlands route includes the Sep 26 Oud-Beijerland funeral as a fixed anchor; the funeral hour remains TBD.
   Review-derived notes and charger reference cards are fully cached offline. Travel/charger photographs are cached on a best-effort basis and never block offline readiness.
 </div>
@@ -1706,7 +1961,7 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-V18.5.1 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
+V18.6.1 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
 The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Oud-Beijerland funeral; the hour is still TBD.
 Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
@@ -2341,19 +2596,19 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Europe Roadbook V18.5.1 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
+show('Europe Roadbook V18.6.1 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const box=document.getElementById('offlineBox'), detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='europe-roadbook-v18-5-1';
+  const CACHE_NAME='europe-roadbook-v18-6-1';
   const LOCAL=['./','./index.html','./manifest.json','./europe-v18-icon-192.png','./europe-v18-icon-512.png'];
   const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Flakstad-Kirche-04-2019-gje.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamn%C3%B8y_in_Lofoten.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Het%20oude%20raadhuis%20van%20Oud-Beijerland.png?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_-_Nusfjord.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofotr_viking_museum_lofoten_foto_brage_aronsen.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Utakleiv_beach.jpg?width=960", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg", "https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg", "https://photos.plugshare.com/photos/1170706.jpg", "https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&h=630&q=80&tight=true&w=1200"];
   function stage(t,e=''){if(box)box.firstChild.nodeValue='Offline package: '+t;if(detail)detail.textContent=e;}
   async function verify(){
     try{
       const keys=await caches.keys();
-      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.5.1 cache.');return false;}
+      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.6.1 cache.');return false;}
       const c=await caches.open(CACHE_NAME), missing=[];
       for(const n of LOCAL){
         const u=new URL(n,location.href).href;
@@ -2363,7 +2618,7 @@ show('Europe Roadbook V18.5.1 loaded. Norway travel guide expanded; active-stop 
       for(const u of REMOTE){ if(await c.match(u,{ignoreSearch:true})) pics++; }
       if(missing.length){stage('preparing…','Missing local files: '+missing.join(', '));return false;}
       stage('READY — safe to use without internet',
-            'V18.5.1 complete: core app, route notes and charger cards cached. '+pics+' of '+REMOTE.length+
+            'V18.6.1 complete: core app, route notes and charger cards cached. '+pics+' of '+REMOTE.length+
             ' optional photographs are cached; missing photos will simply be unavailable offline.');
       return true;
     }catch(e){stage('check failed',e&&e.message?e.message:String(e));return false;}
@@ -2372,8 +2627,8 @@ show('Europe Roadbook V18.5.1 loaded. Norway travel guide expanded; active-stop 
     if(!window.isSecureContext){stage('FAILED','Not running over HTTPS.');return;}
     if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
     try{
-      stage('registering V18.5.1…','europe-v18-5-1-sw.js');
-      await navigator.serviceWorker.register('./europe-v18-5-1-sw.js',{scope:'./'});
+      stage('registering V18.6.1…','europe-v18-6-1-sw.js');
+      await navigator.serviceWorker.register('./europe-v18-6-1-sw.js',{scope:'./'});
       await navigator.serviceWorker.ready;
       for(let i=0;i<8;i++){ if(await verify()) break; await new Promise(r=>setTimeout(r,1500)); }
     }catch(e){stage('FAILED',(e&&e.name?e.name+': ':'')+(e&&e.message?e.message:String(e)));}
