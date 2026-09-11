@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Europe GPS Roadbook V18.6.4</title>
+<title>Europe GPS Roadbook V18.6.6</title>
 <meta name="theme-color" content="#fffdf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.6.4">
+<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.6.6">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="./europe-v18-icon-192.png">
 <style>
@@ -299,15 +299,352 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 }
 </style>
 
+
+<style id="phoneDriverUIFix">
+@media (max-height:520px) and (orientation:landscape){
+
+  /* Give the usable roadbook area more width. */
+  .appShell{
+    grid-template-columns:28vw minmax(0,72vw) !important;
+  }
+
+  .stripPane{
+    width:auto !important;
+    min-width:0 !important;
+  }
+
+  .contentPane{
+    padding:4px 8px 14px !important;
+  }
+
+  /* Shrink the page masthead dramatically on phone landscape. */
+  header, .pageHeader, .topHeader{
+    padding-top:2px !important;
+    padding-bottom:2px !important;
+    margin-bottom:2px !important;
+  }
+  header h1, .pageHeader h1, .topHeader h1{
+    font-size:18px !important;
+    line-height:1.05 !important;
+    margin:0 !important;
+  }
+  header p, .pageHeader p, .topHeader p{
+    display:none !important;
+  }
+
+  /* Remove explanatory notes that waste the small landscape viewport. */
+  .phoneLayoutNote,
+  .driverTopNote{
+    display:none !important;
+  }
+
+  /* Make the live NEXT STOP card compact enough to leave room for controls. */
+  #status{
+    margin:2px 0 4px !important;
+    padding:8px 10px !important;
+    min-height:0 !important;
+    max-height:none !important;
+  }
+  #status .statusLabel,
+  #status .eyebrow,
+  #status .nextLabel{
+    font-size:11px !important;
+    line-height:1 !important;
+    margin:0 0 2px !important;
+  }
+  #status .statusName,
+  #status .nextName,
+  #status h2,
+  #status h3{
+    font-size:22px !important;
+    line-height:1.02 !important;
+    margin:0 0 4px !important;
+  }
+  #status .statusMeta,
+  #status .meta,
+  #status p{
+    font-size:12px !important;
+    line-height:1.15 !important;
+    margin:2px 0 !important;
+  }
+
+  /* Offline readiness should be a tiny status strip, not a large card. */
+  #offlineBox{
+    margin:2px 0 4px !important;
+    padding:5px 8px !important;
+    font-size:11px !important;
+    line-height:1.15 !important;
+    max-height:36px !important;
+    overflow:hidden !important;
+  }
+  #offlineBox b, #offlineBox strong{
+    font-size:12px !important;
+  }
+  #offlineBox p,
+  #offlineBox small,
+  #offlineBox .offlineDetail{
+    display:none !important;
+  }
+  #retryPhotosBtn,
+  #retryPhotosStatus{
+    display:none !important;
+  }
+
+  /* Put the essential driver controls into a compact grid, always near the top. */
+  .controls{
+    display:grid !important;
+    grid-template-columns:1.45fr 1fr 1fr !important;
+    gap:5px !important;
+    margin:3px 0 5px !important;
+  }
+  .controls button{
+    min-height:38px !important;
+    padding:5px 7px !important;
+    font-size:13px !important;
+    line-height:1.05 !important;
+    margin:0 !important;
+  }
+  #start{
+    grid-column:1 / 2 !important;
+  }
+
+  /* Jump selector stays visible directly under controls. */
+  .jumpRow{
+    display:grid !important;
+    grid-template-columns:auto 1fr !important;
+    align-items:center !important;
+    gap:6px !important;
+    margin:2px 0 6px !important;
+    font-size:11px !important;
+  }
+  .jumpRow select{
+    min-height:34px !important;
+    font-size:12px !important;
+  }
+
+  /* Hide verbose build/introduction/status text in the driving viewport.
+     It remains available on iPad/desktop and in portrait. */
+  .intro,
+  .buildIntro,
+  .travelIntro,
+  .aboutBox{
+    display:none !important;
+  }
+
+  /* Route Ahead starts immediately after controls. */
+  .routePoiRail{
+    margin-top:4px !important;
+  }
+  .routePoiHeader{
+    padding:4px 6px !important;
+    gap:5px !important;
+  }
+  .routePoiHeader b{
+    font-size:13px !important;
+  }
+  .routePoiHeader span{
+    display:none !important;
+  }
+  .routePoiFilters{
+    gap:3px !important;
+  }
+  .routePoiFilters button{
+    padding:4px 5px !important;
+    font-size:10px !important;
+  }
+
+  /* Compress POI rows without losing meaning. */
+  .routePoi{
+    padding:6px !important;
+    gap:6px !important;
+  }
+  .routePoiType{
+    flex:0 0 76px !important;
+    padding:3px 4px !important;
+    font-size:9px !important;
+  }
+  .routePoiText b{
+    font-size:12px !important;
+  }
+  .routePoiText small{
+    font-size:10px !important;
+    line-height:1.15 !important;
+  }
+  .restaurantTier{
+    font-size:9px !important;
+    padding:1px 4px !important;
+  }
+
+  /* Keep each side independently scrollable. */
+  html,body{
+    height:100%;
+    overflow:hidden !important;
+  }
+  .appShell{
+    height:100vh !important;
+    max-height:100vh !important;
+    overflow:hidden !important;
+  }
+  .stripPane,
+  .contentPane{
+    height:100vh !important;
+    max-height:100vh !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch !important;
+    touch-action:pan-y !important;
+  }
+}
+</style>
+
+
+<style id="renderCheckedPhoneLayout">
+@media (max-height:520px) and (orientation:landscape){
+  html,body{height:100%;overflow:hidden!important}
+
+  header{
+    position:relative!important;
+    height:34px!important;
+    min-height:34px!important;
+    padding:3px 8px!important;
+    overflow:hidden!important;
+  }
+  header h1{font-size:15px!important;line-height:16px!important;margin:0!important;white-space:nowrap!important}
+  header .sub{display:none!important}
+
+  .roadbook-shell{
+    display:grid!important;
+    grid-template-columns:27vw minmax(0,73vw)!important;
+    gap:6px!important;
+    padding:5px!important;
+    width:100vw!important;
+    max-width:none!important;
+    height:calc(100vh - 34px)!important;
+    overflow:hidden!important;
+    align-items:stretch!important;
+  }
+
+  .stripPane{
+    display:block!important;
+    position:relative!important;
+    top:auto!important;
+    height:100%!important;
+    min-height:0!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    margin:0!important;
+    border-radius:8px!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+  .stripTitle{padding:4px 6px!important}
+  .stripTitle strong{font-size:11px!important}
+  .stripTitle div{display:none!important}
+
+  main.contentPane{
+    display:block!important;
+    position:relative!important;
+    height:100%!important;
+    min-height:0!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    padding:0 5px 20px 0!important;
+    margin:0!important;
+    scroll-behavior:auto!important;
+    -webkit-overflow-scrolling:touch!important;
+    touch-action:pan-y!important;
+  }
+
+  .phoneLayoutNote,.driverTopNote{display:none!important}
+
+  #status{
+    position:relative!important;
+    top:auto!important;
+    z-index:1!important;
+    margin:0 0 4px!important;
+    padding:5px 7px!important;
+    border-width:1px!important;
+    border-radius:7px!important;
+    box-shadow:none!important;
+    font-size:11px!important;
+    line-height:1.15!important;
+    min-height:0!important;
+  }
+  .statusMode{font-size:9px!important;margin:0 0 1px!important}
+  .nextStopName{font-size:15px!important;line-height:1!important;margin:1px 0 2px!important}
+  .statusDistance{font-size:10px!important}
+  .statusDiag{font-size:9px!important}
+
+  #offlineBox{
+    margin:0 0 4px!important;
+    padding:4px 6px!important;
+    border-width:1px!important;
+    border-radius:6px!important;
+    font-size:10px!important;
+    line-height:1.1!important;
+    max-height:25px!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+  }
+  #offlineDetail,#retryPhotosBtn,#retryPhotosStatus{display:none!important}
+
+  .controls{
+    display:grid!important;
+    grid-template-columns:1.45fr 1fr 1fr 1fr!important;
+    gap:4px!important;
+    margin:0 0 4px!important;
+  }
+  .controls button{
+    display:block!important;
+    min-width:0!important;
+    min-height:32px!important;
+    padding:3px 4px!important;
+    margin:0!important;
+    border-radius:6px!important;
+    font-size:10px!important;
+    line-height:1.05!important;
+  }
+  #start{grid-column:auto!important}
+
+  .jumpRow{
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr)!important;
+    gap:4px!important;
+    align-items:center!important;
+    margin:0 0 5px!important;
+    font-size:9px!important;
+  }
+  .jumpRow select{
+    width:100%!important;
+    min-width:0!important;
+    height:28px!important;
+    padding:2px 4px!important;
+    font-size:10px!important;
+  }
+
+  .routeStreamIntro{display:none!important}
+  .routePoiRail{margin:4px 0 8px!important}
+  .routePoiHeader{position:relative!important;top:auto!important;padding:4px!important}
+  .routePoiHeader>div:first-child span{display:none!important}
+  .routePoiHeader b{font-size:11px!important}
+  .routePoiFilters{gap:2px!important}
+  .routePoiFilters button{padding:3px 4px!important;font-size:8px!important;border-radius:5px!important}
+  .restaurantTierLegend{display:none!important}
+  .routePoi{padding:5px!important;gap:5px!important}
+  .routePoiType{flex:0 0 68px!important;font-size:8px!important;padding:2px 3px!important}
+  .routePoiText b{font-size:11px!important}
+  .routePoiText small{font-size:9px!important}
+  .restaurantTier{font-size:8px!important;padding:1px 3px!important}
+}
+</style>
+
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.6.4.2 Full Travel Build</h1>
+<header><h1>Europe GPS Roadbook — V18.6.6.2 Full Travel Build</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18.6.4.3</strong>
+    <strong>EUROPE ROADBOOK · V18.6.6.3</strong>
     <div>Classic paper-road-map inspired · 53 active route stops</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -1045,7 +1382,7 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
 
 
 <div class="routeStreamIntro">
-  <b>Europe Roadbook V18.6.4 — route POI redesign.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
+  <b>Europe Roadbook V18.6.6 — route POI redesign.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
   The Netherlands route includes the Sep 26 Oud-Beijerland funeral as a fixed anchor; the funeral hour remains TBD.
   Review-derived notes and charger reference cards are fully cached offline. Travel/charger photographs are cached on a best-effort basis and never block offline readiness.
 </div>
@@ -2135,7 +2472,7 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-V18.6.4 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
+V18.6.6 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
 The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Oud-Beijerland funeral; the hour is still TBD.
 Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
@@ -2770,19 +3107,19 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Europe Roadbook V18.6.4 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
+show('Europe Roadbook V18.6.6 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const box=document.getElementById('offlineBox'), detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='europe-roadbook-v18-6-4';
+  const CACHE_NAME='europe-roadbook-v18-6-6';
   const LOCAL=['./','./index.html','./manifest.json','./europe-v18-icon-192.png','./europe-v18-icon-512.png'];
   const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Flakstad-Kirche-04-2019-gje.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamn%C3%B8y_in_Lofoten.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Het%20oude%20raadhuis%20van%20Oud-Beijerland.png?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_-_Nusfjord.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofotr_viking_museum_lofoten_foto_brage_aronsen.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Utakleiv_beach.jpg?width=960", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg", "https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg", "https://photos.plugshare.com/photos/1170706.jpg", "https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&h=630&q=80&tight=true&w=1200"];
   function stage(t,e=''){if(box)box.firstChild.nodeValue='Offline package: '+t;if(detail)detail.textContent=e;}
   async function verify(){
     try{
       const keys=await caches.keys();
-      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.6.4 cache.');return false;}
+      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.6.6 cache.');return false;}
       const c=await caches.open(CACHE_NAME), missing=[];
       for(const n of LOCAL){
         const u=new URL(n,location.href).href;
@@ -2792,7 +3129,7 @@ show('Europe Roadbook V18.6.4 loaded. Norway travel guide expanded; active-stop 
       for(const u of REMOTE){ if(await c.match(u,{ignoreSearch:true})) pics++; }
       if(missing.length){stage('preparing…','Missing local files: '+missing.join(', '));return false;}
       stage('READY — safe to use without internet',
-            'V18.6.4 complete: core app, route notes and charger cards cached. '+pics+' of '+REMOTE.length+
+            'V18.6.6 complete: core app, route notes and charger cards cached. '+pics+' of '+REMOTE.length+
             ' optional photographs are cached; missing photos will simply be unavailable offline.');
       return true;
     }catch(e){stage('check failed',e&&e.message?e.message:String(e));return false;}
@@ -2801,8 +3138,8 @@ show('Europe Roadbook V18.6.4 loaded. Norway travel guide expanded; active-stop 
     if(!window.isSecureContext){stage('FAILED','Not running over HTTPS.');return;}
     if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
     try{
-      stage('registering V18.6.4…','europe-v18-6-4-sw.js');
-      await navigator.serviceWorker.register('./europe-v18-6-4-sw.js',{scope:'./'});
+      stage('registering V18.6.6…','europe-v18-6-6-sw.js');
+      await navigator.serviceWorker.register('./europe-v18-6-6-sw.js',{scope:'./'});
       await navigator.serviceWorker.ready;
       for(let i=0;i<8;i++){ if(await verify()) break; await new Promise(r=>setTimeout(r,1500)); }
     }catch(e){stage('FAILED',(e&&e.name?e.name+': ':'')+(e&&e.message?e.message:String(e)));}
