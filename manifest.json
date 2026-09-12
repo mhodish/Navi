@@ -1,6 +1,6 @@
 {
-  "name": "Europe Roadbook",
-  "short_name": "Europe Roadbook",
+  "name": "Euro Roadbook",
+  "short_name": "Roadbook",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
