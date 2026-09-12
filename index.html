@@ -822,15 +822,30 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 }
 </style>
 
+
+<style id="v1889ApprovedRestaurantIcon">
+/* V18.8.9 — approved restaurant symbol: crossed broad knife + four-tine fork.
+   Font/emoji independent so iPhone and iPad render the same geometry. */
+.stripPoi .restaurantGlyph,
+.stripPoi .restaurantGlyph .approvedRestaurantIcon{
+  color:#111!important;
+  fill:none!important;
+  stroke:none!important;
+}
+.stripPoi .restaurantGlyph .approvedRestaurantIcon path{
+  vector-effect:non-scaling-stroke;
+}
+</style>
+
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.8.8 Full Travel Build</h1>
-<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · icon-map build 18.8.8</div></header>
+<header><h1>Europe GPS Roadbook — V18.8.9 Full Travel Build</h1>
+<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · icon-map build 18.8.9</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18.8.8</strong>
+    <strong>EUROPE ROADBOOK · V18.8.9</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -1171,45 +1186,99 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Evenes" transform="translate(122.0,3603.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Evenes" data-poi-key="0"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Circle K — Evenes" transform="translate(162.0,3614.7)" tabindex="0" role="button" aria-label="Circle K — Evenes" data-poi-key="1"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Evenes Grill &amp; Bar" transform="translate(122.0,4908.0)" tabindex="0" role="button" aria-label="Evenes Grill &amp; Bar" data-poi-key="2"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Haukland → Uttakleiv coastal road" transform="translate(122.0,4705.2)" tabindex="0" role="button" aria-label="Haukland → Uttakleiv coastal road" data-poi-key="3"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Mannen" transform="translate(162.0,4716.7)" tabindex="0" role="button" aria-label="Mannen" data-poi-key="4"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Himmeltinden" transform="translate(122.0,4728.2)" tabindex="0" role="button" aria-label="Himmeltinden" data-poi-key="5"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Haukland Beach Café" transform="translate(162.0,4739.7)" tabindex="0" role="button" aria-label="Haukland Beach Café" data-poi-key="10"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Fiskekrogen — Henningsvær" transform="translate(122.0,4797.9)" tabindex="0" role="button" aria-label="Fiskekrogen — Henningsvær" data-poi-key="6"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Klatrekafeen — Henningsvær" transform="translate(162.0,4809.4)" tabindex="0" role="button" aria-label="Klatrekafeen — Henningsvær" data-poi-key="7"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Trevarefabrikken — Henningsvær" transform="translate(122.0,4820.9)" tabindex="0" role="button" aria-label="Trevarefabrikken — Henningsvær" data-poi-key="8"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Joker Henningsvær" transform="translate(162.0,4832.4)" tabindex="0" role="button" aria-label="Joker Henningsvær" data-poi-key="9"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Ramberg Beach" transform="translate(122.0,4519.6)" tabindex="0" role="button" aria-label="Ramberg Beach" data-poi-key="11"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Ramberg Resort Restaurant" transform="translate(162.0,4531.1)" tabindex="0" role="button" aria-label="Ramberg Resort Restaurant" data-poi-key="12"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Bunnpris Ramberg" transform="translate(122.0,4542.6)" tabindex="0" role="button" aria-label="Bunnpris Ramberg" data-poi-key="13"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Kople Bodø Energi — Ramberg" transform="translate(162.0,4554.1)" tabindex="0" role="button" aria-label="Kople Bodø Energi — Ramberg" data-poi-key="14"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
@@ -1222,10 +1291,19 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Leknes" transform="translate(162.0,4362.8)" tabindex="0" role="button" aria-label="REMA 1000 Leknes" data-poi-key="21"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Extra Leknes" transform="translate(122.0,4374.3)" tabindex="0" role="button" aria-label="Extra Leknes" data-poi-key="22"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="DIGG — Leknes" transform="translate(162.0,4385.8)" tabindex="0" role="button" aria-label="DIGG — Leknes" data-poi-key="23"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Leknes" transform="translate(122.0,4397.3)" tabindex="0" role="button" aria-label="Tesla Supercharger — Leknes" data-poi-key="54"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Hamnøy bridge viewpoint" transform="translate(122.0,4258.5)" tabindex="0" role="button" aria-label="Hamnøy bridge viewpoint" data-poi-key="24"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
@@ -1234,27 +1312,54 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <g class="stripPoi mapPoiEv" data-poi-name="Kople Parkering Ytre Havn — Reine" transform="translate(122.0,4154.2)" tabindex="0" role="button" aria-label="Kople Parkering Ytre Havn — Reine" data-poi-key="27"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Eviny Reine Sentrum" transform="translate(162.0,4165.7)" tabindex="0" role="button" aria-label="Eviny Reine Sentrum" data-poi-key="28"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Gammelbua — Reine" transform="translate(122.0,4177.2)" tabindex="0" role="button" aria-label="Gammelbua — Reine" data-poi-key="29"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Coop Prix Reine" transform="translate(162.0,4188.7)" tabindex="0" role="button" aria-label="Coop Prix Reine" data-poi-key="30"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Reine" transform="translate(122.0,4200.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Reine" data-poi-key="55"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Å fishing-village walk" transform="translate(122.0,4061.4)" tabindex="0" role="button" aria-label="Å fishing-village walk" data-poi-key="31"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Sørvågen easy walk" transform="translate(162.0,4072.9)" tabindex="0" role="button" aria-label="Sørvågen easy walk" data-poi-key="32"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Bakeriet Å" transform="translate(122.0,4084.4)" tabindex="0" role="button" aria-label="Bakeriet Å" data-poi-key="33"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Nusfjord historic fishing village" transform="translate(122.0,3974.4)" tabindex="0" role="button" aria-label="Nusfjord historic fishing village" data-poi-key="34"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Karoline — Nusfjord" transform="translate(162.0,3985.9)" tabindex="0" role="button" aria-label="Restaurant Karoline — Nusfjord" data-poi-key="35"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Kvalvika + Ryten" transform="translate(122.0,3881.6)" tabindex="0" role="button" aria-label="Kvalvika + Ryten" data-poi-key="36"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Ytresand / Fredvang Bridges" transform="translate(162.0,3893.1)" tabindex="0" role="button" aria-label="Ytresand / Fredvang Bridges" data-poi-key="37"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
@@ -1268,150 +1373,348 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <g class="stripPoi mapPoiHike" data-poi-name="Tjeldbergtind" transform="translate(122.0,3690.2)" tabindex="0" role="button" aria-label="Tjeldbergtind" data-poi-key="45"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Fløya + Djevelporten" transform="translate(162.0,3701.7)" tabindex="0" role="button" aria-label="Fløya + Djevelporten" data-poi-key="46"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Børsen Spiseri — Svolvær" transform="translate(122.0,3713.2)" tabindex="0" role="button" aria-label="Børsen Spiseri — Svolvær" data-poi-key="47"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Kjøkkenet — Svolvær" transform="translate(162.0,3724.7)" tabindex="0" role="button" aria-label="Restaurant Kjøkkenet — Svolvær" data-poi-key="48"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Extra Svolvær" transform="translate(122.0,3736.2)" tabindex="0" role="button" aria-label="Extra Svolvær" data-poi-key="49"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Svolvær" transform="translate(162.0,3747.7)" tabindex="0" role="button" aria-label="REMA 1000 Svolvær" data-poi-key="50"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Kringla Bakeri &amp; Konditori — Svolvær" transform="translate(122.0,3759.2)" tabindex="0" role="button" aria-label="Kringla Bakeri &amp; Konditori — Svolvær" data-poi-key="51"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Telegrafen Pub Og Bar — Svolvær" transform="translate(162.0,3770.7)" tabindex="0" role="button" aria-label="Telegrafen Pub Og Bar — Svolvær" data-poi-key="52"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Svolvær" transform="translate(122.0,3782.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Svolvær" data-poi-key="53"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Pitlochry" transform="translate(122.0,3330.5)" tabindex="0" role="button" aria-label="Co-op — Pitlochry" data-poi-key="56"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Old Bridge Inn — Aviemore" transform="translate(122.0,3226.2)" tabindex="0" role="button" aria-label="Old Bridge Inn — Aviemore" data-poi-key="57"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Delaneys&#x27; — Aviemore" transform="translate(162.0,3237.7)" tabindex="0" role="button" aria-label="Delaneys&#x27; — Aviemore" data-poi-key="58"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Tesco Superstore — Aviemore" transform="translate(122.0,3249.2)" tabindex="0" role="button" aria-label="Tesco Superstore — Aviemore" data-poi-key="59"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="The Ferry Inn — Uig" transform="translate(122.0,2953.7)" tabindex="0" role="button" aria-label="The Ferry Inn — Uig" data-poi-key="60"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Rankins Supermarket — Uig" transform="translate(162.0,2965.2)" tabindex="0" role="button" aria-label="Rankins Supermarket — Uig" data-poi-key="61"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Morrisons — Fort William" transform="translate(122.0,2391.1)" tabindex="0" role="button" aria-label="Morrisons — Fort William" data-poi-key="62"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Tesco Express — Fort William" transform="translate(162.0,2402.6)" tabindex="0" role="button" aria-label="Tesco Express — Fort William" data-poi-key="63"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Nevis Bakery — Fort William" transform="translate(122.0,2414.1)" tabindex="0" role="button" aria-label="Nevis Bakery — Fort William" data-poi-key="64"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="The Laroch — Ballachulish" transform="translate(122.0,2112.7)" tabindex="0" role="button" aria-label="The Laroch — Ballachulish" data-poi-key="65"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Ballachulish" transform="translate(162.0,2124.2)" tabindex="0" role="button" aria-label="Co-op — Ballachulish" data-poi-key="66"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="The Quarry Centre Café — Ballachulish" transform="translate(122.0,2135.7)" tabindex="0" role="button" aria-label="The Quarry Centre Café — Ballachulish" data-poi-key="67"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="The Dukes Umbrella — Glasgow" transform="translate(122.0,1828.6)" tabindex="0" role="button" aria-label="The Dukes Umbrella — Glasgow" data-poi-key="68"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Rumi Bar &amp; Restaurant — Glasgow" transform="translate(162.0,1840.1)" tabindex="0" role="button" aria-label="Rumi Bar &amp; Restaurant — Glasgow" data-poi-key="69"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Turbine 75 — Hotel Indigo" transform="translate(122.0,1851.6)" tabindex="0" role="button" aria-label="Turbine 75 — Hotel Indigo" data-poi-key="70"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Drouthy&#x27;s — Glasgow" transform="translate(162.0,1863.1)" tabindex="0" role="button" aria-label="Drouthy&#x27;s — Glasgow" data-poi-key="71"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn XL — Vlissingen" transform="translate(122.0,1381.9)" tabindex="0" role="button" aria-label="Albert Heijn XL — Vlissingen" data-poi-key="72"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Delft centre dining — live choice" transform="translate(122.0,1196.3)" tabindex="0" role="button" aria-label="Delft centre dining — live choice" data-poi-key="73"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Den Haag dining — live choice" transform="translate(122.0,1103.5)" tabindex="0" role="button" aria-label="Den Haag dining — live choice" data-poi-key="74"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn — Cuijk" transform="translate(122.0,999.2)" tabindex="0" role="button" aria-label="Albert Heijn — Cuijk" data-poi-key="75"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Het Boothuys — Cuijk" transform="translate(162.0,1010.7)" tabindex="0" role="button" aria-label="Het Boothuys — Cuijk" data-poi-key="76"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Smaak — Cuijk" transform="translate(122.0,1022.2)" tabindex="0" role="button" aria-label="Restaurant Smaak — Cuijk" data-poi-key="77"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Huis de Wiers — Nieuwegein" transform="translate(122.0,912.1)" tabindex="0" role="button" aria-label="Restaurant Huis de Wiers — Nieuwegein" data-poi-key="78"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Celine — Nieuwegein" transform="translate(162.0,923.6)" tabindex="0" role="button" aria-label="Restaurant Celine — Nieuwegein" data-poi-key="79"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 </g>
 </g>
 <g class="stripPoi mapPoiMarket" data-poi-name="AH to Go — Hoofddorp Kruisweg" transform="translate(122.0,1556.0)" tabindex="0" role="button" aria-label="AH to Go — Hoofddorp Kruisweg" data-poi-key="82"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Dine With Florian — Hoofddorp" transform="translate(162.0,1567.5)" tabindex="0" role="button" aria-label="Dine With Florian — Hoofddorp" data-poi-key="83"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Den Burgh — Hoofddorp" transform="translate(122.0,1579.0)" tabindex="0" role="button" aria-label="Den Burgh — Hoofddorp" data-poi-key="84"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
-<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
-<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
-<path d="M11.4 5.8 L2.1 15.1"/>
+<g class="approvedRestaurantIcon">
+  <!-- Fork: four unmistakable tines, neck and handle -->
+  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
+        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
+        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife: broad blade and substantial handle -->
+  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
+           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
+        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M10.8 6.2 L2.0 15.0"
+        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+</g>
 </g></g></g>
 <g class="stripMilestone" data-stop-id="eve_return" transform="translate(16,3590.1)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 14</text><text class="milestoneMain" x="52" y="8">AVIS RETURN 15:30</text><text class="milestoneSub" x="5" y="18">EVE FLIGHT 17:15 → OSL; OSL 19:40 → EDI</text></g>
 <g class="stripMilestone" data-stop-id="edi_drivalia" transform="translate(16,3497.3)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 14</text><text class="milestoneMain" x="52" y="8">EDI ARRIVE 20:30</text><text class="milestoneSub" x="5" y="18">DRIVALIA PICKUP 21:30</text></g>
@@ -2904,7 +3207,7 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-V18.8.8 fixes category filtering and Safari JavaScript, improves phone/iPad strip-map layout and scrolling while preserving Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged. Flakstadtind/Nubben notes are based on current Lofoten hiking references; Leiden scenic-day note is based on official Visit Leiden tourism information.
+V18.8.9 keeps the V18.8.8 category/filter/layout fixes and replaces the restaurant symbol with the approved clear crossed knife-and-four-tine-fork design. V18.8.8 fixed category filtering and Safari JavaScript, improves phone/iPad strip-map layout and scrolling while preserving Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged. Flakstadtind/Nubben notes are based on current Lofoten hiking references; Leiden scenic-day note is based on official Visit Leiden tourism information.
 The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Tineke Bloemen funeral — Crematorium Hoeksche Waard, Heinenoord — 13:00.
 Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
@@ -3606,7 +3909,7 @@ show('Europe Roadbook V18.8.6 loaded. Norway travel guide expanded; iPad icon, f
       if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
       try{
         stage('checking…','Starting offline package.');
-        const reg=await navigator.serviceWorker.register('./europe-v18-8-8-sw.js',{scope:'./'});
+        const reg=await navigator.serviceWorker.register('./europe-v18-8-9-sw.js',{scope:'./'});
 
         // Do not wait indefinitely for navigator.serviceWorker.ready.
         // Poll the core cache directly; the service worker may still be activating.
