@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Europe GPS Roadbook V18.7.0</title>
+<title>Europe GPS Roadbook V18.8.0</title>
 <meta name="theme-color" content="#fffdf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.7.0">
+<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.8.0">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="./europe-v18-icon-192.png">
 <style>
@@ -672,16 +672,45 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
   .roadbook-shell{grid-template-columns:31vw minmax(0,69vw)!important}
 }
 </style>
+
+<style id="iconOnlyStripMapV188">
+.stripPoi{cursor:pointer}
+.stripPoi .poiTapHalo{fill:transparent;stroke:none}
+.stripPoi .poiGlyph{fill:#111}
+.stripPoi .poiGlyphStroke{fill:none;stroke:#111;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.stripPoi:focus .poiTapHalo,.stripPoiFlash .poiTapHalo{fill:#fff5b8;stroke:#111;stroke-width:1}
+.stripMilestone rect{fill:#fff0ed;stroke:#b42318;stroke-width:1.4}
+.milestoneDate{font:800 8px system-ui,-apple-system,sans-serif;fill:#8f1d14}
+.milestoneMain{font:800 8px system-ui,-apple-system,sans-serif;fill:#8f1d14}
+.milestoneSub{font:650 7px system-ui,-apple-system,sans-serif;fill:#5b1a14}
+.hardTimesBox{display:none!important}
+.hardTimesCompact{
+  margin:4px 0 6px;
+  padding:4px 7px;
+  border:1px solid #b42318;
+  background:#fff8f6;
+  font-size:10px;
+  line-height:1.2;
+}
+.hardTimesCompact summary{color:#8f1d14;font-weight:800;cursor:pointer}
+.hardTimesCompact div{margin-top:3px}
+@media (max-height:520px) and (orientation:landscape){
+  .roadbook-shell{grid-template-columns:31vw minmax(0,69vw)!important}
+  .hardTimesCompact{font-size:9px;padding:3px 5px;margin:2px 0 4px}
+  .hardTimesCompact[open]{max-height:36vh;overflow:auto}
+}
+</style>
+
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.7.0.2 Full Travel Build</h1>
+<header><h1>Europe GPS Roadbook — V18.8.0.2 Full Travel Build</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18.7.0.3</strong>
-    <div>53 route stops · H hike · ● sight · ⚡ EV · R food · S market · RED = fixed-time milestone</div>
+    <strong>EUROPE ROADBOOK · V18.8.0.3</strong>
+    <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
 <rect x="0" y="0" width="300" height="5098" fill="transparent"/>
@@ -1014,92 +1043,92 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <text id="stripUserText" class="map-small" x="166" y="5033">your GPS position</text>
 <text class="map-small" x="18" y="5076.0">Trip sequence runs bottom → top</text>
 
-<!-- V18.7.0 geographic POIs and hard-time milestones -->
-<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Evenes" transform="translate(8.0,3605.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Tesla Supercharge…</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Circle K — Evenes" transform="translate(174.0,3616.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Circle K — Evenes</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Evenes Grill &amp; Bar" transform="translate(8.0,4910.0)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Evenes Grill &amp; Bar</text></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Haukland → Uttakleiv coastal road" transform="translate(8.0,4707.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">H</text><text class="stripPoiLabel" x="15" y="7.5">Haukland → Uttakl…</text></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Mannen" transform="translate(174.0,4718.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">H</text><text class="stripPoiLabel" x="15" y="7.5">Mannen</text></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Himmeltinden" transform="translate(8.0,4730.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">H</text><text class="stripPoiLabel" x="15" y="7.5">Himmeltinden</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Haukland Beach Café" transform="translate(174.0,4741.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Haukland Beach Ca…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Fiskekrogen — Henningsvær" transform="translate(8.0,4799.9)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Fiskekrogen — Hen…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Klatrekafeen — Henningsvær" transform="translate(174.0,4811.4)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Klatrekafeen — He…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Trevarefabrikken — Henningsvær" transform="translate(8.0,4822.9)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Trevarefabrikken …</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Joker Henningsvær" transform="translate(174.0,4834.4)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Joker Henningsvær</text></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Ramberg Beach" transform="translate(8.0,4521.6)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">●</text><text class="stripPoiLabel" x="15" y="7.5">Ramberg Beach</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Ramberg Resort Restaurant" transform="translate(174.0,4533.1)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Ramberg Resort Re…</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Bunnpris Ramberg" transform="translate(8.0,4544.6)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Bunnpris Ramberg</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Kople Bodø Energi — Ramberg" transform="translate(174.0,4556.1)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Kople Bodø Energi…</text></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Skagsanden + Flakstad Church" transform="translate(8.0,4446.0)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">●</text><text class="stripPoiLabel" x="15" y="7.5">Skagsanden + Flak…</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Circle K — Leknes" transform="translate(8.0,4307.3)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Circle K — Leknes</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Kople LAD OPP Lofoten Basecamp — Leknes" transform="translate(174.0,4318.8)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Kople LAD OPP Lof…</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Eviny Rema 1000 — Leknes" transform="translate(8.0,4330.3)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Eviny Rema 1000 —…</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Mer Lofotsenteret — Leknes" transform="translate(174.0,4341.8)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Mer Lofotsenteret…</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Eviny Alstad Kro og Camping" transform="translate(8.0,4353.3)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Eviny Alstad Kro …</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Leknes" transform="translate(174.0,4364.8)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">REMA 1000 Leknes</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Extra Leknes" transform="translate(8.0,4376.3)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Extra Leknes</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="DIGG — Leknes" transform="translate(174.0,4387.8)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">DIGG — Leknes</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Leknes" transform="translate(8.0,4399.3)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Tesla Supercharge…</text></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Hamnøy bridge viewpoint" transform="translate(8.0,4260.5)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">●</text><text class="stripPoiLabel" x="15" y="7.5">Hamnøy bridge vie…</text></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Sakrisøy + Reinehalsen" transform="translate(8.0,4133.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">●</text><text class="stripPoiLabel" x="15" y="7.5">Sakrisøy + Reineh…</text></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Reinebringen" transform="translate(174.0,4144.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">H</text><text class="stripPoiLabel" x="15" y="7.5">Reinebringen</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Kople Parkering Ytre Havn — Reine" transform="translate(8.0,4156.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Kople Parkering Y…</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Eviny Reine Sentrum" transform="translate(174.0,4167.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Eviny Reine Sentr…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Gammelbua — Reine" transform="translate(8.0,4179.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Gammelbua — Reine</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Coop Prix Reine" transform="translate(174.0,4190.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Coop Prix Reine</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Reine" transform="translate(8.0,4202.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Tesla Supercharge…</text></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Å fishing-village walk" transform="translate(8.0,4063.4)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">●</text><text class="stripPoiLabel" x="15" y="7.5">Å fishing-village…</text></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Sørvågen easy walk" transform="translate(174.0,4074.9)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">H</text><text class="stripPoiLabel" x="15" y="7.5">Sørvågen easy walk</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Bakeriet Å" transform="translate(8.0,4086.4)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Bakeriet Å</text></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Nusfjord historic fishing village" transform="translate(8.0,3976.4)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">●</text><text class="stripPoiLabel" x="15" y="7.5">Nusfjord historic…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Karoline — Nusfjord" transform="translate(174.0,3987.9)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Restaurant Karoli…</text></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Kvalvika + Ryten" transform="translate(8.0,3883.6)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">H</text><text class="stripPoiLabel" x="15" y="7.5">Kvalvika + Ryten</text></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Ytresand / Fredvang Bridges" transform="translate(174.0,3895.1)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">●</text><text class="stripPoiLabel" x="15" y="7.5">Ytresand / Fredva…</text></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Lofotr Viking Museum" transform="translate(8.0,3796.5)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">●</text><text class="stripPoiLabel" x="15" y="7.5">Lofotr Viking Mus…</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Recharge Shell — Svolvær" transform="translate(8.0,3623.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Recharge Shell — …</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Eviny/Bilkraft Alti — Svolvær" transform="translate(174.0,3634.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Eviny/Bilkraft Al…</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Kople Aust-Lofoten school — Svolvær" transform="translate(8.0,3646.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Kople Aust-Lofote…</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Recharge Kiwi Osan — Svolvær" transform="translate(174.0,3657.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Recharge Kiwi Osa…</text></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Lofoten Krigsminne Museum" transform="translate(8.0,3669.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">●</text><text class="stripPoiLabel" x="15" y="7.5">Lofoten Krigsminn…</text></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Linken" transform="translate(174.0,3680.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">H</text><text class="stripPoiLabel" x="15" y="7.5">Linken</text></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Tjeldbergtind" transform="translate(8.0,3692.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">H</text><text class="stripPoiLabel" x="15" y="7.5">Tjeldbergtind</text></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Fløya + Djevelporten" transform="translate(174.0,3703.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">H</text><text class="stripPoiLabel" x="15" y="7.5">Fløya + Djevelpor…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Børsen Spiseri — Svolvær" transform="translate(8.0,3715.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Børsen Spiseri — …</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Kjøkkenet — Svolvær" transform="translate(174.0,3726.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Restaurant Kjøkke…</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Extra Svolvær" transform="translate(8.0,3738.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Extra Svolvær</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Svolvær" transform="translate(174.0,3749.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">REMA 1000 Svolvær</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Kringla Bakeri &amp; Konditori — Svolvær" transform="translate(8.0,3761.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Kringla Bakeri &amp; …</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Telegrafen Pub Og Bar — Svolvær" transform="translate(174.0,3772.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Telegrafen Pub Og…</text></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Svolvær" transform="translate(8.0,3784.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">⚡</text><text class="stripPoiLabel" x="15" y="7.5">Tesla Supercharge…</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Pitlochry" transform="translate(8.0,3332.5)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Co-op — Pitlochry</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Old Bridge Inn — Aviemore" transform="translate(8.0,3228.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Old Bridge Inn — …</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Delaneys&#x27; — Aviemore" transform="translate(174.0,3239.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Delaneys&#x27; — Aviem…</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Tesco Superstore — Aviemore" transform="translate(8.0,3251.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Tesco Superstore …</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Ferry Inn — Uig" transform="translate(8.0,2955.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">The Ferry Inn — U…</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Rankins Supermarket — Uig" transform="translate(174.0,2967.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Rankins Supermark…</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Morrisons — Fort William" transform="translate(8.0,2393.1)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Morrisons — Fort …</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Tesco Express — Fort William" transform="translate(174.0,2404.6)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Tesco Express — F…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Nevis Bakery — Fort William" transform="translate(8.0,2416.1)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Nevis Bakery — Fo…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Laroch — Ballachulish" transform="translate(8.0,2114.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">The Laroch — Ball…</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Ballachulish" transform="translate(174.0,2126.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Co-op — Ballachul…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Quarry Centre Café — Ballachulish" transform="translate(8.0,2137.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">The Quarry Centre…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Dukes Umbrella — Glasgow" transform="translate(8.0,1830.6)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">The Dukes Umbrell…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Rumi Bar &amp; Restaurant — Glasgow" transform="translate(174.0,1842.1)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Rumi Bar &amp; Restau…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Turbine 75 — Hotel Indigo" transform="translate(8.0,1853.6)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Turbine 75 — Hote…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Drouthy&#x27;s — Glasgow" transform="translate(174.0,1865.1)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Drouthy&#x27;s — Glasg…</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn XL — Vlissingen" transform="translate(8.0,1383.9)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Albert Heijn XL —…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Delft centre dining — live choice" transform="translate(8.0,1198.3)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Delft centre dini…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Haag dining — live choice" transform="translate(8.0,1105.5)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Den Haag dining —…</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn — Cuijk" transform="translate(8.0,1001.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">Albert Heijn — Cu…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Het Boothuys — Cuijk" transform="translate(174.0,1012.7)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Het Boothuys — Cu…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Smaak — Cuijk" transform="translate(8.0,1024.2)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Restaurant Smaak …</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Huis de Wiers — Nieuwegein" transform="translate(8.0,914.1)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Restaurant Huis d…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Celine — Nieuwegein" transform="translate(174.0,925.6)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Restaurant Celine…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Oostkade — Oud-Beijerland" transform="translate(8.0,543.0)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Restaurant Oostka…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Divina Cucina — Oud-Beijerland" transform="translate(174.0,554.5)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Divina Cucina — O…</text></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="AH to Go — Hoofddorp Kruisweg" transform="translate(8.0,1558.0)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">S</text><text class="stripPoiLabel" x="15" y="7.5">AH to Go — Hoofdd…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Dine With Florian — Hoofddorp" transform="translate(174.0,1569.5)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Dine With Florian…</text></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Burgh — Hoofddorp" transform="translate(8.0,1581.0)"><rect x="0" y="0" width="118" height="10.4" rx="3"/><text class="stripPoiCode" x="4" y="7.5">R</text><text class="stripPoiLabel" x="15" y="7.5">Den Burgh — Hoofd…</text></g>
+<!-- V18.8.0 geographic POIs and hard-time milestones -->
+<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Evenes" transform="translate(122.0,3603.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Evenes"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Circle K — Evenes" transform="translate(162.0,3614.7)" tabindex="0" role="button" aria-label="Circle K — Evenes"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Evenes Grill &amp; Bar" transform="translate(122.0,4908.0)" tabindex="0" role="button" aria-label="Evenes Grill &amp; Bar"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Haukland → Uttakleiv coastal road" transform="translate(122.0,4705.2)" tabindex="0" role="button" aria-label="Haukland → Uttakleiv coastal road"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><circle cx="9.4" cy="2.2" r="1.5"/><path d="M7.9 4.2 L6.5 8.1 L8.2 10.6 L6.1 15"/><path d="M8.2 10.6 L11.9 14.8"/><path d="M7.3 6.2 L11.1 8.1"/><path d="M11.1 8.1 L13.7 7.1"/><path d="M13.7 6.2 L13.7 15"/><path d="M6.7 4.8 L4.3 5.8 L4.4 9.2 L6.3 9.2"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Mannen" transform="translate(162.0,4716.7)" tabindex="0" role="button" aria-label="Mannen"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><circle cx="9.4" cy="2.2" r="1.5"/><path d="M7.9 4.2 L6.5 8.1 L8.2 10.6 L6.1 15"/><path d="M8.2 10.6 L11.9 14.8"/><path d="M7.3 6.2 L11.1 8.1"/><path d="M11.1 8.1 L13.7 7.1"/><path d="M13.7 6.2 L13.7 15"/><path d="M6.7 4.8 L4.3 5.8 L4.4 9.2 L6.3 9.2"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Himmeltinden" transform="translate(122.0,4728.2)" tabindex="0" role="button" aria-label="Himmeltinden"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><circle cx="9.4" cy="2.2" r="1.5"/><path d="M7.9 4.2 L6.5 8.1 L8.2 10.6 L6.1 15"/><path d="M8.2 10.6 L11.9 14.8"/><path d="M7.3 6.2 L11.1 8.1"/><path d="M11.1 8.1 L13.7 7.1"/><path d="M13.7 6.2 L13.7 15"/><path d="M6.7 4.8 L4.3 5.8 L4.4 9.2 L6.3 9.2"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Haukland Beach Café" transform="translate(162.0,4739.7)" tabindex="0" role="button" aria-label="Haukland Beach Café"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Fiskekrogen — Henningsvær" transform="translate(122.0,4797.9)" tabindex="0" role="button" aria-label="Fiskekrogen — Henningsvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Klatrekafeen — Henningsvær" transform="translate(162.0,4809.4)" tabindex="0" role="button" aria-label="Klatrekafeen — Henningsvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Trevarefabrikken — Henningsvær" transform="translate(122.0,4820.9)" tabindex="0" role="button" aria-label="Trevarefabrikken — Henningsvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Joker Henningsvær" transform="translate(162.0,4832.4)" tabindex="0" role="button" aria-label="Joker Henningsvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Ramberg Beach" transform="translate(122.0,4519.6)" tabindex="0" role="button" aria-label="Ramberg Beach"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Ramberg Resort Restaurant" transform="translate(162.0,4531.1)" tabindex="0" role="button" aria-label="Ramberg Resort Restaurant"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Bunnpris Ramberg" transform="translate(122.0,4542.6)" tabindex="0" role="button" aria-label="Bunnpris Ramberg"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Kople Bodø Energi — Ramberg" transform="translate(162.0,4554.1)" tabindex="0" role="button" aria-label="Kople Bodø Energi — Ramberg"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Skagsanden + Flakstad Church" transform="translate(122.0,4444.0)" tabindex="0" role="button" aria-label="Skagsanden + Flakstad Church"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Circle K — Leknes" transform="translate(122.0,4305.3)" tabindex="0" role="button" aria-label="Circle K — Leknes"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Kople LAD OPP Lofoten Basecamp — Leknes" transform="translate(162.0,4316.8)" tabindex="0" role="button" aria-label="Kople LAD OPP Lofoten Basecamp — Leknes"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Eviny Rema 1000 — Leknes" transform="translate(122.0,4328.3)" tabindex="0" role="button" aria-label="Eviny Rema 1000 — Leknes"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Mer Lofotsenteret — Leknes" transform="translate(162.0,4339.8)" tabindex="0" role="button" aria-label="Mer Lofotsenteret — Leknes"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Eviny Alstad Kro og Camping" transform="translate(122.0,4351.3)" tabindex="0" role="button" aria-label="Eviny Alstad Kro og Camping"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Leknes" transform="translate(162.0,4362.8)" tabindex="0" role="button" aria-label="REMA 1000 Leknes"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Extra Leknes" transform="translate(122.0,4374.3)" tabindex="0" role="button" aria-label="Extra Leknes"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="DIGG — Leknes" transform="translate(162.0,4385.8)" tabindex="0" role="button" aria-label="DIGG — Leknes"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Leknes" transform="translate(122.0,4397.3)" tabindex="0" role="button" aria-label="Tesla Supercharger — Leknes"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Hamnøy bridge viewpoint" transform="translate(122.0,4258.5)" tabindex="0" role="button" aria-label="Hamnøy bridge viewpoint"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Sakrisøy + Reinehalsen" transform="translate(122.0,4131.2)" tabindex="0" role="button" aria-label="Sakrisøy + Reinehalsen"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Reinebringen" transform="translate(162.0,4142.7)" tabindex="0" role="button" aria-label="Reinebringen"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><circle cx="9.4" cy="2.2" r="1.5"/><path d="M7.9 4.2 L6.5 8.1 L8.2 10.6 L6.1 15"/><path d="M8.2 10.6 L11.9 14.8"/><path d="M7.3 6.2 L11.1 8.1"/><path d="M11.1 8.1 L13.7 7.1"/><path d="M13.7 6.2 L13.7 15"/><path d="M6.7 4.8 L4.3 5.8 L4.4 9.2 L6.3 9.2"/></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Kople Parkering Ytre Havn — Reine" transform="translate(122.0,4154.2)" tabindex="0" role="button" aria-label="Kople Parkering Ytre Havn — Reine"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Eviny Reine Sentrum" transform="translate(162.0,4165.7)" tabindex="0" role="button" aria-label="Eviny Reine Sentrum"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Gammelbua — Reine" transform="translate(122.0,4177.2)" tabindex="0" role="button" aria-label="Gammelbua — Reine"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Coop Prix Reine" transform="translate(162.0,4188.7)" tabindex="0" role="button" aria-label="Coop Prix Reine"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Reine" transform="translate(122.0,4200.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Reine"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Å fishing-village walk" transform="translate(122.0,4061.4)" tabindex="0" role="button" aria-label="Å fishing-village walk"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Sørvågen easy walk" transform="translate(162.0,4072.9)" tabindex="0" role="button" aria-label="Sørvågen easy walk"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><circle cx="9.4" cy="2.2" r="1.5"/><path d="M7.9 4.2 L6.5 8.1 L8.2 10.6 L6.1 15"/><path d="M8.2 10.6 L11.9 14.8"/><path d="M7.3 6.2 L11.1 8.1"/><path d="M11.1 8.1 L13.7 7.1"/><path d="M13.7 6.2 L13.7 15"/><path d="M6.7 4.8 L4.3 5.8 L4.4 9.2 L6.3 9.2"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Bakeriet Å" transform="translate(122.0,4084.4)" tabindex="0" role="button" aria-label="Bakeriet Å"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Nusfjord historic fishing village" transform="translate(122.0,3974.4)" tabindex="0" role="button" aria-label="Nusfjord historic fishing village"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Karoline — Nusfjord" transform="translate(162.0,3985.9)" tabindex="0" role="button" aria-label="Restaurant Karoline — Nusfjord"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Kvalvika + Ryten" transform="translate(122.0,3881.6)" tabindex="0" role="button" aria-label="Kvalvika + Ryten"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><circle cx="9.4" cy="2.2" r="1.5"/><path d="M7.9 4.2 L6.5 8.1 L8.2 10.6 L6.1 15"/><path d="M8.2 10.6 L11.9 14.8"/><path d="M7.3 6.2 L11.1 8.1"/><path d="M11.1 8.1 L13.7 7.1"/><path d="M13.7 6.2 L13.7 15"/><path d="M6.7 4.8 L4.3 5.8 L4.4 9.2 L6.3 9.2"/></g></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Ytresand / Fredvang Bridges" transform="translate(162.0,3893.1)" tabindex="0" role="button" aria-label="Ytresand / Fredvang Bridges"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Lofotr Viking Museum" transform="translate(122.0,3794.5)" tabindex="0" role="button" aria-label="Lofotr Viking Museum"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Recharge Shell — Svolvær" transform="translate(122.0,3621.2)" tabindex="0" role="button" aria-label="Recharge Shell — Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Eviny/Bilkraft Alti — Svolvær" transform="translate(162.0,3632.7)" tabindex="0" role="button" aria-label="Eviny/Bilkraft Alti — Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Kople Aust-Lofoten school — Svolvær" transform="translate(122.0,3644.2)" tabindex="0" role="button" aria-label="Kople Aust-Lofoten school — Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Recharge Kiwi Osan — Svolvær" transform="translate(162.0,3655.7)" tabindex="0" role="button" aria-label="Recharge Kiwi Osan — Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Lofoten Krigsminne Museum" transform="translate(122.0,3667.2)" tabindex="0" role="button" aria-label="Lofoten Krigsminne Museum"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Linken" transform="translate(162.0,3678.7)" tabindex="0" role="button" aria-label="Linken"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><circle cx="9.4" cy="2.2" r="1.5"/><path d="M7.9 4.2 L6.5 8.1 L8.2 10.6 L6.1 15"/><path d="M8.2 10.6 L11.9 14.8"/><path d="M7.3 6.2 L11.1 8.1"/><path d="M11.1 8.1 L13.7 7.1"/><path d="M13.7 6.2 L13.7 15"/><path d="M6.7 4.8 L4.3 5.8 L4.4 9.2 L6.3 9.2"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Tjeldbergtind" transform="translate(122.0,3690.2)" tabindex="0" role="button" aria-label="Tjeldbergtind"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><circle cx="9.4" cy="2.2" r="1.5"/><path d="M7.9 4.2 L6.5 8.1 L8.2 10.6 L6.1 15"/><path d="M8.2 10.6 L11.9 14.8"/><path d="M7.3 6.2 L11.1 8.1"/><path d="M11.1 8.1 L13.7 7.1"/><path d="M13.7 6.2 L13.7 15"/><path d="M6.7 4.8 L4.3 5.8 L4.4 9.2 L6.3 9.2"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Fløya + Djevelporten" transform="translate(162.0,3701.7)" tabindex="0" role="button" aria-label="Fløya + Djevelporten"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><circle cx="9.4" cy="2.2" r="1.5"/><path d="M7.9 4.2 L6.5 8.1 L8.2 10.6 L6.1 15"/><path d="M8.2 10.6 L11.9 14.8"/><path d="M7.3 6.2 L11.1 8.1"/><path d="M11.1 8.1 L13.7 7.1"/><path d="M13.7 6.2 L13.7 15"/><path d="M6.7 4.8 L4.3 5.8 L4.4 9.2 L6.3 9.2"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Børsen Spiseri — Svolvær" transform="translate(122.0,3713.2)" tabindex="0" role="button" aria-label="Børsen Spiseri — Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Kjøkkenet — Svolvær" transform="translate(162.0,3724.7)" tabindex="0" role="button" aria-label="Restaurant Kjøkkenet — Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Extra Svolvær" transform="translate(122.0,3736.2)" tabindex="0" role="button" aria-label="Extra Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Svolvær" transform="translate(162.0,3747.7)" tabindex="0" role="button" aria-label="REMA 1000 Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Kringla Bakeri &amp; Konditori — Svolvær" transform="translate(122.0,3759.2)" tabindex="0" role="button" aria-label="Kringla Bakeri &amp; Konditori — Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Telegrafen Pub Og Bar — Svolvær" transform="translate(162.0,3770.7)" tabindex="0" role="button" aria-label="Telegrafen Pub Og Bar — Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Svolvær" transform="translate(122.0,3782.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Svolvær"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Pitlochry" transform="translate(122.0,3330.5)" tabindex="0" role="button" aria-label="Co-op — Pitlochry"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Old Bridge Inn — Aviemore" transform="translate(122.0,3226.2)" tabindex="0" role="button" aria-label="Old Bridge Inn — Aviemore"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Delaneys&#x27; — Aviemore" transform="translate(162.0,3237.7)" tabindex="0" role="button" aria-label="Delaneys&#x27; — Aviemore"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Tesco Superstore — Aviemore" transform="translate(122.0,3249.2)" tabindex="0" role="button" aria-label="Tesco Superstore — Aviemore"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Ferry Inn — Uig" transform="translate(122.0,2953.7)" tabindex="0" role="button" aria-label="The Ferry Inn — Uig"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Rankins Supermarket — Uig" transform="translate(162.0,2965.2)" tabindex="0" role="button" aria-label="Rankins Supermarket — Uig"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Morrisons — Fort William" transform="translate(122.0,2391.1)" tabindex="0" role="button" aria-label="Morrisons — Fort William"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Tesco Express — Fort William" transform="translate(162.0,2402.6)" tabindex="0" role="button" aria-label="Tesco Express — Fort William"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Nevis Bakery — Fort William" transform="translate(122.0,2414.1)" tabindex="0" role="button" aria-label="Nevis Bakery — Fort William"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Laroch — Ballachulish" transform="translate(122.0,2112.7)" tabindex="0" role="button" aria-label="The Laroch — Ballachulish"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Ballachulish" transform="translate(162.0,2124.2)" tabindex="0" role="button" aria-label="Co-op — Ballachulish"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Quarry Centre Café — Ballachulish" transform="translate(122.0,2135.7)" tabindex="0" role="button" aria-label="The Quarry Centre Café — Ballachulish"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Dukes Umbrella — Glasgow" transform="translate(122.0,1828.6)" tabindex="0" role="button" aria-label="The Dukes Umbrella — Glasgow"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Rumi Bar &amp; Restaurant — Glasgow" transform="translate(162.0,1840.1)" tabindex="0" role="button" aria-label="Rumi Bar &amp; Restaurant — Glasgow"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Turbine 75 — Hotel Indigo" transform="translate(122.0,1851.6)" tabindex="0" role="button" aria-label="Turbine 75 — Hotel Indigo"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Drouthy&#x27;s — Glasgow" transform="translate(162.0,1863.1)" tabindex="0" role="button" aria-label="Drouthy&#x27;s — Glasgow"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn XL — Vlissingen" transform="translate(122.0,1381.9)" tabindex="0" role="button" aria-label="Albert Heijn XL — Vlissingen"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Delft centre dining — live choice" transform="translate(122.0,1196.3)" tabindex="0" role="button" aria-label="Delft centre dining — live choice"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Haag dining — live choice" transform="translate(122.0,1103.5)" tabindex="0" role="button" aria-label="Den Haag dining — live choice"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn — Cuijk" transform="translate(122.0,999.2)" tabindex="0" role="button" aria-label="Albert Heijn — Cuijk"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Het Boothuys — Cuijk" transform="translate(162.0,1010.7)" tabindex="0" role="button" aria-label="Het Boothuys — Cuijk"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Smaak — Cuijk" transform="translate(122.0,1022.2)" tabindex="0" role="button" aria-label="Restaurant Smaak — Cuijk"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Huis de Wiers — Nieuwegein" transform="translate(122.0,912.1)" tabindex="0" role="button" aria-label="Restaurant Huis de Wiers — Nieuwegein"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Celine — Nieuwegein" transform="translate(162.0,923.6)" tabindex="0" role="button" aria-label="Restaurant Celine — Nieuwegein"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Oostkade — Oud-Beijerland" transform="translate(122.0,541.0)" tabindex="0" role="button" aria-label="Restaurant Oostkade — Oud-Beijerland"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Divina Cucina — Oud-Beijerland" transform="translate(162.0,552.5)" tabindex="0" role="button" aria-label="Divina Cucina — Oud-Beijerland"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="AH to Go — Hoofddorp Kruisweg" transform="translate(122.0,1556.0)" tabindex="0" role="button" aria-label="AH to Go — Hoofddorp Kruisweg"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Dine With Florian — Hoofddorp" transform="translate(162.0,1567.5)" tabindex="0" role="button" aria-label="Dine With Florian — Hoofddorp"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Burgh — Hoofddorp" transform="translate(122.0,1579.0)" tabindex="0" role="button" aria-label="Den Burgh — Hoofddorp"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M3 1 v5 M1.8 1 v4.6 M4.2 1 v4.6 M3 6 L12.8 15"/><path d="M13.6 1 C11.9 2.3 10.7 4.2 10.6 6.1 L14.1 9.1"/><path d="M10.6 6.1 L2 15"/></g></g>
 <g class="stripMilestone" data-stop-id="eve_return" transform="translate(16,3590.1)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 14</text><text class="milestoneMain" x="52" y="8">AVIS RETURN 15:30</text><text class="milestoneSub" x="5" y="18">EVE FLIGHT 17:15 → OSL; OSL 19:40 → EDI</text></g>
 <g class="stripMilestone" data-stop-id="edi_drivalia" transform="translate(16,3497.3)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 14</text><text class="milestoneMain" x="52" y="8">EDI ARRIVE 20:30</text><text class="milestoneSub" x="5" y="18">DRIVALIA PICKUP 21:30</text></g>
 <g class="stripMilestone" data-stop-id="gla_drivalia" transform="translate(16,1641.5)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 21</text><text class="milestoneMain" x="52" y="8">CAR RETURN TARGET 16:15–16:30</text><text class="milestoneSub" x="5" y="18">GLA FLIGHT 19:25 → AMS 22:00</text></g>
@@ -1136,14 +1165,16 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 
 
 
-<section class="hardTimesBox">
-  <b>FIXED-TIME MILESTONES</b>
+
+<details class="hardTimesCompact">
+  <summary>Schedule / fixed-time milestones</summary>
   <div><strong>Sep 14:</strong> EVE Avis 15:30 · flight 17:15 · OSL connection 19:40 · EDI 20:30 · Drivalia 21:30</div>
   <div><strong>Sep 21:</strong> GLA car return target 16:15–16:30 · flight 19:25</div>
   <div><strong>Sep 22:</strong> Schiphol Keddy pickup 08:00</div>
   <div><strong>Sep 26:</strong> Oud-Beijerland funeral — time TBD</div>
   <div><strong>Sep 29:</strong> Schiphol Keddy return 07:30 · AMS flight 10:45 · OSL connection 13:20</div>
-</section>
+</details>
+
 <section id="routePoiRail" class="routePoiRail" aria-label="Route points of interest">
   <div class="routePoiHeader">
     <div><b>ROUTE AHEAD</b><span>Hikes, scenic stops, EV chargers, restaurants and supermarkets in TRIP DRIVING ORDER. Food, groceries and chargers appear beside the places you are approaching. Informational POIs do not change automatic navigation.</span></div>
@@ -1520,7 +1551,7 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
 
 
 <div class="routeStreamIntro">
-  <b>Europe Roadbook V18.7.0 — route POI redesign.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
+  <b>Europe Roadbook V18.8.0 — route POI redesign.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
   The Netherlands route includes the Sep 26 Oud-Beijerland funeral as a fixed anchor; the funeral hour remains TBD.
   Review-derived notes and charger reference cards are fully cached offline. Travel/charger photographs are cached on a best-effort basis and never block offline readiness.
 </div>
@@ -2610,7 +2641,7 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-V18.7.0 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
+V18.8.0 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
 The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Oud-Beijerland funeral; the hour is still TBD.
 Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
@@ -3245,19 +3276,24 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Europe Roadbook V18.7.0 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
+show('Europe Roadbook V18.8.0 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const box=document.getElementById('offlineBox'), detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='europe-roadbook-v18-7-0';
+  const CACHE_NAME='europe-roadbook-v18-8-0';
   const LOCAL=['./','./index.html','./manifest.json','./europe-v18-icon-192.png','./europe-v18-icon-512.png'];
   const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Flakstad-Kirche-04-2019-gje.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamn%C3%B8y_in_Lofoten.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Het%20oude%20raadhuis%20van%20Oud-Beijerland.png?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_-_Nusfjord.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofotr_viking_museum_lofoten_foto_brage_aronsen.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Utakleiv_beach.jpg?width=960", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg", "https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg", "https://photos.plugshare.com/photos/1170706.jpg", "https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&h=630&q=80&tight=true&w=1200"];
-  function stage(t,e=''){if(box)box.firstChild.nodeValue='Offline package: '+t;if(detail)detail.textContent=e;}
+
+  let setupPromise=null;
+  function stage(t,e=''){
+    if(box && box.firstChild) box.firstChild.nodeValue='Offline package: '+t;
+    if(detail) detail.textContent=e;
+  }
   async function verify(){
     try{
       const keys=await caches.keys();
-      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.7.0 cache.');return false;}
+      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.8.0 core cache.');return false;}
       const c=await caches.open(CACHE_NAME), missing=[];
       for(const n of LOCAL){
         const u=new URL(n,location.href).href;
@@ -3267,131 +3303,57 @@ show('Europe Roadbook V18.7.0 loaded. Norway travel guide expanded; active-stop 
       for(const u of REMOTE){ if(await c.match(u,{ignoreSearch:true})) pics++; }
       if(missing.length){stage('preparing…','Missing local files: '+missing.join(', '));return false;}
       stage('READY — safe to use without internet',
-            'V18.7.0 complete: core app, route notes and charger cards cached. '+pics+' of '+REMOTE.length+
-            ' optional photographs are cached; missing photos will simply be unavailable offline.');
+            'V18.8.0 core package is cached. '+pics+' of '+REMOTE.length+
+            ' optional photographs are cached; missing photos never block READY.');
       return true;
-    }catch(e){stage('check failed',e&&e.message?e.message:String(e));return false;}
-  }
-  async function setup(){
-    if(!window.isSecureContext){stage('FAILED','Not running over HTTPS.');return;}
-    if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
-    try{
-      stage('registering V18.7.0…','europe-v18-7-0-sw.js');
-      await navigator.serviceWorker.register('./europe-v18-7-0-sw.js',{scope:'./'});
-      await navigator.serviceWorker.ready;
-      for(let i=0;i<8;i++){ if(await verify()) break; await new Promise(r=>setTimeout(r,1500)); }
-    }catch(e){stage('FAILED',(e&&e.name?e.name+': ':'')+(e&&e.message?e.message:String(e)));}
-  }
-  window.addEventListener('load',setup);
-  window.addEventListener('online',verify); window.addEventListener('offline',verify);
-})();
-
-(function(){
-  const btn=document.getElementById('retryPhotosBtn');
-  const out=document.getElementById('retryPhotosStatus');
-  if(!btn) return;
-  btn.addEventListener('click',async()=>{
-    btn.disabled=true;
-    if(out) out.textContent='Retrying…';
-    let ok=0, total=0;
-    const imgs=[...document.querySelectorAll('img[src^="http"]')];
-    total=imgs.length;
-    for(const img of imgs){
-      const primary=img.getAttribute('src');
-      const fallback=img.dataset.fallback;
-      const candidates=[primary,fallback].filter(Boolean);
-      let loaded=false;
-      for(const u of candidates){
-        try{
-          await new Promise((resolve,reject)=>{
-            const probe=new Image();
-            const timer=setTimeout(()=>reject(new Error('timeout')),6000);
-            probe.onload=()=>{clearTimeout(timer);resolve();};
-            probe.onerror=()=>{clearTimeout(timer);reject(new Error('load'));};
-            probe.src=u+(u.includes('?')?'&':'?')+'_retry='+Date.now();
-          });
-          loaded=true; break;
-        }catch(e){}
-      }
-      if(loaded) ok++;
+    }catch(e){
+      stage('check failed',e&&e.message?e.message:String(e));
+      return false;
     }
-    if(out) out.textContent=ok+' of '+total+' reachable now';
-    btn.disabled=false;
-  });
-})();
-
-
-(function installRoutePoiRail(){
-  const rail=document.getElementById('routePoiRail');
-  if(!rail) return;
-  const filters=[...rail.querySelectorAll('.routePoiFilters button')];
-  const cards=[...rail.querySelectorAll('.routePoi')];
-  filters.forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const f=btn.dataset.filter;
-      filters.forEach(b=>b.classList.toggle('active',b===btn));
-      cards.forEach(card=>{
-        const type=(card.querySelector('.routePoiType')||{}).textContent||'';
-        card.classList.toggle('routePoi-hidden',f!=='ALL' && type!==f);
-      });
-    });
-  });
-  cards.forEach(card=>{
-    card.addEventListener('click',()=>{
-      const el=document.getElementById(card.dataset.target);
-      if(!el) return;
-      if(typeof holdRightFollow==='function') holdRightFollow(60000);
-      el.scrollIntoView({behavior:'smooth',block:'start'});
-      el.classList.add('poiFlash');
-      setTimeout(()=>el.classList.remove('poiFlash'),1800);
-    });
-  });
-})();
-
-
-(function installStripPoiLinking(){
-  const strip=document.getElementById('stripPane');
-  const groups=[...document.querySelectorAll('.stripPoi')];
-  const cards=[...document.querySelectorAll('#routePoiRail .routePoi')];
-  const norm=s=>(s||'').replace(/\s+/g,' ').trim();
-
-  function centerMarkerByName(name){
-    if(!strip) return;
-    const g=groups.find(x=>norm(x.dataset.poiName)===norm(name));
-    if(!g) return;
-    const box=g.getBBox();
-    const svg=g.ownerSVGElement;
-    const scale=svg.getBoundingClientRect().height/svg.viewBox.baseVal.height;
-    const y=(box.y+box.height/2)*scale;
-    strip.scrollTo({top:Math.max(0,y-strip.clientHeight/2),behavior:'smooth'});
-    g.classList.add('stripPoiFlash');
-    setTimeout(()=>g.classList.remove('stripPoiFlash'),1600);
   }
 
-  cards.forEach(card=>{
-    card.addEventListener('click',()=>{
-      const b=card.querySelector('.routePoiText b');
-      if(b) centerMarkerByName(b.textContent);
-    });
-  });
+  async function setup(){
+    if(setupPromise) return setupPromise;
+    setupPromise=(async()=>{
+      if(!window.isSecureContext){stage('FAILED','Not running over HTTPS.');return;}
+      if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
+      try{
+        stage('checking…','Starting offline package.');
+        const reg=await navigator.serviceWorker.register('./europe-v18-8-0-sw.js',{scope:'./'});
 
-  groups.forEach(g=>{
-    g.addEventListener('click',()=>{
-      const name=norm(g.dataset.poiName);
-      const card=cards.find(c=>{
-        const b=c.querySelector('.routePoiText b');
-        return b && norm(b.textContent)===name;
-      });
-      if(card){
-        if(typeof holdRightFollow==='function') holdRightFollow(60000);
-        card.scrollIntoView({behavior:'smooth',block:'center'});
-        card.classList.add('poiFlash');
-        setTimeout(()=>card.classList.remove('poiFlash'),1600);
+        // Do not wait indefinitely for navigator.serviceWorker.ready.
+        // Poll the core cache directly; the service worker may still be activating.
+        for(let i=0;i<20;i++){
+          if(await verify()) return;
+          await new Promise(r=>setTimeout(r,500));
+        }
+
+        // One short bounded ready wait, followed by a final verification.
+        await Promise.race([
+          navigator.serviceWorker.ready,
+          new Promise(r=>setTimeout(r,3000))
+        ]);
+        if(!(await verify())){
+          stage('preparing…','Core cache is still installing. This should complete automatically; no reload is required.');
+        }
+      }catch(e){
+        stage('FAILED',(e&&e.name?e.name+': ':'')+(e&&e.message?e.message:String(e)));
       }
-    });
-  });
-})();
+    })();
+    try{ await setupPromise; } finally { setupPromise=null; }
+  }
 
+  // Run now rather than depending only on the load event.
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',setup,{once:true});
+  }else{
+    setup();
+  }
+  window.addEventListener('pageshow',setup);
+  window.addEventListener('online',()=>{ verify(); setup(); });
+  window.addEventListener('offline',verify);
+  navigator.serviceWorker.addEventListener('controllerchange',verify);
+})();
 </script>
 </body>
 </html>
