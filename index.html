@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Europe GPS Roadbook V18.9.3</title>
+<title>Europe GPS Roadbook V18.9.4</title>
 <meta name="theme-color" content="#fffdf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -469,13 +469,13 @@ main.contentPane{
 <meta name="application-name" content="Euro Roadbook">
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.9.3 Clean Baseline — Offline Live Monitor</h1>
-<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · clean presentation baseline 18.9.3</div></header>
+<header><h1>Europe GPS Roadbook — V18.9.4 Clean Baseline — Multi-Select + POI Lanes</h1>
+<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · clean presentation baseline 18.9.4</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18.9.3</strong>
+    <strong>EUROPE ROADBOOK · V18.9.4</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -3110,12 +3110,12 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Europe Roadbook V18.9.3 loaded. Norway travel guide expanded; iPad icon, funeral, cross-highlight and stop-recenter fixes installed.');
+show('Europe Roadbook V18.9.4 loaded. Norway travel guide expanded; iPad icon, funeral, cross-highlight and stop-recenter fixes installed.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const box=document.getElementById('offlineBox'), detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='europe-roadbook-v18-9-3';
+  const CACHE_NAME='europe-roadbook-v18-9-4';
   const LOCAL=['./','./index.html','./manifest.json','./europe-v18-icon-192.png','./europe-v18-icon-512.png'];
   const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Flakstad-Kirche-04-2019-gje.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamn%C3%B8y_in_Lofoten.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_-_Nusfjord.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofotr_viking_museum_lofoten_foto_brage_aronsen.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Utakleiv_beach.jpg?width=960", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg", "https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg", "https://photos.plugshare.com/photos/1170706.jpg", "https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&h=630&q=80&tight=true&w=1200"];
 
@@ -3127,7 +3127,7 @@ show('Europe Roadbook V18.9.3 loaded. Norway travel guide expanded; iPad icon, f
   async function verify(){
     try{
       const keys=await caches.keys();
-      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.9.3 core cache.');return false;}
+      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.9.4 core cache.');return false;}
       const c=await caches.open(CACHE_NAME), missing=[];
       for(const n of LOCAL){
         const u=new URL(n,location.href).href;
@@ -3137,7 +3137,7 @@ show('Europe Roadbook V18.9.3 loaded. Norway travel guide expanded; iPad icon, f
       for(const u of REMOTE){ if(await c.match(u,{ignoreSearch:true})) pics++; }
       if(missing.length){stage('preparing…','Missing local files: '+missing.join(', '));return false;}
       stage('READY — safe to use without internet',
-            'V18.9.3 core package is cached. '+pics+' of '+REMOTE.length+
+            'V18.9.4 core package is cached. '+pics+' of '+REMOTE.length+
             ' optional photographs are cached; missing photos never block READY.');
       return true;
     }catch(e){
@@ -3153,7 +3153,7 @@ show('Europe Roadbook V18.9.3 loaded. Norway travel guide expanded; iPad icon, f
       if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
       try{
         stage('checking…','Starting offline package.');
-        const reg=await navigator.serviceWorker.register('./europe-v18-9-3-sw.js',{scope:'./'});
+        const reg=await navigator.serviceWorker.register('./europe-v18-9-4-sw.js',{scope:'./'});
 
         // Do not wait indefinitely for navigator.serviceWorker.ready.
         // Poll the core cache directly; the service worker may still be activating.
@@ -3307,13 +3307,45 @@ show('Europe Roadbook V18.9.3 loaded. Norway travel guide expanded; iPad icon, f
     if(icon.classList.contains('mapPoiMarket')) return 'SUPERMARKET';
     return '';
   }
-  function applyFilter(kind){
-    cards.forEach(c=>{ c.hidden=(kind!=='ALL' && cardType(c)!==kind); });
-    icons.forEach(i=>{ i.style.display=(kind==='ALL' || iconType(i)===kind)?'':'none'; });
+  const FILTER_TYPES=['HIKES','SCENIC','EV','RESTAURANTS','SUPERMARKETS'];
+  let activeFilters=new Set(FILTER_TYPES);
+
+  function renderFilters(){
+    const showAll=activeFilters.size===FILTER_TYPES.length;
+    cards.forEach(c=>{
+      const type=cardType(c);
+      c.hidden=!(showAll || activeFilters.has(type));
+    });
+    icons.forEach(i=>{
+      const type=iconType(i);
+      i.style.display=(showAll || activeFilters.has(type))?'':'none';
+    });
     if(filterWrap){
-      filterWrap.querySelectorAll('button[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===kind));
+      filterWrap.querySelectorAll('button[data-filter]').forEach(b=>{
+        const kind=b.dataset.filter;
+        const on=(kind==='ALL') ? showAll : activeFilters.has(kind);
+        b.classList.toggle('active',on);
+        b.setAttribute('aria-pressed',on?'true':'false');
+      });
     }
   }
+
+  function applyFilter(kind){
+    if(kind==='ALL'){
+      activeFilters=new Set(FILTER_TYPES);
+    }else if(FILTER_TYPES.includes(kind)){
+      // From the default ALL state, the first category tap means "show this one".
+      if(activeFilters.size===FILTER_TYPES.length){
+        activeFilters=new Set([kind]);
+      }else if(activeFilters.has(kind)){
+        activeFilters.delete(kind);
+      }else{
+        activeFilters.add(kind);
+      }
+    }
+    renderFilters();
+  }
+
   if(filterWrap){
     filterWrap.addEventListener('click',ev=>{
       const b=ev.target.closest('button[data-filter]');
@@ -3350,46 +3382,57 @@ show('Europe Roadbook V18.9.3 loaded. Norway travel guide expanded; iPad icon, f
     const poi=[...svg.querySelectorAll('.stripPoi[data-poi-key]')];
     if(!poi.length) return;
 
-    // Treat every stop name/date, milestone and user label as protected text.
+    // Text and milestone boxes are protected. Horizontal icon position is
+    // intentionally schematic: it never represents real distance off-route.
     const protectedBoxes=[];
     svg.querySelectorAll('.stop-label,.map-small,.stripMilestone').forEach(el=>{
       if(el.closest('.stripPoi')) return;
       try{
         const b=el.getBBox();
-        if(b.width>0 && b.height>0) protectedBoxes.push({x:b.x-7,y:b.y-6,w:b.width+14,h:b.height+12});
+        if(b.width>0 && b.height>0){
+          protectedBoxes.push({x:b.x-6,y:b.y-5,w:b.width+12,h:b.height+10});
+        }
       }catch(e){}
     });
 
-    // Far gutters first: this intentionally uses the blank real estate at the map edges.
-    const left=[4,34,64,94];
-    const right=[202,232,262,282];
-    const yOffsets=[0,-28,28,-56,56,-84,84,-112,112,-140,140];
     const placed=[];
+    // Two tidy lanes on either side of the local road centreline.
+    // The near lane is preferred; the outer lane is only collision relief.
+    const laneOffsets=[-62,62,-84,84];
+    const yOffsets=[0,-24,24,-48,48,-72,72];
 
     poi.sort((a,b)=>parseTranslate(a).y-parseTranslate(b).y);
     poi.forEach((icon,idx)=>{
       const origin=parseTranslate(icon);
       let winner=null;
+
       for(const dy of yOffsets){
         const y=origin.y+dy;
-        const rx=roadXAt(y);
-        // Prefer the side opposite the nearby text/road bias, but test both.
-        const sets = ((idx%2)===0) ? [left,right] : [right,left];
-        for(let sideIndex=0; sideIndex<sets.length; sideIndex++){
-          for(const x of sets[sideIndex]){
-            const box={x:x-8,y:y-8,w:32,h:32};
-            const centerX=x+8;
-            if(Math.abs(centerX-rx)<52) continue; // never sit on/near route line
-            let hard=0;
-            protectedBoxes.forEach(q=>{ if(overlap(box,q,4)) hard+=1; });
-            placed.forEach(q=>{ if(overlap(box,q,7)) hard+=3; });
-            const edge=(box.x<0 || box.x+box.w>300)?100:0;
-            const score=hard*10000 + edge + Math.abs(dy)*2 + sideIndex*12;
-            if(!winner || score<winner.score) winner={x,y,box,score,hard};
-            if(hard===0 && Math.abs(dy)<=28) break;
+        const roadX=roadXAt(y);
+
+        // Alternate the first side tested simply to avoid one-sided visual weight.
+        const order=(idx%2===0) ? laneOffsets : [62,-62,84,-84];
+
+        for(let laneIndex=0; laneIndex<order.length; laneIndex++){
+          const x=roadX+order[laneIndex];
+          const box={x:x-11,y:y-11,w:22,h:22};
+
+          // Keep the entire icon inside the 300-unit strip.
+          if(box.x<3 || box.x+box.w>297) continue;
+
+          let collisions=0;
+          protectedBoxes.forEach(q=>{ if(overlap(box,q,4)) collisions+=4; });
+          placed.forEach(q=>{ if(overlap(box,q,6)) collisions+=6; });
+
+          // Prefer: no collision, original vertical position, near lane.
+          const score=collisions*10000 + Math.abs(dy)*12 + laneIndex*30;
+          if(!winner || score<winner.score){
+            winner={x,y,box,score,collisions};
           }
+          if(collisions===0 && dy===0 && laneIndex<2) break;
         }
       }
+
       if(winner){
         icon.setAttribute('transform','translate('+winner.x.toFixed(1)+','+winner.y.toFixed(1)+')');
         placed.push(winner.box);
@@ -3413,7 +3456,7 @@ show('Europe Roadbook V18.9.3 loaded. Norway travel guide expanded; iPad icon, f
   const detail=document.getElementById('offlineDetail');
   if(!box||!detail) return;
 
-  const CACHE_NAME='europe-roadbook-v18-9-3';
+  const CACHE_NAME='europe-roadbook-v18-9-4';
   let attempts=0;
   let timer=null;
 
@@ -3424,12 +3467,12 @@ show('Europe Roadbook V18.9.3 loaded. Norway travel guide expanded; iPad icon, f
       const hasCore=keys.includes(CACHE_NAME);
 
       if(hasCore){
-        box.innerHTML='<b>Offline package: READY</b><div id="offlineDetail">V18.9.3 core package is cached.</div>';
+        box.innerHTML='<b>Offline package: READY</b><div id="offlineDetail">V18.9.4 core package is cached.</div>';
         if(timer){ clearInterval(timer); timer=null; }
         return true;
       }
 
-      box.innerHTML='<b>Offline package: preparing…</b><div id="offlineDetail">Waiting for V18.9.3 core cache.</div>';
+      box.innerHTML='<b>Offline package: preparing…</b><div id="offlineDetail">Waiting for V18.9.4 core cache.</div>';
       return false;
     }catch(err){
       box.innerHTML='<b>Offline package: checking…</b><div id="offlineDetail">Safari cache status unavailable momentarily.</div>';
