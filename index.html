@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Europe GPS Roadbook V18.8.3</title>
+<title>Europe GPS Roadbook V18.8.6</title>
 <meta name="theme-color" content="#fffdf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.8.3">
+<meta name="apple-mobile-web-app-title" content="Europe Roadbook V18.8.6">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="./europe-v18-icon-192.png">
 <style>
@@ -761,15 +761,67 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 }
 </style>
 
+
+<style id="v1884iPadAndRestaurantFix">
+/* Crisp crossed knife + true multi-tine fork. */
+.stripPoi .restaurantGlyph{
+  fill:none!important;
+  stroke:#111!important;
+  stroke-width:1.75!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+.stripPoi .restaurantGlyph .knifeBlade{
+  fill:#111!important;
+  stroke:#111!important;
+  stroke-width:.45!important;
+}
+
+/* iPad/tablet gets about 10% larger POI symbols than the phone/desktop base. */
+@media (min-width:701px){
+  .stripPoi .poiGlyph,
+  .stripPoi .poiGlyphStroke,
+  .stripPoi .poiGlyphSolid{
+    transform:scale(1.32)!important;
+    transform-origin:8px 8px!important;
+  }
+  .stripPoi.poiSelectedFromList .poiGlyph,
+  .stripPoi.poiSelectedFromList .poiGlyphStroke,
+  .stripPoi.poiSelectedFromList .poiGlyphSolid{
+    transform:scale(1.52)!important;
+    transform-origin:8px 8px!important;
+  }
+}
+</style>
+
+
+<style id="v1885ResponsiveIconSizing">
+.stripPoi .poiGlyph,
+.stripPoi .poiGlyphStroke,
+.stripPoi .poiGlyphSolid{transform-origin:8px 8px!important}
+@media (max-width:700px), (max-height:520px) and (orientation:landscape){
+  .stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform:scale(1.18)!important}
+  .stripPoi.poiSelectedFromList .poiGlyph,.stripPoi.poiSelectedFromList .poiGlyphStroke,.stripPoi.poiSelectedFromList .poiGlyphSolid{transform:scale(1.38)!important}
+}
+@media (min-width:701px) and (max-width:1366px){
+  .stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform:scale(1.55)!important}
+  .stripPoi.poiSelectedFromList .poiGlyph,.stripPoi.poiSelectedFromList .poiGlyphStroke,.stripPoi.poiSelectedFromList .poiGlyphSolid{transform:scale(1.78)!important}
+}
+@media (min-width:1367px){
+  .stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform:scale(1.25)!important}
+  .stripPoi.poiSelectedFromList .poiGlyph,.stripPoi.poiSelectedFromList .poiGlyphStroke,.stripPoi.poiSelectedFromList .poiGlyphSolid{transform:scale(1.45)!important}
+}
+</style>
+
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.8.3.2 Full Travel Build</h1>
-<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · icon-map build 18.8.3</div></header>
+<header><h1>Europe GPS Roadbook — V18.8.6 Full Travel Build</h1>
+<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · icon-map build 18.8.6</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18.8.3.3</strong>
+    <strong>EUROPE ROADBOOK · V18.8.6</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -1081,7 +1133,7 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <text class="stop-label" x="165.0" y="635.8">Willemstad</text>
 <text class="map-small" x="165.0" y="651.8">Fri 25 Sep</text>
 <circle id="stripStop47" class="stop-dot" cx="130.0" cy="554.0" r="8"/>
-<text class="stop-label" x="18.0" y="543.0">Oud-Beijerland — Funeral</text>
+<text class="stop-label" x="18.0" y="543.0">Heinenoord — Tineke Bloemen funeral</text>
 <text class="map-small" x="18.0" y="559.0">Sat 26 Sep</text>
 <circle id="stripStop48" class="stop-dot" cx="160.0" cy="461.2" r="8"/>
 <text class="stop-label" x="165.0" y="450.2">Kinderdijk</text>
@@ -1103,20 +1155,50 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <text id="stripUserText" class="map-small" x="166" y="5033">your GPS position</text>
 <text class="map-small" x="18" y="5076.0">Trip sequence runs bottom → top</text>
 
-<!-- V18.8.3 geographic POIs and hard-time milestones -->
+<!-- V18.8.6 geographic POIs and hard-time milestones -->
 <g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Evenes" transform="translate(122.0,3603.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Evenes" data-poi-key="0"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Circle K — Evenes" transform="translate(162.0,3614.7)" tabindex="0" role="button" aria-label="Circle K — Evenes" data-poi-key="1"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Evenes Grill &amp; Bar" transform="translate(122.0,4908.0)" tabindex="0" role="button" aria-label="Evenes Grill &amp; Bar" data-poi-key="2"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Evenes Grill &amp; Bar" transform="translate(122.0,4908.0)" tabindex="0" role="button" aria-label="Evenes Grill &amp; Bar" data-poi-key="2"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Haukland → Uttakleiv coastal road" transform="translate(122.0,4705.2)" tabindex="0" role="button" aria-label="Haukland → Uttakleiv coastal road" data-poi-key="3"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Mannen" transform="translate(162.0,4716.7)" tabindex="0" role="button" aria-label="Mannen" data-poi-key="4"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Himmeltinden" transform="translate(122.0,4728.2)" tabindex="0" role="button" aria-label="Himmeltinden" data-poi-key="5"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Haukland Beach Café" transform="translate(162.0,4739.7)" tabindex="0" role="button" aria-label="Haukland Beach Café" data-poi-key="10"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Fiskekrogen — Henningsvær" transform="translate(122.0,4797.9)" tabindex="0" role="button" aria-label="Fiskekrogen — Henningsvær" data-poi-key="6"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Klatrekafeen — Henningsvær" transform="translate(162.0,4809.4)" tabindex="0" role="button" aria-label="Klatrekafeen — Henningsvær" data-poi-key="7"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Trevarefabrikken — Henningsvær" transform="translate(122.0,4820.9)" tabindex="0" role="button" aria-label="Trevarefabrikken — Henningsvær" data-poi-key="8"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Haukland Beach Café" transform="translate(162.0,4739.7)" tabindex="0" role="button" aria-label="Haukland Beach Café" data-poi-key="10"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Fiskekrogen — Henningsvær" transform="translate(122.0,4797.9)" tabindex="0" role="button" aria-label="Fiskekrogen — Henningsvær" data-poi-key="6"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Klatrekafeen — Henningsvær" transform="translate(162.0,4809.4)" tabindex="0" role="button" aria-label="Klatrekafeen — Henningsvær" data-poi-key="7"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Trevarefabrikken — Henningsvær" transform="translate(122.0,4820.9)" tabindex="0" role="button" aria-label="Trevarefabrikken — Henningsvær" data-poi-key="8"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Joker Henningsvær" transform="translate(162.0,4832.4)" tabindex="0" role="button" aria-label="Joker Henningsvær" data-poi-key="9"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Ramberg Beach" transform="translate(122.0,4519.6)" tabindex="0" role="button" aria-label="Ramberg Beach" data-poi-key="11"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Ramberg Resort Restaurant" transform="translate(162.0,4531.1)" tabindex="0" role="button" aria-label="Ramberg Resort Restaurant" data-poi-key="12"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Ramberg Resort Restaurant" transform="translate(162.0,4531.1)" tabindex="0" role="button" aria-label="Ramberg Resort Restaurant" data-poi-key="12"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Bunnpris Ramberg" transform="translate(122.0,4542.6)" tabindex="0" role="button" aria-label="Bunnpris Ramberg" data-poi-key="13"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Kople Bodø Energi — Ramberg" transform="translate(162.0,4554.1)" tabindex="0" role="button" aria-label="Kople Bodø Energi — Ramberg" data-poi-key="14"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Skagsanden + Flakstad Church" transform="translate(122.0,4444.0)" tabindex="0" role="button" aria-label="Skagsanden + Flakstad Church" data-poi-key="15"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
@@ -1127,21 +1209,41 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <g class="stripPoi mapPoiEv" data-poi-name="Eviny Alstad Kro og Camping" transform="translate(122.0,4351.3)" tabindex="0" role="button" aria-label="Eviny Alstad Kro og Camping" data-poi-key="20"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Leknes" transform="translate(162.0,4362.8)" tabindex="0" role="button" aria-label="REMA 1000 Leknes" data-poi-key="21"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Extra Leknes" transform="translate(122.0,4374.3)" tabindex="0" role="button" aria-label="Extra Leknes" data-poi-key="22"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="DIGG — Leknes" transform="translate(162.0,4385.8)" tabindex="0" role="button" aria-label="DIGG — Leknes" data-poi-key="23"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="DIGG — Leknes" transform="translate(162.0,4385.8)" tabindex="0" role="button" aria-label="DIGG — Leknes" data-poi-key="23"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Leknes" transform="translate(122.0,4397.3)" tabindex="0" role="button" aria-label="Tesla Supercharger — Leknes" data-poi-key="54"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Hamnøy bridge viewpoint" transform="translate(122.0,4258.5)" tabindex="0" role="button" aria-label="Hamnøy bridge viewpoint" data-poi-key="24"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Sakrisøy + Reinehalsen" transform="translate(122.0,4131.2)" tabindex="0" role="button" aria-label="Sakrisøy + Reinehalsen" data-poi-key="25"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Reinebringen" transform="translate(162.0,4142.7)" tabindex="0" role="button" aria-label="Reinebringen" data-poi-key="26"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Kople Parkering Ytre Havn — Reine" transform="translate(122.0,4154.2)" tabindex="0" role="button" aria-label="Kople Parkering Ytre Havn — Reine" data-poi-key="27"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Eviny Reine Sentrum" transform="translate(162.0,4165.7)" tabindex="0" role="button" aria-label="Eviny Reine Sentrum" data-poi-key="28"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Gammelbua — Reine" transform="translate(122.0,4177.2)" tabindex="0" role="button" aria-label="Gammelbua — Reine" data-poi-key="29"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Gammelbua — Reine" transform="translate(122.0,4177.2)" tabindex="0" role="button" aria-label="Gammelbua — Reine" data-poi-key="29"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Coop Prix Reine" transform="translate(162.0,4188.7)" tabindex="0" role="button" aria-label="Coop Prix Reine" data-poi-key="30"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Reine" transform="translate(122.0,4200.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Reine" data-poi-key="55"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Å fishing-village walk" transform="translate(122.0,4061.4)" tabindex="0" role="button" aria-label="Å fishing-village walk" data-poi-key="31"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Sørvågen easy walk" transform="translate(162.0,4072.9)" tabindex="0" role="button" aria-label="Sørvågen easy walk" data-poi-key="32"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Bakeriet Å" transform="translate(122.0,4084.4)" tabindex="0" role="button" aria-label="Bakeriet Å" data-poi-key="33"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Bakeriet Å" transform="translate(122.0,4084.4)" tabindex="0" role="button" aria-label="Bakeriet Å" data-poi-key="33"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Nusfjord historic fishing village" transform="translate(122.0,3974.4)" tabindex="0" role="button" aria-label="Nusfjord historic fishing village" data-poi-key="34"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Karoline — Nusfjord" transform="translate(162.0,3985.9)" tabindex="0" role="button" aria-label="Restaurant Karoline — Nusfjord" data-poi-key="35"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Karoline — Nusfjord" transform="translate(162.0,3985.9)" tabindex="0" role="button" aria-label="Restaurant Karoline — Nusfjord" data-poi-key="35"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Kvalvika + Ryten" transform="translate(122.0,3881.6)" tabindex="0" role="button" aria-label="Kvalvika + Ryten" data-poi-key="36"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Ytresand / Fredvang Bridges" transform="translate(162.0,3893.1)" tabindex="0" role="button" aria-label="Ytresand / Fredvang Bridges" data-poi-key="37"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
 <g class="stripPoi mapPoiScenic" data-poi-name="Lofotr Viking Museum" transform="translate(122.0,3794.5)" tabindex="0" role="button" aria-label="Lofotr Viking Museum" data-poi-key="38"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
@@ -1153,47 +1255,157 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <g class="stripPoi mapPoiHike" data-poi-name="Linken" transform="translate(162.0,3678.7)" tabindex="0" role="button" aria-label="Linken" data-poi-key="44"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Tjeldbergtind" transform="translate(122.0,3690.2)" tabindex="0" role="button" aria-label="Tjeldbergtind" data-poi-key="45"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
 <g class="stripPoi mapPoiHike" data-poi-name="Fløya + Djevelporten" transform="translate(162.0,3701.7)" tabindex="0" role="button" aria-label="Fløya + Djevelporten" data-poi-key="46"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Børsen Spiseri — Svolvær" transform="translate(122.0,3713.2)" tabindex="0" role="button" aria-label="Børsen Spiseri — Svolvær" data-poi-key="47"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Kjøkkenet — Svolvær" transform="translate(162.0,3724.7)" tabindex="0" role="button" aria-label="Restaurant Kjøkkenet — Svolvær" data-poi-key="48"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Børsen Spiseri — Svolvær" transform="translate(122.0,3713.2)" tabindex="0" role="button" aria-label="Børsen Spiseri — Svolvær" data-poi-key="47"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Kjøkkenet — Svolvær" transform="translate(162.0,3724.7)" tabindex="0" role="button" aria-label="Restaurant Kjøkkenet — Svolvær" data-poi-key="48"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Extra Svolvær" transform="translate(122.0,3736.2)" tabindex="0" role="button" aria-label="Extra Svolvær" data-poi-key="49"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Svolvær" transform="translate(162.0,3747.7)" tabindex="0" role="button" aria-label="REMA 1000 Svolvær" data-poi-key="50"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Kringla Bakeri &amp; Konditori — Svolvær" transform="translate(122.0,3759.2)" tabindex="0" role="button" aria-label="Kringla Bakeri &amp; Konditori — Svolvær" data-poi-key="51"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Telegrafen Pub Og Bar — Svolvær" transform="translate(162.0,3770.7)" tabindex="0" role="button" aria-label="Telegrafen Pub Og Bar — Svolvær" data-poi-key="52"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Kringla Bakeri &amp; Konditori — Svolvær" transform="translate(122.0,3759.2)" tabindex="0" role="button" aria-label="Kringla Bakeri &amp; Konditori — Svolvær" data-poi-key="51"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Telegrafen Pub Og Bar — Svolvær" transform="translate(162.0,3770.7)" tabindex="0" role="button" aria-label="Telegrafen Pub Og Bar — Svolvær" data-poi-key="52"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Svolvær" transform="translate(122.0,3782.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Svolvær" data-poi-key="53"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Pitlochry" transform="translate(122.0,3330.5)" tabindex="0" role="button" aria-label="Co-op — Pitlochry" data-poi-key="56"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Old Bridge Inn — Aviemore" transform="translate(122.0,3226.2)" tabindex="0" role="button" aria-label="Old Bridge Inn — Aviemore" data-poi-key="57"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Delaneys&#x27; — Aviemore" transform="translate(162.0,3237.7)" tabindex="0" role="button" aria-label="Delaneys&#x27; — Aviemore" data-poi-key="58"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Old Bridge Inn — Aviemore" transform="translate(122.0,3226.2)" tabindex="0" role="button" aria-label="Old Bridge Inn — Aviemore" data-poi-key="57"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Delaneys&#x27; — Aviemore" transform="translate(162.0,3237.7)" tabindex="0" role="button" aria-label="Delaneys&#x27; — Aviemore" data-poi-key="58"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Tesco Superstore — Aviemore" transform="translate(122.0,3249.2)" tabindex="0" role="button" aria-label="Tesco Superstore — Aviemore" data-poi-key="59"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Ferry Inn — Uig" transform="translate(122.0,2953.7)" tabindex="0" role="button" aria-label="The Ferry Inn — Uig" data-poi-key="60"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Ferry Inn — Uig" transform="translate(122.0,2953.7)" tabindex="0" role="button" aria-label="The Ferry Inn — Uig" data-poi-key="60"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Rankins Supermarket — Uig" transform="translate(162.0,2965.2)" tabindex="0" role="button" aria-label="Rankins Supermarket — Uig" data-poi-key="61"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Morrisons — Fort William" transform="translate(122.0,2391.1)" tabindex="0" role="button" aria-label="Morrisons — Fort William" data-poi-key="62"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Tesco Express — Fort William" transform="translate(162.0,2402.6)" tabindex="0" role="button" aria-label="Tesco Express — Fort William" data-poi-key="63"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Nevis Bakery — Fort William" transform="translate(122.0,2414.1)" tabindex="0" role="button" aria-label="Nevis Bakery — Fort William" data-poi-key="64"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Laroch — Ballachulish" transform="translate(122.0,2112.7)" tabindex="0" role="button" aria-label="The Laroch — Ballachulish" data-poi-key="65"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Nevis Bakery — Fort William" transform="translate(122.0,2414.1)" tabindex="0" role="button" aria-label="Nevis Bakery — Fort William" data-poi-key="64"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Laroch — Ballachulish" transform="translate(122.0,2112.7)" tabindex="0" role="button" aria-label="The Laroch — Ballachulish" data-poi-key="65"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Ballachulish" transform="translate(162.0,2124.2)" tabindex="0" role="button" aria-label="Co-op — Ballachulish" data-poi-key="66"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Quarry Centre Café — Ballachulish" transform="translate(122.0,2135.7)" tabindex="0" role="button" aria-label="The Quarry Centre Café — Ballachulish" data-poi-key="67"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Dukes Umbrella — Glasgow" transform="translate(122.0,1828.6)" tabindex="0" role="button" aria-label="The Dukes Umbrella — Glasgow" data-poi-key="68"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Rumi Bar &amp; Restaurant — Glasgow" transform="translate(162.0,1840.1)" tabindex="0" role="button" aria-label="Rumi Bar &amp; Restaurant — Glasgow" data-poi-key="69"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Turbine 75 — Hotel Indigo" transform="translate(122.0,1851.6)" tabindex="0" role="button" aria-label="Turbine 75 — Hotel Indigo" data-poi-key="70"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Drouthy&#x27;s — Glasgow" transform="translate(162.0,1863.1)" tabindex="0" role="button" aria-label="Drouthy&#x27;s — Glasgow" data-poi-key="71"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Quarry Centre Café — Ballachulish" transform="translate(122.0,2135.7)" tabindex="0" role="button" aria-label="The Quarry Centre Café — Ballachulish" data-poi-key="67"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Dukes Umbrella — Glasgow" transform="translate(122.0,1828.6)" tabindex="0" role="button" aria-label="The Dukes Umbrella — Glasgow" data-poi-key="68"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Rumi Bar &amp; Restaurant — Glasgow" transform="translate(162.0,1840.1)" tabindex="0" role="button" aria-label="Rumi Bar &amp; Restaurant — Glasgow" data-poi-key="69"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Turbine 75 — Hotel Indigo" transform="translate(122.0,1851.6)" tabindex="0" role="button" aria-label="Turbine 75 — Hotel Indigo" data-poi-key="70"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Drouthy&#x27;s — Glasgow" transform="translate(162.0,1863.1)" tabindex="0" role="button" aria-label="Drouthy&#x27;s — Glasgow" data-poi-key="71"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn XL — Vlissingen" transform="translate(122.0,1381.9)" tabindex="0" role="button" aria-label="Albert Heijn XL — Vlissingen" data-poi-key="72"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Delft centre dining — live choice" transform="translate(122.0,1196.3)" tabindex="0" role="button" aria-label="Delft centre dining — live choice" data-poi-key="73"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Haag dining — live choice" transform="translate(122.0,1103.5)" tabindex="0" role="button" aria-label="Den Haag dining — live choice" data-poi-key="74"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Delft centre dining — live choice" transform="translate(122.0,1196.3)" tabindex="0" role="button" aria-label="Delft centre dining — live choice" data-poi-key="73"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Haag dining — live choice" transform="translate(122.0,1103.5)" tabindex="0" role="button" aria-label="Den Haag dining — live choice" data-poi-key="74"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn — Cuijk" transform="translate(122.0,999.2)" tabindex="0" role="button" aria-label="Albert Heijn — Cuijk" data-poi-key="75"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Het Boothuys — Cuijk" transform="translate(162.0,1010.7)" tabindex="0" role="button" aria-label="Het Boothuys — Cuijk" data-poi-key="76"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Smaak — Cuijk" transform="translate(122.0,1022.2)" tabindex="0" role="button" aria-label="Restaurant Smaak — Cuijk" data-poi-key="77"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Huis de Wiers — Nieuwegein" transform="translate(122.0,912.1)" tabindex="0" role="button" aria-label="Restaurant Huis de Wiers — Nieuwegein" data-poi-key="78"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Celine — Nieuwegein" transform="translate(162.0,923.6)" tabindex="0" role="button" aria-label="Restaurant Celine — Nieuwegein" data-poi-key="79"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Oostkade — Oud-Beijerland" transform="translate(122.0,541.0)" tabindex="0" role="button" aria-label="Restaurant Oostkade — Oud-Beijerland" data-poi-key="80"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Divina Cucina — Oud-Beijerland" transform="translate(162.0,552.5)" tabindex="0" role="button" aria-label="Divina Cucina — Oud-Beijerland" data-poi-key="81"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Het Boothuys — Cuijk" transform="translate(162.0,1010.7)" tabindex="0" role="button" aria-label="Het Boothuys — Cuijk" data-poi-key="76"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Smaak — Cuijk" transform="translate(122.0,1022.2)" tabindex="0" role="button" aria-label="Restaurant Smaak — Cuijk" data-poi-key="77"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Huis de Wiers — Nieuwegein" transform="translate(122.0,912.1)" tabindex="0" role="button" aria-label="Restaurant Huis de Wiers — Nieuwegein" data-poi-key="78"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Celine — Nieuwegein" transform="translate(162.0,923.6)" tabindex="0" role="button" aria-label="Restaurant Celine — Nieuwegein" data-poi-key="79"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+</g>
+</g>
 <g class="stripPoi mapPoiMarket" data-poi-name="AH to Go — Hoofddorp Kruisweg" transform="translate(122.0,1556.0)" tabindex="0" role="button" aria-label="AH to Go — Hoofddorp Kruisweg" data-poi-key="82"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Dine With Florian — Hoofddorp" transform="translate(162.0,1567.5)" tabindex="0" role="button" aria-label="Dine With Florian — Hoofddorp" data-poi-key="83"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Burgh — Hoofddorp" transform="translate(122.0,1579.0)" tabindex="0" role="button" aria-label="Den Burgh — Hoofddorp" data-poi-key="84"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphSolid restaurantGlyph"><path d="M1.2 1.1 C1.2 .5 2 .3 2.3 .8 L4.8 5.0 L3.6 5.8 L1.2 1.1 Z"/><path d="M2.2 5.0 L3.2 4.4 L14.8 14.0 C15.8 14.9 14.4 16.2 13.5 15.2 Z"/><path d="M14.6 .7 C12.6 1.3 11.0 2.8 10.2 4.8 L11.8 6.2 L15.6 2.0 C16.3 1.2 15.5 .4 14.6 .7 Z"/><path d="M10.9 5.2 L12.0 6.2 L2.5 15.5 C1.6 16.3 .3 15.0 1.2 14.1 Z"/></g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Dine With Florian — Hoofddorp" transform="translate(162.0,1567.5)" tabindex="0" role="button" aria-label="Dine With Florian — Hoofddorp" data-poi-key="83"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Burgh — Hoofddorp" transform="translate(122.0,1579.0)" tabindex="0" role="button" aria-label="Den Burgh — Hoofddorp" data-poi-key="84"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
+<path d="M2.2 0.7 V4.6 M3.5 0.7 V4.6 M4.8 0.7 V4.6 M6.1 0.7 V4.6"/>
+<path d="M2.2 4.6 Q4.15 6.2 6.1 4.6 M4.15 5.3 L13.7 14.9"/>
+<path d="M14.9 0.6 C12.9 1.0 11.4 2.6 10.5 4.9 L12.1 6.2 L15.8 2.0 C16.5 1.2 15.9 0.4 14.9 0.6 Z" class="knifeBlade"/>
+<path d="M11.4 5.8 L2.1 15.1"/>
+</g></g></g>
 <g class="stripMilestone" data-stop-id="eve_return" transform="translate(16,3590.1)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 14</text><text class="milestoneMain" x="52" y="8">AVIS RETURN 15:30</text><text class="milestoneSub" x="5" y="18">EVE FLIGHT 17:15 → OSL; OSL 19:40 → EDI</text></g>
 <g class="stripMilestone" data-stop-id="edi_drivalia" transform="translate(16,3497.3)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 14</text><text class="milestoneMain" x="52" y="8">EDI ARRIVE 20:30</text><text class="milestoneSub" x="5" y="18">DRIVALIA PICKUP 21:30</text></g>
 <g class="stripMilestone" data-stop-id="gla_drivalia" transform="translate(16,1641.5)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 21</text><text class="milestoneMain" x="52" y="8">CAR RETURN TARGET 16:15–16:30</text><text class="milestoneSub" x="5" y="18">GLA FLIGHT 19:25 → AMS 22:00</text></g>
 <g class="stripMilestone" data-stop-id="ams_car" transform="translate(16,1455.9)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 22</text><text class="milestoneMain" x="52" y="8">KEDDY PICKUP 08:00</text><text class="milestoneSub" x="5" y="18">Schiphol</text></g>
-<g class="stripMilestone" data-stop-id="oudbeijerland" transform="translate(16,528.0)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 26</text><text class="milestoneMain" x="52" y="8">FUNERAL — TIME TBD</text><text class="milestoneSub" x="5" y="18">Protect this day</text></g>
+<g class="stripMilestone" data-stop-id="heinenoord_funeral" transform="translate(16,528.0)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 26</text><text class="milestoneMain" x="52" y="8">FUNERAL — 13:00</text><text class="milestoneSub" x="5" y="18">Crematorium Hoeksche Waard · Heinenoord</text></g>
 <g class="stripMilestone" data-stop-id="schiphol_return" transform="translate(16,64.0)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 29</text><text class="milestoneMain" x="52" y="8">KEDDY RETURN 07:30</text><text class="milestoneSub" x="5" y="18">AMS FLIGHT 10:45 → OSL; OSL 13:20 → JFK</text></g>
 </svg>
 </aside>
@@ -1231,7 +1443,7 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
   <div><strong>Sep 14:</strong> EVE Avis 15:30 · flight 17:15 · OSL connection 19:40 · EDI 20:30 · Drivalia 21:30</div>
   <div><strong>Sep 21:</strong> GLA car return target 16:15–16:30 · flight 19:25</div>
   <div><strong>Sep 22:</strong> Schiphol Keddy pickup 08:00</div>
-  <div><strong>Sep 26:</strong> Oud-Beijerland funeral — time TBD</div>
+  <div><strong>Sep 26:</strong> Tineke Bloemen funeral — Crematorium Hoeksche Waard, Heinenoord — 13:00</div>
   <div><strong>Sep 29:</strong> Schiphol Keddy return 07:30 · AMS flight 10:45 · OSL connection 13:20</div>
 </details>
 
@@ -1577,14 +1789,8 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
 <span class="routePoiType">RESTAURANT</span>
 <span class="routePoiText"><b>Restaurant Celine — Nieuwegein</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>Highly rated Dutch/seafood</small></span>
 </button>
-<button class="routePoi routePoi-restaurant" type="button" data-target="stop-oudbeijerland" data-poi-key="80">
-<span class="routePoiType">RESTAURANT</span>
-<span class="routePoiText"><b>Restaurant Oostkade — Oud-Beijerland</b><span class="restaurantTier tier-destination">★★★★★ DESTINATION</span><small>Top-rated local option</small></span>
-</button>
-<button class="routePoi routePoi-restaurant" type="button" data-target="stop-oudbeijerland" data-poi-key="81">
-<span class="routePoiType">RESTAURANT</span>
-<span class="routePoiText"><b>Divina Cucina — Oud-Beijerland</b><span class="restaurantTier tier-good">★★★★ GOOD VALUE</span><small>Popular Italian/seafood option</small></span>
-</button>
+
+
 <button class="routePoi routePoi-supermarket" type="button" data-target="stop-vienna_house" data-poi-key="82">
 <span class="routePoiType">SUPERMARKET</span>
 <span class="routePoiText"><b>AH to Go — Hoofddorp Kruisweg</b><small>Kruisweg 450 • very long hours • useful before Schiphol</small></span>
@@ -1611,8 +1817,8 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
 
 
 <div class="routeStreamIntro">
-  <b>Europe Roadbook V18.8.3 — route POI redesign.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
-  The Netherlands route includes the Sep 26 Oud-Beijerland funeral as a fixed anchor; the funeral hour remains TBD.
+  <b>Europe Roadbook V18.8.6 — route POI redesign.</b> Expanded Norway travel-guide build with hiking and local POI research. Norway and Scotland follow the current booked itinerary.
+  The Netherlands route includes the Sep 26 Tineke Bloemen funeral at Crematorium Hoeksche Waard, Heinenoord, as a fixed 13:00 anchor.
   Review-derived notes and charger reference cards are fully cached offline. Travel/charger photographs are cached on a best-effort basis and never block offline readiness.
 </div>
 
@@ -2588,47 +2794,20 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
       <div class="dateCountry">Fri 25 Sep · Netherlands</div>
       
       <p class="address">Willemstad, Noord-Brabant</p>
-      <p>Star-fort town and harbour; good final scenic stop while positioning toward Oud-Beijerland.</p>
+      <p>Star-fort town and harbour; good final scenic stop while positioning toward Heinenoord for the next day’s funeral.</p>
       <div class="gps">GPS: 51.691000, 4.438000</div>
       <div class="distance" id="distance-willemstad">Distance from you: waiting for GPS</div>
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=51.691000%2C4.438000">Navigate to this stop using Google Maps</a>
     </section>
 
-        <div class="routeDiscovery">
-          <div class="betweenLabel">Worth knowing before Oud-Beijerland — Funeral</div>
-          <details class="poiCard" id="poi-oudbeijerland-34411">
-            <summary><span class="poiKey">F</span>Sep 26 protected day</summary>
-            <div class="poiBody">
-              <div>No sightseeing is scheduled around the funeral until the time is known. The old town centre and Oude Raadhuis are nearby only as orientation / a place to wait if needed, not as a planned tourism stop.</div>
-              <div class="poiSource">Offline research note · Route-planning note</div>
-            </div>
-          </details>
-        </div>
-
-        <div class="routeDiscovery">
-          <div class="betweenLabel">Worth knowing before Oud-Beijerland — Funeral</div>
-          <details class="poiCard" id="poi-oudbeijerland-88604">
-            <summary><span class="poiKey">D</span>Oud-Beijerland food options — only if useful</summary>
-            <div class="poiBody">
-              <div>Tripadvisor&#x27;s 2026 listings put Restaurant Oostkade (4.5/5, 40 reviews), Divina Cucina (4.3/5, 103) and Vino D&#x27;amigo (4.6/5, 22) among the stronger local choices. This is simply a contingency list around the funeral day; no meal reservation is assumed.</div>
-              <div class="poiSource">Offline research note · Tripadvisor 2026 restaurant listings</div>
-            </div>
-          </details>
-        </div>
-
-    <section class="stop" id="stop-oudbeijerland" data-stop="oudbeijerland">
-      <div class="stophead"><span class="badge">STOP 48</span><h2>Oud-Beijerland — Funeral</h2></div>
+    <section class="stop" id="stop-heinenoord_funeral" data-stop="heinenoord_funeral">
+      <div class="stophead"><span class="badge">STOP 48</span><h2>Heinenoord — Tineke Bloemen funeral</h2></div>
       <div class="dateCountry">Sat 26 Sep · Netherlands</div>
-      
-    <figure class="poiPhoto">
-      <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Het%20oude%20raadhuis%20van%20Oud-Beijerland.png?width=960" alt="Old town hall of Oud-Beijerland" loading="lazy">
-      <figcaption>Martijn van Ruiven — Creative Commons, Wikimedia Commons</figcaption>
-    </figure>
-      <p class="address">Oud-Beijerland</p>
-      <p>FIXED ANCHOR. Mike Bloemen&#x27;s wife&#x27;s funeral is on Sep 26; hour still TBD. Keep the entire day protected and do not schedule sightseeing that creates pressure.</p>
-      <div class="gps">GPS: 51.824000, 4.412000</div>
-      <div class="distance" id="distance-oudbeijerland">Distance from you: waiting for GPS</div>
-      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=51.824000%2C4.412000">Navigate to this stop using Google Maps</a>
+      <p class="address">Crematorium Hoeksche Waard · Zaaiviool 3 · 3274 KR Heinenoord</p>
+      <p>FIXED ANCHOR. Tineke Bloemen&#x27;s funeral is Sat 26 Sep at 13:00 at Crematorium Hoeksche Waard, Zaaiviool 3, Heinenoord. Keep generous time around the service and do not schedule sightseeing that creates pressure.</p>
+      <div class="gps">GPS: 51.817716, 4.532335</div>
+      <div class="distance" id="distance-heinenoord_funeral">Distance from you: waiting for GPS</div>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=51.817716%2C4.532335">Navigate to this stop using Google Maps</a>
     </section>
 
         <div class="routeDiscovery">
@@ -2701,15 +2880,15 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-V18.8.3 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
-The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Oud-Beijerland funeral; the hour is still TBD.
+V18.8.6 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
+The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Tineke Bloemen funeral — Crematorium Hoeksche Waard, Heinenoord — 13:00.
 Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
 </main>
 </div>
 <audio id="voicePlayer" preload="auto"></audio>
 <script>
-const stops=[{"id": "eve_house", "name": "House near Evenes Airport", "lat": 68.49, "lon": 16.65}, {"id": "henningsvaer", "name": "Henningsvær / Tobiasbrygga", "lat": 68.1533, "lon": 14.2018}, {"id": "haukland", "name": "Haukland Beach", "lat": 68.199495, "lon": 13.507947}, {"id": "uttakleiv", "name": "Uttakleiv Beach", "lat": 68.2095, "lon": 13.503}, {"id": "ramberg", "name": "Ramberg Beach", "lat": 68.0896, "lon": 13.2294}, {"id": "skagsanden", "name": "Flakstad Church + Skagsanden", "lat": 68.111, "lon": 13.274}, {"id": "arctic_resort", "name": "Arctic Resort Lofoten", "lat": 68.085, "lon": 13.225}, {"id": "hamnoy", "name": "Hamnøy Bridge Viewpoint", "lat": 67.9496, "lon": 13.1327}, {"id": "reine", "name": "Sakrisøy + Reine", "lat": 67.9324, "lon": 13.0895}, {"id": "aa", "name": "Å Fishing Village Museum", "lat": 67.879, "lon": 12.982}, {"id": "nusfjord", "name": "Nusfjord", "lat": 68.0344, "lon": 13.3485}, {"id": "fredvang", "name": "Fredvang / Ytresand Coast", "lat": 68.089, "lon": 13.163}, {"id": "lofotr", "name": "Lofotr Viking Museum", "lat": 68.2444, "lon": 13.7577}, {"id": "svolvaer", "name": "Svolvær / Nordis Apartments", "lat": 68.2343, "lon": 14.568}, {"id": "eve_return", "name": "Evenes Airport — Avis Return", "lat": 68.4913, "lon": 16.6781}, {"id": "edi_drivalia", "name": "Drivalia Edinburgh Pickup", "lat": 55.946, "lon": -3.407}, {"id": "pitbauchlie", "name": "Pitbauchlie House Hotel", "lat": 56.06, "lon": -3.455}, {"id": "pitlochry", "name": "Pitlochry", "lat": 56.704, "lon": -3.735}, {"id": "aviemore", "name": "Aviemore / High Range", "lat": 57.195, "lon": -3.829}, {"id": "urquhart", "name": "Urquhart Castle", "lat": 57.324, "lon": -4.442}, {"id": "eilean", "name": "Eilean Donan Castle", "lat": 57.274272, "lon": -5.513767}, {"id": "uig", "name": "Ferry Inn, Uig", "lat": 57.5855, "lon": -6.3565}, {"id": "storr", "name": "Old Man of Storr", "lat": 57.5073, "lon": -6.1838}, {"id": "kiltrock", "name": "Kilt Rock / Mealt Falls", "lat": 57.6105, "lon": -6.1728}, {"id": "quiraing", "name": "Quiraing", "lat": 57.6435, "lon": -6.273}, {"id": "fairyglen", "name": "Fairy Glen", "lat": 57.5837, "lon": -6.3265}, {"id": "uig_return", "name": "Ferry Inn — second night", "lat": 57.5855, "lon": -6.3565}, {"id": "fortwilliam", "name": "Fort William", "lat": 56.8198, "lon": -5.1052}, {"id": "glenfinnan", "name": "Glenfinnan Viaduct / Loch Shiel", "lat": 56.8707, "lon": -5.4319}, {"id": "glencoe", "name": "Glencoe / Three Sisters", "lat": 56.665, "lon": -4.986}, {"id": "rocklee", "name": "Rocklee B&B", "lat": 56.675, "lon": -5.138}, {"id": "glencoe_vc", "name": "Glencoe Visitor Centre", "lat": 56.6678, "lon": -5.109}, {"id": "luss", "name": "Luss / Loch Lomond", "lat": 56.101, "lon": -4.639}, {"id": "hotel_indigo", "name": "Hotel Indigo Glasgow", "lat": 55.8617, "lon": -4.2646}, {"id": "glasgow", "name": "Glasgow — free sightseeing day", "lat": 55.8609, "lon": -4.2514}, {"id": "gla_drivalia", "name": "Drivalia Glasgow Return", "lat": 55.856, "lon": -4.435}, {"id": "vienna_house", "name": "Vienna House Easy — Hoofddorp", "lat": 52.301, "lon": 4.691}, {"id": "ams_car", "name": "Keddy Rental Pickup — Schiphol", "lat": 52.3105, "lon": 4.7683}, {"id": "vlissingen", "name": "Vlissingen — Wim Bijnen", "lat": 51.4427, "lon": 3.5736}, {"id": "veere", "name": "Veere", "lat": 51.5488, "lon": 3.6665}, {"id": "delft", "name": "Delft historic centre", "lat": 52.0116, "lon": 4.3571}, {"id": "denhaag", "name": "Den Haag — Izzy Fordham", "lat": 52.0705, "lon": 4.3007}, {"id": "cuijk", "name": "Cuijk — Mike Birkhoff", "lat": 51.7306, "lon": 5.8792}, {"id": "nieuwegein", "name": "Nieuwegein — Harm Braams", "lat": 52.0292, "lon": 5.0807}, {"id": "buren", "name": "Buren", "lat": 51.91, "lon": 5.335}, {"id": "heusden", "name": "Heusden", "lat": 51.733, "lon": 5.138}, {"id": "willemstad", "name": "Willemstad", "lat": 51.691, "lon": 4.438}, {"id": "oudbeijerland", "name": "Oud-Beijerland — Funeral", "lat": 51.824, "lon": 4.412}, {"id": "kinderdijk", "name": "Kinderdijk", "lat": 51.8854, "lon": 4.6367}, {"id": "dordrecht", "name": "Dordrecht", "lat": 51.8133, "lon": 4.6901}, {"id": "biesbosch", "name": "Biesbosch — optional", "lat": 51.7415, "lon": 4.771}, {"id": "denhaag_backup", "name": "Den Haag — Izzy backup / final visits", "lat": 52.0705, "lon": 4.3007}, {"id": "schiphol_return", "name": "Schiphol — Keddy Return", "lat": 52.3105, "lon": 4.7683}];
+const stops=[{"id": "eve_house", "name": "House near Evenes Airport", "lat": 68.49, "lon": 16.65}, {"id": "henningsvaer", "name": "Henningsvær / Tobiasbrygga", "lat": 68.1533, "lon": 14.2018}, {"id": "haukland", "name": "Haukland Beach", "lat": 68.199495, "lon": 13.507947}, {"id": "uttakleiv", "name": "Uttakleiv Beach", "lat": 68.2095, "lon": 13.503}, {"id": "ramberg", "name": "Ramberg Beach", "lat": 68.0896, "lon": 13.2294}, {"id": "skagsanden", "name": "Flakstad Church + Skagsanden", "lat": 68.111, "lon": 13.274}, {"id": "arctic_resort", "name": "Arctic Resort Lofoten", "lat": 68.085, "lon": 13.225}, {"id": "hamnoy", "name": "Hamnøy Bridge Viewpoint", "lat": 67.9496, "lon": 13.1327}, {"id": "reine", "name": "Sakrisøy + Reine", "lat": 67.9324, "lon": 13.0895}, {"id": "aa", "name": "Å Fishing Village Museum", "lat": 67.879, "lon": 12.982}, {"id": "nusfjord", "name": "Nusfjord", "lat": 68.0344, "lon": 13.3485}, {"id": "fredvang", "name": "Fredvang / Ytresand Coast", "lat": 68.089, "lon": 13.163}, {"id": "lofotr", "name": "Lofotr Viking Museum", "lat": 68.2444, "lon": 13.7577}, {"id": "svolvaer", "name": "Svolvær / Nordis Apartments", "lat": 68.2343, "lon": 14.568}, {"id": "eve_return", "name": "Evenes Airport — Avis Return", "lat": 68.4913, "lon": 16.6781}, {"id": "edi_drivalia", "name": "Drivalia Edinburgh Pickup", "lat": 55.946, "lon": -3.407}, {"id": "pitbauchlie", "name": "Pitbauchlie House Hotel", "lat": 56.06, "lon": -3.455}, {"id": "pitlochry", "name": "Pitlochry", "lat": 56.704, "lon": -3.735}, {"id": "aviemore", "name": "Aviemore / High Range", "lat": 57.195, "lon": -3.829}, {"id": "urquhart", "name": "Urquhart Castle", "lat": 57.324, "lon": -4.442}, {"id": "eilean", "name": "Eilean Donan Castle", "lat": 57.274272, "lon": -5.513767}, {"id": "uig", "name": "Ferry Inn, Uig", "lat": 57.5855, "lon": -6.3565}, {"id": "storr", "name": "Old Man of Storr", "lat": 57.5073, "lon": -6.1838}, {"id": "kiltrock", "name": "Kilt Rock / Mealt Falls", "lat": 57.6105, "lon": -6.1728}, {"id": "quiraing", "name": "Quiraing", "lat": 57.6435, "lon": -6.273}, {"id": "fairyglen", "name": "Fairy Glen", "lat": 57.5837, "lon": -6.3265}, {"id": "uig_return", "name": "Ferry Inn — second night", "lat": 57.5855, "lon": -6.3565}, {"id": "fortwilliam", "name": "Fort William", "lat": 56.8198, "lon": -5.1052}, {"id": "glenfinnan", "name": "Glenfinnan Viaduct / Loch Shiel", "lat": 56.8707, "lon": -5.4319}, {"id": "glencoe", "name": "Glencoe / Three Sisters", "lat": 56.665, "lon": -4.986}, {"id": "rocklee", "name": "Rocklee B&B", "lat": 56.675, "lon": -5.138}, {"id": "glencoe_vc", "name": "Glencoe Visitor Centre", "lat": 56.6678, "lon": -5.109}, {"id": "luss", "name": "Luss / Loch Lomond", "lat": 56.101, "lon": -4.639}, {"id": "hotel_indigo", "name": "Hotel Indigo Glasgow", "lat": 55.8617, "lon": -4.2646}, {"id": "glasgow", "name": "Glasgow — free sightseeing day", "lat": 55.8609, "lon": -4.2514}, {"id": "gla_drivalia", "name": "Drivalia Glasgow Return", "lat": 55.856, "lon": -4.435}, {"id": "vienna_house", "name": "Vienna House Easy — Hoofddorp", "lat": 52.301, "lon": 4.691}, {"id": "ams_car", "name": "Keddy Rental Pickup — Schiphol", "lat": 52.3105, "lon": 4.7683}, {"id": "vlissingen", "name": "Vlissingen — Wim Bijnen", "lat": 51.4427, "lon": 3.5736}, {"id": "veere", "name": "Veere", "lat": 51.5488, "lon": 3.6665}, {"id": "delft", "name": "Delft historic centre", "lat": 52.0116, "lon": 4.3571}, {"id": "denhaag", "name": "Den Haag — Izzy Fordham", "lat": 52.0705, "lon": 4.3007}, {"id": "cuijk", "name": "Cuijk — Mike Birkhoff", "lat": 51.7306, "lon": 5.8792}, {"id": "nieuwegein", "name": "Nieuwegein — Harm Braams", "lat": 52.0292, "lon": 5.0807}, {"id": "buren", "name": "Buren", "lat": 51.91, "lon": 5.335}, {"id": "heusden", "name": "Heusden", "lat": 51.733, "lon": 5.138}, {"id": "willemstad", "name": "Willemstad", "lat": 51.691, "lon": 4.438}, {"id": "heinenoord_funeral", "name": "Crematorium Hoeksche Waard — Tineke Bloemen funeral", "lat": 51.817716, "lon": 4.532335}, {"id": "kinderdijk", "name": "Kinderdijk", "lat": 51.8854, "lon": 4.6367}, {"id": "dordrecht", "name": "Dordrecht", "lat": 51.8133, "lon": 4.6901}, {"id": "biesbosch", "name": "Biesbosch — optional", "lat": 51.7415, "lon": 4.771}, {"id": "denhaag_backup", "name": "Den Haag — Izzy backup / final visits", "lat": 52.0705, "lon": 4.3007}, {"id": "schiphol_return", "name": "Schiphol — Keddy Return", "lat": 52.3105, "lon": 4.7683}];
 
 const WARNING_SEC=120;
 const BASE_NEAR_M=95;
@@ -2800,7 +2979,7 @@ function speedMps(p){ const s=p?.coords?.speed; return Number.isFinite(s)&&s>=0?
 function speedKmh(p){ const s=speedMps(p); return s===null?null:s*3.6; }
 
 // ---- Europe strip-map display only. This does not participate in arrival/warning/auto-advance logic. ----
-const stripAnchors=[{"lat": 68.4913, "lon": 16.6781, "x": 150, "y": 5008}, {"lat": 68.49, "lon": 16.65, "x": 150, "y": 4915.207547169812}, {"lat": 68.1533, "lon": 14.2018, "x": 122, "y": 4822.415094339623}, {"lat": 68.199495, "lon": 13.507947, "x": 168, "y": 4729.622641509434}, {"lat": 68.2095, "lon": 13.503, "x": 138, "y": 4636.830188679245}, {"lat": 68.0896, "lon": 13.2294, "x": 182, "y": 4544.037735849057}, {"lat": 68.111, "lon": 13.274, "x": 130, "y": 4451.245283018868}, {"lat": 68.085, "lon": 13.225, "x": 160, "y": 4358.452830188679}, {"lat": 67.9496, "lon": 13.1327, "x": 150, "y": 4265.66037735849}, {"lat": 67.9324, "lon": 13.0895, "x": 122, "y": 4172.867924528302}, {"lat": 67.879, "lon": 12.982, "x": 168, "y": 4080.0754716981132}, {"lat": 68.0344, "lon": 13.3485, "x": 138, "y": 3987.2830188679245}, {"lat": 68.089, "lon": 13.163, "x": 182, "y": 3894.490566037736}, {"lat": 68.2444, "lon": 13.7577, "x": 130, "y": 3801.698113207547}, {"lat": 68.2343, "lon": 14.568, "x": 160, "y": 3708.905660377359}, {"lat": 68.4913, "lon": 16.6781, "x": 150, "y": 3616.1132075471696}, {"lat": 55.946, "lon": -3.407, "x": 122, "y": 3523.3207547169814}, {"lat": 56.06, "lon": -3.455, "x": 168, "y": 3430.528301886792}, {"lat": 56.704, "lon": -3.735, "x": 138, "y": 3337.735849056604}, {"lat": 57.195, "lon": -3.829, "x": 182, "y": 3244.943396226415}, {"lat": 57.324, "lon": -4.442, "x": 130, "y": 3152.1509433962265}, {"lat": 57.274272, "lon": -5.513767, "x": 160, "y": 3059.3584905660377}, {"lat": 57.5855, "lon": -6.3565, "x": 150, "y": 2966.566037735849}, {"lat": 57.5073, "lon": -6.1838, "x": 122, "y": 2873.7735849056603}, {"lat": 57.6105, "lon": -6.1728, "x": 168, "y": 2780.9811320754716}, {"lat": 57.6435, "lon": -6.273, "x": 138, "y": 2688.188679245283}, {"lat": 57.5837, "lon": -6.3265, "x": 182, "y": 2595.396226415094}, {"lat": 57.5855, "lon": -6.3565, "x": 130, "y": 2502.603773584906}, {"lat": 56.8198, "lon": -5.1052, "x": 160, "y": 2409.811320754717}, {"lat": 56.8707, "lon": -5.4319, "x": 150, "y": 2317.0188679245284}, {"lat": 56.665, "lon": -4.986, "x": 122, "y": 2224.2264150943397}, {"lat": 56.675, "lon": -5.138, "x": 168, "y": 2131.433962264151}, {"lat": 56.6678, "lon": -5.109, "x": 138, "y": 2038.6415094339623}, {"lat": 56.101, "lon": -4.639, "x": 182, "y": 1945.8490566037735}, {"lat": 55.8617, "lon": -4.2646, "x": 130, "y": 1853.0566037735848}, {"lat": 55.8609, "lon": -4.2514, "x": 160, "y": 1760.264150943396}, {"lat": 55.856, "lon": -4.435, "x": 150, "y": 1667.4716981132074}, {"lat": 52.301, "lon": 4.691, "x": 122, "y": 1574.6792452830186}, {"lat": 52.3105, "lon": 4.7683, "x": 168, "y": 1481.8867924528304}, {"lat": 51.4427, "lon": 3.5736, "x": 138, "y": 1389.0943396226417}, {"lat": 51.5488, "lon": 3.6665, "x": 182, "y": 1296.301886792453}, {"lat": 52.0116, "lon": 4.3571, "x": 130, "y": 1203.5094339622642}, {"lat": 52.0705, "lon": 4.3007, "x": 160, "y": 1110.7169811320755}, {"lat": 51.7306, "lon": 5.8792, "x": 150, "y": 1017.9245283018868}, {"lat": 52.0292, "lon": 5.0807, "x": 122, "y": 925.132075471698}, {"lat": 51.91, "lon": 5.335, "x": 168, "y": 832.3396226415098}, {"lat": 51.733, "lon": 5.138, "x": 138, "y": 739.5471698113206}, {"lat": 51.691, "lon": 4.438, "x": 182, "y": 646.7547169811323}, {"lat": 51.824, "lon": 4.412, "x": 130, "y": 553.9622641509432}, {"lat": 51.8854, "lon": 4.6367, "x": 160, "y": 461.1698113207549}, {"lat": 51.8133, "lon": 4.6901, "x": 150, "y": 368.3773584905657}, {"lat": 51.7415, "lon": 4.771, "x": 122, "y": 275.58490566037744}, {"lat": 52.0705, "lon": 4.3007, "x": 168, "y": 182.79245283018827}, {"lat": 52.3105, "lon": 4.7683, "x": 138, "y": 90.0}];
+const stripAnchors=[{"lat": 68.4913, "lon": 16.6781, "x": 150, "y": 5008}, {"lat": 68.49, "lon": 16.65, "x": 150, "y": 4915.207547169812}, {"lat": 68.1533, "lon": 14.2018, "x": 122, "y": 4822.415094339623}, {"lat": 68.199495, "lon": 13.507947, "x": 168, "y": 4729.622641509434}, {"lat": 68.2095, "lon": 13.503, "x": 138, "y": 4636.830188679245}, {"lat": 68.0896, "lon": 13.2294, "x": 182, "y": 4544.037735849057}, {"lat": 68.111, "lon": 13.274, "x": 130, "y": 4451.245283018868}, {"lat": 68.085, "lon": 13.225, "x": 160, "y": 4358.452830188679}, {"lat": 67.9496, "lon": 13.1327, "x": 150, "y": 4265.66037735849}, {"lat": 67.9324, "lon": 13.0895, "x": 122, "y": 4172.867924528302}, {"lat": 67.879, "lon": 12.982, "x": 168, "y": 4080.0754716981132}, {"lat": 68.0344, "lon": 13.3485, "x": 138, "y": 3987.2830188679245}, {"lat": 68.089, "lon": 13.163, "x": 182, "y": 3894.490566037736}, {"lat": 68.2444, "lon": 13.7577, "x": 130, "y": 3801.698113207547}, {"lat": 68.2343, "lon": 14.568, "x": 160, "y": 3708.905660377359}, {"lat": 68.4913, "lon": 16.6781, "x": 150, "y": 3616.1132075471696}, {"lat": 55.946, "lon": -3.407, "x": 122, "y": 3523.3207547169814}, {"lat": 56.06, "lon": -3.455, "x": 168, "y": 3430.528301886792}, {"lat": 56.704, "lon": -3.735, "x": 138, "y": 3337.735849056604}, {"lat": 57.195, "lon": -3.829, "x": 182, "y": 3244.943396226415}, {"lat": 57.324, "lon": -4.442, "x": 130, "y": 3152.1509433962265}, {"lat": 57.274272, "lon": -5.513767, "x": 160, "y": 3059.3584905660377}, {"lat": 57.5855, "lon": -6.3565, "x": 150, "y": 2966.566037735849}, {"lat": 57.5073, "lon": -6.1838, "x": 122, "y": 2873.7735849056603}, {"lat": 57.6105, "lon": -6.1728, "x": 168, "y": 2780.9811320754716}, {"lat": 57.6435, "lon": -6.273, "x": 138, "y": 2688.188679245283}, {"lat": 57.5837, "lon": -6.3265, "x": 182, "y": 2595.396226415094}, {"lat": 57.5855, "lon": -6.3565, "x": 130, "y": 2502.603773584906}, {"lat": 56.8198, "lon": -5.1052, "x": 160, "y": 2409.811320754717}, {"lat": 56.8707, "lon": -5.4319, "x": 150, "y": 2317.0188679245284}, {"lat": 56.665, "lon": -4.986, "x": 122, "y": 2224.2264150943397}, {"lat": 56.675, "lon": -5.138, "x": 168, "y": 2131.433962264151}, {"lat": 56.6678, "lon": -5.109, "x": 138, "y": 2038.6415094339623}, {"lat": 56.101, "lon": -4.639, "x": 182, "y": 1945.8490566037735}, {"lat": 55.8617, "lon": -4.2646, "x": 130, "y": 1853.0566037735848}, {"lat": 55.8609, "lon": -4.2514, "x": 160, "y": 1760.264150943396}, {"lat": 55.856, "lon": -4.435, "x": 150, "y": 1667.4716981132074}, {"lat": 52.301, "lon": 4.691, "x": 122, "y": 1574.6792452830186}, {"lat": 52.3105, "lon": 4.7683, "x": 168, "y": 1481.8867924528304}, {"lat": 51.4427, "lon": 3.5736, "x": 138, "y": 1389.0943396226417}, {"lat": 51.5488, "lon": 3.6665, "x": 182, "y": 1296.301886792453}, {"lat": 52.0116, "lon": 4.3571, "x": 130, "y": 1203.5094339622642}, {"lat": 52.0705, "lon": 4.3007, "x": 160, "y": 1110.7169811320755}, {"lat": 51.7306, "lon": 5.8792, "x": 150, "y": 1017.9245283018868}, {"lat": 52.0292, "lon": 5.0807, "x": 122, "y": 925.132075471698}, {"lat": 51.91, "lon": 5.335, "x": 168, "y": 832.3396226415098}, {"lat": 51.733, "lon": 5.138, "x": 138, "y": 739.5471698113206}, {"lat": 51.691, "lon": 4.438, "x": 182, "y": 646.7547169811323}, {"lat": 51.817716, "lon": 4.532335, "x": 130, "y": 553.9622641509432}, {"lat": 51.8854, "lon": 4.6367, "x": 160, "y": 461.1698113207549}, {"lat": 51.8133, "lon": 4.6901, "x": 150, "y": 368.3773584905657}, {"lat": 51.7415, "lon": 4.771, "x": 122, "y": 275.58490566037744}, {"lat": 52.0705, "lon": 4.3007, "x": 168, "y": 182.79245283018827}, {"lat": 52.3105, "lon": 4.7683, "x": 138, "y": 90.0}];
 
 function localXY(lat,lon,lat0,lon0){
   const r=Math.PI/180;
@@ -3314,6 +3493,7 @@ prevButton.addEventListener('click',()=>{
   resetLegState();
   persistTripState();
   renderActive();
+  if(typeof centerStripOnActiveStop==='function') centerStripOnActiveStop();
 
   if(lastPosition&&roadbookRunning){
     updateStatus(lastPosition);
@@ -3329,6 +3509,7 @@ nextButton.addEventListener('click',()=>{
   resetLegState();
   persistTripState();
   renderActive();
+  if(typeof centerStripOnActiveStop==='function') centerStripOnActiveStop();
 
   if(lastPosition&&roadbookRunning){
     updateStatus(lastPosition);
@@ -3350,6 +3531,7 @@ if(jumpSelect){
   jumpSelect.addEventListener('change',()=>{
     active=Number(jumpSelect.value)||0;
     resetLegState(); persistTripState(); renderActive();
+    if(typeof centerStripOnActiveStop==='function') centerStripOnActiveStop();
     if(lastPosition&&roadbookRunning) updateStatus(lastPosition);
     else show('Selected stop: '+currentStop().name+(roadbookRunning?'':' — roadbook is off'));
   });
@@ -3357,14 +3539,14 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Europe Roadbook V18.8.3 loaded. Norway travel guide expanded; active-stop persistence and manual-scroll fixes installed.');
+show('Europe Roadbook V18.8.6 loaded. Norway travel guide expanded; iPad icon, funeral, cross-highlight and stop-recenter fixes installed.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const box=document.getElementById('offlineBox'), detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='europe-roadbook-v18-8-3';
+  const CACHE_NAME='europe-roadbook-v18-8-6';
   const LOCAL=['./','./index.html','./manifest.json','./europe-v18-icon-192.png','./europe-v18-icon-512.png'];
-  const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Flakstad-Kirche-04-2019-gje.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamn%C3%B8y_in_Lofoten.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Het%20oude%20raadhuis%20van%20Oud-Beijerland.png?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_-_Nusfjord.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofotr_viking_museum_lofoten_foto_brage_aronsen.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Utakleiv_beach.jpg?width=960", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg", "https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg", "https://photos.plugshare.com/photos/1170706.jpg", "https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&h=630&q=80&tight=true&w=1200"];
+  const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Flakstad-Kirche-04-2019-gje.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamn%C3%B8y_in_Lofoten.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_-_Nusfjord.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofotr_viking_museum_lofoten_foto_brage_aronsen.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Utakleiv_beach.jpg?width=960", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg", "https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg", "https://photos.plugshare.com/photos/1170706.jpg", "https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&h=630&q=80&tight=true&w=1200"];
 
   let setupPromise=null;
   function stage(t,e=''){
@@ -3374,7 +3556,7 @@ show('Europe Roadbook V18.8.3 loaded. Norway travel guide expanded; active-stop 
   async function verify(){
     try{
       const keys=await caches.keys();
-      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.8.3 core cache.');return false;}
+      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.8.6 core cache.');return false;}
       const c=await caches.open(CACHE_NAME), missing=[];
       for(const n of LOCAL){
         const u=new URL(n,location.href).href;
@@ -3384,7 +3566,7 @@ show('Europe Roadbook V18.8.3 loaded. Norway travel guide expanded; active-stop 
       for(const u of REMOTE){ if(await c.match(u,{ignoreSearch:true})) pics++; }
       if(missing.length){stage('preparing…','Missing local files: '+missing.join(', '));return false;}
       stage('READY — safe to use without internet',
-            'V18.8.3 core package is cached. '+pics+' of '+REMOTE.length+
+            'V18.8.6 core package is cached. '+pics+' of '+REMOTE.length+
             ' optional photographs are cached; missing photos never block READY.');
       return true;
     }catch(e){
@@ -3400,7 +3582,7 @@ show('Europe Roadbook V18.8.3 loaded. Norway travel guide expanded; active-stop 
       if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
       try{
         stage('checking…','Starting offline package.');
-        const reg=await navigator.serviceWorker.register('./europe-v18-8-3-sw.js',{scope:'./'});
+        const reg=await navigator.serviceWorker.register('./europe-v18-8-6-sw.js',{scope:'./'});
 
         // Do not wait indefinitely for navigator.serviceWorker.ready.
         // Poll the core cache directly; the service worker may still be activating.
@@ -3469,6 +3651,24 @@ show('Europe Roadbook V18.8.3 loaded. Norway travel guide expanded; active-stop 
 })();
 </script>
 
+
+
+<script id="v1884StopRecenter">
+(function(){
+  window.centerStripOnActiveStop = function(){
+    const pane=document.getElementById('stripPane');
+    const dot=document.getElementById('stripStop'+active);
+    if(!pane || !dot) return;
+    requestAnimationFrame(()=>{
+      const pr=pane.getBoundingClientRect();
+      const dr=dot.getBoundingClientRect();
+      const desired=pane.scrollTop + (dr.top + dr.height/2 - pr.top) - pane.clientHeight*0.50;
+      pane.scrollTo({top:Math.max(0,desired),behavior:'smooth'});
+      if(typeof holdStripFollow==='function') holdStripFollow(5000);
+    });
+  };
+})();
+</script>
 
 <script id="v1883CrossHighlightLogic">
 (function(){
