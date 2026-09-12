@@ -151,44 +151,140 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
   .jumpRow{margin-bottom:10px}
 }
 </style>
-
-
-<style id="phoneLandscapeFix">
-/* Desktop/iPad: retain two-column TripTik layout */
-.appShell{
-  display:grid !important;
-  grid-template-columns:minmax(190px, 27vw) minmax(0, 1fr) !important;
-  align-items:start !important;
+<style>
+.phoneLayoutNote{
+  margin:4px 0 8px;
+  padding:6px 8px;
+  border:1px solid #bbb;
+  background:#f8f8f8;
+  font-size:11px;
+  line-height:1.3;
 }
-.stripPane{
-  grid-column:1 !important;
-  position:sticky !important;
-  top:0 !important;
-  align-self:start !important;
-  height:100vh !important;
-  overflow:hidden !important;
-  z-index:4 !important;
+@media(min-width:701px){.phoneLayoutNote{display:none}}
+</style>
+<style>.stripPoiFlash rect{stroke:#111!important;stroke-width:2.2!important}</style>
+
+<style>
+.hardTimesBox{margin:5px 0 8px;padding:7px 9px;border:2px solid #b42318;background:#fff8f6;font-size:11px;line-height:1.25}
+.hardTimesBox>b{color:#8f1d14;font-size:12px}
+.hardTimesBox div{margin-top:2px}
+@media(max-height:520px) and (orientation:landscape){
+ .hardTimesBox{padding:4px 6px;margin:3px 0 5px;font-size:9px;line-height:1.12}
+ .hardTimesBox>b{font-size:10px}
 }
-.contentPane{
-  grid-column:2 !important;
-  min-width:0 !important;
+@media (max-height:520px) and (orientation:landscape){
+  .roadbook-shell{grid-template-columns:31vw minmax(0,69vw)!important}
+}
+</style>
+
+<style id="roadbookPresentationV1890">
+/* V18.9.0 CLEAN BASELINE
+   One authoritative presentation layer for phone/iPad/desktop strip-map UI.
+   Navigation/arrival/departure thresholds and state logic are intentionally untouched. */
+
+/* --- Core two-column layout --- */
+.roadbook-shell{
+  display:grid;
+  grid-template-columns:330px minmax(0,1fr);
+  gap:12px;
+  max-width:1260px;
+  margin:0 auto;
+  padding:12px;
+  align-items:start;
+}
+#stripPane{
+  position:sticky;
+  top:62px;
+  height:calc(100vh - 76px);
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-y:contain;
+  touch-action:pan-y;
+}
+#stripPane .stripSvg,
+#stripPane .stripPoi{touch-action:pan-y}
+main.contentPane{
+  min-width:0;
+  height:calc(100vh - 76px);
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-y:contain;
+  touch-action:pan-y;
 }
 
-/* Phone portrait: hide the strip map because stacking it above the roadbook is not useful. */
+/* --- Strip POIs and milestones --- */
+.stripPoi{cursor:pointer;color:#111}
+.stripPoi .poiTapHalo{fill:transparent;stroke:none}
+.stripPoi:focus .poiTapHalo,
+.stripPoiFlash .poiTapHalo{fill:#fff5b8;stroke:#111;stroke-width:1}
+.stripPoi.poiSelectedFromList .poiTapHalo{
+  fill:#fff;
+  stroke:#d40000;
+  stroke-width:3;
+}
+.stripPoi .poiIconUse{
+  color:#111;
+  overflow:visible;
+}
+.stripPoi.poiSelectedFromList .poiIconUse{color:#d40000}
+
+.stripMilestone rect{fill:#fff0ed;stroke:#b42318;stroke-width:1.4}
+.milestoneDate{font:800 8px system-ui,-apple-system,sans-serif;fill:#8f1d14}
+.milestoneMain{font:800 8px system-ui,-apple-system,sans-serif;fill:#8f1d14}
+.milestoneSub{font:650 7px system-ui,-apple-system,sans-serif;fill:#5b1a14}
+
+/* --- Cross-highlighting map <-> Route Ahead card --- */
+.routePoi.poiFromMap{
+  background:#ffe66b;
+  color:#111;
+  outline:3px solid #111;
+  outline-offset:1px;
+  font-weight:800;
+}
+.routePoi.poiFromMap .routePoiText,
+.routePoi.poiFromMap .routePoiText b,
+.routePoi.poiFromMap .routePoiText small,
+.routePoi.poiFromMap .routePoiType{
+  color:#111;
+  font-weight:800;
+}
+.routePoi.poiFromMap .routePoiType{
+  background:#fff;
+  border:2px solid #111;
+}
+
+/* --- Compact hard-time list --- */
+.hardTimesBox{display:none!important}
+.hardTimesCompact{
+  margin:4px 0 6px;
+  padding:4px 7px;
+  border:1px solid #b42318;
+  background:#fff8f6;
+  font-size:10px;
+  line-height:1.2;
+}
+.hardTimesCompact summary{color:#8f1d14;font-weight:800;cursor:pointer}
+.hardTimesCompact div{margin-top:3px}
+
+/* --- Phone portrait: content only; strip map available by rotating --- */
 @media (max-width:700px) and (orientation:portrait){
-  .appShell{
-    display:block !important;
+  .roadbook-shell{
+    display:block;
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding:8px;
   }
-  .stripPane{
-    display:none !important;
-  }
-  .contentPane{
-    display:block !important;
-    width:100% !important;
-    max-width:none !important;
-    margin:0 !important;
-    padding-left:8px !important;
-    padding-right:8px !important;
+  #stripPane{display:none}
+  main.contentPane{
+    display:block;
+    width:100%;
+    max-width:none;
+    height:auto;
+    overflow:visible;
+    padding:0 0 24px;
   }
   body::before{
     content:"For the full TripTik strip-map view, rotate the phone to landscape.";
@@ -205,650 +301,245 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
   }
 }
 
-/* Phone landscape: force a useful two-column layout. */
+/* --- Phone landscape: compact two-pane driving UI --- */
 @media (max-height:520px) and (orientation:landscape){
-  .appShell{
-    display:grid !important;
-    grid-template-columns:34vw minmax(0,66vw) !important;
-    width:100vw !important;
-  }
-  .stripPane{
-    display:block !important;
-    position:sticky !important;
-    top:0 !important;
-    height:100vh !important;
-    overflow:hidden !important;
-    border-right:1px solid #bbb !important;
-  }
-  .contentPane{
-    width:auto !important;
-    max-width:none !important;
-    margin:0 !important;
-    padding:0 8px 16px !important;
-  }
-  .routePoiHeader{
-    position:sticky !important;
-    top:0 !important;
-    z-index:12 !important;
-  }
-  .routePoiType{
-    flex:0 0 92px !important;
-  }
-  .routePoiText b{
-    font-size:14px !important;
-  }
-  .routePoiText small{
-    font-size:11px !important;
-  }
-  .driverTopNote{
-    margin-top:2px !important;
-  }
-}
-
-/* Never allow strip map to become a full-width block above content. */
-.stripPane + .contentPane{
-  margin-top:0 !important;
-}
-</style>
-
-
-<style>
-.phoneLayoutNote{
-  margin:4px 0 8px;
-  padding:6px 8px;
-  border:1px solid #bbb;
-  background:#f8f8f8;
-  font-size:11px;
-  line-height:1.3;
-}
-@media(min-width:701px){.phoneLayoutNote{display:none}}
-</style>
-
-
-<style id="landscapeScrollFix">
-@media (max-height:520px) and (orientation:landscape){
-  html, body{
-    height:100%;
-    overflow:hidden !important;
-  }
-  .appShell{
-    height:100vh !important;
-    max-height:100vh !important;
-    overflow:hidden !important;
-  }
-  .stripPane{
-    height:100vh !important;
-    overflow-y:auto !important;
-    overflow-x:hidden !important;
-    -webkit-overflow-scrolling:touch !important;
-    overscroll-behavior:contain;
-  }
-  .contentPane{
-    height:100vh !important;
-    max-height:100vh !important;
-    overflow-y:auto !important;
-    overflow-x:hidden !important;
-    -webkit-overflow-scrolling:touch !important;
-    overscroll-behavior:contain;
-    touch-action:pan-y !important;
-  }
-  .routePoiHeader{
-    position:sticky !important;
-    top:0 !important;
-  }
-}
-</style>
-
-
-<style id="phoneDriverUIFix">
-@media (max-height:520px) and (orientation:landscape){
-
-  /* Give the usable roadbook area more width. */
-  .appShell{
-    grid-template-columns:28vw minmax(0,72vw) !important;
-  }
-
-  .stripPane{
-    width:auto !important;
-    min-width:0 !important;
-  }
-
-  .contentPane{
-    padding:4px 8px 14px !important;
-  }
-
-  /* Shrink the page masthead dramatically on phone landscape. */
-  header, .pageHeader, .topHeader{
-    padding-top:2px !important;
-    padding-bottom:2px !important;
-    margin-bottom:2px !important;
-  }
-  header h1, .pageHeader h1, .topHeader h1{
-    font-size:18px !important;
-    line-height:1.05 !important;
-    margin:0 !important;
-  }
-  header p, .pageHeader p, .topHeader p{
-    display:none !important;
-  }
-
-  /* Remove explanatory notes that waste the small landscape viewport. */
-  .phoneLayoutNote,
-  .driverTopNote{
-    display:none !important;
-  }
-
-  /* Make the live NEXT STOP card compact enough to leave room for controls. */
-  #status{
-    margin:2px 0 4px !important;
-    padding:8px 10px !important;
-    min-height:0 !important;
-    max-height:none !important;
-  }
-  #status .statusLabel,
-  #status .eyebrow,
-  #status .nextLabel{
-    font-size:11px !important;
-    line-height:1 !important;
-    margin:0 0 2px !important;
-  }
-  #status .statusName,
-  #status .nextName,
-  #status h2,
-  #status h3{
-    font-size:22px !important;
-    line-height:1.02 !important;
-    margin:0 0 4px !important;
-  }
-  #status .statusMeta,
-  #status .meta,
-  #status p{
-    font-size:12px !important;
-    line-height:1.15 !important;
-    margin:2px 0 !important;
-  }
-
-  /* Offline readiness should be a tiny status strip, not a large card. */
-  #offlineBox{
-    margin:2px 0 4px !important;
-    padding:5px 8px !important;
-    font-size:11px !important;
-    line-height:1.15 !important;
-    max-height:36px !important;
-    overflow:hidden !important;
-  }
-  #offlineBox b, #offlineBox strong{
-    font-size:12px !important;
-  }
-  #offlineBox p,
-  #offlineBox small,
-  #offlineBox .offlineDetail{
-    display:none !important;
-  }
-  #retryPhotosBtn,
-  #retryPhotosStatus{
-    display:none !important;
-  }
-
-  /* Put the essential driver controls into a compact grid, always near the top. */
-  .controls{
-    display:grid !important;
-    grid-template-columns:1.45fr 1fr 1fr !important;
-    gap:5px !important;
-    margin:3px 0 5px !important;
-  }
-  .controls button{
-    min-height:38px !important;
-    padding:5px 7px !important;
-    font-size:13px !important;
-    line-height:1.05 !important;
-    margin:0 !important;
-  }
-  #start{
-    grid-column:1 / 2 !important;
-  }
-
-  /* Jump selector stays visible directly under controls. */
-  .jumpRow{
-    display:grid !important;
-    grid-template-columns:auto 1fr !important;
-    align-items:center !important;
-    gap:6px !important;
-    margin:2px 0 6px !important;
-    font-size:11px !important;
-  }
-  .jumpRow select{
-    min-height:34px !important;
-    font-size:12px !important;
-  }
-
-  /* Hide verbose build/introduction/status text in the driving viewport.
-     It remains available on iPad/desktop and in portrait. */
-  .intro,
-  .buildIntro,
-  .travelIntro,
-  .aboutBox{
-    display:none !important;
-  }
-
-  /* Route Ahead starts immediately after controls. */
-  .routePoiRail{
-    margin-top:4px !important;
-  }
-  .routePoiHeader{
-    padding:4px 6px !important;
-    gap:5px !important;
-  }
-  .routePoiHeader b{
-    font-size:13px !important;
-  }
-  .routePoiHeader span{
-    display:none !important;
-  }
-  .routePoiFilters{
-    gap:3px !important;
-  }
-  .routePoiFilters button{
-    padding:4px 5px !important;
-    font-size:10px !important;
-  }
-
-  /* Compress POI rows without losing meaning. */
-  .routePoi{
-    padding:6px !important;
-    gap:6px !important;
-  }
-  .routePoiType{
-    flex:0 0 76px !important;
-    padding:3px 4px !important;
-    font-size:9px !important;
-  }
-  .routePoiText b{
-    font-size:12px !important;
-  }
-  .routePoiText small{
-    font-size:10px !important;
-    line-height:1.15 !important;
-  }
-  .restaurantTier{
-    font-size:9px !important;
-    padding:1px 4px !important;
-  }
-
-  /* Keep each side independently scrollable. */
-  html,body{
-    height:100%;
-    overflow:hidden !important;
-  }
-  .appShell{
-    height:100vh !important;
-    max-height:100vh !important;
-    overflow:hidden !important;
-  }
-  .stripPane,
-  .contentPane{
-    height:100vh !important;
-    max-height:100vh !important;
-    overflow-y:auto !important;
-    -webkit-overflow-scrolling:touch !important;
-    touch-action:pan-y !important;
-  }
-}
-</style>
-
-
-<style id="renderCheckedPhoneLayout">
-@media (max-height:520px) and (orientation:landscape){
-  html,body{height:100%;overflow:hidden!important}
-
+  html,body{height:100%;overflow:hidden}
   header{
-    position:relative!important;
-    height:34px!important;
-    min-height:34px!important;
-    padding:3px 8px!important;
-    overflow:hidden!important;
+    position:relative;
+    height:34px;
+    min-height:34px;
+    padding:3px 8px;
+    overflow:hidden;
   }
-  header h1{font-size:15px!important;line-height:16px!important;margin:0!important;white-space:nowrap!important}
-  header .sub{display:none!important}
+  header h1{
+    font-size:15px;
+    line-height:16px;
+    margin:0;
+    white-space:nowrap;
+  }
+  header .sub{display:none}
 
   .roadbook-shell{
-    display:grid!important;
-    grid-template-columns:27vw minmax(0,73vw)!important;
-    gap:6px!important;
-    padding:5px!important;
-    width:100vw!important;
-    max-width:none!important;
-    height:calc(100vh - 34px)!important;
-    overflow:hidden!important;
-    align-items:stretch!important;
+    display:grid;
+    grid-template-columns:31vw minmax(0,69vw);
+    gap:6px;
+    width:100vw;
+    max-width:none;
+    height:calc(100vh - 34px);
+    margin:0;
+    padding:5px;
+    overflow:hidden;
+    align-items:stretch;
   }
-
-  .stripPane{
-    display:block!important;
-    position:relative!important;
-    top:auto!important;
-    height:100%!important;
-    min-height:0!important;
-    overflow-y:auto!important;
-    overflow-x:hidden!important;
-    margin:0!important;
-    border-radius:8px!important;
-    -webkit-overflow-scrolling:touch!important;
+  #stripPane{
+    display:block;
+    position:relative;
+    top:auto;
+    height:100%;
+    min-height:0;
+    margin:0;
+    overflow-y:auto;
+    overflow-x:hidden;
+    border-radius:8px;
   }
-  .stripTitle{padding:4px 6px!important}
-  .stripTitle strong{font-size:11px!important}
-  .stripTitle div{display:none!important}
+  .stripTitle{padding:3px 5px}
+  .stripTitle strong{font-size:10px}
+  .stripTitle div{display:block;font-size:7px;line-height:1.05}
 
   main.contentPane{
-    display:block!important;
-    position:relative!important;
-    height:100%!important;
-    min-height:0!important;
-    overflow-y:auto!important;
-    overflow-x:hidden!important;
-    padding:0 5px 20px 0!important;
-    margin:0!important;
-    scroll-behavior:auto!important;
-    -webkit-overflow-scrolling:touch!important;
-    touch-action:pan-y!important;
+    display:block;
+    position:relative;
+    height:100%;
+    min-height:0;
+    margin:0;
+    padding:0 5px 20px 0;
+    overflow-y:auto;
+    overflow-x:hidden;
+    scroll-behavior:auto;
   }
 
-  .phoneLayoutNote,.driverTopNote{display:none!important}
+  .phoneLayoutNote,.driverTopNote{display:none}
 
   #status{
-    position:relative!important;
-    top:auto!important;
-    z-index:1!important;
-    margin:0 0 4px!important;
-    padding:5px 7px!important;
-    border-width:1px!important;
-    border-radius:7px!important;
-    box-shadow:none!important;
-    font-size:11px!important;
-    line-height:1.15!important;
-    min-height:0!important;
+    position:relative;
+    top:auto;
+    z-index:1;
+    margin:0 0 4px;
+    padding:5px 7px;
+    min-height:0;
+    border-width:1px;
+    border-radius:7px;
+    box-shadow:none;
+    font-size:11px;
+    line-height:1.15;
   }
-  .statusMode{font-size:9px!important;margin:0 0 1px!important}
-  .nextStopName{font-size:15px!important;line-height:1!important;margin:1px 0 2px!important}
-  .statusDistance{font-size:10px!important}
-  .statusDiag{font-size:9px!important}
+  .statusMode{font-size:9px;margin:0 0 1px}
+  .nextStopName{font-size:15px;line-height:1;margin:1px 0 2px}
+  .statusDistance{font-size:10px}
+  .statusDiag{font-size:9px}
 
   #offlineBox{
-    margin:0 0 4px!important;
-    padding:4px 6px!important;
-    border-width:1px!important;
-    border-radius:6px!important;
-    font-size:10px!important;
-    line-height:1.1!important;
-    max-height:25px!important;
-    overflow:hidden!important;
-    white-space:nowrap!important;
+    margin:0 0 4px;
+    padding:4px 6px;
+    max-height:25px;
+    overflow:hidden;
+    white-space:nowrap;
+    border-width:1px;
+    border-radius:6px;
+    font-size:10px;
+    line-height:1.1;
   }
-  #offlineDetail,#retryPhotosBtn,#retryPhotosStatus{display:none!important}
+  #offlineDetail,#retryPhotosBtn,#retryPhotosStatus{display:none}
 
   .controls{
-    display:grid!important;
-    grid-template-columns:1.45fr 1fr 1fr 1fr!important;
-    gap:4px!important;
-    margin:0 0 4px!important;
+    display:grid;
+    grid-template-columns:1.45fr 1fr 1fr 1fr;
+    gap:4px;
+    margin:0 0 4px;
   }
   .controls button{
-    display:block!important;
-    min-width:0!important;
-    min-height:32px!important;
-    padding:3px 4px!important;
-    margin:0!important;
-    border-radius:6px!important;
-    font-size:10px!important;
-    line-height:1.05!important;
+    display:block;
+    min-width:0;
+    min-height:32px;
+    margin:0;
+    padding:3px 4px;
+    border-radius:6px;
+    font-size:10px;
+    line-height:1.05;
   }
-  #start{grid-column:auto!important}
+  #start{grid-column:auto}
 
   .jumpRow{
-    display:grid!important;
-    grid-template-columns:auto minmax(0,1fr)!important;
-    gap:4px!important;
-    align-items:center!important;
-    margin:0 0 5px!important;
-    font-size:9px!important;
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    gap:4px;
+    align-items:center;
+    margin:0 0 5px;
+    font-size:9px;
   }
   .jumpRow select{
-    width:100%!important;
-    min-width:0!important;
-    height:28px!important;
-    padding:2px 4px!important;
-    font-size:10px!important;
+    width:100%;
+    min-width:0;
+    height:28px;
+    padding:2px 4px;
+    font-size:10px;
   }
 
-  .routeStreamIntro{display:none!important}
-  .routePoiRail{margin:4px 0 8px!important}
-  .routePoiHeader{position:relative!important;top:auto!important;padding:4px!important}
-  .routePoiHeader>div:first-child span{display:none!important}
-  .routePoiHeader b{font-size:11px!important}
-  .routePoiFilters{gap:2px!important}
-  .routePoiFilters button{padding:3px 4px!important;font-size:8px!important;border-radius:5px!important}
-  .restaurantTierLegend{display:none!important}
-  .routePoi{padding:5px!important;gap:5px!important}
-  .routePoiType{flex:0 0 68px!important;font-size:8px!important;padding:2px 3px!important}
-  .routePoiText b{font-size:11px!important}
-  .routePoiText small{font-size:9px!important}
-  .restaurantTier{font-size:8px!important;padding:1px 3px!important}
-}
-</style>
-
-
-<style id="stripPoiMilestoneStyles">
-.stripPoi{cursor:pointer}
-.stripPoi rect{fill:#fffdf6;stroke:#827a68;stroke-width:.7;opacity:.95}
-.stripPoiCode{font:800 8.6px system-ui,-apple-system,sans-serif;fill:#111}
-.stripPoiLabel{font:700 8.0px system-ui,-apple-system,sans-serif;fill:#28251f}
-.mapPoiHike rect{fill:#edf7e8}
-.mapPoiScenic rect{fill:#eef4fb}
-.mapPoiEv rect{fill:#fff2cf}
-.mapPoiRestaurant rect{fill:#f7e9e6}
-.mapPoiMarket rect{fill:#eee9f8}
-.stripMilestone rect{fill:#fff0ed;stroke:#b42318;stroke-width:1.4}
-.milestoneDate{font:800 8px system-ui,-apple-system,sans-serif;fill:#8f1d14}
-.milestoneMain{font:800 8px system-ui,-apple-system,sans-serif;fill:#8f1d14}
-.milestoneSub{font:650 7px system-ui,-apple-system,sans-serif;fill:#5b1a14}
-@media (max-height:520px) and (orientation:landscape){
-  .stripTitle{padding:3px 5px!important}
-  .stripTitle strong{font-size:10px!important}
-  .stripTitle div{display:block!important;font-size:7px!important;line-height:1.05!important}
-}
-</style>
-
-<style>.stripPoiFlash rect{stroke:#111!important;stroke-width:2.2!important}</style>
-
-<style>
-.hardTimesBox{margin:5px 0 8px;padding:7px 9px;border:2px solid #b42318;background:#fff8f6;font-size:11px;line-height:1.25}
-.hardTimesBox>b{color:#8f1d14;font-size:12px}
-.hardTimesBox div{margin-top:2px}
-@media(max-height:520px) and (orientation:landscape){
- .hardTimesBox{padding:4px 6px;margin:3px 0 5px;font-size:9px;line-height:1.12}
- .hardTimesBox>b{font-size:10px}
-}
-@media (max-height:520px) and (orientation:landscape){
-  .roadbook-shell{grid-template-columns:31vw minmax(0,69vw)!important}
-}
-</style>
-
-<style id="iconOnlyStripMapV188">
-.stripPoi{cursor:pointer}
-.stripPoi .poiTapHalo{fill:transparent;stroke:none}
-.stripPoi .poiGlyph{fill:#111}
-.stripPoi .poiGlyphStroke{fill:none;stroke:#111;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.stripPoi:focus .poiTapHalo,.stripPoiFlash .poiTapHalo{fill:#fff5b8;stroke:#111;stroke-width:1}
-.stripMilestone rect{fill:#fff0ed;stroke:#b42318;stroke-width:1.4}
-.milestoneDate{font:800 8px system-ui,-apple-system,sans-serif;fill:#8f1d14}
-.milestoneMain{font:800 8px system-ui,-apple-system,sans-serif;fill:#8f1d14}
-.milestoneSub{font:650 7px system-ui,-apple-system,sans-serif;fill:#5b1a14}
-.hardTimesBox{display:none!important}
-.hardTimesCompact{
-  margin:4px 0 6px;
-  padding:4px 7px;
-  border:1px solid #b42318;
-  background:#fff8f6;
-  font-size:10px;
-  line-height:1.2;
-}
-.hardTimesCompact summary{color:#8f1d14;font-weight:800;cursor:pointer}
-.hardTimesCompact div{margin-top:3px}
-@media (max-height:520px) and (orientation:landscape){
-  .roadbook-shell{grid-template-columns:31vw minmax(0,69vw)!important}
+  .routeStreamIntro{display:none}
+  .routePoiRail{margin:4px 0 8px}
+  .routePoiHeader{position:relative;top:auto;padding:4px}
+  .routePoiHeader>div:first-child span{display:none}
+  .routePoiHeader b{font-size:11px}
+  .routePoiFilters{gap:2px}
+  .routePoiFilters button{padding:3px 4px;font-size:8px;border-radius:5px}
+  .restaurantTierLegend{display:none}
+  .routePoi{padding:5px;gap:5px}
+  .routePoiType{flex:0 0 68px;font-size:8px;padding:2px 3px}
+  .routePoiText b{font-size:11px}
+  .routePoiText small{font-size:9px}
+  .restaurantTier{font-size:8px;padding:1px 3px}
   .hardTimesCompact{font-size:9px;padding:3px 5px;margin:2px 0 4px}
   .hardTimesCompact[open]{max-height:36vh;overflow:auto}
 }
-</style>
 
-
-<style id="v1881IconFix">
-.stripPoi .poiGlyph,
-.stripPoi .poiGlyphStroke,
-.stripPoi .poiGlyphSolid{
-  transform:scale(1.20);
-  transform-origin:8px 8px;
-}
-.poiGlyphSolid{fill:#111}
-.restaurantGlyph{stroke:none!important;fill:#111!important}
-.hikerGlyph{stroke-width:2!important}
-.routePoi.poiFromMap{
-  outline:3px solid #d08a00!important;
-  outline-offset:2px;
-  background:#fff5b8!important;
-}
-</style>
-
-
-<style id="v1883CrossHighlight">
-/* Map icon selected from the right-hand list */
-.stripPoi.poiSelectedFromList .poiTapHalo{
-  fill:#fff!important;
-  stroke:#d40000!important;
-  stroke-width:3!important;
-}
-.stripPoi.poiSelectedFromList .poiGlyph,
-.stripPoi.poiSelectedFromList .poiGlyphStroke,
-.stripPoi.poiSelectedFromList .poiGlyphSolid{
-  transform:scale(1.38)!important;
-  transform-origin:8px 8px!important;
-}
-.stripPoi.poiSelectedFromList .poiGlyph{fill:#d40000!important}
-.stripPoi.poiSelectedFromList .poiGlyphSolid{fill:#d40000!important}
-.stripPoi.poiSelectedFromList .poiGlyphStroke{
-  stroke:#d40000!important;
-  stroke-width:2.3!important;
-}
-
-/* Right-hand card selected from a map icon */
-.routePoi.poiFromMap{
-  background:#ffe66b!important;
-  color:#111!important;
-  outline:3px solid #111!important;
-  outline-offset:1px!important;
-  font-weight:800!important;
-}
-.routePoi.poiFromMap .routePoiText,
-.routePoi.poiFromMap .routePoiText b,
-.routePoi.poiFromMap .routePoiText small,
-.routePoi.poiFromMap .routePoiType{
-  color:#111!important;
-  font-weight:800!important;
-}
-.routePoi.poiFromMap .routePoiType{
-  background:#fff!important;
-  border:2px solid #111!important;
-}
-</style>
-
-
-<style id="v1884iPadAndRestaurantFix">
-/* Crisp crossed knife + true multi-tine fork. */
-.stripPoi .restaurantGlyph{
-  fill:none!important;
-  stroke:#111!important;
-  stroke-width:1.75!important;
-  stroke-linecap:round!important;
-  stroke-linejoin:round!important;
-}
-.stripPoi .restaurantGlyph .knifeBlade{
-  fill:#111!important;
-  stroke:#111!important;
-  stroke-width:.45!important;
-}
-
-/* iPad/tablet gets about 10% larger POI symbols than the phone/desktop base. */
-@media (min-width:701px){
-  .stripPoi .poiGlyph,
-  .stripPoi .poiGlyphStroke,
-  .stripPoi .poiGlyphSolid{
-    transform:scale(1.32)!important;
-    transform-origin:8px 8px!important;
-  }
-  .stripPoi.poiSelectedFromList .poiGlyph,
-  .stripPoi.poiSelectedFromList .poiGlyphStroke,
-  .stripPoi.poiSelectedFromList .poiGlyphSolid{
-    transform:scale(1.52)!important;
-    transform-origin:8px 8px!important;
-  }
-}
-</style>
-
-
-<style id="v1887StripMapUsabilityFix">
-/* Balanced icon sizing: readable without consuming the route strip. */
-.stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform-origin:8px 8px!important}
-@media (max-width:700px), (max-height:520px) and (orientation:landscape){
-  .stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform:scale(1.10)!important}
-  .stripPoi.poiSelectedFromList .poiGlyph,.stripPoi.poiSelectedFromList .poiGlyphStroke,.stripPoi.poiSelectedFromList .poiGlyphSolid{transform:scale(1.28)!important}
-}
+/* --- iPad/tablet: independent pane scrolling, no phone-only overrides --- */
 @media (min-width:701px) and (max-width:1366px){
-  .stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform:scale(1.22)!important}
-  .stripPoi.poiSelectedFromList .poiGlyph,.stripPoi.poiSelectedFromList .poiGlyphStroke,.stripPoi.poiSelectedFromList .poiGlyphSolid{transform:scale(1.40)!important}
-}
-/* The strip itself must always accept a vertical drag, started or stopped. */
-#stripPane{
-  overflow-y:auto!important; overflow-x:hidden!important;
-  -webkit-overflow-scrolling:touch!important;
-  touch-action:pan-y!important;
-  overscroll-behavior-y:contain!important;
-}
-#stripPane .stripSvg{touch-action:pan-y!important}
-#stripPane .stripPoi{touch-action:pan-y!important}
-@media (min-width:701px){
-  .roadbook-shell{height:calc(100vh - 74px)!important;max-height:calc(100vh - 74px)!important;overflow:hidden!important;align-items:stretch!important}
-  #stripPane{position:relative!important;top:auto!important;height:100%!important;max-height:100%!important;min-height:0!important}
-  main.contentPane{height:100%!important;max-height:100%!important;min-height:0!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch!important}
-}
-</style>
-
-
-<style id="v1889ApprovedRestaurantIcon">
-/* V18.8.9 — approved restaurant symbol: crossed broad knife + four-tine fork.
-   Font/emoji independent so iPhone and iPad render the same geometry. */
-.stripPoi .restaurantGlyph,
-.stripPoi .restaurantGlyph .approvedRestaurantIcon{
-  color:#111!important;
-  fill:none!important;
-  stroke:none!important;
-}
-.stripPoi .restaurantGlyph .approvedRestaurantIcon path{
-  vector-effect:non-scaling-stroke;
+  .roadbook-shell{
+    height:calc(100vh - 74px);
+    max-height:calc(100vh - 74px);
+    overflow:hidden;
+    align-items:stretch;
+  }
+  #stripPane{
+    position:relative;
+    top:auto;
+    height:100%;
+    max-height:100%;
+    min-height:0;
+  }
+  main.contentPane{
+    height:100%;
+    max-height:100%;
+    min-height:0;
+    overflow-y:auto;
+  }
 }
 </style>
 
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.8.9 Full Travel Build</h1>
-<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · icon-map build 18.8.9</div></header>
+<header><h1>Europe GPS Roadbook — V18.9.0 Clean Baseline Build</h1>
+<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · clean presentation baseline 18.9.0</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18.8.9</strong>
+    <strong>EUROPE ROADBOOK · V18.9.0</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
+<defs id="v1890PoiIconLibrary">
+  <symbol id="poiIconRestaurant" viewBox="0 0 24 24">
+    <!-- Broad knife, upper-left blade to lower-right handle -->
+    <path d="M3.0 2.1
+             C3.5 5.2 5.2 8.0 8.4 10.8
+             L18.7 21.1
+             C19.5 21.9 20.8 21.9 21.6 21.1
+             C22.4 20.3 22.4 19.0 21.6 18.2
+             L11.3 7.9
+             C8.5 4.7 6.0 2.8 3.0 2.1 Z" fill="currentColor"/>
+    <!-- Fork handle -->
+    <path d="M3.1 20.9 L12.3 11.7" fill="none" stroke="currentColor"
+          stroke-width="3.3" stroke-linecap="round"/>
+    <!-- Fork neck -->
+    <path d="M12.0 12.0 L15.0 9.0" fill="none" stroke="currentColor"
+          stroke-width="3.0" stroke-linecap="round"/>
+    <!-- Four clearly separated fork tines -->
+    <path d="M14.5 9.4 L20.2 3.7
+             M15.9 10.8 L21.6 5.1
+             M13.1 8.0 L18.8 2.3
+             M17.3 12.2 L23.0 6.5"
+          fill="none" stroke="currentColor" stroke-width="1.55"
+          stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="poiIconMarket" viewBox="0 0 24 24">
+    <path d="M2.2 3.2 H5.0 L6.4 14.7 H18.2 L21.0 7.0 H6.0"
+          fill="none" stroke="currentColor" stroke-width="2.7"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="8.0" cy="19.0" r="2.1" fill="currentColor"/>
+    <circle cx="17.0" cy="19.0" r="2.1" fill="currentColor"/>
+  </symbol>
+
+  <symbol id="poiIconCamera" viewBox="0 0 24 24">
+    <!-- Heavy, unmistakable camera silhouette with pentaprism hump -->
+    <path d="M2.2 7.2
+             H6.0 L8.0 4.0 H15.7 L17.8 7.2 H21.8
+             C22.7 7.2 23.4 7.9 23.4 8.8
+             V19.7 C23.4 20.6 22.7 21.3 21.8 21.3
+             H2.2 C1.3 21.3 .6 20.6 .6 19.7
+             V8.8 C.6 7.9 1.3 7.2 2.2 7.2 Z"
+          fill="currentColor"/>
+    <circle cx="12.0" cy="14.0" r="5.0" fill="#fffdf6"/>
+    <circle cx="12.0" cy="14.0" r="3.15" fill="currentColor"/>
+  </symbol>
+
+  <symbol id="poiIconHike" viewBox="0 0 24 24">
+    <circle cx="14.3" cy="3.8" r="2.7" fill="currentColor"/>
+    <path d="M12.8 6.7 L10.2 12.6 L13.0 15.8 L9.2 22.0
+             M13.0 15.8 L18.8 21.3
+             M11.7 9.0 L16.4 11.4 L20.0 10.3
+             M10.3 7.5 L6.8 9.0 L6.8 14.2 L9.5 14.2"
+          fill="none" stroke="currentColor" stroke-width="2.9"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="poiIconEv" viewBox="0 0 24 24">
+    <path d="M13.2 1.2 L5.0 12.5 H11.0 L9.2 22.8
+             L20.0 9.7 H13.9 Z" fill="currentColor"/>
+  </symbol>
+</defs>
+
 <rect x="0" y="0" width="300" height="5098" fill="transparent"/>
 <rect x="10" y="3574.1" width="280" height="1383.1" rx="18" fill="var(--green)" opacity=".13"/>
 <text class="country-strip-label" x="22" y="3598.1">NORWAY</text>
@@ -1174,548 +865,100 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 <circle id="stripStop52" class="stop-dot" cx="138.0" cy="90.0" r="8"/>
 <text class="stop-label" x="152.0" y="79.0">Schiphol — Keddy Return</text>
 <text class="map-small" x="152.0" y="95.0">Tue 29 Sep</text>
-<g class="stripPoi mapPoiHike" data-poi-name="Flakstadtind / Flakstadtinden" transform="translate(92.0,4478.0)" tabindex="0" role="button" aria-label="Flakstadtind / Flakstadtinden" data-poi-key="85"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Nubben — Ramberg Beach" transform="translate(92.0,4568.0)" tabindex="0" role="button" aria-label="Nubben — Ramberg Beach" data-poi-key="86"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Leiden historic centre" transform="translate(220.0,196.0)" tabindex="0" role="button" aria-label="Leiden historic centre" data-poi-key="87"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Flakstadtind / Flakstadtinden" transform="translate(92.0,4478.0)" tabindex="0" role="button" aria-label="Flakstadtind / Flakstadtinden" data-poi-key="85"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Nubben — Ramberg Beach" transform="translate(92.0,4568.0)" tabindex="0" role="button" aria-label="Nubben — Ramberg Beach" data-poi-key="86"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Leiden historic centre" transform="translate(220.0,196.0)" tabindex="0" role="button" aria-label="Leiden historic centre" data-poi-key="87"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconCamera" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
 <circle id="stripUserRing" class="user-ring" cx="150" cy="5008" r="15"/>
 <circle id="stripUserDot" class="user-dot" cx="150" cy="5008" r="7"/>
 <text id="stripUserText" class="map-small" x="166" y="5033">your GPS position</text>
 <text class="map-small" x="18" y="5076.0">Trip sequence runs bottom → top</text>
 
 <!-- V18.8.6 geographic POIs and hard-time milestones -->
-<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Evenes" transform="translate(122.0,3603.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Evenes" data-poi-key="0"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Circle K — Evenes" transform="translate(162.0,3614.7)" tabindex="0" role="button" aria-label="Circle K — Evenes" data-poi-key="1"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Evenes Grill &amp; Bar" transform="translate(122.0,4908.0)" tabindex="0" role="button" aria-label="Evenes Grill &amp; Bar" data-poi-key="2"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Haukland → Uttakleiv coastal road" transform="translate(122.0,4705.2)" tabindex="0" role="button" aria-label="Haukland → Uttakleiv coastal road" data-poi-key="3"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Mannen" transform="translate(162.0,4716.7)" tabindex="0" role="button" aria-label="Mannen" data-poi-key="4"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Himmeltinden" transform="translate(122.0,4728.2)" tabindex="0" role="button" aria-label="Himmeltinden" data-poi-key="5"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Haukland Beach Café" transform="translate(162.0,4739.7)" tabindex="0" role="button" aria-label="Haukland Beach Café" data-poi-key="10"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Fiskekrogen — Henningsvær" transform="translate(122.0,4797.9)" tabindex="0" role="button" aria-label="Fiskekrogen — Henningsvær" data-poi-key="6"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Klatrekafeen — Henningsvær" transform="translate(162.0,4809.4)" tabindex="0" role="button" aria-label="Klatrekafeen — Henningsvær" data-poi-key="7"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Trevarefabrikken — Henningsvær" transform="translate(122.0,4820.9)" tabindex="0" role="button" aria-label="Trevarefabrikken — Henningsvær" data-poi-key="8"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Joker Henningsvær" transform="translate(162.0,4832.4)" tabindex="0" role="button" aria-label="Joker Henningsvær" data-poi-key="9"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Ramberg Beach" transform="translate(122.0,4519.6)" tabindex="0" role="button" aria-label="Ramberg Beach" data-poi-key="11"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Ramberg Resort Restaurant" transform="translate(162.0,4531.1)" tabindex="0" role="button" aria-label="Ramberg Resort Restaurant" data-poi-key="12"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Bunnpris Ramberg" transform="translate(122.0,4542.6)" tabindex="0" role="button" aria-label="Bunnpris Ramberg" data-poi-key="13"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Kople Bodø Energi — Ramberg" transform="translate(162.0,4554.1)" tabindex="0" role="button" aria-label="Kople Bodø Energi — Ramberg" data-poi-key="14"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Skagsanden + Flakstad Church" transform="translate(122.0,4444.0)" tabindex="0" role="button" aria-label="Skagsanden + Flakstad Church" data-poi-key="15"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Circle K — Leknes" transform="translate(122.0,4305.3)" tabindex="0" role="button" aria-label="Circle K — Leknes" data-poi-key="16"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Kople LAD OPP Lofoten Basecamp — Leknes" transform="translate(162.0,4316.8)" tabindex="0" role="button" aria-label="Kople LAD OPP Lofoten Basecamp — Leknes" data-poi-key="17"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Eviny Rema 1000 — Leknes" transform="translate(122.0,4328.3)" tabindex="0" role="button" aria-label="Eviny Rema 1000 — Leknes" data-poi-key="18"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Mer Lofotsenteret — Leknes" transform="translate(162.0,4339.8)" tabindex="0" role="button" aria-label="Mer Lofotsenteret — Leknes" data-poi-key="19"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Eviny Alstad Kro og Camping" transform="translate(122.0,4351.3)" tabindex="0" role="button" aria-label="Eviny Alstad Kro og Camping" data-poi-key="20"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Leknes" transform="translate(162.0,4362.8)" tabindex="0" role="button" aria-label="REMA 1000 Leknes" data-poi-key="21"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Extra Leknes" transform="translate(122.0,4374.3)" tabindex="0" role="button" aria-label="Extra Leknes" data-poi-key="22"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="DIGG — Leknes" transform="translate(162.0,4385.8)" tabindex="0" role="button" aria-label="DIGG — Leknes" data-poi-key="23"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Leknes" transform="translate(122.0,4397.3)" tabindex="0" role="button" aria-label="Tesla Supercharger — Leknes" data-poi-key="54"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Hamnøy bridge viewpoint" transform="translate(122.0,4258.5)" tabindex="0" role="button" aria-label="Hamnøy bridge viewpoint" data-poi-key="24"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Sakrisøy + Reinehalsen" transform="translate(122.0,4131.2)" tabindex="0" role="button" aria-label="Sakrisøy + Reinehalsen" data-poi-key="25"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Reinebringen" transform="translate(162.0,4142.7)" tabindex="0" role="button" aria-label="Reinebringen" data-poi-key="26"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Kople Parkering Ytre Havn — Reine" transform="translate(122.0,4154.2)" tabindex="0" role="button" aria-label="Kople Parkering Ytre Havn — Reine" data-poi-key="27"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Eviny Reine Sentrum" transform="translate(162.0,4165.7)" tabindex="0" role="button" aria-label="Eviny Reine Sentrum" data-poi-key="28"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Gammelbua — Reine" transform="translate(122.0,4177.2)" tabindex="0" role="button" aria-label="Gammelbua — Reine" data-poi-key="29"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Coop Prix Reine" transform="translate(162.0,4188.7)" tabindex="0" role="button" aria-label="Coop Prix Reine" data-poi-key="30"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Reine" transform="translate(122.0,4200.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Reine" data-poi-key="55"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Å fishing-village walk" transform="translate(122.0,4061.4)" tabindex="0" role="button" aria-label="Å fishing-village walk" data-poi-key="31"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Sørvågen easy walk" transform="translate(162.0,4072.9)" tabindex="0" role="button" aria-label="Sørvågen easy walk" data-poi-key="32"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Bakeriet Å" transform="translate(122.0,4084.4)" tabindex="0" role="button" aria-label="Bakeriet Å" data-poi-key="33"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Nusfjord historic fishing village" transform="translate(122.0,3974.4)" tabindex="0" role="button" aria-label="Nusfjord historic fishing village" data-poi-key="34"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Karoline — Nusfjord" transform="translate(162.0,3985.9)" tabindex="0" role="button" aria-label="Restaurant Karoline — Nusfjord" data-poi-key="35"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Kvalvika + Ryten" transform="translate(122.0,3881.6)" tabindex="0" role="button" aria-label="Kvalvika + Ryten" data-poi-key="36"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Ytresand / Fredvang Bridges" transform="translate(162.0,3893.1)" tabindex="0" role="button" aria-label="Ytresand / Fredvang Bridges" data-poi-key="37"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Lofotr Viking Museum" transform="translate(122.0,3794.5)" tabindex="0" role="button" aria-label="Lofotr Viking Museum" data-poi-key="38"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Recharge Shell — Svolvær" transform="translate(122.0,3621.2)" tabindex="0" role="button" aria-label="Recharge Shell — Svolvær" data-poi-key="39"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Eviny/Bilkraft Alti — Svolvær" transform="translate(162.0,3632.7)" tabindex="0" role="button" aria-label="Eviny/Bilkraft Alti — Svolvær" data-poi-key="40"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Kople Aust-Lofoten school — Svolvær" transform="translate(122.0,3644.2)" tabindex="0" role="button" aria-label="Kople Aust-Lofoten school — Svolvær" data-poi-key="41"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Recharge Kiwi Osan — Svolvær" transform="translate(162.0,3655.7)" tabindex="0" role="button" aria-label="Recharge Kiwi Osan — Svolvær" data-poi-key="42"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiScenic" data-poi-name="Lofoten Krigsminne Museum" transform="translate(122.0,3667.2)" tabindex="0" role="button" aria-label="Lofoten Krigsminne Museum" data-poi-key="43"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><rect x="1.2" y="4.2" width="13.6" height="9.3" rx="1.4"/><path d="M5 4.2 L6.1 2.2 H10 L11.2 4.2"/><circle cx="8" cy="8.9" r="2.6"/></g></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Linken" transform="translate(162.0,3678.7)" tabindex="0" role="button" aria-label="Linken" data-poi-key="44"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Tjeldbergtind" transform="translate(122.0,3690.2)" tabindex="0" role="button" aria-label="Tjeldbergtind" data-poi-key="45"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiHike" data-poi-name="Fløya + Djevelporten" transform="translate(162.0,3701.7)" tabindex="0" role="button" aria-label="Fløya + Djevelporten" data-poi-key="46"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke hikerGlyph"><circle cx="9.6" cy="2.3" r="1.7" class="poiGlyphSolid"/><path d="M8.2 4.3 L6.7 8.3 L8.5 10.6 L6.0 15.4"/><path d="M8.5 10.6 L12.3 15.0"/><path d="M7.5 6.0 L11.0 7.8 L13.4 7.0"/><path d="M6.7 4.8 L4.4 5.7 L4.5 9.1 L6.4 9.1"/></g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Børsen Spiseri — Svolvær" transform="translate(122.0,3713.2)" tabindex="0" role="button" aria-label="Børsen Spiseri — Svolvær" data-poi-key="47"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Kjøkkenet — Svolvær" transform="translate(162.0,3724.7)" tabindex="0" role="button" aria-label="Restaurant Kjøkkenet — Svolvær" data-poi-key="48"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Extra Svolvær" transform="translate(122.0,3736.2)" tabindex="0" role="button" aria-label="Extra Svolvær" data-poi-key="49"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Svolvær" transform="translate(162.0,3747.7)" tabindex="0" role="button" aria-label="REMA 1000 Svolvær" data-poi-key="50"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Kringla Bakeri &amp; Konditori — Svolvær" transform="translate(122.0,3759.2)" tabindex="0" role="button" aria-label="Kringla Bakeri &amp; Konditori — Svolvær" data-poi-key="51"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Telegrafen Pub Og Bar — Svolvær" transform="translate(162.0,3770.7)" tabindex="0" role="button" aria-label="Telegrafen Pub Og Bar — Svolvær" data-poi-key="52"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Svolvær" transform="translate(122.0,3782.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Svolvær" data-poi-key="53"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><path d="M8 0 L3.2 8 H7 L5.7 16 L12.8 6.8 H9.2 Z" class="poiGlyph"/></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Pitlochry" transform="translate(122.0,3330.5)" tabindex="0" role="button" aria-label="Co-op — Pitlochry" data-poi-key="56"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Old Bridge Inn — Aviemore" transform="translate(122.0,3226.2)" tabindex="0" role="button" aria-label="Old Bridge Inn — Aviemore" data-poi-key="57"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Delaneys&#x27; — Aviemore" transform="translate(162.0,3237.7)" tabindex="0" role="button" aria-label="Delaneys&#x27; — Aviemore" data-poi-key="58"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Tesco Superstore — Aviemore" transform="translate(122.0,3249.2)" tabindex="0" role="button" aria-label="Tesco Superstore — Aviemore" data-poi-key="59"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Ferry Inn — Uig" transform="translate(122.0,2953.7)" tabindex="0" role="button" aria-label="The Ferry Inn — Uig" data-poi-key="60"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Rankins Supermarket — Uig" transform="translate(162.0,2965.2)" tabindex="0" role="button" aria-label="Rankins Supermarket — Uig" data-poi-key="61"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Morrisons — Fort William" transform="translate(122.0,2391.1)" tabindex="0" role="button" aria-label="Morrisons — Fort William" data-poi-key="62"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Tesco Express — Fort William" transform="translate(162.0,2402.6)" tabindex="0" role="button" aria-label="Tesco Express — Fort William" data-poi-key="63"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Nevis Bakery — Fort William" transform="translate(122.0,2414.1)" tabindex="0" role="button" aria-label="Nevis Bakery — Fort William" data-poi-key="64"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Laroch — Ballachulish" transform="translate(122.0,2112.7)" tabindex="0" role="button" aria-label="The Laroch — Ballachulish" data-poi-key="65"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Ballachulish" transform="translate(162.0,2124.2)" tabindex="0" role="button" aria-label="Co-op — Ballachulish" data-poi-key="66"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Quarry Centre Café — Ballachulish" transform="translate(122.0,2135.7)" tabindex="0" role="button" aria-label="The Quarry Centre Café — Ballachulish" data-poi-key="67"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="The Dukes Umbrella — Glasgow" transform="translate(122.0,1828.6)" tabindex="0" role="button" aria-label="The Dukes Umbrella — Glasgow" data-poi-key="68"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Rumi Bar &amp; Restaurant — Glasgow" transform="translate(162.0,1840.1)" tabindex="0" role="button" aria-label="Rumi Bar &amp; Restaurant — Glasgow" data-poi-key="69"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Turbine 75 — Hotel Indigo" transform="translate(122.0,1851.6)" tabindex="0" role="button" aria-label="Turbine 75 — Hotel Indigo" data-poi-key="70"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Drouthy&#x27;s — Glasgow" transform="translate(162.0,1863.1)" tabindex="0" role="button" aria-label="Drouthy&#x27;s — Glasgow" data-poi-key="71"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn XL — Vlissingen" transform="translate(122.0,1381.9)" tabindex="0" role="button" aria-label="Albert Heijn XL — Vlissingen" data-poi-key="72"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Delft centre dining — live choice" transform="translate(122.0,1196.3)" tabindex="0" role="button" aria-label="Delft centre dining — live choice" data-poi-key="73"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Haag dining — live choice" transform="translate(122.0,1103.5)" tabindex="0" role="button" aria-label="Den Haag dining — live choice" data-poi-key="74"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn — Cuijk" transform="translate(122.0,999.2)" tabindex="0" role="button" aria-label="Albert Heijn — Cuijk" data-poi-key="75"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Het Boothuys — Cuijk" transform="translate(162.0,1010.7)" tabindex="0" role="button" aria-label="Het Boothuys — Cuijk" data-poi-key="76"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Smaak — Cuijk" transform="translate(122.0,1022.2)" tabindex="0" role="button" aria-label="Restaurant Smaak — Cuijk" data-poi-key="77"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Huis de Wiers — Nieuwegein" transform="translate(122.0,912.1)" tabindex="0" role="button" aria-label="Restaurant Huis de Wiers — Nieuwegein" data-poi-key="78"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Celine — Nieuwegein" transform="translate(162.0,923.6)" tabindex="0" role="button" aria-label="Restaurant Celine — Nieuwegein" data-poi-key="79"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Evenes" transform="translate(122.0,3603.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Evenes" data-poi-key="0"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Circle K — Evenes" transform="translate(162.0,3614.7)" tabindex="0" role="button" aria-label="Circle K — Evenes" data-poi-key="1"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Evenes Grill &amp; Bar" transform="translate(122.0,4908.0)" tabindex="0" role="button" aria-label="Evenes Grill &amp; Bar" data-poi-key="2"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Haukland → Uttakleiv coastal road" transform="translate(122.0,4705.2)" tabindex="0" role="button" aria-label="Haukland → Uttakleiv coastal road" data-poi-key="3"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Mannen" transform="translate(162.0,4716.7)" tabindex="0" role="button" aria-label="Mannen" data-poi-key="4"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Himmeltinden" transform="translate(122.0,4728.2)" tabindex="0" role="button" aria-label="Himmeltinden" data-poi-key="5"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Haukland Beach Café" transform="translate(162.0,4739.7)" tabindex="0" role="button" aria-label="Haukland Beach Café" data-poi-key="10"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Fiskekrogen — Henningsvær" transform="translate(122.0,4797.9)" tabindex="0" role="button" aria-label="Fiskekrogen — Henningsvær" data-poi-key="6"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Klatrekafeen — Henningsvær" transform="translate(162.0,4809.4)" tabindex="0" role="button" aria-label="Klatrekafeen — Henningsvær" data-poi-key="7"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Trevarefabrikken — Henningsvær" transform="translate(122.0,4820.9)" tabindex="0" role="button" aria-label="Trevarefabrikken — Henningsvær" data-poi-key="8"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Joker Henningsvær" transform="translate(162.0,4832.4)" tabindex="0" role="button" aria-label="Joker Henningsvær" data-poi-key="9"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Ramberg Beach" transform="translate(122.0,4519.6)" tabindex="0" role="button" aria-label="Ramberg Beach" data-poi-key="11"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconCamera" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Ramberg Resort Restaurant" transform="translate(162.0,4531.1)" tabindex="0" role="button" aria-label="Ramberg Resort Restaurant" data-poi-key="12"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Bunnpris Ramberg" transform="translate(122.0,4542.6)" tabindex="0" role="button" aria-label="Bunnpris Ramberg" data-poi-key="13"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Kople Bodø Energi — Ramberg" transform="translate(162.0,4554.1)" tabindex="0" role="button" aria-label="Kople Bodø Energi — Ramberg" data-poi-key="14"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Skagsanden + Flakstad Church" transform="translate(122.0,4444.0)" tabindex="0" role="button" aria-label="Skagsanden + Flakstad Church" data-poi-key="15"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconCamera" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Circle K — Leknes" transform="translate(122.0,4305.3)" tabindex="0" role="button" aria-label="Circle K — Leknes" data-poi-key="16"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Kople LAD OPP Lofoten Basecamp — Leknes" transform="translate(162.0,4316.8)" tabindex="0" role="button" aria-label="Kople LAD OPP Lofoten Basecamp — Leknes" data-poi-key="17"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Eviny Rema 1000 — Leknes" transform="translate(122.0,4328.3)" tabindex="0" role="button" aria-label="Eviny Rema 1000 — Leknes" data-poi-key="18"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Mer Lofotsenteret — Leknes" transform="translate(162.0,4339.8)" tabindex="0" role="button" aria-label="Mer Lofotsenteret — Leknes" data-poi-key="19"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Eviny Alstad Kro og Camping" transform="translate(122.0,4351.3)" tabindex="0" role="button" aria-label="Eviny Alstad Kro og Camping" data-poi-key="20"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Leknes" transform="translate(162.0,4362.8)" tabindex="0" role="button" aria-label="REMA 1000 Leknes" data-poi-key="21"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Extra Leknes" transform="translate(122.0,4374.3)" tabindex="0" role="button" aria-label="Extra Leknes" data-poi-key="22"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="DIGG — Leknes" transform="translate(162.0,4385.8)" tabindex="0" role="button" aria-label="DIGG — Leknes" data-poi-key="23"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Leknes" transform="translate(122.0,4397.3)" tabindex="0" role="button" aria-label="Tesla Supercharger — Leknes" data-poi-key="54"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Hamnøy bridge viewpoint" transform="translate(122.0,4258.5)" tabindex="0" role="button" aria-label="Hamnøy bridge viewpoint" data-poi-key="24"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconCamera" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Sakrisøy + Reinehalsen" transform="translate(122.0,4131.2)" tabindex="0" role="button" aria-label="Sakrisøy + Reinehalsen" data-poi-key="25"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconCamera" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Reinebringen" transform="translate(162.0,4142.7)" tabindex="0" role="button" aria-label="Reinebringen" data-poi-key="26"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Kople Parkering Ytre Havn — Reine" transform="translate(122.0,4154.2)" tabindex="0" role="button" aria-label="Kople Parkering Ytre Havn — Reine" data-poi-key="27"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Eviny Reine Sentrum" transform="translate(162.0,4165.7)" tabindex="0" role="button" aria-label="Eviny Reine Sentrum" data-poi-key="28"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Gammelbua — Reine" transform="translate(122.0,4177.2)" tabindex="0" role="button" aria-label="Gammelbua — Reine" data-poi-key="29"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Coop Prix Reine" transform="translate(162.0,4188.7)" tabindex="0" role="button" aria-label="Coop Prix Reine" data-poi-key="30"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Reine" transform="translate(122.0,4200.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Reine" data-poi-key="55"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Å fishing-village walk" transform="translate(122.0,4061.4)" tabindex="0" role="button" aria-label="Å fishing-village walk" data-poi-key="31"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconCamera" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Sørvågen easy walk" transform="translate(162.0,4072.9)" tabindex="0" role="button" aria-label="Sørvågen easy walk" data-poi-key="32"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Bakeriet Å" transform="translate(122.0,4084.4)" tabindex="0" role="button" aria-label="Bakeriet Å" data-poi-key="33"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Nusfjord historic fishing village" transform="translate(122.0,3974.4)" tabindex="0" role="button" aria-label="Nusfjord historic fishing village" data-poi-key="34"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconCamera" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Karoline — Nusfjord" transform="translate(162.0,3985.9)" tabindex="0" role="button" aria-label="Restaurant Karoline — Nusfjord" data-poi-key="35"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Kvalvika + Ryten" transform="translate(122.0,3881.6)" tabindex="0" role="button" aria-label="Kvalvika + Ryten" data-poi-key="36"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Ytresand / Fredvang Bridges" transform="translate(162.0,3893.1)" tabindex="0" role="button" aria-label="Ytresand / Fredvang Bridges" data-poi-key="37"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconCamera" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Lofotr Viking Museum" transform="translate(122.0,3794.5)" tabindex="0" role="button" aria-label="Lofotr Viking Museum" data-poi-key="38"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconCamera" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Recharge Shell — Svolvær" transform="translate(122.0,3621.2)" tabindex="0" role="button" aria-label="Recharge Shell — Svolvær" data-poi-key="39"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Eviny/Bilkraft Alti — Svolvær" transform="translate(162.0,3632.7)" tabindex="0" role="button" aria-label="Eviny/Bilkraft Alti — Svolvær" data-poi-key="40"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Kople Aust-Lofoten school — Svolvær" transform="translate(122.0,3644.2)" tabindex="0" role="button" aria-label="Kople Aust-Lofoten school — Svolvær" data-poi-key="41"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Recharge Kiwi Osan — Svolvær" transform="translate(162.0,3655.7)" tabindex="0" role="button" aria-label="Recharge Kiwi Osan — Svolvær" data-poi-key="42"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiScenic" data-poi-name="Lofoten Krigsminne Museum" transform="translate(122.0,3667.2)" tabindex="0" role="button" aria-label="Lofoten Krigsminne Museum" data-poi-key="43"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconCamera" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Linken" transform="translate(162.0,3678.7)" tabindex="0" role="button" aria-label="Linken" data-poi-key="44"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Tjeldbergtind" transform="translate(122.0,3690.2)" tabindex="0" role="button" aria-label="Tjeldbergtind" data-poi-key="45"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiHike" data-poi-name="Fløya + Djevelporten" transform="translate(162.0,3701.7)" tabindex="0" role="button" aria-label="Fløya + Djevelporten" data-poi-key="46"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconHike" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Børsen Spiseri — Svolvær" transform="translate(122.0,3713.2)" tabindex="0" role="button" aria-label="Børsen Spiseri — Svolvær" data-poi-key="47"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Kjøkkenet — Svolvær" transform="translate(162.0,3724.7)" tabindex="0" role="button" aria-label="Restaurant Kjøkkenet — Svolvær" data-poi-key="48"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Extra Svolvær" transform="translate(122.0,3736.2)" tabindex="0" role="button" aria-label="Extra Svolvær" data-poi-key="49"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="REMA 1000 Svolvær" transform="translate(162.0,3747.7)" tabindex="0" role="button" aria-label="REMA 1000 Svolvær" data-poi-key="50"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Kringla Bakeri &amp; Konditori — Svolvær" transform="translate(122.0,3759.2)" tabindex="0" role="button" aria-label="Kringla Bakeri &amp; Konditori — Svolvær" data-poi-key="51"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Telegrafen Pub Og Bar — Svolvær" transform="translate(162.0,3770.7)" tabindex="0" role="button" aria-label="Telegrafen Pub Og Bar — Svolvær" data-poi-key="52"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiEv" data-poi-name="Tesla Supercharger — Svolvær" transform="translate(122.0,3782.2)" tabindex="0" role="button" aria-label="Tesla Supercharger — Svolvær" data-poi-key="53"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconEv" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Pitlochry" transform="translate(122.0,3330.5)" tabindex="0" role="button" aria-label="Co-op — Pitlochry" data-poi-key="56"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Old Bridge Inn — Aviemore" transform="translate(122.0,3226.2)" tabindex="0" role="button" aria-label="Old Bridge Inn — Aviemore" data-poi-key="57"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Delaneys&#x27; — Aviemore" transform="translate(162.0,3237.7)" tabindex="0" role="button" aria-label="Delaneys&#x27; — Aviemore" data-poi-key="58"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Tesco Superstore — Aviemore" transform="translate(122.0,3249.2)" tabindex="0" role="button" aria-label="Tesco Superstore — Aviemore" data-poi-key="59"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Ferry Inn — Uig" transform="translate(122.0,2953.7)" tabindex="0" role="button" aria-label="The Ferry Inn — Uig" data-poi-key="60"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Rankins Supermarket — Uig" transform="translate(162.0,2965.2)" tabindex="0" role="button" aria-label="Rankins Supermarket — Uig" data-poi-key="61"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Morrisons — Fort William" transform="translate(122.0,2391.1)" tabindex="0" role="button" aria-label="Morrisons — Fort William" data-poi-key="62"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Tesco Express — Fort William" transform="translate(162.0,2402.6)" tabindex="0" role="button" aria-label="Tesco Express — Fort William" data-poi-key="63"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Nevis Bakery — Fort William" transform="translate(122.0,2414.1)" tabindex="0" role="button" aria-label="Nevis Bakery — Fort William" data-poi-key="64"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Laroch — Ballachulish" transform="translate(122.0,2112.7)" tabindex="0" role="button" aria-label="The Laroch — Ballachulish" data-poi-key="65"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Co-op — Ballachulish" transform="translate(162.0,2124.2)" tabindex="0" role="button" aria-label="Co-op — Ballachulish" data-poi-key="66"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Quarry Centre Café — Ballachulish" transform="translate(122.0,2135.7)" tabindex="0" role="button" aria-label="The Quarry Centre Café — Ballachulish" data-poi-key="67"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="The Dukes Umbrella — Glasgow" transform="translate(122.0,1828.6)" tabindex="0" role="button" aria-label="The Dukes Umbrella — Glasgow" data-poi-key="68"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Rumi Bar &amp; Restaurant — Glasgow" transform="translate(162.0,1840.1)" tabindex="0" role="button" aria-label="Rumi Bar &amp; Restaurant — Glasgow" data-poi-key="69"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Turbine 75 — Hotel Indigo" transform="translate(122.0,1851.6)" tabindex="0" role="button" aria-label="Turbine 75 — Hotel Indigo" data-poi-key="70"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Drouthy&#x27;s — Glasgow" transform="translate(162.0,1863.1)" tabindex="0" role="button" aria-label="Drouthy&#x27;s — Glasgow" data-poi-key="71"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn XL — Vlissingen" transform="translate(122.0,1381.9)" tabindex="0" role="button" aria-label="Albert Heijn XL — Vlissingen" data-poi-key="72"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Delft centre dining — live choice" transform="translate(122.0,1196.3)" tabindex="0" role="button" aria-label="Delft centre dining — live choice" data-poi-key="73"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Haag dining — live choice" transform="translate(122.0,1103.5)" tabindex="0" role="button" aria-label="Den Haag dining — live choice" data-poi-key="74"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="Albert Heijn — Cuijk" transform="translate(122.0,999.2)" tabindex="0" role="button" aria-label="Albert Heijn — Cuijk" data-poi-key="75"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Het Boothuys — Cuijk" transform="translate(162.0,1010.7)" tabindex="0" role="button" aria-label="Het Boothuys — Cuijk" data-poi-key="76"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Smaak — Cuijk" transform="translate(122.0,1022.2)" tabindex="0" role="button" aria-label="Restaurant Smaak — Cuijk" data-poi-key="77"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Huis de Wiers — Nieuwegein" transform="translate(122.0,912.1)" tabindex="0" role="button" aria-label="Restaurant Huis de Wiers — Nieuwegein" data-poi-key="78"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Restaurant Celine — Nieuwegein" transform="translate(162.0,923.6)" tabindex="0" role="button" aria-label="Restaurant Celine — Nieuwegein" data-poi-key="79"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
 </g>
 </g>
-<g class="stripPoi mapPoiMarket" data-poi-name="AH to Go — Hoofddorp Kruisweg" transform="translate(122.0,1556.0)" tabindex="0" role="button" aria-label="AH to Go — Hoofddorp Kruisweg" data-poi-key="82"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke"><path d="M1.2 2.3 H3 L4.1 10.2 H12.6 L14.5 5.1 H4.1"/><circle cx="5.4" cy="13.4" r="1.1"/><circle cx="11.4" cy="13.4" r="1.1"/></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Dine With Florian — Hoofddorp" transform="translate(162.0,1567.5)" tabindex="0" role="button" aria-label="Dine With Florian — Hoofddorp" data-poi-key="83"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
-<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Burgh — Hoofddorp" transform="translate(122.0,1579.0)" tabindex="0" role="button" aria-label="Den Burgh — Hoofddorp" data-poi-key="84"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><g class="poiGlyphStroke restaurantGlyph">
-<g class="approvedRestaurantIcon">
-  <!-- Fork: four unmistakable tines, neck and handle -->
-  <path d="M3.0 0.8 V4.6 M4.3 0.8 V4.6 M5.6 0.8 V4.6 M6.9 0.8 V4.6"
-        fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"/>
-  <path d="M3.0 4.3 C3.0 5.6 3.8 6.3 4.9 6.6 L12.9 14.6"
-        fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Knife: broad blade and substantial handle -->
-  <path d="M14.8 0.7 C12.5 1.2 10.7 2.9 9.8 5.4 L11.5 7.0
-           C12.6 5.4 13.8 3.7 15.2 2.2 C15.8 1.5 15.7 0.6 14.8 0.7 Z"
-        fill="currentColor" stroke="currentColor" stroke-width=".35" stroke-linejoin="round"/>
-  <path d="M10.8 6.2 L2.0 15.0"
-        fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-</g>
-</g></g></g>
+<g class="stripPoi mapPoiMarket" data-poi-name="AH to Go — Hoofddorp Kruisweg" transform="translate(122.0,1556.0)" tabindex="0" role="button" aria-label="AH to Go — Hoofddorp Kruisweg" data-poi-key="82"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Dine With Florian — Hoofddorp" transform="translate(162.0,1567.5)" tabindex="0" role="button" aria-label="Dine With Florian — Hoofddorp" data-poi-key="83"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
+<g class="stripPoi mapPoiRestaurant" data-poi-name="Den Burgh — Hoofddorp" transform="translate(122.0,1579.0)" tabindex="0" role="button" aria-label="Den Burgh — Hoofddorp" data-poi-key="84"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-2" y="-2" width="20" height="20"/></g></g>
 <g class="stripMilestone" data-stop-id="eve_return" transform="translate(16,3590.1)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 14</text><text class="milestoneMain" x="52" y="8">AVIS RETURN 15:30</text><text class="milestoneSub" x="5" y="18">EVE FLIGHT 17:15 → OSL; OSL 19:40 → EDI</text></g>
 <g class="stripMilestone" data-stop-id="edi_drivalia" transform="translate(16,3497.3)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 14</text><text class="milestoneMain" x="52" y="8">EDI ARRIVE 20:30</text><text class="milestoneSub" x="5" y="18">DRIVALIA PICKUP 21:30</text></g>
 <g class="stripMilestone" data-stop-id="gla_drivalia" transform="translate(16,1641.5)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 21</text><text class="milestoneMain" x="52" y="8">CAR RETURN TARGET 16:15–16:30</text><text class="milestoneSub" x="5" y="18">GLA FLIGHT 19:25 → AMS 22:00</text></g>
@@ -3207,7 +2450,7 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-V18.8.9 keeps the V18.8.8 category/filter/layout fixes and replaces the restaurant symbol with the approved clear crossed knife-and-four-tine-fork design. V18.8.8 fixed category filtering and Safari JavaScript, improves phone/iPad strip-map layout and scrolling while preserving Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged. Flakstadtind/Nubben notes are based on current Lofoten hiking references; Leiden scenic-day note is based on official Visit Leiden tourism information.
+V18.9.0 is a presentation-layer cleanup baseline: the proven navigation engine and route data are unchanged; superseded responsive/icon CSS patches have been consolidated into one maintained ruleset. V18.8.8 fixed category filtering and Safari JavaScript, improves phone/iPad strip-map layout and scrolling while preserving Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged. Flakstadtind/Nubben notes are based on current Lofoten hiking references; Leiden scenic-day note is based on official Visit Leiden tourism information.
 The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Tineke Bloemen funeral — Crematorium Hoeksche Waard, Heinenoord — 13:00.
 Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
@@ -3909,7 +3152,7 @@ show('Europe Roadbook V18.8.6 loaded. Norway travel guide expanded; iPad icon, f
       if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
       try{
         stage('checking…','Starting offline package.');
-        const reg=await navigator.serviceWorker.register('./europe-v18-8-9-sw.js',{scope:'./'});
+        const reg=await navigator.serviceWorker.register('./europe-v18-9-0-sw.js',{scope:'./'});
 
         // Do not wait indefinitely for navigator.serviceWorker.ready.
         // Poll the core cache directly; the service worker may still be activating.
