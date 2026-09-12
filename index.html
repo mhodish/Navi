@@ -795,33 +795,42 @@ img.fallbackPhoto + figcaption::before{content:"Fallback location image — ";fo
 </style>
 
 
-<style id="v1885ResponsiveIconSizing">
-.stripPoi .poiGlyph,
-.stripPoi .poiGlyphStroke,
-.stripPoi .poiGlyphSolid{transform-origin:8px 8px!important}
+<style id="v1887StripMapUsabilityFix">
+/* Balanced icon sizing: readable without consuming the route strip. */
+.stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform-origin:8px 8px!important}
 @media (max-width:700px), (max-height:520px) and (orientation:landscape){
-  .stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform:scale(1.18)!important}
-  .stripPoi.poiSelectedFromList .poiGlyph,.stripPoi.poiSelectedFromList .poiGlyphStroke,.stripPoi.poiSelectedFromList .poiGlyphSolid{transform:scale(1.38)!important}
+  .stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform:scale(1.10)!important}
+  .stripPoi.poiSelectedFromList .poiGlyph,.stripPoi.poiSelectedFromList .poiGlyphStroke,.stripPoi.poiSelectedFromList .poiGlyphSolid{transform:scale(1.28)!important}
 }
 @media (min-width:701px) and (max-width:1366px){
-  .stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform:scale(1.55)!important}
-  .stripPoi.poiSelectedFromList .poiGlyph,.stripPoi.poiSelectedFromList .poiGlyphStroke,.stripPoi.poiSelectedFromList .poiGlyphSolid{transform:scale(1.78)!important}
+  .stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform:scale(1.22)!important}
+  .stripPoi.poiSelectedFromList .poiGlyph,.stripPoi.poiSelectedFromList .poiGlyphStroke,.stripPoi.poiSelectedFromList .poiGlyphSolid{transform:scale(1.40)!important}
 }
-@media (min-width:1367px){
-  .stripPoi .poiGlyph,.stripPoi .poiGlyphStroke,.stripPoi .poiGlyphSolid{transform:scale(1.25)!important}
-  .stripPoi.poiSelectedFromList .poiGlyph,.stripPoi.poiSelectedFromList .poiGlyphStroke,.stripPoi.poiSelectedFromList .poiGlyphSolid{transform:scale(1.45)!important}
+/* The strip itself must always accept a vertical drag, started or stopped. */
+#stripPane{
+  overflow-y:auto!important; overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  touch-action:pan-y!important;
+  overscroll-behavior-y:contain!important;
+}
+#stripPane .stripSvg{touch-action:pan-y!important}
+#stripPane .stripPoi{touch-action:pan-y!important}
+@media (min-width:701px){
+  .roadbook-shell{height:calc(100vh - 74px)!important;max-height:calc(100vh - 74px)!important;overflow:hidden!important;align-items:stretch!important}
+  #stripPane{position:relative!important;top:auto!important;height:100%!important;max-height:100%!important;min-height:0!important}
+  main.contentPane{height:100%!important;max-height:100%!important;min-height:0!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch!important}
 }
 </style>
 
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.8.6 Full Travel Build</h1>
-<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · icon-map build 18.8.6</div></header>
+<header><h1>Europe GPS Roadbook — V18.8.7 Full Travel Build</h1>
+<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · icon-map build 18.8.7</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>EUROPE ROADBOOK · V18.8.6</strong>
+    <strong>EUROPE ROADBOOK · V18.8.7</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -2880,7 +2889,7 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-V18.8.6 expands Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
+V18.8.7 improves phone/iPad strip-map layout and scrolling while preserving Norway POIs/hikes and fixes trip-state persistence plus the iPad manual-scroll conflict. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged.
 The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Tineke Bloemen funeral — Crematorium Hoeksche Waard, Heinenoord — 13:00.
 Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
@@ -3637,13 +3646,25 @@ show('Europe Roadbook V18.8.6 loaded. Norway travel guide expanded; iPad icon, f
   }
 
   document.querySelectorAll('.stripPoi[data-poi-key]').forEach(icon=>{
+    let touchStart=null, touchMoved=false;
     const activate=(ev)=>{
-      ev.preventDefault();
-      ev.stopPropagation();
+      if(ev && ev.type!=='touchend') ev.preventDefault();
+      if(ev) ev.stopPropagation();
       revealPoi(icon.dataset.poiKey);
     };
     icon.addEventListener('click',activate);
-    icon.addEventListener('touchend',activate,{passive:false});
+    icon.addEventListener('touchstart',ev=>{
+      const t=ev.touches&&ev.touches[0];
+      touchStart=t?{x:t.clientX,y:t.clientY}:null; touchMoved=false;
+    },{passive:true});
+    icon.addEventListener('touchmove',ev=>{
+      const t=ev.touches&&ev.touches[0];
+      if(t&&touchStart&&Math.hypot(t.clientX-touchStart.x,t.clientY-touchStart.y)>7) touchMoved=true;
+    },{passive:true});
+    icon.addEventListener('touchend',ev=>{
+      if(!touchMoved) activate(ev);
+      touchStart=null; touchMoved=false;
+    },{passive:true});
     icon.addEventListener('keydown',ev=>{
       if(ev.key==='Enter'||ev.key===' '){ activate(ev); }
     });
@@ -3704,5 +3725,6 @@ show('Europe Roadbook V18.8.6 loaded. Norway travel guide expanded; iPad icon, f
 })();
 </script>
 
+\n<script id="v1887CollisionAwareStripPoiLayout">\n(function(){\n  function rectsOverlap(a,b,pad){\n    pad=pad||0;\n    return !(a.x+a.w+pad < b.x || b.x+b.w+pad < a.x || a.y+a.h+pad < b.y || b.y+b.h+pad < a.y);\n  }\n  function parseTranslate(el){\n    const m=(el.getAttribute('transform')||'').match(/translate\\(\\s*([\\d.+-]+)[ ,]+([\\d.+-]+)/);\n    return m?{x:+m[1],y:+m[2]}:{x:150,y:0};\n  }\n  function roadXAt(y){\n    if(!window.stripAnchors || !stripAnchors.length) return 150;\n    let best=stripAnchors[0];\n    for(let i=0;i<stripAnchors.length-1;i++){\n      const a=stripAnchors[i], b=stripAnchors[i+1];\n      const lo=Math.min(a.y,b.y), hi=Math.max(a.y,b.y);\n      if(y>=lo && y<=hi){\n        const t=(Math.abs(b.y-a.y)<.01)?0:(y-a.y)/(b.y-a.y);\n        return a.x+(b.x-a.x)*t;\n      }\n      if(Math.abs(a.y-y)<Math.abs(best.y-y)) best=a;\n    }\n    return best.x;\n  }\n  function layoutStripPois(){\n    const svg=document.querySelector('#stripPane .stripSvg');\n    if(!svg) return;\n    const icons=[...svg.querySelectorAll('.stripPoi[data-poi-key]')];\n    if(!icons.length) return;\n\n    /* Occupied label zones. Country titles are deliberately excluded; stop/date labels and milestones matter. */\n    const occupied=[];\n    [...svg.querySelectorAll('.stop-label,.map-small,.stripMilestone')].forEach(el=>{\n      if(el.closest && el.closest('.stripPoi')) return;\n      try{\n        const b=el.getBBox();\n        if(b.width>0 && b.height>0) occupied.push({x:b.x-4,y:b.y-4,w:b.width+8,h:b.height+8});\n      }catch(e){}\n    });\n\n    const placed=[];\n    const leftLanes=[16,48,80], rightLanes=[210,242,272];\n    const yOffsets=[0,-22,22,-44,44,-66,66,-88,88];\n\n    icons.sort((a,b)=>parseTranslate(a).y-parseTranslate(b).y);\n    icons.forEach((icon,idx)=>{\n      const o=parseTranslate(icon);\n      if(!icon.dataset.originalTransform) icon.dataset.originalTransform=icon.getAttribute('transform')||'';\n      let best=null;\n      for(const dy of yOffsets){\n        const yy=o.y+dy;\n        const rx=roadXAt(yy);\n        /* Prefer the side with more room away from the road; then try the opposite side. */\n        const first = rx>=150 ? leftLanes : rightLanes;\n        const second = rx>=150 ? rightLanes : leftLanes;\n        for(const lanes of [first,second]){\n          for(const xx of lanes){\n            /* Approximate complete enlarged icon/tap footprint in SVG coordinates. */\n            const r={x:xx-10,y:yy-10,w:38,h:38};\n            const center=xx+8;\n            const roadClear=Math.abs(center-rx);\n            if(roadClear<42) continue;\n            let collisions=0;\n            for(const q of occupied) if(rectsOverlap(r,q,2)) collisions++;\n            for(const q of placed) if(rectsOverlap(r,q,4)) collisions+=2;\n            const edgePenalty=(r.x<4 || r.x+r.w>296)?5:0;\n            const sidePenalty=(lanes===second)?4:0;\n            const score=collisions*1000 + edgePenalty*100 + sidePenalty + Math.abs(dy)*0.8 + Math.abs(xx-o.x)*0.03;\n            if(best===null || score<best.score) best={x:xx,y:yy,r,score};\n          }\n        }\n      }\n      if(best){\n        icon.setAttribute('transform','translate('+best.x.toFixed(1)+','+best.y.toFixed(1)+')');\n        placed.push(best.r);\n      }\n    });\n  }\n  window.layoutStripPois=layoutStripPois;\n  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>requestAnimationFrame(layoutStripPois));\n  else requestAnimationFrame(layoutStripPois);\n  window.addEventListener('orientationchange',()=>setTimeout(layoutStripPois,250));\n  window.addEventListener('resize',()=>{clearTimeout(window.__stripLayoutTimer);window.__stripLayoutTimer=setTimeout(layoutStripPois,120)});\n})();\n</script>\n
 </body>
 </html>
