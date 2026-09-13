@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Roadbook V18.9.6</title>
+<title>Roadbook V18.9.7</title>
 <meta name="theme-color" content="#fffdf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Roadbook">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="./europe-v18-icon-192.png">
+<link rel="apple-touch-icon" href="./roadbook-icon-192.png">
 <style>
 :root{
   --paper:#f4edd8;--paper2:#fbf7e9;--mapink:#3b3a34;--roadedge:#4b4940;
@@ -469,13 +469,13 @@ main.contentPane{
 <meta name="application-name" content="Roadbook">
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.9.6 Clean Baseline — Repository Cleanup</h1>
-<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · clean presentation baseline 18.9.6</div></header>
+<header><h1>Europe GPS Roadbook — V18.9.7 Clean Baseline — Offline Asset Fix</h1>
+<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · clean presentation baseline 18.9.7</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.6</strong>
+    <strong>ROADBOOK · V18.9.7</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -3110,13 +3110,13 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.6 loaded. Norway travel guide expanded; iPad icon, funeral, cross-highlight and stop-recenter fixes installed.');
+show('Roadbook V18.9.7 loaded. Norway travel guide expanded; iPad icon, funeral, cross-highlight and stop-recenter fixes installed.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const box=document.getElementById('offlineBox'), detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-6';
-  const LOCAL=['./','./index.html','./manifest.json','./europe-v18-icon-192.png','./europe-v18-icon-512.png'];
+  const CACHE_NAME='roadbook-v18-9-7';
+  const LOCAL=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
   const REMOTE=["https://commons.wikimedia.org/wiki/Special:Redirect/file/Delft%20canal.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eilean%20Donan%20Castle.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Flakstad-Kirche-04-2019-gje.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glenfinnan%20viaduct.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamn%C3%B8y_in_Lofoten.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haukland%20Beach%20view.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/KinderdijkWindmills.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten-4.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_-_Nusfjord.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofoten_Reine.JPG?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lofotr_viking_museum_lofoten_foto_brage_aronsen.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Old%20Man%20of%20Storr.jpg?width=960", "https://commons.wikimedia.org/wiki/Special:Redirect/file/Utakleiv_beach.jpg?width=960", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpb1eHx4IbLNqrkfQfhek5SJLV", "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D720/QwRY54Li1HMwD7oNfp1aXB0I0MG2j3i1IjF1AK358L", "https://guide.arcticcampers.no/site/assets/files/3165/circle_k_evenes.jpg", "https://images.squarespace-cdn.com/content/v1/56e158022fe131436a22cec6/27be5333-db82-48c5-a4f7-ca1e27675f3f/lofoten33.jpg", "https://photos.plugshare.com/photos/1170706.jpg", "https://vcdn.polarismedia.no/99550076-1434-48ea-8f7c-e23137bdb73e?fit=crop&h=630&q=80&tight=true&w=1200"];
 
   let setupPromise=null;
@@ -3127,7 +3127,7 @@ show('Roadbook V18.9.6 loaded. Norway travel guide expanded; iPad icon, funeral,
   async function verify(){
     try{
       const keys=await caches.keys();
-      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.9.6 core cache.');return false;}
+      if(!keys.includes(CACHE_NAME)){stage('preparing…','Waiting for V18.9.7 core cache.');return false;}
       const c=await caches.open(CACHE_NAME), missing=[];
       for(const n of LOCAL){
         const u=new URL(n,location.href).href;
@@ -3137,7 +3137,7 @@ show('Roadbook V18.9.6 loaded. Norway travel guide expanded; iPad icon, funeral,
       for(const u of REMOTE){ if(await c.match(u,{ignoreSearch:true})) pics++; }
       if(missing.length){stage('preparing…','Missing local files: '+missing.join(', '));return false;}
       stage('READY — safe to use without internet',
-            'V18.9.6 core package is cached. '+pics+' of '+REMOTE.length+
+            'V18.9.7 core package is cached. '+pics+' of '+REMOTE.length+
             ' optional photographs are cached; missing photos never block READY.');
       return true;
     }catch(e){
@@ -3153,7 +3153,7 @@ show('Roadbook V18.9.6 loaded. Norway travel guide expanded; iPad icon, funeral,
       if(!('serviceWorker' in navigator)){stage('FAILED','Service workers unsupported.');return;}
       try{
         stage('checking…','Starting offline package.');
-        const reg=await navigator.serviceWorker.register('./roadbook-v18-9-6-sw.js',{scope:'./'});
+        const reg=await navigator.serviceWorker.register('./roadbook-v18-9-7-sw.js',{scope:'./'});
 
         // Do not wait indefinitely for navigator.serviceWorker.ready.
         // Poll the core cache directly; the service worker may still be activating.
@@ -3451,60 +3451,5 @@ show('Roadbook V18.9.6 loaded. Norway travel guide expanded; iPad icon, funeral,
 })();
 </script>
 
-<script>async function setupOfflineStatus(){
-  const box=document.getElementById('offlineBox');
-  const detail=document.getElementById('offlineDetail');
-  if(!box||!detail) return;
-
-  const CACHE_NAME='roadbook-v18-9-6';
-  let attempts=0;
-  let timer=null;
-
-  async function updateOfflineState(){
-    attempts++;
-    try{
-      const keys=await caches.keys();
-      const hasCore=keys.includes(CACHE_NAME);
-
-      if(hasCore){
-        box.innerHTML='<b>Offline package: READY</b><div id="offlineDetail">V18.9.6 core package is cached.</div>';
-        if(timer){ clearInterval(timer); timer=null; }
-        return true;
-      }
-
-      box.innerHTML='<b>Offline package: preparing…</b><div id="offlineDetail">Waiting for V18.9.6 core cache.</div>';
-      return false;
-    }catch(err){
-      box.innerHTML='<b>Offline package: checking…</b><div id="offlineDetail">Safari cache status unavailable momentarily.</div>';
-      return false;
-    }
-  }
-
-  await updateOfflineState();
-
-  if(!timer){
-    timer=setInterval(async()=>{
-      const ready=await updateOfflineState();
-      if(ready && timer){
-        clearInterval(timer);
-        timer=null;
-      }
-    },1200);
-  }
-
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.addEventListener('controllerchange',()=>{
-      setTimeout(updateOfflineState,150);
-      setTimeout(updateOfflineState,800);
-    });
-    navigator.serviceWorker.ready.then(()=>{
-      setTimeout(updateOfflineState,100);
-      setTimeout(updateOfflineState,700);
-    }).catch(()=>{});
-  }
-
-  window.addEventListener('pageshow',()=>setTimeout(updateOfflineState,150),{passive:true});
-  window.addEventListener('focus',()=>setTimeout(updateOfflineState,150),{passive:true});
-}</script>
 </body>
 </html>
