@@ -1,0 +1,74 @@
+name: Clean and install Roadbook 18.9.8
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  replace-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify Roadbook package is present
+        shell: bash
+        run: |
+          set -e
+          test -f "Roadbook_V18_9_8_ServiceWorker_Core_Fix.zip" || {
+            echo "ERROR: Roadbook_V18_9_8_ServiceWorker_Core_Fix.zip is not in the repository root."
+            exit 1
+          }
+
+      - name: Preserve workflow and replace published site
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p /tmp/roadbook-new
+          unzip -q "Roadbook_V18_9_8_ServiceWorker_Core_Fix.zip" -d /tmp/roadbook-new
+
+          for f in \
+            index.html \
+            manifest.json \
+            roadbook-icon-192.png \
+            roadbook-icon-512.png \
+            roadbook-v18-9-8-sw.js
+          do
+            test -f "/tmp/roadbook-new/$f" || {
+              echo "ERROR: replacement package is missing $f"
+              exit 1
+            }
+          done
+
+          find . -mindepth 1 -maxdepth 1 \
+            ! -name '.git' \
+            ! -name '.github' \
+            -exec rm -rf {} +
+
+          cp /tmp/roadbook-new/index.html .
+          cp /tmp/roadbook-new/manifest.json .
+          cp /tmp/roadbook-new/roadbook-icon-192.png .
+          cp /tmp/roadbook-new/roadbook-icon-512.png .
+          cp /tmp/roadbook-new/roadbook-v18-9-8-sw.js .
+
+          echo "Installed files:"
+          ls -la
+
+      - name: Commit clean replacement
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Clean install Roadbook 18.9.8"
+            git push
+          fi
