@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Roadbook V18.9.8</title>
+<title>Roadbook V18.9.9</title>
 <meta name="theme-color" content="#fffdf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -469,13 +469,13 @@ main.contentPane{
 <meta name="application-name" content="Roadbook">
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.9.8 Clean Baseline — Service Worker Core Fix</h1>
-<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · clean presentation baseline 18.9.8</div></header>
+<header><h1>Europe GPS Roadbook — V18.9.9 Clean Baseline — Offline Registration Fix</h1>
+<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · clean presentation baseline 18.9.9</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.8</strong>
+    <strong>ROADBOOK · V18.9.9</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -980,11 +980,8 @@ main.contentPane{
   <b>DRIVING CONTROLS</b> — Start GPS, offline status and stop controls stay at the top.
 </div>
 <div class="status" id="status">GPS is off. Tap <b>Start live roadbook</b> when you are ready to drive.</div>
-<div id="offlineBox">Offline package: starting…
+<div id="offlineBox"><b id="offlineTitle">Offline package: starting…</b>
   <div id="offlineDetail" style="margin-top:4px;font-size:12px;font-weight:500;color:#667085;"></div>
-<button id="retryPhotosBtn" type="button" style="margin-top:8px">Retry missing photos</button>
-<span id="retryPhotosStatus" style="margin-left:8px"></span>
-
 </div>
 <div class="controls">
   <button class="primary" id="start">Start live roadbook</button>
@@ -3110,33 +3107,40 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.8 loaded. Norway travel guide expanded; iPad icon, funeral, cross-highlight and stop-recenter fixes installed.');
+show('Roadbook V18.9.9 loaded. Norway travel guide expanded; iPad icon, funeral, cross-highlight and stop-recenter fixes installed.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
-  const box=document.getElementById('offlineBox');
+  const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-8';
+  const CACHE_NAME='roadbook-v18-9-9';
+  const SW_URL='./roadbook-v18-9-9-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
-  function stage(title,msg){
-    if(box) box.querySelector('b').textContent='Offline package: '+title;
-    if(detail) detail.textContent=msg;
+  function stage(label,msg){
+    if(title) title.textContent='Offline package: '+label;
+    if(detail) detail.textContent=msg || '';
   }
 
-  async function cacheState(){
+  async function ensureRegistered(){
+    if(!('serviceWorker' in navigator)){
+      stage('UNAVAILABLE','This browser does not support service workers.');
+      return null;
+    }
     try{
-      if(!('serviceWorker' in navigator)){
-        stage('UNAVAILABLE','This browser does not support service workers.');
-        return false;
-      }
+      const reg=await navigator.serviceWorker.register(SW_URL,{scope:'./'});
+      return reg;
+    }catch(err){
+      stage('registration failed',err && err.message ? err.message : String(err));
+      return null;
+    }
+  }
 
-      const reg=await navigator.serviceWorker.getRegistration('./');
-      if(!reg){
-        stage('preparing…','Service worker is not registered yet.');
-        return false;
-      }
+  async function check(){
+    const reg=await ensureRegistered();
+    if(!reg) return false;
 
+    try{
       if(reg.installing){
         stage('preparing…','Service worker is installing…');
         return false;
@@ -3152,7 +3156,7 @@ show('Roadbook V18.9.8 loaded. Norway travel guide expanded; iPad icon, funeral,
 
       const keys=await caches.keys();
       if(!keys.includes(CACHE_NAME)){
-        stage('preparing…','Service worker is active; core cache has not been created yet.');
+        stage('preparing…','Service worker is active; building core cache…');
         return false;
       }
 
@@ -3160,16 +3164,18 @@ show('Roadbook V18.9.8 loaded. Norway travel guide expanded; iPad icon, funeral,
       const missing=[];
       for(const item of REQUIRED){
         const absolute=new URL(item,location.href).href;
-        const hit=await cache.match(absolute,{ignoreSearch:true}) || await cache.match(item,{ignoreSearch:true});
+        const hit=(await cache.match(absolute,{ignoreSearch:true})) ||
+                  (await cache.match(item,{ignoreSearch:true}));
         if(!hit) missing.push(item);
       }
 
       if(missing.length){
-        stage('preparing…','Core cache exists but is incomplete: '+missing.join(', '));
+        stage('preparing…','Core cache is incomplete: '+missing.join(', '));
         return false;
       }
 
-      stage('READY — safe to use without internet','Service worker is active and all core Roadbook files are cached.');
+      stage('READY — safe to use without internet',
+            'Service worker is active and all core Roadbook files are cached.');
       return true;
     }catch(err){
       stage('check failed',err && err.message ? err.message : String(err));
@@ -3179,14 +3185,16 @@ show('Roadbook V18.9.8 loaded. Norway travel guide expanded; iPad icon, funeral,
 
   let timer=null;
   async function begin(){
-    await cacheState();
+    await check();
     if(timer) clearInterval(timer);
-    timer=setInterval(cacheState,1500);
+    timer=setInterval(check,1200);
   }
 
   window.addEventListener('pageshow',begin);
-  window.addEventListener('focus',cacheState);
-  navigator.serviceWorker && navigator.serviceWorker.addEventListener('controllerchange',cacheState);
+  window.addEventListener('focus',check);
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.addEventListener('controllerchange',check);
+  }
   begin();
 })();
 </script>

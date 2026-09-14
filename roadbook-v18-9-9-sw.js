@@ -1,4 +1,4 @@
-const CACHE='roadbook-v18-9-8';
+const CACHE='roadbook-v18-9-9';
 const CORE=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
 self.addEventListener('install', event => {
