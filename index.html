@@ -464,18 +464,26 @@ main.contentPane{
     overflow-y:auto;
   }
 }
+
+/* V18.9.10 POI intelligence */
+.poiIntelIntro{background:#fff8dc;border:1px solid #c8b66a;border-radius:10px;padding:9px 10px;margin:8px 0;font-size:12px;line-height:1.35}
+.poiPriority{display:inline-block;margin-left:7px;padding:2px 6px;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.25px;border:1px solid #332f25;box-shadow:0 1px 2px rgba(0,0,0,.28);vertical-align:1px}
+.poiPriority.prime{background:#26384a;color:#fff}.poiPriority.recommended{background:#f3e3a2;color:#201d16}.poiPriority.optional{background:#fffdf5;color:#38342c}
+.poiMeta{font-weight:750;color:#504a3e}.poiNum{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border-radius:50%;background:#26384a;color:#fff;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4);margin-right:5px;font-size:10px}
+.routePoiFilters .costFilter{border-style:dashed}.routePoiFilters .costFilter.active{outline:2px solid #26384a;outline-offset:1px}
+.poiCrossMarker .crossLine{stroke:#26384a;stroke-width:2.4;stroke-linecap:round;filter:drop-shadow(0 1px 1px rgba(255,255,255,.9))}.poiCrossMarker .crossNum{fill:#26384a;stroke:#fff;stroke-width:2}.poiCrossMarker .crossText{fill:#fff;font-size:8px;font-weight:900;text-anchor:middle;dominant-baseline:middle}.poiCrossMarker.poiSelectedFromList .crossNum{fill:#d40000}
 </style>
 
 <meta name="application-name" content="Roadbook">
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.9.9 Clean Baseline — Offline Registration Fix</h1>
-<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · clean presentation baseline 18.9.9</div></header>
+<header><h1>Europe GPS Roadbook — V18.9.10 POI Intelligence</h1>
+<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.9</strong>
+    <strong>ROADBOOK · V18.9.10</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -960,6 +968,32 @@ main.contentPane{
 <g class="stripPoi mapPoiMarket" data-poi-name="AH to Go — Hoofddorp Kruisweg" transform="translate(122.0,1556.0)" tabindex="0" role="button" aria-label="AH to Go — Hoofddorp Kruisweg" data-poi-key="82"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconMarket" class="poiIconUse" x="-3" y="-3" width="22" height="22"/></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Dine With Florian — Hoofddorp" transform="translate(162.0,1567.5)" tabindex="0" role="button" aria-label="Dine With Florian — Hoofddorp" data-poi-key="83"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-3" y="-3" width="22" height="22"/></g></g>
 <g class="stripPoi mapPoiRestaurant" data-poi-name="Den Burgh — Hoofddorp" transform="translate(122.0,1579.0)" tabindex="0" role="button" aria-label="Den Burgh — Hoofddorp" data-poi-key="84"><rect class="poiTapHalo" x="-7" y="-7" width="30" height="30" rx="8"/><use href="#poiIconRestaurant" class="poiIconUse" x="-3" y="-3" width="22" height="22"/></g></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Queen’s View, Loch Tummel" transform="translate(150,3338)" tabindex="0" role="button" aria-label="POI 1: Queen’s View, Loch Tummel" data-poi-key="100"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">1</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Killiecrankie Gorge & Soldier’s Leap" transform="translate(150,3318)" tabindex="0" role="button" aria-label="POI 2: Killiecrankie Gorge & Soldier’s Leap" data-poi-key="101"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">2</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Pitlochry Dam & fish ladder" transform="translate(150,3298)" tabindex="0" role="button" aria-label="POI 3: Pitlochry Dam & fish ladder" data-poi-key="102"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">3</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Loch Morlich beach & viewpoint" transform="translate(150,3235)" tabindex="0" role="button" aria-label="POI 4: Loch Morlich beach & viewpoint" data-poi-key="103"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">4</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Rothiemurchus Forest easy walk" transform="translate(150,3215)" tabindex="0" role="button" aria-label="POI 5: Rothiemurchus Forest easy walk" data-poi-key="104"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">5</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Loch Garten / Abernethy pinewoods" transform="translate(150,3195)" tabindex="0" role="button" aria-label="POI 6: Loch Garten / Abernethy pinewoods" data-poi-key="105"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">6</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Fort Augustus & Caledonian Canal locks" transform="translate(150,3118)" tabindex="0" role="button" aria-label="POI 7: Fort Augustus & Caledonian Canal locks" data-poi-key="106"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">7</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Sligachan Old Bridge & Cuillin view" transform="translate(150,3025)" tabindex="0" role="button" aria-label="POI 8: Sligachan Old Bridge & Cuillin view" data-poi-key="107"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">8</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Fairy Pools, Glen Brittle" transform="translate(150,2940)" tabindex="0" role="button" aria-label="POI 9: Fairy Pools, Glen Brittle" data-poi-key="108"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">9</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Dunvegan Castle & gardens" transform="translate(150,2915)" tabindex="0" role="button" aria-label="POI 10: Dunvegan Castle & gardens" data-poi-key="109"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">10</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Portree harbour viewpoint" transform="translate(150,2895)" tabindex="0" role="button" aria-label="POI 11: Portree harbour viewpoint" data-poi-key="110"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">11</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Neist Point" transform="translate(150,2570)" tabindex="0" role="button" aria-label="POI 12: Neist Point" data-poi-key="111"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">12</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Glenfinnan upper viaduct viewpoint" transform="translate(150,2290)" tabindex="0" role="button" aria-label="POI 13: Glenfinnan upper viaduct viewpoint" data-poi-key="112"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">13</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Neptune’s Staircase, Banavie" transform="translate(150,2375)" tabindex="0" role="button" aria-label="POI 14: Neptune’s Staircase, Banavie" data-poi-key="113"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">14</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Glencoe Lochan" transform="translate(150,2010)" tabindex="0" role="button" aria-label="POI 15: Glencoe Lochan" data-poi-key="114"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">15</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Rannoch Moor / Loch Tulla viewpoints" transform="translate(150,1985)" tabindex="0" role="button" aria-label="POI 16: Rannoch Moor / Loch Tulla viewpoints" data-poi-key="115"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">16</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Kelvingrove Art Gallery & Museum" transform="translate(150,1795)" tabindex="0" role="button" aria-label="POI 17: Kelvingrove Art Gallery & Museum" data-poi-key="116"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">17</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Glasgow Cathedral & Necropolis" transform="translate(150,1775)" tabindex="0" role="button" aria-label="POI 18: Glasgow Cathedral & Necropolis" data-poi-key="117"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">18</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Riverside Museum" transform="translate(150,1755)" tabindex="0" role="button" aria-label="POI 19: Riverside Museum" data-poi-key="118"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">19</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Veere historic harbour & Markt" transform="translate(150,1275)" tabindex="0" role="button" aria-label="POI 20: Veere historic harbour & Markt" data-poi-key="119"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">20</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Delft Markt, Oude Kerk & canals" transform="translate(150,1180)" tabindex="0" role="button" aria-label="POI 21: Delft Markt, Oude Kerk & canals" data-poi-key="120"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">21</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Kinderdijk windmill landscape" transform="translate(150,440)" tabindex="0" role="button" aria-label="POI 22: Kinderdijk windmill landscape" data-poi-key="121"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">22</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Kinderdijk museum mills & boat" transform="translate(150,420)" tabindex="0" role="button" aria-label="POI 23: Kinderdijk museum mills & boat" data-poi-key="122"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">23</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Dordrecht historic harbour walk" transform="translate(150,345)" tabindex="0" role="button" aria-label="POI 24: Dordrecht historic harbour walk" data-poi-key="123"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">24</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Biesbosch short nature stop" transform="translate(150,255)" tabindex="0" role="button" aria-label="POI 25: Biesbosch short nature stop" data-poi-key="124"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">25</text></g>
+<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Leiden canals, Burcht & hofjes walk" transform="translate(150,160)" tabindex="0" role="button" aria-label="POI 26: Leiden canals, Burcht & hofjes walk" data-poi-key="125"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">26</text></g>
 <g class="stripMilestone" data-stop-id="eve_return" transform="translate(16,3590.1)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 14</text><text class="milestoneMain" x="52" y="8">AVIS RETURN 15:30</text><text class="milestoneSub" x="5" y="18">EVE FLIGHT 17:15 → OSL; OSL 19:40 → EDI</text></g>
 <g class="stripMilestone" data-stop-id="edi_drivalia" transform="translate(16,3497.3)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 14</text><text class="milestoneMain" x="52" y="8">EDI ARRIVE 20:30</text><text class="milestoneSub" x="5" y="18">DRIVALIA PICKUP 21:30</text></g>
 <g class="stripMilestone" data-stop-id="gla_drivalia" transform="translate(16,1641.5)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 21</text><text class="milestoneMain" x="52" y="8">CAR RETURN TARGET 16:15–16:30</text><text class="milestoneSub" x="5" y="18">GLA FLIGHT 19:25 → AMS 22:00</text></g>
@@ -1010,10 +1044,116 @@ main.contentPane{
       <button type="button" data-filter="ALL" class="active">ALL</button>
       <button type="button" data-filter="HIKE">HIKES</button>
       <button type="button" data-filter="SCENIC POI">SCENIC</button>
-      <button type="button" data-filter="EV CHARGER">EV</button><button type="button" data-filter="RESTAURANT">RESTAURANTS</button><button type="button" data-filter="SUPERMARKET">SUPERMARKETS</button>
+      <button type="button" data-filter="EV CHARGER">EV</button><button type="button" data-filter="RESTAURANT">RESTAURANTS</button><button type="button" data-filter="SUPERMARKET">SUPERMARKETS</button><button type="button" class="costFilter active" data-cost-filter="FREE">FREE</button><button type="button" class="costFilter active" data-cost-filter="PAID">PAID</button>
     </div>
   </div>
   <div class="routePoiList">
+<div class="poiIntelIntro"><b>V18.9.10 POI INTELLIGENCE:</b> Scotland + Netherlands enrichment. Numbered POIs match the transverse markers on the strip. Priority is shape/contrast-led rather than emoji-led. Cost buttons are independent of category buttons.</div>
+
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-pitlochry" data-poi-key="100" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">1</span>Queen’s View, Loch Tummel</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 20–40 min · ~20 min detour</small><small>Classic Loch Tummel panorama; excellent quick Highland landscape stop.</small></span>
+</button>
+<button class="routePoi routePoi-hike poiIntelCard" type="button" data-target="stop-pitlochry" data-poi-key="101" data-cost="FREE">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b><span class="poiNum">2</span>Killiecrankie Gorge & Soldier’s Leap</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 45–75 min · small detour</small><small>Wooded gorge and Jacobite history; short walk can be scaled to available time.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-pitlochry" data-poi-key="102" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">3</span>Pitlochry Dam & fish ladder</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 30–45 min · in town</small><small>Easy walk from Pitlochry with river and hydro views.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-aviemore" data-poi-key="103" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">4</span>Loch Morlich beach & viewpoint</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 20–60 min · ~15 min detour</small><small>Mountain-backed loch and beach; very high scenery return for a short detour.</small></span>
+</button>
+<button class="routePoi routePoi-hike poiIntelCard" type="button" data-target="stop-aviemore" data-poi-key="104" data-cost="FREE">
+<span class="routePoiType">HIKE</span>
+<span class="routePoiText"><b><span class="poiNum">5</span>Rothiemurchus Forest easy walk</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 30–90 min · ~10 min detour</small><small>Ancient pine forest; choose a short loop if time is tight.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-aviemore" data-poi-key="105" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">6</span>Loch Garten / Abernethy pinewoods</b><span class="poiPriority optional">OPTIONAL</span><small class="poiMeta">FREE · 45–90 min · ~20 min detour</small><small>Caledonian pinewood and loch; good wildlife-oriented alternative.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-urquhart" data-poi-key="106" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">7</span>Fort Augustus & Caledonian Canal locks</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 30–60 min · on route south</small><small>Compact canal-lock village at the south end of Loch Ness.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-eilean" data-poi-key="107" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">8</span>Sligachan Old Bridge & Cuillin view</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 10–20 min · on route</small><small>One of the easiest high-value Skye photo stops; bridge and Cuillin backdrop.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-uig" data-poi-key="108" data-cost="PAID">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">9</span>Fairy Pools, Glen Brittle</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">PAID · 1.5–2.5 hr · large detour</small><small>Waterfalls and pools below the Cuillin; parking fee and meaningful walking time.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-uig" data-poi-key="109" data-cost="PAID">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">10</span>Dunvegan Castle & gardens</b><span class="poiPriority optional">OPTIONAL</span><small class="poiMeta">PAID · 1.5–2.5 hr · large detour</small><small>Historic clan seat and gardens; worthwhile only if time/weather suit.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-uig" data-poi-key="110" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">11</span>Portree harbour viewpoint</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 20–45 min · small detour</small><small>Colourful harbour and useful food/coffee stop before northern Skye.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-uig" data-poi-key="111" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">12</span>Neist Point</b><span class="poiPriority optional">OPTIONAL</span><small class="poiMeta">FREE · 1–2 hr · large detour</small><small>Dramatic western cliffs and lighthouse; excellent but time-expensive.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-glenfinnan" data-poi-key="112" data-cost="PAID">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">13</span>Glenfinnan upper viaduct viewpoint</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">PAID · 45–75 min · planned detour</small><small>Short uphill walk gives the classic viaduct view plus Loch Shiel context.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-fortwilliam" data-poi-key="113" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">14</span>Neptune’s Staircase, Banavie</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 20–40 min · small detour</small><small>Eight-lock Caledonian Canal staircase; easy stop near Fort William.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-glencoe_vc" data-poi-key="114" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">15</span>Glencoe Lochan</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 30–60 min · small detour</small><small>Easy woodland/loch walk; useful low-effort alternative to mountain hiking.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-glencoe_vc" data-poi-key="115" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">16</span>Rannoch Moor / Loch Tulla viewpoints</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 10–30 min · on route south</small><small>Major A82 driving landscape; use established lay-bys only.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-glasgow" data-poi-key="116" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">17</span>Kelvingrove Art Gallery & Museum</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 1–2 hr · city</small><small>Major Glasgow collection in a landmark building; strong bad-weather choice.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-glasgow" data-poi-key="117" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">18</span>Glasgow Cathedral & Necropolis</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 60–90 min · city</small><small>Cathedral plus atmospheric hilltop cemetery and city views.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-glasgow" data-poi-key="118" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">19</span>Riverside Museum</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 1–2 hr · city</small><small>Transport museum on the Clyde; especially relevant for a car/aviation enthusiast.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-veere" data-poi-key="119" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">20</span>Veere historic harbour & Markt</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 45–90 min · planned</small><small>15th–16th-century streets, Scottish Houses, harbour and fortifications.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-delft" data-poi-key="120" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">21</span>Delft Markt, Oude Kerk & canals</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 60–120 min · planned</small><small>Compact historic centre: Markt, canals and classic Dutch streetscape.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-kinderdijk" data-poi-key="121" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">22</span>Kinderdijk windmill landscape</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 45–90 min · planned</small><small>The outdoor windmill landscape can be enjoyed freely; visitor attractions/museum mills are paid.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-kinderdijk" data-poi-key="122" data-cost="PAID">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">23</span>Kinderdijk museum mills & boat</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">PAID · 1.5–2.5 hr · planned</small><small>Paid visitor package adds museum mills, boat and pumping-station interpretation.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-dordrecht" data-poi-key="123" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">24</span>Dordrecht historic harbour walk</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 45–90 min · planned</small><small>Old harbour, quays and historic centre; good compact walking stop.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-biesbosch" data-poi-key="124" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">25</span>Biesbosch short nature stop</b><span class="poiPriority optional">OPTIONAL</span><small class="poiMeta">FREE · 45–120 min · small detour</small><small>Wetland landscape; best if weather is good and you want nature rather than another town.</small></span>
+</button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-leiden" data-poi-key="125" data-cost="FREE">
+<span class="routePoiType">SCENIC POI</span>
+<span class="routePoiText"><b><span class="poiNum">26</span>Leiden canals, Burcht & hofjes walk</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 1.5–3 hr · planned</small><small>Highly walkable old centre with canals, bridges, courtyards, windmills and the Burcht.</small></span>
+</button>
 <div class="restaurantTierLegend">
 <b>Restaurant key:</b>
 <span class="restaurantTier tier-destination">★★★★★ DESTINATION</span> worth choosing deliberately;
@@ -2448,7 +2588,7 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
       <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a>
     </section>
 <footer>
-This build keeps the clean baseline, live offline-cache readiness monitoring, and enlarged strip-map POI icons: the proven navigation engine and route data are unchanged; superseded responsive/icon CSS patches have been consolidated into one maintained ruleset. Category filtering, Safari behavior, phone/iPad strip-map layout, trip-state persistence, and manual-scroll handling are incorporated into this clean baseline. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged. Flakstadtind/Nubben notes are based on current Lofoten hiking references; Leiden scenic-day note is based on official Visit Leiden tourism information.
+V18.9.10 adds Scotland/Netherlands POI intelligence, numbered transverse strip markers, priority/cost/time/detour metadata and independent FREE/PAID filtering. It keeps the clean baseline, live offline-cache readiness monitoring, and enlarged strip-map POI icons: the proven navigation engine and route data are unchanged; superseded responsive/icon CSS patches have been consolidated into one maintained ruleset. Category filtering, Safari behavior, phone/iPad strip-map layout, trip-state persistence, and manual-scroll handling are incorporated into this clean baseline. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged. Flakstadtind/Nubben notes are based on current Lofoten hiking references; Leiden scenic-day note is based on official Visit Leiden tourism information.
 The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Tineke Bloemen funeral — Crematorium Hoeksche Waard, Heinenoord — 13:00.
 Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
@@ -3113,8 +3253,8 @@ show('Roadbook V18.9.9 loaded. Norway travel guide expanded; iPad icon, funeral,
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-9';
-  const SW_URL='./roadbook-v18-9-9-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10';
+  const SW_URL='./roadbook-v18-9-10-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){
@@ -3318,18 +3458,26 @@ show('Roadbook V18.9.9 loaded. Norway travel guide expanded; iPad icon, funeral,
   }
   const FILTER_TYPES=['HIKE','SCENIC POI','EV CHARGER','RESTAURANT','SUPERMARKET'];
   let activeFilters=new Set(FILTER_TYPES);
+  let activeCosts=new Set(['FREE','PAID']);
 
   function renderFilters(){
     const showAll=activeFilters.size===FILTER_TYPES.length;
     cards.forEach(c=>{
       const type=cardType(c);
-      c.hidden=!(showAll || activeFilters.has(type));
+      const catOK=(showAll || activeFilters.has(type));
+      const cost=(c.dataset.cost||'').toUpperCase();
+      const costOK=!cost || activeCosts.has(cost);
+      c.hidden=!(catOK && costOK);
     });
     icons.forEach(i=>{
       const type=iconType(i);
-      i.style.display=(showAll || activeFilters.has(type))?'':'none';
+      const card=cards.find(c=>c.dataset.poiKey===i.dataset.poiKey);
+      const cost=card ? (card.dataset.cost||'').toUpperCase() : '';
+      const costOK=!cost || activeCosts.has(cost);
+      i.style.display=((showAll || activeFilters.has(type)) && costOK)?'':'none';
     });
     if(filterWrap){
+      filterWrap.querySelectorAll('button[data-cost-filter]').forEach(b=>{const on=activeCosts.has(b.dataset.costFilter);b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false');});
       filterWrap.querySelectorAll('button[data-filter]').forEach(b=>{
         const kind=b.dataset.filter;
         const on=(kind==='ALL') ? showAll : activeFilters.has(kind);
@@ -3357,6 +3505,8 @@ show('Roadbook V18.9.9 loaded. Norway travel guide expanded; iPad icon, funeral,
 
   if(filterWrap){
     filterWrap.addEventListener('click',ev=>{
+      const cb=ev.target.closest('button[data-cost-filter]');
+      if(cb){ev.preventDefault();const c=cb.dataset.costFilter;if(activeCosts.has(c)){if(activeCosts.size>1)activeCosts.delete(c);}else activeCosts.add(c);renderFilters();return;}
       const b=ev.target.closest('button[data-filter]');
       if(!b) return;
       ev.preventDefault();
@@ -3388,7 +3538,7 @@ show('Roadbook V18.9.9 loaded. Norway travel guide expanded; iPad icon, funeral,
   function layoutStripPois(){
     const svg=document.querySelector('#stripPane .stripSvg');
     if(!svg) return;
-    const poi=[...svg.querySelectorAll('.stripPoi[data-poi-key]')];
+    const poi=[...svg.querySelectorAll('.stripPoi[data-poi-key]:not(.poiCrossMarker)')];
     if(!poi.length) return;
 
     // Text and milestone boxes are protected. Horizontal icon position is
