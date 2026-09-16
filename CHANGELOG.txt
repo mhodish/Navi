@@ -1,13 +1,24 @@
-Roadbook V18.9.10.1 — Change Log
+Europe GPS Roadbook V18.9.10.2 — Uig Overnight Hub
 
-- Preserved the successful V18.9.10 navigation/GPS/arrival/auto-advance engine.
-- Removed Neist Point from the itinerary/POI presentation.
-- Confirmed Tineke Bloemen memorial/funeral fixed anchor: Sat 26 Sep, 13:00, Crematorium Hoeksche Waard, Heinenoord.
-- Added denser overnight-area POIs around Uig: Fairy Glen, Rha Falls, Uig Community Woodland, Uig Tower/Captain Fraser’s Folly, Uig Pottery, and Skye Museum of Island Life.
-- Added hidden-on-demand photos: normal page stays compact; tap “View photo” to reveal. Existing destination photos are converted to the same compact behavior.
-- Added Ferry Inn and Fairy Glen recognition/decision photos using Wikimedia Commons sources with attribution.
-- Added two temporary Uig phone-background audio test zones, one south and one north of the Ferry Inn. Each triggers the normal approach announcement once when Roadbook is active.
-- Reduced strip-map POI-marker collisions by keeping true vertical position while alternating number badges left/right and moving them farther from the road/stop labels.
-- Bumped service-worker/cache version to V18.9.10.1 so the update installs cleanly offline.
+Changes from V18.9.10.1
 
-NOTE: destination photographs are requested lazily and the service worker retains fetched image responses when available; open any photo once while online before relying on that specific photo offline.
+1. Uig overnight POIs are now visibly represented on the strip as a local hub around Ferry Inn instead of existing only as off-route detail cards.
+2. Added keyed local markers U1–U6 and matching labels in the POI cards:
+   U1 Fairy Glen
+   U2 Rha Falls
+   U3 Uig Community Woodland
+   U4 Uig Tower / Captain Fraser's Folly
+   U5 Uig Pottery
+   U6 Skye Museum of Island Life
+3. The local hub convention deliberately groups off-route attractions at the overnight stop; their strip position is not intended to imply that they lie on the through-road.
+4. Corrected the temporary Uig background-audio test implementation. The two test zones are now checked directly from the proven live GPS pos() path, without changing arrival/departure/navigation state.
+   - Uig south test: 57.5740, -6.3380
+   - Uig north test: 57.6070, -6.3520
+   - Trigger radius: 300 m
+5. Test-zone fired state uses a new V18.9.10.2 localStorage key so both tests are fresh for this build.
+6. Service-worker/cache version bumped to V18.9.10.2.
+7. Navigation constants and proven arrival/auto-advance engine otherwise unchanged.
+8. Neist Point remains removed. Tineke Bloemen funeral remains fixed at 13:00 Sat 26 Sep.
+
+Known limitation retained from V18.9.10.1:
+Photographs are still remote/lazy and are not yet physically bundled in this update ZIP. The next photo-architecture build will package compressed local image files for guaranteed first-use offline viewing.
