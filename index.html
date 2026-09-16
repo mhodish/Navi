@@ -475,15 +475,20 @@ main.contentPane{
 </style>
 
 <meta name="application-name" content="Roadbook">
+
+<style id="v189101PatchStyles">
+/* V18.9.10.1: compact photos + marker collision relief */
+details.photoReveal{margin:7px 0}.photoReveal>summary{display:inline-block;cursor:pointer;font-weight:800;text-decoration:underline;color:#173b67}.photoReveal>summary::-webkit-details-marker{display:none}.photoReveal figure{margin:7px 0 4px}.photoReveal img{max-width:100%;height:auto;border-radius:8px}.overnightLocal{border-left:5px solid #26384a}.testAnnounceNote{background:#eef5ff;border:1px solid #789;padding:7px 9px;margin:7px 0;border-radius:7px;font-size:12px}
+</style>
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.9.10 POI Intelligence</h1>
-<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10</div></header>
+<header><h1>Europe GPS Roadbook — V18.9.10.1 Road-test Update</h1>
+<div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.10</strong>
+    <strong>ROADBOOK · V18.9.10.1</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -979,7 +984,7 @@ main.contentPane{
 <g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Fairy Pools, Glen Brittle" transform="translate(150,2940)" tabindex="0" role="button" aria-label="POI 9: Fairy Pools, Glen Brittle" data-poi-key="108"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">9</text></g>
 <g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Dunvegan Castle & gardens" transform="translate(150,2915)" tabindex="0" role="button" aria-label="POI 10: Dunvegan Castle & gardens" data-poi-key="109"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">10</text></g>
 <g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Portree harbour viewpoint" transform="translate(150,2895)" tabindex="0" role="button" aria-label="POI 11: Portree harbour viewpoint" data-poi-key="110"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">11</text></g>
-<g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Neist Point" transform="translate(150,2570)" tabindex="0" role="button" aria-label="POI 12: Neist Point" data-poi-key="111"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">12</text></g>
+
 <g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Glenfinnan upper viaduct viewpoint" transform="translate(150,2290)" tabindex="0" role="button" aria-label="POI 13: Glenfinnan upper viaduct viewpoint" data-poi-key="112"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">13</text></g>
 <g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Neptune’s Staircase, Banavie" transform="translate(150,2375)" tabindex="0" role="button" aria-label="POI 14: Neptune’s Staircase, Banavie" data-poi-key="113"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">14</text></g>
 <g class="stripPoi mapPoiScenic poiCrossMarker" data-poi-name="Glencoe Lochan" transform="translate(150,2010)" tabindex="0" role="button" aria-label="POI 15: Glencoe Lochan" data-poi-key="114"><rect class="poiTapHalo" x="-31" y="-10" width="76" height="20" rx="8"/><line class="crossLine" x1="-27" y1="0" x2="27" y2="0"/><circle class="crossNum" cx="36" cy="0" r="8"/><text class="crossText" x="36" y=".5">15</text></g>
@@ -1048,7 +1053,7 @@ main.contentPane{
     </div>
   </div>
   <div class="routePoiList">
-<div class="poiIntelIntro"><b>V18.9.10 POI INTELLIGENCE:</b> Scotland + Netherlands enrichment. Numbered POIs match the transverse markers on the strip. Priority is shape/contrast-led rather than emoji-led. Cost buttons are independent of category buttons.</div>
+<div class="poiIntelIntro"><b>V18.9.10.1 POI INTELLIGENCE:</b> Scotland + Netherlands enrichment. Numbered POIs match the transverse markers on the strip. Priority is shape/contrast-led rather than emoji-led. Cost buttons are independent of category buttons.</div>
 
 <button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-pitlochry" data-poi-key="100" data-cost="FREE">
 <span class="routePoiType">SCENIC POI</span>
@@ -1082,6 +1087,13 @@ main.contentPane{
 <span class="routePoiType">SCENIC POI</span>
 <span class="routePoiText"><b><span class="poiNum">8</span>Sligachan Old Bridge & Cuillin view</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 10–20 min · on route</small><small>One of the easiest high-value Skye photo stops; bridge and Cuillin backdrop.</small></span>
 </button>
+<div class="poiIntelIntro"><b>UIG OVERNIGHT AREA:</b> denser local coverage within roughly 0–30 minutes of the Ferry Inn, including worthwhile places that are not directly on tomorrow’s through-route.</div>
+<button class="routePoi routePoi-scenic-poi poiIntelCard overnightLocal" type="button" data-target="stop-uig" data-poi-key="190" data-cost="FREE"><span class="routePoiType">SCENIC POI</span><span class="routePoiText"><b>Fairy Glen</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE entry · ~1 hr walk · ~10 min from Uig</small><small>Miniature landslip landscape of cone-shaped hills, lochans and Castle Ewen; paid car park.</small><figure class="poiPhoto"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Turf%20Dyke%20-%20geograph.org.uk%20-%20506945.jpg?width=960" alt="Fairy Glen near Uig" loading="lazy"><figcaption>Dave Fergusson — CC BY-SA 2.0, Wikimedia Commons</figcaption></figure></span></button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard overnightLocal" type="button" data-target="stop-uig" data-poi-key="191" data-cost="FREE"><span class="routePoiType">SCENIC POI</span><span class="routePoiText"><b>Rha Falls</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 20–40 min · in Uig</small><small>Double waterfall hidden just above the village; park at Community Hall or opposite the old police station.</small></span></button>
+<button class="routePoi routePoi-hike poiIntelCard overnightLocal" type="button" data-target="stop-uig" data-poi-key="192" data-cost="FREE"><span class="routePoiType">WALK</span><span class="routePoiText"><b>Uig Community Woodland</b><span class="poiPriority optional">OPTIONAL</span><small class="poiMeta">FREE · 20–45 min · in Uig</small><small>Gentle woodland/shoreline walk between the Community Hall and Rankins.</small></span></button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard overnightLocal" type="button" data-target="stop-uig" data-poi-key="193" data-cost="FREE"><span class="routePoiType">PHOTO</span><span class="routePoiText"><b>Uig Tower / Captain Fraser’s Folly</b><span class="poiPriority optional">OPTIONAL</span><small class="poiMeta">FREE view · 5–15 min · in Uig</small><small>Private tower, but a quick landmark/photo from the parking bay opposite Uig Hotel.</small></span></button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard overnightLocal" type="button" data-target="stop-uig" data-poi-key="194" data-cost="PAID"><span class="routePoiType">CRAFT</span><span class="routePoiText"><b>Uig Pottery</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">Shop · at the pier</small><small>Local pottery workshop/shop right by Uig harbour.</small></span></button>
+<button class="routePoi routePoi-scenic-poi poiIntelCard overnightLocal" type="button" data-target="stop-uig" data-poi-key="195" data-cost="PAID"><span class="routePoiType">MUSEUM</span><span class="routePoiText"><b>Skye Museum of Island Life</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">£8 adult · ~1 hr · ~15 min north</small><small>Traditional thatched croft houses and Highland island-life history; open Mon–Sat 10:00–17:00 in season.</small></span></button>
 <button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-uig" data-poi-key="108" data-cost="PAID">
 <span class="routePoiType">SCENIC POI</span>
 <span class="routePoiText"><b><span class="poiNum">9</span>Fairy Pools, Glen Brittle</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">PAID · 1.5–2.5 hr · large detour</small><small>Waterfalls and pools below the Cuillin; parking fee and meaningful walking time.</small></span>
@@ -1094,10 +1106,7 @@ main.contentPane{
 <span class="routePoiType">SCENIC POI</span>
 <span class="routePoiText"><b><span class="poiNum">11</span>Portree harbour viewpoint</b><span class="poiPriority recommended">RECOMMENDED</span><small class="poiMeta">FREE · 20–45 min · small detour</small><small>Colourful harbour and useful food/coffee stop before northern Skye.</small></span>
 </button>
-<button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-uig" data-poi-key="111" data-cost="FREE">
-<span class="routePoiType">SCENIC POI</span>
-<span class="routePoiText"><b><span class="poiNum">12</span>Neist Point</b><span class="poiPriority optional">OPTIONAL</span><small class="poiMeta">FREE · 1–2 hr · large detour</small><small>Dramatic western cliffs and lighthouse; excellent but time-expensive.</small></span>
-</button>
+
 <button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-glenfinnan" data-poi-key="112" data-cost="PAID">
 <span class="routePoiType">SCENIC POI</span>
 <span class="routePoiText"><b><span class="poiNum">13</span>Glenfinnan upper viaduct viewpoint</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">PAID · 45–75 min · planned detour</small><small>Short uphill walk gives the classic viaduct view plus Loch Shiel context.</small></span>
@@ -2141,7 +2150,7 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
     </section>
 
     <section class="stop" id="stop-uig" data-stop="uig">
-      <div class="stophead"><span class="badge">STOP 22</span><h2>Ferry Inn, Uig</h2></div>
+      <div class="stophead"><span class="badge">STOP 22</span><h2>Ferry Inn, Uig</h2></div><figure class="poiPhoto"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Ferry_Inn%2C_Uig_-_geograph.org.uk_-_2223879.jpg?width=960" alt="The Ferry Inn, Uig" loading="lazy"><figcaption>Dave Fergusson — CC BY-SA 2.0, Wikimedia Commons</figcaption></figure><div class="testAnnounceNote"><b>PHONE BACKGROUND-AUDIO TEST:</b> two temporary test zones are armed within a couple of miles of Uig. With Roadbook active, leave this app in the background. Crossing either zone should play the normal approach announcement once.</div>
       <div class="dateCountry">Wed 16 Sep · Scotland</div>
       
       <p class="address">Uig, Isle of Skye</p>
@@ -3253,8 +3262,8 @@ show('Roadbook V18.9.9 loaded. Norway travel guide expanded; iPad icon, funeral,
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-10';
-  const SW_URL='./roadbook-v18-9-10-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10-1';
+  const SW_URL='./roadbook-v18-9-10-1-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){
@@ -3610,5 +3619,41 @@ show('Roadbook V18.9.9 loaded. Norway travel guide expanded; iPad icon, funeral,
 })();
 </script>
 
+<script id="v189101RoadTestPatch">
+(function(){
+  // Keep photos out of the normal reading flow until requested.
+  document.querySelectorAll('figure.poiPhoto').forEach(fig=>{
+    if(fig.parentElement && fig.parentElement.tagName==='DETAILS') return;
+    const d=document.createElement('details'); d.className='photoReveal';
+    const sm=document.createElement('summary'); sm.textContent='View photo';
+    fig.parentNode.insertBefore(d,fig); d.appendChild(sm); d.appendChild(fig);
+  });
+
+  // Preserve POI vertical position; move only the number badge horizontally.
+  document.querySelectorAll('.poiCrossMarker').forEach((g,i)=>{
+    const side=(i%2===0)?1:-1, x=side*58;
+    const c=g.querySelector('.crossNum'), t=g.querySelector('.crossText'), line=g.querySelector('.crossLine');
+    if(c) c.setAttribute('cx',x); if(t) t.setAttribute('x',x);
+    if(line){ line.setAttribute('x1',side<0?-58:-27); line.setAttribute('x2',side>0?58:27); }
+  });
+
+  // Temporary Uig background-audio test zones. Does not alter navigation state.
+  const zones=[
+    {name:'Uig south test',lat:57.5740,lon:-6.3380},
+    {name:'Uig north test',lat:57.6070,lon:-6.3520}
+  ];
+  const fired=new Set(JSON.parse(localStorage.getItem('rb189101TestZones')||'[]'));
+  const originalPos=window.pos;
+  window.pos=function(p){
+    if(typeof originalPos==='function') originalPos(p);
+    if(!window.roadbookRunning) return;
+    zones.forEach((z,i)=>{
+      if(fired.has(i)) return;
+      const d=hav(p.coords.latitude,p.coords.longitude,z.lat,z.lon);
+      if(d<=300){ fired.add(i); localStorage.setItem('rb189101TestZones',JSON.stringify([...fired])); playApproach(); show('BACKGROUND-AUDIO TEST ZONE: '+z.name+' — announcement triggered.'); }
+    });
+  };
+})();
+</script>
 </body>
 </html>

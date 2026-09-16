@@ -1,0 +1,13 @@
+Roadbook V18.9.10.1 — Change Log
+
+- Preserved the successful V18.9.10 navigation/GPS/arrival/auto-advance engine.
+- Removed Neist Point from the itinerary/POI presentation.
+- Confirmed Tineke Bloemen memorial/funeral fixed anchor: Sat 26 Sep, 13:00, Crematorium Hoeksche Waard, Heinenoord.
+- Added denser overnight-area POIs around Uig: Fairy Glen, Rha Falls, Uig Community Woodland, Uig Tower/Captain Fraser’s Folly, Uig Pottery, and Skye Museum of Island Life.
+- Added hidden-on-demand photos: normal page stays compact; tap “View photo” to reveal. Existing destination photos are converted to the same compact behavior.
+- Added Ferry Inn and Fairy Glen recognition/decision photos using Wikimedia Commons sources with attribution.
+- Added two temporary Uig phone-background audio test zones, one south and one north of the Ferry Inn. Each triggers the normal approach announcement once when Roadbook is active.
+- Reduced strip-map POI-marker collisions by keeping true vertical position while alternating number badges left/right and moving them farther from the road/stop labels.
+- Bumped service-worker/cache version to V18.9.10.1 so the update installs cleanly offline.
+
+NOTE: destination photographs are requested lazily and the service worker retains fetched image responses when available; open any photo once while online before relying on that specific photo offline.
