@@ -1,11 +1,11 @@
-Europe GPS Roadbook V18.9.10.3 — Uig Hub Repair
+Europe GPS Roadbook V18.9.10.5 — Eastern Route + Morning Audio Test
 
-- Repairs V18.9.10.2 overnight-hub placement.
-- Uig local POIs U1–U6 now appear beside BOTH Ferry Inn occurrences on the strip, including STOP 27 “Ferry Inn — second night”.
-- Adds an explicit UIG LOCAL · U1–U6 strip label at the second-night cluster.
-- Adds a Uig Overnight Hub note to the STOP 27 detail card.
-- Retains the two temporary Uig background-audio/enunciation test zones north and south of Uig.
-- Resets only the temporary test-zone fired-state key for this build so both tests can fire once again.
-- Navigation, arrival, auto-advance, 2-minute warning, filters and route-stop data otherwise unchanged.
-- Offline cache/service worker bumped to V18.9.10.3.
-- Photos remain remote in this emergency road-test build; fully bundled offline photos remain scheduled for the subsequent build.
+Based directly on verified V18.9.10.4 Uig Hub + Offline Repair.
+
+Changes:
+- Added scenic POI intelligence for Sep 18 eastern route Uig → Skye Bridge → Glen Shiel → Loch Cluanie → Spean Bridge → Fort William → Glencoe.
+- Added Glenfinnan/Jacobite optional-detour information, parking/walk guidance, and 2026 train timing guidance.
+- Repositioned temporary Uig audio diagnostic to two close southbound zones, roughly 1/4 mile and 1/2 mile from Ferry Inn, with visible trigger confirmation.
+- Bumped offline cache/service worker to V18.9.10.5.
+
+Frozen V17.1 navigation constants and arrival/advance logic otherwise unchanged.
