@@ -1,11 +1,12 @@
-Europe GPS Roadbook V18.9.10.5 — Eastern Route + Morning Audio Test
+Europe GPS Roadbook V18.9.10.5.4 — Rocklee + Strip Recenter Fix
 
-Based directly on verified V18.9.10.4 Uig Hub + Offline Repair.
-
-Changes:
-- Added scenic POI intelligence for Sep 18 eastern route Uig → Skye Bridge → Glen Shiel → Loch Cluanie → Spean Bridge → Fort William → Glencoe.
-- Added Glenfinnan/Jacobite optional-detour information, parking/walk guidance, and 2026 train timing guidance.
-- Repositioned temporary Uig audio diagnostic to two close southbound zones, roughly 1/4 mile and 1/2 mile from Ferry Inn, with visible trigger confirmation.
-- Bumped offline cache/service worker to V18.9.10.5.
-
-Frozen V17.1 navigation constants and arrival/advance logic otherwise unchanged.
+Changes from V18.9.10.5.3:
+• Corrected Rocklee B&B waypoint from the old approximate Ballachulish coordinate to 56.677906, -5.132715 at the Old Railway Goods Yard area.
+• Corrected the Rocklee displayed GPS coordinate and Google Maps destination link.
+• Strip map now centers on the remembered active stop when the Roadbook loads.
+• Strip map centers on the active stop when live Roadbook starts.
+• Strip map recenters when GPS auto-advance changes the active stop.
+• Manual strip scrolling still temporarily overrides GPS follow, preserving user control.
+• Retains V18.9.10.5.3 rich Glencoe–Glasgow POIs and 10-second POI text highlight behavior.
+• Frozen V17.1 arrival/warning/ETE/auto-advance thresholds and logic are otherwise unchanged.
+• Offline cache/version advanced to roadbook-v18-9-10-5-4.
