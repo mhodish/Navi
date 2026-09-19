@@ -1,12 +1,15 @@
-Europe GPS Roadbook V18.9.10.5.4 — Rocklee + Strip Recenter Fix
+Europe GPS Roadbook — V18.9.10.5.5 Glasgow Walking Diagnostic
 
-Changes from V18.9.10.5.3:
-• Corrected Rocklee B&B waypoint from the old approximate Ballachulish coordinate to 56.677906, -5.132715 at the Old Railway Goods Yard area.
-• Corrected the Rocklee displayed GPS coordinate and Google Maps destination link.
-• Strip map now centers on the remembered active stop when the Roadbook loads.
-• Strip map centers on the active stop when live Roadbook starts.
-• Strip map recenters when GPS auto-advance changes the active stop.
-• Manual strip scrolling still temporarily overrides GPS follow, preserving user control.
-• Retains V18.9.10.5.3 rich Glencoe–Glasgow POIs and 10-second POI text highlight behavior.
-• Frozen V17.1 arrival/warning/ETE/auto-advance thresholds and logic are otherwise unchanged.
-• Offline cache/version advanced to roadbook-v18-9-10-5-4.
+Changes from 18.9.10.5.4:
+- Adds a one-tap Glasgow pedestrian diagnostic beginning at Hotel Indigo, followed by ordinary navigation waypoints at Glasgow Central and George Square.
+- Adds visible diagnostic reporting for 2-minute warning condition, approach speech request/result, arrival-zone entry, near-destination speech request/result, departure distance gain, and auto-advance confirmation.
+- Repairs automatic advance: departure is now confirmed from sustained GPS distance gain from closest approach, rather than requiring iOS coords.speed to be present and above 2.0 m/s. Existing 35 m gain and 2.5 s confirmation remain.
+- Lowers movement/warning speed floors so the same ordinary navigation path can be tested while walking.
+- Corrects Hotel Indigo Glasgow waypoint to 55.860492, -4.263012.
+- Keeps 10.5.4 strip recentering, rich Glencoe–Glasgow POIs, 10-second POI highlighting, offline support, icons and manifest.
+
+Tomorrow test:
+1. At Hotel Indigo, tap Start Glasgow walking test.
+2. Tap Start live roadbook.
+3. Walk normally toward Glasgow Central, then George Square.
+4. The diagnostic panel records what the navigation/audio/auto-advance path actually does.

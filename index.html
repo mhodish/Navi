@@ -482,13 +482,13 @@ details.photoReveal{margin:7px 0}.photoReveal>summary{display:inline-block;curso
 </style>
 </head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.9.10.5.4 Rocklee + Strip Recenter Fix</h1>
+<header><h1>Europe GPS Roadbook — V18.9.10.5.5 Glasgow Walking Diagnostic</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.10.5.4</strong>
+    <strong>ROADBOOK · V18.9.10.5.5</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -1055,7 +1055,9 @@ details.photoReveal{margin:7px 0}.photoReveal>summary{display:inline-block;curso
   <button id="prev" type="button">Previous stop</button>
   <button id="next" type="button">Next stop</button>
   <button id="testaudio" type="button">Test voice</button>
+  <button id="walktest" type="button">Start Glasgow walking test</button>
 </div>
+<div id="navDiagnostic" style="margin:7px 0;padding:8px 10px;border:1px solid #789;border-radius:8px;background:#eef5ff;font-size:12px;line-height:1.35"><b>DIAGNOSTIC:</b> waiting. Tomorrow: tap <b>Start Glasgow walking test</b> at Hotel Indigo, then Start live roadbook.</div>
 <div class="jumpRow"><b>Jump to stop:</b><select id="jumpStop" aria-label="Jump to route stop"></select></div>
 
 
@@ -2420,9 +2422,25 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
       
       <p class="address">75 Waterloo Street, Glasgow</p>
       <p>Confirmed 19–21 Sep. Check-in 15:00; checkout 11:00.</p>
-      <div class="gps">GPS: 55.861700, -4.264600</div>
+      <div class="gps">GPS: 55.860492, -4.263012</div>
       <div class="distance" id="distance-hotel_indigo">Distance from you: waiting for GPS</div>
-      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=55.861700%2C-4.264600">Navigate to this stop using Google Maps</a>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=55.860492%2C-4.263012">Navigate to this stop using Google Maps</a>
+    </section>
+
+    <section class="stop" id="stop-walk_central" data-stop="walk_central">
+      <div class="stophead"><span class="badge">WALK TEST 1</span><h2>Glasgow Central</h2></div>
+      <div class="dateCountry">Sun 20 Sep · Glasgow audio/advance diagnostic</div>
+      <p><b>Pedestrian test waypoint.</b> Walk normally from Hotel Indigo toward Glasgow Central. Watch the diagnostic panel only when safely stopped. The Roadbook should issue its approach and near-destination events, then automatically advance after you clearly depart.</p>
+      <div class="gps">GPS: 55.859741, -4.257636</div>
+      <div class="distance" id="distance-walk_central">Distance from you: waiting for GPS</div>
+    </section>
+
+    <section class="stop" id="stop-walk_george" data-stop="walk_george">
+      <div class="stophead"><span class="badge">WALK TEST 2</span><h2>George Square</h2></div>
+      <div class="dateCountry">Sun 20 Sep · Glasgow audio/advance diagnostic</div>
+      <p><b>Second pedestrian test waypoint.</b> Continue toward George Square. This provides a second complete warning → arrival → departure → auto-advance cycle.</p>
+      <div class="gps">GPS: 55.861153, -4.250284</div>
+      <div class="distance" id="distance-walk_george">Distance from you: waiting for GPS</div>
     </section>
 
     <section class="stop" id="stop-glasgow" data-stop="glasgow">
@@ -2687,15 +2705,15 @@ Photo credits are shown under each image. Photos are cached for offline use when
 </div>
 <audio id="voicePlayer" preload="auto"></audio>
 <script>
-const stops=[{"id": "eve_house", "name": "House near Evenes Airport", "lat": 68.49, "lon": 16.65}, {"id": "henningsvaer", "name": "Henningsvær / Tobiasbrygga", "lat": 68.1533, "lon": 14.2018}, {"id": "haukland", "name": "Haukland Beach", "lat": 68.199495, "lon": 13.507947}, {"id": "uttakleiv", "name": "Uttakleiv Beach", "lat": 68.2095, "lon": 13.503}, {"id": "ramberg", "name": "Ramberg Beach", "lat": 68.0896, "lon": 13.2294}, {"id": "skagsanden", "name": "Flakstad Church + Skagsanden", "lat": 68.111, "lon": 13.274}, {"id": "arctic_resort", "name": "Arctic Resort Lofoten", "lat": 68.085, "lon": 13.225}, {"id": "hamnoy", "name": "Hamnøy Bridge Viewpoint", "lat": 67.9496, "lon": 13.1327}, {"id": "reine", "name": "Sakrisøy + Reine", "lat": 67.9324, "lon": 13.0895}, {"id": "aa", "name": "Å Fishing Village Museum", "lat": 67.879, "lon": 12.982}, {"id": "nusfjord", "name": "Nusfjord", "lat": 68.0344, "lon": 13.3485}, {"id": "fredvang", "name": "Fredvang / Ytresand Coast", "lat": 68.089, "lon": 13.163}, {"id": "lofotr", "name": "Lofotr Viking Museum", "lat": 68.2444, "lon": 13.7577}, {"id": "svolvaer", "name": "Svolvær / Nordis Apartments", "lat": 68.2343, "lon": 14.568}, {"id": "eve_return", "name": "Evenes Airport — Avis Return", "lat": 68.4913, "lon": 16.6781}, {"id": "edi_drivalia", "name": "Drivalia Edinburgh Pickup", "lat": 55.946, "lon": -3.407}, {"id": "pitbauchlie", "name": "Pitbauchlie House Hotel", "lat": 56.06, "lon": -3.455}, {"id": "pitlochry", "name": "Pitlochry", "lat": 56.704, "lon": -3.735}, {"id": "aviemore", "name": "Aviemore / High Range", "lat": 57.195, "lon": -3.829}, {"id": "urquhart", "name": "Urquhart Castle", "lat": 57.324, "lon": -4.442}, {"id": "eilean", "name": "Eilean Donan Castle", "lat": 57.274272, "lon": -5.513767}, {"id": "uig", "name": "Ferry Inn, Uig", "lat": 57.5855, "lon": -6.3565}, {"id": "storr", "name": "Old Man of Storr", "lat": 57.5073, "lon": -6.1838}, {"id": "kiltrock", "name": "Kilt Rock / Mealt Falls", "lat": 57.6105, "lon": -6.1728}, {"id": "quiraing", "name": "Quiraing", "lat": 57.6435, "lon": -6.273}, {"id": "fairyglen", "name": "Fairy Glen", "lat": 57.5837, "lon": -6.3265}, {"id": "uig_return", "name": "Ferry Inn — second night", "lat": 57.5855, "lon": -6.3565}, {"id": "fortwilliam", "name": "Fort William", "lat": 56.8198, "lon": -5.1052}, {"id": "glenfinnan", "name": "Glenfinnan Viaduct / Loch Shiel", "lat": 56.8707, "lon": -5.4319}, {"id": "glencoe", "name": "Glencoe / Three Sisters", "lat": 56.665, "lon": -4.986}, {"id": "rocklee", "name": "Rocklee B&B", "lat": 56.677906, "lon": -5.132715}, {"id": "glencoe_vc", "name": "Glencoe Visitor Centre", "lat": 56.6678, "lon": -5.109}, {"id": "test_threesisters", "name": "TEST 1 — Three Sisters (ordinary waypoint)", "lat": 56.665, "lon": -4.986}, {"id": "test_lochtulla", "name": "TEST 2 — Loch Tulla Viewpoint (ordinary waypoint)", "lat": 56.56793, "lon": -4.75393}, {"id": "luss", "name": "Luss / Loch Lomond", "lat": 56.101, "lon": -4.639}, {"id": "hotel_indigo", "name": "Hotel Indigo Glasgow", "lat": 55.8617, "lon": -4.2646}, {"id": "glasgow", "name": "Glasgow — free sightseeing day", "lat": 55.8609, "lon": -4.2514}, {"id": "gla_drivalia", "name": "Drivalia Glasgow Return", "lat": 55.856, "lon": -4.435}, {"id": "vienna_house", "name": "Vienna House Easy — Hoofddorp", "lat": 52.301, "lon": 4.691}, {"id": "ams_car", "name": "Keddy Rental Pickup — Schiphol", "lat": 52.3105, "lon": 4.7683}, {"id": "vlissingen", "name": "Vlissingen — Wim Bijnen", "lat": 51.4427, "lon": 3.5736}, {"id": "veere", "name": "Veere", "lat": 51.5488, "lon": 3.6665}, {"id": "delft", "name": "Delft historic centre", "lat": 52.0116, "lon": 4.3571}, {"id": "denhaag", "name": "Den Haag — Izzy Fordham", "lat": 52.0705, "lon": 4.3007}, {"id": "cuijk", "name": "Cuijk — Mike Birkhoff", "lat": 51.7306, "lon": 5.8792}, {"id": "nieuwegein", "name": "Nieuwegein — Harm Braams", "lat": 52.0292, "lon": 5.0807}, {"id": "buren", "name": "Buren", "lat": 51.91, "lon": 5.335}, {"id": "heusden", "name": "Heusden", "lat": 51.733, "lon": 5.138}, {"id": "willemstad", "name": "Willemstad", "lat": 51.691, "lon": 4.438}, {"id": "heinenoord_funeral", "name": "Crematorium Hoeksche Waard — Tineke Bloemen funeral", "lat": 51.817716, "lon": 4.532335}, {"id": "kinderdijk", "name": "Kinderdijk", "lat": 51.8854, "lon": 4.6367}, {"id": "dordrecht", "name": "Dordrecht", "lat": 51.8133, "lon": 4.6901}, {"id": "biesbosch", "name": "Biesbosch — optional", "lat": 51.7415, "lon": 4.771}, {"id": "leiden", "name": "Leiden historic centre", "lat": 52.160114, "lon": 4.49701}, {"id": "schiphol_return", "name": "Schiphol — Keddy Return", "lat": 52.3105, "lon": 4.7683}];
+const stops=[{"id": "eve_house", "name": "House near Evenes Airport", "lat": 68.49, "lon": 16.65}, {"id": "henningsvaer", "name": "Henningsvær / Tobiasbrygga", "lat": 68.1533, "lon": 14.2018}, {"id": "haukland", "name": "Haukland Beach", "lat": 68.199495, "lon": 13.507947}, {"id": "uttakleiv", "name": "Uttakleiv Beach", "lat": 68.2095, "lon": 13.503}, {"id": "ramberg", "name": "Ramberg Beach", "lat": 68.0896, "lon": 13.2294}, {"id": "skagsanden", "name": "Flakstad Church + Skagsanden", "lat": 68.111, "lon": 13.274}, {"id": "arctic_resort", "name": "Arctic Resort Lofoten", "lat": 68.085, "lon": 13.225}, {"id": "hamnoy", "name": "Hamnøy Bridge Viewpoint", "lat": 67.9496, "lon": 13.1327}, {"id": "reine", "name": "Sakrisøy + Reine", "lat": 67.9324, "lon": 13.0895}, {"id": "aa", "name": "Å Fishing Village Museum", "lat": 67.879, "lon": 12.982}, {"id": "nusfjord", "name": "Nusfjord", "lat": 68.0344, "lon": 13.3485}, {"id": "fredvang", "name": "Fredvang / Ytresand Coast", "lat": 68.089, "lon": 13.163}, {"id": "lofotr", "name": "Lofotr Viking Museum", "lat": 68.2444, "lon": 13.7577}, {"id": "svolvaer", "name": "Svolvær / Nordis Apartments", "lat": 68.2343, "lon": 14.568}, {"id": "eve_return", "name": "Evenes Airport — Avis Return", "lat": 68.4913, "lon": 16.6781}, {"id": "edi_drivalia", "name": "Drivalia Edinburgh Pickup", "lat": 55.946, "lon": -3.407}, {"id": "pitbauchlie", "name": "Pitbauchlie House Hotel", "lat": 56.06, "lon": -3.455}, {"id": "pitlochry", "name": "Pitlochry", "lat": 56.704, "lon": -3.735}, {"id": "aviemore", "name": "Aviemore / High Range", "lat": 57.195, "lon": -3.829}, {"id": "urquhart", "name": "Urquhart Castle", "lat": 57.324, "lon": -4.442}, {"id": "eilean", "name": "Eilean Donan Castle", "lat": 57.274272, "lon": -5.513767}, {"id": "uig", "name": "Ferry Inn, Uig", "lat": 57.5855, "lon": -6.3565}, {"id": "storr", "name": "Old Man of Storr", "lat": 57.5073, "lon": -6.1838}, {"id": "kiltrock", "name": "Kilt Rock / Mealt Falls", "lat": 57.6105, "lon": -6.1728}, {"id": "quiraing", "name": "Quiraing", "lat": 57.6435, "lon": -6.273}, {"id": "fairyglen", "name": "Fairy Glen", "lat": 57.5837, "lon": -6.3265}, {"id": "uig_return", "name": "Ferry Inn — second night", "lat": 57.5855, "lon": -6.3565}, {"id": "fortwilliam", "name": "Fort William", "lat": 56.8198, "lon": -5.1052}, {"id": "glenfinnan", "name": "Glenfinnan Viaduct / Loch Shiel", "lat": 56.8707, "lon": -5.4319}, {"id": "glencoe", "name": "Glencoe / Three Sisters", "lat": 56.665, "lon": -4.986}, {"id": "rocklee", "name": "Rocklee B&B", "lat": 56.677906, "lon": -5.132715}, {"id": "glencoe_vc", "name": "Glencoe Visitor Centre", "lat": 56.6678, "lon": -5.109}, {"id": "test_threesisters", "name": "TEST 1 — Three Sisters (ordinary waypoint)", "lat": 56.665, "lon": -4.986}, {"id": "test_lochtulla", "name": "TEST 2 — Loch Tulla Viewpoint (ordinary waypoint)", "lat": 56.56793, "lon": -4.75393}, {"id": "luss", "name": "Luss / Loch Lomond", "lat": 56.101, "lon": -4.639}, {"id": "hotel_indigo", "name": "Hotel Indigo Glasgow", "lat": 55.860492, "lon": -4.263012}, {"id": "walk_central", "name": "WALK TEST 1 — Glasgow Central", "lat": 55.859741, "lon": -4.257636}, {"id": "walk_george", "name": "WALK TEST 2 — George Square", "lat": 55.861153, "lon": -4.250284}, {"id": "glasgow", "name": "Glasgow — free sightseeing day", "lat": 55.8609, "lon": -4.2514}, {"id": "gla_drivalia", "name": "Drivalia Glasgow Return", "lat": 55.856, "lon": -4.435}, {"id": "vienna_house", "name": "Vienna House Easy — Hoofddorp", "lat": 52.301, "lon": 4.691}, {"id": "ams_car", "name": "Keddy Rental Pickup — Schiphol", "lat": 52.3105, "lon": 4.7683}, {"id": "vlissingen", "name": "Vlissingen — Wim Bijnen", "lat": 51.4427, "lon": 3.5736}, {"id": "veere", "name": "Veere", "lat": 51.5488, "lon": 3.6665}, {"id": "delft", "name": "Delft historic centre", "lat": 52.0116, "lon": 4.3571}, {"id": "denhaag", "name": "Den Haag — Izzy Fordham", "lat": 52.0705, "lon": 4.3007}, {"id": "cuijk", "name": "Cuijk — Mike Birkhoff", "lat": 51.7306, "lon": 5.8792}, {"id": "nieuwegein", "name": "Nieuwegein — Harm Braams", "lat": 52.0292, "lon": 5.0807}, {"id": "buren", "name": "Buren", "lat": 51.91, "lon": 5.335}, {"id": "heusden", "name": "Heusden", "lat": 51.733, "lon": 5.138}, {"id": "willemstad", "name": "Willemstad", "lat": 51.691, "lon": 4.438}, {"id": "heinenoord_funeral", "name": "Crematorium Hoeksche Waard — Tineke Bloemen funeral", "lat": 51.817716, "lon": 4.532335}, {"id": "kinderdijk", "name": "Kinderdijk", "lat": 51.8854, "lon": 4.6367}, {"id": "dordrecht", "name": "Dordrecht", "lat": 51.8133, "lon": 4.6901}, {"id": "biesbosch", "name": "Biesbosch — optional", "lat": 51.7415, "lon": 4.771}, {"id": "leiden", "name": "Leiden historic centre", "lat": 52.160114, "lon": 4.49701}, {"id": "schiphol_return", "name": "Schiphol — Keddy Return", "lat": 52.3105, "lon": 4.7683}];
 
 const WARNING_SEC=120;
 const BASE_NEAR_M=95;
 const MAX_NEAR_M=125;
-const MIN_GPS_SPEED_MPS=1.5;
+const MIN_GPS_SPEED_MPS=0.4;
 const MOVING_STABLE_SEC=8;
 const WARNING_STABLE_SEC=10;
-const WARNING_MIN_SPEED_MPS=4.0;
+const WARNING_MIN_SPEED_MPS=0.4;
 const CLOSING_WINDOW_SEC=8;
 const MIN_CLOSING_MPS=0.5;
 const MIN_DEPART_DISTANCE_GAIN_M=35;
@@ -2738,6 +2756,8 @@ const nextButton=document.getElementById('next');
 const voicePlayer=document.getElementById('voicePlayer');
 
 function show(msg){ status.textContent=msg; }
+function navDiag(msg){ const e=document.getElementById('navDiagnostic'); if(e) e.innerHTML='<b>DIAGNOSTIC:</b> '+msg; }
+function diagEvent(msg){ navDiag(new Date().toLocaleTimeString()+' — '+msg); }
 
 function persistTripState(){
   try{
@@ -2991,15 +3011,17 @@ async function playClip(uri,label){
 }
 
 async function playApproach(){
+  diagEvent('APPROACH speech requested');
   const i=randomIndex(approachClips.length,lastApproachIndex);
   lastApproachIndex=i;
-  return playClip(approachClips[i],'Approach');
+  const ok=await playClip(approachClips[i],'Approach'); diagEvent('APPROACH speech '+(ok?'started':'FAILED')); return ok;
 }
 
 async function playNear(){
+  diagEvent('NEAR speech requested');
   const i=randomIndex(nearClips.length,lastNearIndex);
   lastNearIndex=i;
-  return playClip(nearClips[i],'Near-destination');
+  const ok=await playClip(nearClips[i],'Near-destination'); diagEvent('NEAR speech '+(ok?'started':'FAILED')); return ok;
 }
 
 function updateSamples(d,p){
@@ -3094,6 +3116,7 @@ function maybeWarn(ete,p){
 
   if(ete!==null && ete<=WARNING_SEC){
     warned=true;
+    diagEvent('2-MINUTE warning condition reached');
     playApproach();
   }
 }
@@ -3108,15 +3131,18 @@ function autoAdvance(p,currentDistance){
   const distanceGain=currentDistance-closestAfterNear;
   const now=Date.now()/1000;
 
-  const clearlyDeparting=
-    distanceGain>=MIN_DEPART_DISTANCE_GAIN_M &&
-    spd!==null &&
-    spd>=MIN_DEPART_SPEED_MPS;
+  // V18.9.10.5.5: GPS distance trend is authoritative for departure.
+  // iOS can omit/freeze coords.speed even while position updates, which prevented
+  // otherwise-valid auto-advance. A sustained 35 m increase from closest approach
+  // is sufficient; the existing 2.5 s confirmation still suppresses one-sample jitter.
+  const clearlyDeparting = distanceGain>=MIN_DEPART_DISTANCE_GAIN_M;
+  navDiag('AUTO: near=yes · closest '+Math.round(closestAfterNear)+' m · now '+Math.round(currentDistance)+' m · gain '+Math.round(distanceGain)+' m · GPS speed '+(spd===null?'n/a':Math.round(spd*3.6)+' km/h')+(clearlyDeparting?' · departure candidate':' · waiting for departure'));
 
   if(clearlyDeparting){
     if(departCandidateSince===null) departCandidateSince=now;
 
     if(now-departCandidateSince>=DEPART_CONFIRM_SEC){
+      diagEvent('AUTO-ADVANCE confirmed → next stop');
       active++;
       resetLegState();
       persistTripState();
@@ -3155,6 +3181,7 @@ function updateStatus(p){
   if(!nearDestination && d<=effectiveNear){
     nearDestination=true;
     closestAfterNear=d;
+    diagEvent('ARRIVAL zone entered at '+Math.round(d)+' m');
     persistTripState();
     const el=document.getElementById('stop-'+s.id);
     if(el) el.classList.add('arrived');
@@ -3338,16 +3365,23 @@ if(jumpSelect){
   });
 }
 
+const walkTestButton=document.getElementById('walktest');
+if(walkTestButton){
+  walkTestButton.addEventListener('click',()=>{
+    const i=stops.findIndex(s=>s.id==='hotel_indigo');
+    if(i>=0){ active=i; resetLegState(); persistTripState(); renderActive(); if(typeof centerStripOnActiveStop==='function') centerStripOnActiveStop(true); diagEvent('Glasgow walking test armed at Hotel Indigo. Now tap Start live roadbook.'); }
+  });
+}
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.10.5.4 loaded. Rocklee coordinates corrected; strip auto-centers on active stop.');
+show('Roadbook V18.9.10.5.5 loaded. Glasgow walking diagnostic + auto-advance repair.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-10-5-4';
-  const SW_URL='./roadbook-v18-9-10-5-4-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10-5-5';
+  const SW_URL='./roadbook-v18-9-10-5-5-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){
