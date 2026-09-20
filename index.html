@@ -497,13 +497,13 @@ body.stripExplore header{visibility:hidden}
 <body>
 <button id="stripExploreBtn" type="button" aria-label="Expand strip map">EXPAND STRIP</button>
 <button id="stripExploreDone" type="button" aria-label="Close expanded strip map">DONE</button>
-<header><h1>Europe GPS Roadbook — V18.9.10.5.6.2 Expandable Strip</h1>
+<header><h1>Europe GPS Roadbook — V18.9.10.5.6.3 Expandable Strip</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.10.5.6.2</strong>
+    <strong>ROADBOOK · V18.9.10.5.6.3</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -2834,9 +2834,15 @@ function updateStripPosition(p){
   if(ring){ring.setAttribute('cx',x);ring.setAttribute('cy',y);}
   if(label){label.setAttribute('x',Math.min(212,x+16));label.setAttribute('y',y+25);}
   const pane=document.getElementById('stripPane');
-  if(pane && roadbookRunning && Date.now()>=stripFollowHoldUntil && !document.body.classList.contains('stripExplore')){
+  if(pane && roadbookRunning && !document.body.classList.contains('stripExplore')){
     const scale=pane.clientWidth/300;
-    pane.scrollTop=Math.max(0,(y*scale)-pane.clientHeight*0.62);
+    const target=Math.max(0,(y*scale)-pane.clientHeight*0.50);
+    if(window.stripNeedsInitialGpsCenter){
+      pane.scrollTop=target;
+      window.stripNeedsInitialGpsCenter=false;
+    }else if(Date.now()>=stripFollowHoldUntil){
+      pane.scrollTop=target;
+    }
   }
   renderStripActive();
   // Do not force-scroll the main roadbook pane on every GPS fix.
@@ -3129,7 +3135,7 @@ function autoAdvance(p,currentDistance){
   const distanceGain=currentDistance-closestAfterNear;
   const now=Date.now()/1000;
 
-  // V18.9.10.5.6.2: GPS distance trend is authoritative for departure.
+  // V18.9.10.5.6.3: GPS distance trend is authoritative for departure.
   // iOS can omit/freeze coords.speed even while position updates, which prevented
   // otherwise-valid auto-advance. A sustained 35 m increase from closest approach
   // is sufficient; the existing 2.5 s confirmation still suppresses one-sample jitter.
@@ -3222,6 +3228,7 @@ function err(e){
 
 function startRoadbook(){
   roadbookRunning=true;
+  window.stripNeedsInitialGpsCenter=true;
   startButton.textContent='Roadbook active — tap to stop';
   startButton.classList.add('running');
   startButton.disabled=false;
@@ -3365,14 +3372,14 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.10.5.6.2 loaded. Expandable strip ready.');
+show('Roadbook V18.9.10.5.6.3 loaded. Expandable strip ready.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-10-5-6-2';
-  const SW_URL='./roadbook-v18-9-10-5-6-2-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10-5-6-3';
+  const SW_URL='./roadbook-v18-9-10-5-6-3-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){
@@ -3761,67 +3768,108 @@ show('Roadbook V18.9.10.5.6.2 loaded. Expandable strip ready.');
   const openBtn=document.getElementById('stripExploreBtn');
   const doneBtn=document.getElementById('stripExploreDone');
   if(!pane||!svg||!openBtn||!doneBtn) return;
-  let zoom=1, pinch=null, moved=false;
-  const MIN=1, MAX=4;
-  function applyZoom(){ svg.style.width=(zoom*100)+'%'; svg.style.height='auto'; }
+
+  let zoom=1, pinch=null, suppressTap=false;
+  const MIN=1, MAX=3;
+
+  function applyZoom(){
+    // Keep SVG geometry intact; only change its rendered scale.
+    svg.style.transformOrigin='0 0';
+    svg.style.transform='scale('+zoom+')';
+    svg.style.width=(100/zoom)+'%';
+    svg.style.height=(100/zoom)+'%';
+  }
+  function centerOnBlueDot(){
+    const dot=document.getElementById('stripUserDot');
+    if(!dot) return;
+    const y=Number(dot.getAttribute('cy')), x=Number(dot.getAttribute('cx'));
+    if(!Number.isFinite(y)||!Number.isFinite(x)) return;
+    const baseScale=pane.clientWidth/300;
+    pane.scrollLeft=Math.max(0,x*baseScale*zoom-pane.clientWidth/2);
+    pane.scrollTop=Math.max(0,y*baseScale*zoom-pane.clientHeight/2);
+  }
   function openExplore(){
     document.body.classList.add('stripExplore');
-    zoom=1; applyZoom(); // no automatic magnification
+    zoom=1; applyZoom();
+    requestAnimationFrame(centerOnBlueDot);
+  }
+  function closeExplore(recenter=true){
+    document.body.classList.remove('stripExplore');
+    zoom=1;
+    svg.style.transform='';
+    svg.style.transformOrigin='';
+    svg.style.width='';
+    svg.style.height='';
+    if(recenter) requestAnimationFrame(centerOnBlueDot);
+  }
+  function revealPoi(key){
+    if(key==null) return;
+    closeExplore(false);
     requestAnimationFrame(()=>{
-      if(typeof window.centerStripOnActiveStop==='function') window.centerStripOnActiveStop(true);
+      const card=document.querySelector('#routePoiRail .routePoi[data-poi-key="'+key+'"]');
+      const right=document.querySelector('main.contentPane');
+      if(!card||!right) return;
+      document.querySelectorAll('.routePoi.poiFromMap').forEach(x=>x.classList.remove('poiFromMap'));
+      card.classList.add('poiFromMap');
+      const pr=right.getBoundingClientRect(), cr=card.getBoundingClientRect();
+      const desired=right.scrollTop+(cr.top-pr.top)-(right.clientHeight-card.offsetHeight)/2;
+      right.scrollTo({top:Math.max(0,desired),behavior:'smooth'});
+      setTimeout(()=>card.classList.remove('poiFromMap'),10000);
     });
   }
-  function closeExplore(){
-    document.body.classList.remove('stripExplore');
-    zoom=1; applyZoom();
-    if(typeof window.centerStripOnActiveStop==='function') setTimeout(()=>window.centerStripOnActiveStop(true),40);
-  }
+
   openBtn.addEventListener('click',openExplore);
-  doneBtn.addEventListener('click',closeExplore);
+  doneBtn.addEventListener('click',()=>closeExplore(true));
 
   pane.addEventListener('touchstart',e=>{
     if(!document.body.classList.contains('stripExplore')){
       if(e.touches.length===2) openExplore(); else return;
     }
     if(e.touches.length===2){
-      const a=e.touches[0],b=e.touches[1];
-      const r=pane.getBoundingClientRect();
+      const a=e.touches[0], b=e.touches[1], r=pane.getBoundingClientRect();
       const mx=(a.clientX+b.clientX)/2-r.left, my=(a.clientY+b.clientY)/2-r.top;
-      pinch={d0:Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY),z0:zoom,
-             contentX:(pane.scrollLeft+mx)/zoom,contentY:(pane.scrollTop+my)/zoom,mx,my};
-      moved=false; e.preventDefault();
+      const baseScale=pane.clientWidth/300;
+      pinch={
+        d0:Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY), z0:zoom,
+        worldX:(pane.scrollLeft+mx)/(baseScale*zoom),
+        worldY:(pane.scrollTop+my)/(baseScale*zoom)
+      };
+      suppressTap=true;
+      e.preventDefault();
     }
   },{passive:false});
+
   pane.addEventListener('touchmove',e=>{
     if(!pinch||e.touches.length!==2) return;
-    const a=e.touches[0],b=e.touches[1],r=pane.getBoundingClientRect();
+    const a=e.touches[0], b=e.touches[1], r=pane.getBoundingClientRect();
     const d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
     const mx=(a.clientX+b.clientX)/2-r.left, my=(a.clientY+b.clientY)/2-r.top;
-    const next=Math.max(MIN,Math.min(MAX,pinch.z0*d/pinch.d0));
-    if(Math.abs(next-zoom)>.002) moved=true;
-    zoom=next; applyZoom();
-    // Keep the content under the fingers under the same midpoint.
-    pane.scrollLeft=Math.max(0,pinch.contentX*zoom-mx);
-    pane.scrollTop=Math.max(0,pinch.contentY*zoom-my);
+    zoom=Math.max(MIN,Math.min(MAX,pinch.z0*d/pinch.d0));
+    applyZoom();
+    const baseScale=pane.clientWidth/300;
+    pane.scrollLeft=Math.max(0,pinch.worldX*baseScale*zoom-mx);
+    pane.scrollTop=Math.max(0,pinch.worldY*baseScale*zoom-my);
     e.preventDefault();
   },{passive:false});
-  pane.addEventListener('touchend',e=>{if(e.touches.length<2) pinch=null;},{passive:true});
 
-  // The existing v1881MapIconLink handler already reveals the matching right-pane
-  // POI card and highlights it for 10 seconds. Collapse Explore after it runs.
-  pane.addEventListener('click',e=>{
-    if(document.body.classList.contains('stripExplore') && e.target.closest('.stripPoi[data-poi-key]')){
-      setTimeout(closeExplore,180);
-    }
-  });
   pane.addEventListener('touchend',e=>{
-    if(document.body.classList.contains('stripExplore') && !moved && e.target.closest('.stripPoi[data-poi-key]')){
-      setTimeout(closeExplore,180);
+    if(e.touches.length<2){
+      pinch=null;
+      setTimeout(()=>{suppressTap=false;},120);
     }
-    moved=false;
   },{passive:true});
+
+  // Capture POI selection ourselves while Explore is open, then reveal the real information card.
+  pane.addEventListener('click',e=>{
+    if(!document.body.classList.contains('stripExplore')||suppressTap) return;
+    const icon=e.target.closest('.stripPoi[data-poi-key]');
+    if(!icon) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    revealPoi(icon.dataset.poiKey);
+  },true);
+
   pane.addEventListener('dblclick',()=>{if(!document.body.classList.contains('stripExplore')) openExplore();});
-  window.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('stripExplore')) closeExplore();});
+  window.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('stripExplore')) closeExplore(true);});
 })();
 </script>\n</body>
 </html>

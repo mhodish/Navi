@@ -1,9 +1,12 @@
-Europe GPS Roadbook V18.9.10.5.6.2 — Expandable Strip correction
+Europe GPS Roadbook V18.9.10.5.6.3 — Strip Explore rebuild
 
-- Blue strip-map GPS marker now uses the geographically nearest itinerary leg rather than the active navigation leg.
-  This is display-only; navigation/arrival/auto-advance logic is unchanged.
-- Explore opens at 1.00x: no automatic zoom jump.
-- Pinch scale is directly proportional to finger separation, with the pinch midpoint held in place.
-- Existing POI-card reveal/highlight handler is retained; Explore collapses after POI selection so the information is visible.
-- 10.5.5 field-proven navigation behavior remains frozen.
-- Offline cache advanced to 10.5.6.2.
+- Keeps the proven 10.5.6.2 geographic blue-dot mapping unchanged.
+- On Start navigation, the first valid GPS fix now centers the blue dot in the strip viewport immediately.
+- Rebuilt Explore zoom as a viewport-style transform rather than enlarging/reflowing the entire SVG.
+- Explore opens at 1.0x and centers on the live blue dot.
+- Pinch zoom is proportional to finger separation and anchored beneath the pinch midpoint.
+- Maximum Explore zoom reduced to 3x.
+- POI selection in Explore is explicitly captured: Explore closes, then the matching real POI information card
+  is centered in the right-hand content pane and highlighted for 10 seconds.
+- Field-proven 10.5.5 navigation/arrival/departure/auto-advance logic remains unchanged.
+- Offline cache advanced to 10.5.6.3.
