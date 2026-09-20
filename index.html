@@ -480,15 +480,30 @@ main.contentPane{
 /* V18.9.10.2: compact photos + marker collision relief */
 details.photoReveal{margin:7px 0}.photoReveal>summary{display:inline-block;cursor:pointer;font-weight:800;text-decoration:underline;color:#173b67}.photoReveal>summary::-webkit-details-marker{display:none}.photoReveal figure{margin:7px 0 4px}.photoReveal img{max-width:100%;height:auto;border-radius:8px}.overnightLocal{border-left:5px solid #26384a}.testAnnounceNote{background:#eef5ff;border:1px solid #789;padding:7px 9px;margin:7px 0;border-radius:7px;font-size:12px}
 </style>
-</head>
+
+<style id="v1056StripExploreStyle">
+#stripExploreBtn{position:fixed;right:10px;bottom:12px;z-index:9998;border:2px solid #6b5b3e;border-radius:999px;background:#fffaf0;color:#2f2a20;font:800 12px system-ui,-apple-system,sans-serif;padding:9px 13px;box-shadow:0 2px 10px rgba(0,0,0,.22)}
+#stripExploreDone{display:none;position:fixed;right:12px;top:12px;z-index:10002;border:0;border-radius:999px;background:#222;color:#fff;font:800 13px system-ui,-apple-system,sans-serif;padding:9px 14px;box-shadow:0 2px 10px rgba(0,0,0,.28)}
+body.stripExplore{overflow:hidden!important}
+body.stripExplore #stripExploreBtn{display:none}
+body.stripExplore #stripExploreDone{display:block}
+body.stripExplore #stripPane{display:block!important;position:fixed!important;z-index:10000!important;left:4px!important;right:4px!important;top:4px!important;bottom:4px!important;width:auto!important;height:auto!important;max-width:none!important;margin:0!important;overflow:auto!important;background:#faf6e6!important;border:2px solid #6b5b3e!important;border-radius:12px!important;touch-action:none!important;-webkit-overflow-scrolling:touch}
+body.stripExplore #stripPane .stripTitle{position:sticky;top:0;z-index:10001;padding-right:82px}
+body.stripExplore #stripPane .stripSvg{display:block;max-width:none!important;transform-origin:0 0}
+body.stripExplore main.contentPane{visibility:hidden}
+body.stripExplore header{visibility:hidden}
+@media (min-width:701px){#stripExploreBtn{right:18px;bottom:18px}}
+</style>\n</head>
 <body>
-<header><h1>Europe GPS Roadbook — V18.9.10.5.5 Glasgow Walking Diagnostic</h1>
+<button id="stripExploreBtn" type="button" aria-label="Expand strip map">EXPAND STRIP</button>
+<button id="stripExploreDone" type="button" aria-label="Close expanded strip map">DONE</button>
+<header><h1>Europe GPS Roadbook — V18.9.10.5.6 Expandable Strip</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.10.5.5</strong>
+    <strong>ROADBOOK · V18.9.10.5.6</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -3131,7 +3146,7 @@ function autoAdvance(p,currentDistance){
   const distanceGain=currentDistance-closestAfterNear;
   const now=Date.now()/1000;
 
-  // V18.9.10.5.5: GPS distance trend is authoritative for departure.
+  // V18.9.10.5.6: GPS distance trend is authoritative for departure.
   // iOS can omit/freeze coords.speed even while position updates, which prevented
   // otherwise-valid auto-advance. A sustained 35 m increase from closest approach
   // is sufficient; the existing 2.5 s confirmation still suppresses one-sample jitter.
@@ -3374,14 +3389,14 @@ if(walkTestButton){
 }
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.10.5.5 loaded. Glasgow walking diagnostic + auto-advance repair.');
+show('Roadbook V18.9.10.5.6 loaded. Glasgow walking diagnostic + auto-advance repair.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-10-5-5';
-  const SW_URL='./roadbook-v18-9-10-5-5-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10-5-6';
+  const SW_URL='./roadbook-v18-9-10-5-6-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){
@@ -3762,5 +3777,62 @@ show('Roadbook V18.9.10.5.5 loaded. Glasgow walking diagnostic + auto-advance re
   // Uig audio test zones are integrated directly into pos() above so they receive every live GPS update.
 })();
 </script>
-</body>
+
+<script id="v1056StripExplore">
+(function(){
+  const pane=document.getElementById('stripPane');
+  const svg=pane&&pane.querySelector('.stripSvg');
+  const openBtn=document.getElementById('stripExploreBtn');
+  const doneBtn=document.getElementById('stripExploreDone');
+  if(!pane||!svg||!openBtn||!doneBtn) return;
+  let zoom=1, pinchStart=null, pinchZoom=1;
+  const MIN=1, MAX=4;
+  function applyZoom(){
+    svg.style.width=(zoom*100)+'%';
+    svg.style.height='auto';
+  }
+  function openExplore(){
+    document.body.classList.add('stripExplore');
+    zoom=1.35; applyZoom();
+    requestAnimationFrame(()=>{
+      if(typeof window.centerStripOnActiveStop==='function') window.centerStripOnActiveStop(true);
+    });
+  }
+  function closeExplore(){
+    document.body.classList.remove('stripExplore');
+    zoom=1; applyZoom();
+    if(typeof window.centerStripOnActiveStop==='function') setTimeout(()=>window.centerStripOnActiveStop(true),40);
+  }
+  openBtn.addEventListener('click',openExplore);
+  doneBtn.addEventListener('click',closeExplore);
+  pane.addEventListener('touchstart',e=>{
+    if(!document.body.classList.contains('stripExplore')){
+      if(e.touches.length===2){ openExplore(); } else return;
+    }
+    if(e.touches.length===2){
+      const a=e.touches[0],b=e.touches[1];
+      pinchStart=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+      pinchZoom=zoom;
+      e.preventDefault();
+    }
+  },{passive:false});
+  pane.addEventListener('touchmove',e=>{
+    if(!document.body.classList.contains('stripExplore')||e.touches.length!==2||!pinchStart) return;
+    const a=e.touches[0],b=e.touches[1];
+    const d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+    zoom=Math.max(MIN,Math.min(MAX,pinchZoom*d/pinchStart));
+    applyZoom(); e.preventDefault();
+  },{passive:false});
+  pane.addEventListener('touchend',e=>{ if(e.touches.length<2) pinchStart=null; },{passive:true});
+  // Selecting a POI in Explore mode returns to the normal Roadbook view.
+  pane.addEventListener('click',e=>{
+    if(document.body.classList.contains('stripExplore') && e.target.closest('.stripPoi[data-poi-key]')){
+      setTimeout(closeExplore,80);
+    }
+  });
+  // Desktop/iPad convenience: double-click strip to enter Explore.
+  pane.addEventListener('dblclick',e=>{ if(!document.body.classList.contains('stripExplore')) openExplore(); });
+  window.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.body.classList.contains('stripExplore')) closeExplore(); });
+})();
+</script>\n</body>
 </html>

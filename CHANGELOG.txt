@@ -1,15 +1,16 @@
-Europe GPS Roadbook — V18.9.10.5.5 Glasgow Walking Diagnostic
+Europe GPS Roadbook V18.9.10.5.6 — Expandable Strip
 
-Changes from 18.9.10.5.4:
-- Adds a one-tap Glasgow pedestrian diagnostic beginning at Hotel Indigo, followed by ordinary navigation waypoints at Glasgow Central and George Square.
-- Adds visible diagnostic reporting for 2-minute warning condition, approach speech request/result, arrival-zone entry, near-destination speech request/result, departure distance gain, and auto-advance confirmation.
-- Repairs automatic advance: departure is now confirmed from sustained GPS distance gain from closest approach, rather than requiring iOS coords.speed to be present and above 2.0 m/s. Existing 35 m gain and 2.5 s confirmation remain.
-- Lowers movement/warning speed floors so the same ordinary navigation path can be tested while walking.
-- Corrects Hotel Indigo Glasgow waypoint to 55.860492, -4.263012.
-- Keeps 10.5.4 strip recentering, rich Glencoe–Glasgow POIs, 10-second POI highlighting, offline support, icons and manifest.
+Built from field-proven V18.9.10.5.5 Glasgow Walking Diagnostic baseline.
 
-Tomorrow test:
-1. At Hotel Indigo, tap Start Glasgow walking test.
-2. Tap Start live roadbook.
-3. Walk normally toward Glasgow Central, then George Square.
-4. The diagnostic panel records what the navigation/audio/auto-advance path actually does.
+Changes:
+- Added temporary Strip Explore mode for dense POI areas.
+- EXPAND STRIP button opens the strip nearly full-screen, including phone portrait where the normal strip is hidden.
+- Pinch with two fingers zooms the schematic strip from 1x to 4x, spreading dense POIs for selection.
+- The expanded strip can be panned/scrollled normally.
+- Tapping a POI retains the existing POI reveal/highlight behavior, then returns to the normal Roadbook layout.
+- DONE (or Escape on keyboard) exits without selecting a POI.
+- Pinching the visible normal strip also enters Explore mode.
+- Navigation state, GPS, 2-minute warning, arrival latch, departure confirmation, and field-proven 10.5.5 auto-advance logic are unchanged.
+- Offline cache/version advanced to 18.9.10.5.6.
+
+Field-proven baseline preserved: V18.9.10.5.5.
