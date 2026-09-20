@@ -1,16 +1,13 @@
-Europe GPS Roadbook V18.9.10.5.6 — Expandable Strip
+Europe GPS Roadbook V18.9.10.5.6.1 — Expandable Strip cleanup
 
-Built from field-proven V18.9.10.5.5 Glasgow Walking Diagnostic baseline.
-
-Changes:
-- Added temporary Strip Explore mode for dense POI areas.
-- EXPAND STRIP button opens the strip nearly full-screen, including phone portrait where the normal strip is hidden.
-- Pinch with two fingers zooms the schematic strip from 1x to 4x, spreading dense POIs for selection.
-- The expanded strip can be panned/scrollled normally.
-- Tapping a POI retains the existing POI reveal/highlight behavior, then returns to the normal Roadbook layout.
-- DONE (or Escape on keyboard) exits without selecting a POI.
-- Pinching the visible normal strip also enters Explore mode.
-- Navigation state, GPS, 2-minute warning, arrival latch, departure confirmation, and field-proven 10.5.5 auto-advance logic are unchanged.
-- Offline cache/version advanced to 18.9.10.5.6.
-
-Field-proven baseline preserved: V18.9.10.5.5.
+Changes from 18.9.10.5.6:
+- Removed the completed Glasgow walking-test button and diagnostic panel.
+- Removed all four temporary navigation test waypoints (Three Sisters test, Loch Tulla test,
+  Glasgow Central walk test, George Square walk test) from the active route.
+- Corrected the strip-map/navigation index mismatch that could place the blue GPS dot in the
+  Netherlands while the phone was physically in Glasgow.
+- Added one-time migration of the saved 10.5.6 active-stop index to the cleaned production route.
+  A saved Glasgow walking-test position migrates to Glasgow — free sightseeing day.
+- Retained the 10.5.5 field-proven arrival/departure/auto-advance behavior unchanged.
+- Retained the 10.5.6 expandable/pinch-zoom strip feature unchanged.
+- Offline cache/version advanced to 18.9.10.5.6.1.
