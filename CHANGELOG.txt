@@ -1,13 +1,16 @@
-Europe GPS Roadbook V18.9.10.5.6.4 — Strip Explore reset
+Europe GPS Roadbook V18.9.10.5.6.5 — Clean Explore + startup/update repair
 
-Built deliberately from 10.5.6.2, not from the broken 10.5.6.3 Explore renderer.
+Built from 10.5.6.2, retaining its corrected geographic blue-dot mapping.
 
-- Retains 10.5.6.2's corrected geographic blue-dot mapping.
-- First valid GPS fix after Start navigation centers the blue dot vertically in the strip.
-- Restores 10.5.6.2's usable SVG rendering model; removes the 10.5.6.3 transform/height approach.
-- Explore opens at 1.0x and centers on the live blue dot.
-- Pinch zoom is proportional to finger separation, capped at 3x, with midpoint compensation.
-- Explore POI taps are captured before the older map handler; Explore closes and the actual matching
-  POI information card is centered in the content pane and highlighted for 10 seconds.
-- Field-proven 10.5.5 navigation, warning, arrival, departure and auto-advance logic is unchanged.
-- Offline cache advanced to 10.5.6.4.
+- On page open, requests one high-accuracy GPS fix for display and centers the normal strip on the blue dot.
+  Navigation does not need to be started for this initial strip positioning.
+- Explore no longer resizes or transforms the live Roadbook strip. It uses a temporary cloned SVG in a
+  dedicated full-screen viewport.
+- Explore opens at 1x centered on the live blue dot; drag pans; pinch scales proportionally around the
+  midpoint between the fingers.
+- POI tap in Explore passes only the POI key back to the normal Roadbook, closes Explore, and reveals the
+  existing real POI information card for 10 seconds.
+- Service worker update lifecycle made deterministic: new worker uses skipWaiting + clients.claim;
+  online navigation/index is network-first with no-store, offline falls back to the complete cache;
+  old Roadbook caches are removed on activation.
+- 10.5.5 field-proven warning/arrival/departure/auto-advance navigation logic remains unchanged.

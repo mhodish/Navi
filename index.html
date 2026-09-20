@@ -497,13 +497,13 @@ body.stripExplore header{visibility:hidden}
 <body>
 <button id="stripExploreBtn" type="button" aria-label="Expand strip map">EXPAND STRIP</button>
 <button id="stripExploreDone" type="button" aria-label="Close expanded strip map">DONE</button>
-<header><h1>Europe GPS Roadbook — V18.9.10.5.6.4 Expandable Strip</h1>
+<header><h1>Europe GPS Roadbook — V18.9.10.5.6.5 Expandable Strip</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.10.5.6.4</strong>
+    <strong>ROADBOOK · V18.9.10.5.6.5</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -2834,15 +2834,9 @@ function updateStripPosition(p){
   if(ring){ring.setAttribute('cx',x);ring.setAttribute('cy',y);}
   if(label){label.setAttribute('x',Math.min(212,x+16));label.setAttribute('y',y+25);}
   const pane=document.getElementById('stripPane');
-  if(pane && roadbookRunning && !document.body.classList.contains('stripExplore')){
+  if(pane && roadbookRunning && Date.now()>=stripFollowHoldUntil && !document.body.classList.contains('stripExplore')){
     const scale=pane.clientWidth/300;
-    const target=Math.max(0,(y*scale)-pane.clientHeight*0.50);
-    if(window.stripNeedsInitialGpsCenter){
-      pane.scrollTop=target;
-      window.stripNeedsInitialGpsCenter=false;
-    }else if(Date.now()>=stripFollowHoldUntil){
-      pane.scrollTop=target;
-    }
+    pane.scrollTop=Math.max(0,(y*scale)-pane.clientHeight*0.62);
   }
   renderStripActive();
   // Do not force-scroll the main roadbook pane on every GPS fix.
@@ -3135,7 +3129,7 @@ function autoAdvance(p,currentDistance){
   const distanceGain=currentDistance-closestAfterNear;
   const now=Date.now()/1000;
 
-  // V18.9.10.5.6.4: GPS distance trend is authoritative for departure.
+  // V18.9.10.5.6.5: GPS distance trend is authoritative for departure.
   // iOS can omit/freeze coords.speed even while position updates, which prevented
   // otherwise-valid auto-advance. A sustained 35 m increase from closest approach
   // is sufficient; the existing 2.5 s confirmation still suppresses one-sample jitter.
@@ -3228,7 +3222,6 @@ function err(e){
 
 function startRoadbook(){
   roadbookRunning=true;
-  window.stripNeedsInitialGpsCenter=true;
   startButton.textContent='Roadbook active — tap to stop';
   startButton.classList.add('running');
   startButton.disabled=false;
@@ -3372,14 +3365,14 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.10.5.6.4 loaded. Expandable strip ready.');
+show('Roadbook V18.9.10.5.6.5 loaded. Expandable strip ready.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-10-5-6-4';
-  const SW_URL='./roadbook-v18-9-10-5-6-4-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10-5-6-5';
+  const SW_URL='./roadbook-v18-9-10-5-6-5-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){
@@ -3763,117 +3756,160 @@ show('Roadbook V18.9.10.5.6.4 loaded. Expandable strip ready.');
 
 <script id="v1056StripExplore">
 (function(){
-  const pane=document.getElementById('stripPane');
-  const svg=pane&&pane.querySelector('.stripSvg');
+  const livePane=document.getElementById('stripPane');
+  const liveSvg=livePane&&livePane.querySelector('.stripSvg');
   const openBtn=document.getElementById('stripExploreBtn');
+  const overlay=document.getElementById('stripExploreOverlay');
+  const viewport=document.getElementById('stripExploreViewport');
   const doneBtn=document.getElementById('stripExploreDone');
-  if(!pane||!svg||!openBtn||!doneBtn) return;
+  if(!livePane||!liveSvg||!openBtn||!overlay||!viewport||!doneBtn) return;
 
-  let zoom=1, pinch=null, gestureMoved=false;
-  const MIN=1, MAX=3;
+  let clone=null, scale=1, tx=0, ty=0, touches=new Map(), pinch0=null, pan0=null, moved=false;
+  const MIN=1, MAX=4;
 
-  function applyZoom(){
-    // Use the original 5.6.2 rendering model; do not alter SVG height or transform.
-    svg.style.width=(zoom*100)+'%';
-    svg.style.height='auto';
+  function apply(){ if(clone) clone.style.transform=`translate(${tx}px,${ty}px) scale(${scale})`; }
+  function dotPoint(){
+    const d=liveSvg.querySelector('#stripUserDot');
+    return d?{x:Number(d.getAttribute('cx')),y:Number(d.getAttribute('cy'))}:null;
   }
-  function blueDotY(){
-    const dot=document.getElementById('stripUserDot');
-    const y=dot?Number(dot.getAttribute('cy')):NaN;
-    return Number.isFinite(y)?y:null;
-  }
-  function centerBlue(){
-    const y=blueDotY();
-    if(y===null) return;
-    const scale=(pane.clientWidth/300)*zoom;
-    pane.scrollTop=Math.max(0,y*scale-pane.clientHeight/2);
+  function centerPoint(pt){
+    if(!pt) return;
+    tx=viewport.clientWidth/2-pt.x*scale;
+    ty=viewport.clientHeight/2-pt.y*scale;
+    apply();
   }
   function openExplore(){
-    document.body.classList.add('stripExplore');
-    zoom=1;
-    applyZoom();
-    requestAnimationFrame(centerBlue);
+    viewport.innerHTML='';
+    clone=liveSvg.cloneNode(true);
+    clone.id='stripExploreClone';
+    // Prevent duplicate document IDs while preserving classes/data-poi-key.
+    clone.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));
+    viewport.appendChild(clone);
+    scale=1; tx=0; ty=0; moved=false; touches.clear();
+    overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    requestAnimationFrame(()=>centerPoint(dotPoint()));
   }
-  function closeExplore(recenter=true){
-    document.body.classList.remove('stripExplore');
-    zoom=1;
-    applyZoom();
-    if(recenter) requestAnimationFrame(centerBlue);
+  function closeExplore(){
+    overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow=''; touches.clear(); pinch0=null; pan0=null;
   }
-  function showPoiCard(key){
-    if(key==null) return;
-    // Exit Explore first, then directly reveal the real information card.
-    closeExplore(false);
+  function revealPoi(key){
+    closeExplore();
     requestAnimationFrame(()=>{
       const card=document.querySelector('#routePoiRail .routePoi[data-poi-key="'+key+'"]');
-      const right=document.querySelector('main.contentPane');
-      if(!card||!right) return;
+      const pane=document.querySelector('main.contentPane');
+      if(!card||!pane) return;
       document.querySelectorAll('.routePoi.poiFromMap').forEach(x=>x.classList.remove('poiFromMap'));
       card.classList.add('poiFromMap');
-      const pr=right.getBoundingClientRect(), cr=card.getBoundingClientRect();
-      const desired=right.scrollTop+(cr.top-pr.top)-(right.clientHeight-card.offsetHeight)/2;
-      right.scrollTo({top:Math.max(0,desired),behavior:'smooth'});
+      const pr=pane.getBoundingClientRect(), cr=card.getBoundingClientRect();
+      pane.scrollTo({top:Math.max(0,pane.scrollTop+(cr.top-pr.top)-(pane.clientHeight-card.offsetHeight)/2),behavior:'smooth'});
       setTimeout(()=>card.classList.remove('poiFromMap'),10000);
     });
   }
 
   openBtn.addEventListener('click',openExplore);
-  doneBtn.addEventListener('click',()=>closeExplore(true));
+  doneBtn.addEventListener('click',closeExplore);
 
-  pane.addEventListener('touchstart',e=>{
-    if(!document.body.classList.contains('stripExplore')){
-      if(e.touches.length===2) openExplore(); else return;
+  viewport.addEventListener('pointerdown',e=>{
+    if(e.target.closest('#stripExploreDone')) return;
+    viewport.setPointerCapture?.(e.pointerId);
+    touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    moved=false;
+    if(touches.size===1){
+      pan0={x:e.clientX,y:e.clientY,tx,ty};
+      pinch0=null;
+    }else if(touches.size===2){
+      const a=[...touches.values()];
+      const mx=(a[0].x+a[1].x)/2,my=(a[0].y+a[1].y)/2;
+      pinch0={d:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),s:scale,
+              wx:(mx-tx)/scale,wy:(my-ty)/scale};
+      pan0=null;
     }
-    if(e.touches.length===2){
-      const a=e.touches[0], b=e.touches[1];
-      const r=pane.getBoundingClientRect();
-      const mx=(a.clientX+b.clientX)/2-r.left;
-      const my=(a.clientY+b.clientY)/2-r.top;
-      pinch={
-        d0:Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY),
-        z0:zoom,
-        contentX:(pane.scrollLeft+mx)/zoom,
-        contentY:(pane.scrollTop+my)/zoom
-      };
-      gestureMoved=false;
-      e.preventDefault();
+  });
+  viewport.addEventListener('pointermove',e=>{
+    if(!touches.has(e.pointerId)) return;
+    const prev=touches.get(e.pointerId);
+    if(Math.hypot(e.clientX-prev.x,e.clientY-prev.y)>2) moved=true;
+    touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(touches.size===2 && pinch0){
+      const a=[...touches.values()];
+      const mx=(a[0].x+a[1].x)/2,my=(a[0].y+a[1].y)/2;
+      const d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);
+      scale=Math.max(MIN,Math.min(MAX,pinch0.s*d/pinch0.d));
+      tx=mx-pinch0.wx*scale; ty=my-pinch0.wy*scale; apply();
+    }else if(touches.size===1 && pan0){
+      tx=pan0.tx+e.clientX-pan0.x; ty=pan0.ty+e.clientY-pan0.y; apply();
     }
-  },{passive:false});
+  });
+  function pointerEnd(e){
+    touches.delete(e.pointerId);
+    if(touches.size===1){
+      const a=[...touches.values()][0]; pan0={x:a.x,y:a.y,tx,ty}; pinch0=null;
+    }else if(touches.size===0){ pan0=null; pinch0=null; }
+  }
+  viewport.addEventListener('pointerup',pointerEnd);
+  viewport.addEventListener('pointercancel',pointerEnd);
 
-  pane.addEventListener('touchmove',e=>{
-    if(!pinch||e.touches.length!==2) return;
-    const a=e.touches[0], b=e.touches[1], r=pane.getBoundingClientRect();
-    const d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
-    const mx=(a.clientX+b.clientX)/2-r.left;
-    const my=(a.clientY+b.clientY)/2-r.top;
-    const next=Math.max(MIN,Math.min(MAX,pinch.z0*d/pinch.d0));
-    if(Math.abs(next-zoom)>0.003) gestureMoved=true;
-    zoom=next;
-    applyZoom();
-    pane.scrollLeft=Math.max(0,pinch.contentX*zoom-mx);
-    pane.scrollTop=Math.max(0,pinch.contentY*zoom-my);
-    e.preventDefault();
-  },{passive:false});
-
-  pane.addEventListener('touchend',e=>{
-    if(e.touches.length<2) pinch=null;
-    if(e.touches.length===0) setTimeout(()=>{gestureMoved=false;},140);
-  },{passive:true});
-
-  // Capture POI taps before the old strip handler can leave only its capsule/highlight.
-  pane.addEventListener('click',e=>{
-    if(!document.body.classList.contains('stripExplore')||gestureMoved) return;
+  // One job only: identify POI key, close temporary viewport, reveal proven normal card.
+  viewport.addEventListener('click',e=>{
+    if(moved){ moved=false; return; }
     const icon=e.target.closest('.stripPoi[data-poi-key]');
-    if(!icon) return;
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    showPoiCard(icon.dataset.poiKey);
+    if(icon){ e.preventDefault(); e.stopPropagation(); revealPoi(icon.dataset.poiKey); }
   },true);
+})();
+</script>\n
+<script id="v10565StartupGpsCenter">
+(function(){
+  let centered=false;
+  function centerOnDot(){
+    if(centered) return;
+    const pane=document.getElementById('stripPane');
+    const dot=document.getElementById('stripUserDot');
+    if(!pane||!dot) return;
+    const y=Number(dot.getAttribute('cy'));
+    if(!Number.isFinite(y)) return;
+    const scale=pane.clientWidth/300;
+    pane.scrollTop=Math.max(0,y*scale-pane.clientHeight/2);
+    centered=true;
+  }
+  function initialFix(){
+    if(!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(p=>{
+      // updateStripPosition is display-only and uses the corrected 10.5.6.2 geographic mapping.
+      try{ updateStripPosition(p); }catch(e){}
+      requestAnimationFrame(centerOnDot);
+    },()=>{}, {enableHighAccuracy:true,maximumAge:30000,timeout:12000});
+  }
+  window.addEventListener('pageshow',()=>setTimeout(initialFix,120));
+})();
+</script>
 
-  pane.addEventListener('dblclick',()=>{if(!document.body.classList.contains('stripExplore')) openExplore();});
-  window.addEventListener('keydown',e=>{
-    if(e.key==='Escape'&&document.body.classList.contains('stripExplore')) closeExplore(true);
+
+<div id="stripExploreOverlay" aria-hidden="true">
+  <div id="stripExploreViewport"></div>
+  <div id="stripExploreHint">Pinch to zoom · drag to move · tap a POI</div>
+  <button id="stripExploreDone" type="button">DONE</button>
+</div>
+
+
+<script id="v10565UpdateLifecycle">
+(function(){
+  if(!('serviceWorker' in navigator)) return;
+  let reloading=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{
+    if(reloading) return;
+    reloading=true;
+    location.reload();
+  });
+  window.addEventListener('load',async()=>{
+    try{
+      const reg=await navigator.serviceWorker.getRegistration();
+      if(reg) await reg.update();
+    }catch(e){}
   });
 })();
-</script>\n</body>
+</script>
+
+</body>
 </html>
