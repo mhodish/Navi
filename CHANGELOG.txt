@@ -1,13 +1,9 @@
-Europe GPS Roadbook V18.9.10.5.6.1 — Expandable Strip cleanup
+Europe GPS Roadbook V18.9.10.5.6.2 — Expandable Strip correction
 
-Changes from 18.9.10.5.6:
-- Removed the completed Glasgow walking-test button and diagnostic panel.
-- Removed all four temporary navigation test waypoints (Three Sisters test, Loch Tulla test,
-  Glasgow Central walk test, George Square walk test) from the active route.
-- Corrected the strip-map/navigation index mismatch that could place the blue GPS dot in the
-  Netherlands while the phone was physically in Glasgow.
-- Added one-time migration of the saved 10.5.6 active-stop index to the cleaned production route.
-  A saved Glasgow walking-test position migrates to Glasgow — free sightseeing day.
-- Retained the 10.5.5 field-proven arrival/departure/auto-advance behavior unchanged.
-- Retained the 10.5.6 expandable/pinch-zoom strip feature unchanged.
-- Offline cache/version advanced to 18.9.10.5.6.1.
+- Blue strip-map GPS marker now uses the geographically nearest itinerary leg rather than the active navigation leg.
+  This is display-only; navigation/arrival/auto-advance logic is unchanged.
+- Explore opens at 1.00x: no automatic zoom jump.
+- Pinch scale is directly proportional to finger separation, with the pinch midpoint held in place.
+- Existing POI-card reveal/highlight handler is retained; Explore collapses after POI selection so the information is visible.
+- 10.5.5 field-proven navigation behavior remains frozen.
+- Offline cache advanced to 10.5.6.2.

@@ -497,13 +497,13 @@ body.stripExplore header{visibility:hidden}
 <body>
 <button id="stripExploreBtn" type="button" aria-label="Expand strip map">EXPAND STRIP</button>
 <button id="stripExploreDone" type="button" aria-label="Close expanded strip map">DONE</button>
-<header><h1>Europe GPS Roadbook — V18.9.10.5.6.1 Expandable Strip</h1>
+<header><h1>Europe GPS Roadbook — V18.9.10.5.6.2 Expandable Strip</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.10.5.6.1</strong>
+    <strong>ROADBOOK · V18.9.10.5.6.2</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -2814,8 +2814,19 @@ function renderStripActive(){
 }
 function updateStripPosition(p){
   if(!p || !p.coords) return;
-  const leg=Math.max(0,Math.min(stops.length-1,active));
-  const t=stripProgress(p,leg);
+  // DISPLAY ONLY: find the geographic itinerary leg nearest the live GPS fix.
+  // Navigation still uses 'active' exactly as before.
+  let leg=0,t=0,best=Infinity;
+  const plat=p.coords.latitude, plon=p.coords.longitude;
+  for(let i=0;i<stripAnchors.length-1;i++){
+    const a=stripAnchors[i], b=stripAnchors[i+1];
+    const v=localXY(b.lat,b.lon,a.lat,a.lon);
+    const q=localXY(plat,plon,a.lat,a.lon);
+    const den=v.x*v.x+v.y*v.y;
+    const u=den?Math.max(0,Math.min(1,(q.x*v.x+q.y*v.y)/den)):0;
+    const dx=q.x-v.x*u, dy=q.y-v.y*u, d2=dx*dx+dy*dy;
+    if(d2<best){best=d2;leg=i;t=u;}
+  }
   const a=stripAnchors[leg],b=stripAnchors[leg+1];
   const x=a.x+(b.x-a.x)*t, y=a.y+(b.y-a.y)*t;
   const dot=document.getElementById('stripUserDot'), ring=document.getElementById('stripUserRing'), label=document.getElementById('stripUserText');
@@ -2823,13 +2834,12 @@ function updateStripPosition(p){
   if(ring){ring.setAttribute('cx',x);ring.setAttribute('cy',y);}
   if(label){label.setAttribute('x',Math.min(212,x+16));label.setAttribute('y',y+25);}
   const pane=document.getElementById('stripPane');
-  if(pane && roadbookRunning && Date.now()>=stripFollowHoldUntil){
+  if(pane && roadbookRunning && Date.now()>=stripFollowHoldUntil && !document.body.classList.contains('stripExplore')){
     const scale=pane.clientWidth/300;
     pane.scrollTop=Math.max(0,(y*scale)-pane.clientHeight*0.62);
   }
   renderStripActive();
   // Do not force-scroll the main roadbook pane on every GPS fix.
-  // User scrolling must always win.
 }
 function openPoi(id){
   const d=document.getElementById(id);
@@ -3119,7 +3129,7 @@ function autoAdvance(p,currentDistance){
   const distanceGain=currentDistance-closestAfterNear;
   const now=Date.now()/1000;
 
-  // V18.9.10.5.6.1: GPS distance trend is authoritative for departure.
+  // V18.9.10.5.6.2: GPS distance trend is authoritative for departure.
   // iOS can omit/freeze coords.speed even while position updates, which prevented
   // otherwise-valid auto-advance. A sustained 35 m increase from closest approach
   // is sufficient; the existing 2.5 s confirmation still suppresses one-sample jitter.
@@ -3355,14 +3365,14 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.10.5.6.1 loaded. Expandable strip ready.');
+show('Roadbook V18.9.10.5.6.2 loaded. Expandable strip ready.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-10-5-6-1';
-  const SW_URL='./roadbook-v18-9-10-5-6-1-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10-5-6-2';
+  const SW_URL='./roadbook-v18-9-10-5-6-2-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){
@@ -3751,15 +3761,12 @@ show('Roadbook V18.9.10.5.6.1 loaded. Expandable strip ready.');
   const openBtn=document.getElementById('stripExploreBtn');
   const doneBtn=document.getElementById('stripExploreDone');
   if(!pane||!svg||!openBtn||!doneBtn) return;
-  let zoom=1, pinchStart=null, pinchZoom=1;
+  let zoom=1, pinch=null, moved=false;
   const MIN=1, MAX=4;
-  function applyZoom(){
-    svg.style.width=(zoom*100)+'%';
-    svg.style.height='auto';
-  }
+  function applyZoom(){ svg.style.width=(zoom*100)+'%'; svg.style.height='auto'; }
   function openExplore(){
     document.body.classList.add('stripExplore');
-    zoom=1.35; applyZoom();
+    zoom=1; applyZoom(); // no automatic magnification
     requestAnimationFrame(()=>{
       if(typeof window.centerStripOnActiveStop==='function') window.centerStripOnActiveStop(true);
     });
@@ -3771,34 +3778,50 @@ show('Roadbook V18.9.10.5.6.1 loaded. Expandable strip ready.');
   }
   openBtn.addEventListener('click',openExplore);
   doneBtn.addEventListener('click',closeExplore);
+
   pane.addEventListener('touchstart',e=>{
     if(!document.body.classList.contains('stripExplore')){
-      if(e.touches.length===2){ openExplore(); } else return;
+      if(e.touches.length===2) openExplore(); else return;
     }
     if(e.touches.length===2){
       const a=e.touches[0],b=e.touches[1];
-      pinchStart=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
-      pinchZoom=zoom;
-      e.preventDefault();
+      const r=pane.getBoundingClientRect();
+      const mx=(a.clientX+b.clientX)/2-r.left, my=(a.clientY+b.clientY)/2-r.top;
+      pinch={d0:Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY),z0:zoom,
+             contentX:(pane.scrollLeft+mx)/zoom,contentY:(pane.scrollTop+my)/zoom,mx,my};
+      moved=false; e.preventDefault();
     }
   },{passive:false});
   pane.addEventListener('touchmove',e=>{
-    if(!document.body.classList.contains('stripExplore')||e.touches.length!==2||!pinchStart) return;
-    const a=e.touches[0],b=e.touches[1];
+    if(!pinch||e.touches.length!==2) return;
+    const a=e.touches[0],b=e.touches[1],r=pane.getBoundingClientRect();
     const d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
-    zoom=Math.max(MIN,Math.min(MAX,pinchZoom*d/pinchStart));
-    applyZoom(); e.preventDefault();
+    const mx=(a.clientX+b.clientX)/2-r.left, my=(a.clientY+b.clientY)/2-r.top;
+    const next=Math.max(MIN,Math.min(MAX,pinch.z0*d/pinch.d0));
+    if(Math.abs(next-zoom)>.002) moved=true;
+    zoom=next; applyZoom();
+    // Keep the content under the fingers under the same midpoint.
+    pane.scrollLeft=Math.max(0,pinch.contentX*zoom-mx);
+    pane.scrollTop=Math.max(0,pinch.contentY*zoom-my);
+    e.preventDefault();
   },{passive:false});
-  pane.addEventListener('touchend',e=>{ if(e.touches.length<2) pinchStart=null; },{passive:true});
-  // Selecting a POI in Explore mode returns to the normal Roadbook view.
+  pane.addEventListener('touchend',e=>{if(e.touches.length<2) pinch=null;},{passive:true});
+
+  // The existing v1881MapIconLink handler already reveals the matching right-pane
+  // POI card and highlights it for 10 seconds. Collapse Explore after it runs.
   pane.addEventListener('click',e=>{
     if(document.body.classList.contains('stripExplore') && e.target.closest('.stripPoi[data-poi-key]')){
-      setTimeout(closeExplore,80);
+      setTimeout(closeExplore,180);
     }
   });
-  // Desktop/iPad convenience: double-click strip to enter Explore.
-  pane.addEventListener('dblclick',e=>{ if(!document.body.classList.contains('stripExplore')) openExplore(); });
-  window.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.body.classList.contains('stripExplore')) closeExplore(); });
+  pane.addEventListener('touchend',e=>{
+    if(document.body.classList.contains('stripExplore') && !moved && e.target.closest('.stripPoi[data-poi-key]')){
+      setTimeout(closeExplore,180);
+    }
+    moved=false;
+  },{passive:true});
+  pane.addEventListener('dblclick',()=>{if(!document.body.classList.contains('stripExplore')) openExplore();});
+  window.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('stripExplore')) closeExplore();});
 })();
 </script>\n</body>
 </html>
