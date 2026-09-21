@@ -483,27 +483,25 @@ details.photoReveal{margin:7px 0}.photoReveal>summary{display:inline-block;curso
 
 <style id="v1056StripExploreStyle">
 #stripExploreBtn{position:fixed;right:10px;bottom:12px;z-index:9998;border:2px solid #6b5b3e;border-radius:999px;background:#fffaf0;color:#2f2a20;font:800 12px system-ui,-apple-system,sans-serif;padding:9px 13px;box-shadow:0 2px 10px rgba(0,0,0,.22)}
-#stripExploreDone{display:none;position:fixed;right:12px;top:12px;z-index:10002;border:0;border-radius:999px;background:#222;color:#fff;font:800 13px system-ui,-apple-system,sans-serif;padding:9px 14px;box-shadow:0 2px 10px rgba(0,0,0,.28)}
-body.stripExplore{overflow:hidden!important}
-body.stripExplore #stripExploreBtn{display:none}
-body.stripExplore #stripExploreDone{display:block}
-body.stripExplore #stripPane{display:block!important;position:fixed!important;z-index:10000!important;left:4px!important;right:4px!important;top:4px!important;bottom:4px!important;width:auto!important;height:auto!important;max-width:none!important;margin:0!important;overflow:auto!important;background:#faf6e6!important;border:2px solid #6b5b3e!important;border-radius:12px!important;touch-action:none!important;-webkit-overflow-scrolling:touch}
-body.stripExplore #stripPane .stripTitle{position:sticky;top:0;z-index:10001;padding-right:82px}
-body.stripExplore #stripPane .stripSvg{display:block;max-width:none!important;transform-origin:0 0}
-body.stripExplore main.contentPane{visibility:hidden}
-body.stripExplore header{visibility:hidden}
+#stripExploreOverlay{position:fixed;inset:0;z-index:10000;display:none;overflow:hidden;background:#faf6e6;touch-action:none}
+#stripExploreOverlay.open{display:block}
+#stripExploreViewport{position:absolute;inset:0;overflow:hidden;touch-action:none}
+#stripExploreClone{position:absolute;left:0;top:0;width:300px!important;height:auto!important;max-width:none!important;transform-origin:0 0;will-change:transform}
+#stripExploreDone{position:absolute;right:12px;top:calc(12px + env(safe-area-inset-top));z-index:10003;border:0;border-radius:999px;background:#222;color:#fff;font:800 13px system-ui,-apple-system,sans-serif;padding:10px 15px;box-shadow:0 2px 10px rgba(0,0,0,.28)}
+#stripExploreHint{position:absolute;left:50%;top:calc(12px + env(safe-area-inset-top));transform:translateX(-50%);z-index:10002;background:rgba(255,250,240,.92);border:1px solid #9a8b68;border-radius:999px;padding:7px 11px;font:700 12px system-ui,-apple-system,sans-serif;pointer-events:none;white-space:nowrap}
+body.stripExploreOpen{overflow:hidden!important}
+body.stripExploreOpen #stripExploreBtn{display:none}
 @media (min-width:701px){#stripExploreBtn{right:18px;bottom:18px}}
 </style>\n</head>
 <body>
-<button id="stripExploreBtn" type="button" aria-label="Expand strip map">EXPAND STRIP</button>
-<button id="stripExploreDone" type="button" aria-label="Close expanded strip map">DONE</button>
-<header><h1>Europe GPS Roadbook — V18.9.10.5.6.5 Expandable Strip</h1>
+
+<header><h1>Europe GPS Roadbook — V18.9.10.5.6.6 Expandable Strip</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.10.5.6.5</strong>
+    <strong>ROADBOOK · V18.9.10.5.6.6</strong>
     <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -3129,7 +3127,7 @@ function autoAdvance(p,currentDistance){
   const distanceGain=currentDistance-closestAfterNear;
   const now=Date.now()/1000;
 
-  // V18.9.10.5.6.5: GPS distance trend is authoritative for departure.
+  // V18.9.10.5.6.6: GPS distance trend is authoritative for departure.
   // iOS can omit/freeze coords.speed even while position updates, which prevented
   // otherwise-valid auto-advance. A sustained 35 m increase from closest approach
   // is sufficient; the existing 2.5 s confirmation still suppresses one-sample jitter.
@@ -3365,14 +3363,14 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.10.5.6.5 loaded. Expandable strip ready.');
+show('Roadbook V18.9.10.5.6.6 loaded. Expandable strip ready.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-10-5-6-5';
-  const SW_URL='./roadbook-v18-9-10-5-6-5-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10-5-6-6';
+  const SW_URL='./roadbook-v18-9-10-5-6-6-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){
@@ -3754,162 +3752,58 @@ show('Roadbook V18.9.10.5.6.5 loaded. Expandable strip ready.');
 })();
 </script>
 
-<script id="v1056StripExplore">
-(function(){
-  const livePane=document.getElementById('stripPane');
-  const liveSvg=livePane&&livePane.querySelector('.stripSvg');
-  const openBtn=document.getElementById('stripExploreBtn');
-  const overlay=document.getElementById('stripExploreOverlay');
-  const viewport=document.getElementById('stripExploreViewport');
-  const doneBtn=document.getElementById('stripExploreDone');
-  if(!livePane||!liveSvg||!openBtn||!overlay||!viewport||!doneBtn) return;
-
-  let clone=null, scale=1, tx=0, ty=0, touches=new Map(), pinch0=null, pan0=null, moved=false;
-  const MIN=1, MAX=4;
-
-  function apply(){ if(clone) clone.style.transform=`translate(${tx}px,${ty}px) scale(${scale})`; }
-  function dotPoint(){
-    const d=liveSvg.querySelector('#stripUserDot');
-    return d?{x:Number(d.getAttribute('cx')),y:Number(d.getAttribute('cy'))}:null;
-  }
-  function centerPoint(pt){
-    if(!pt) return;
-    tx=viewport.clientWidth/2-pt.x*scale;
-    ty=viewport.clientHeight/2-pt.y*scale;
-    apply();
-  }
-  function openExplore(){
-    viewport.innerHTML='';
-    clone=liveSvg.cloneNode(true);
-    clone.id='stripExploreClone';
-    // Prevent duplicate document IDs while preserving classes/data-poi-key.
-    clone.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));
-    viewport.appendChild(clone);
-    scale=1; tx=0; ty=0; moved=false; touches.clear();
-    overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
-    document.body.style.overflow='hidden';
-    requestAnimationFrame(()=>centerPoint(dotPoint()));
-  }
-  function closeExplore(){
-    overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true');
-    document.body.style.overflow=''; touches.clear(); pinch0=null; pan0=null;
-  }
-  function revealPoi(key){
-    closeExplore();
-    requestAnimationFrame(()=>{
-      const card=document.querySelector('#routePoiRail .routePoi[data-poi-key="'+key+'"]');
-      const pane=document.querySelector('main.contentPane');
-      if(!card||!pane) return;
-      document.querySelectorAll('.routePoi.poiFromMap').forEach(x=>x.classList.remove('poiFromMap'));
-      card.classList.add('poiFromMap');
-      const pr=pane.getBoundingClientRect(), cr=card.getBoundingClientRect();
-      pane.scrollTo({top:Math.max(0,pane.scrollTop+(cr.top-pr.top)-(pane.clientHeight-card.offsetHeight)/2),behavior:'smooth'});
-      setTimeout(()=>card.classList.remove('poiFromMap'),10000);
-    });
-  }
-
-  openBtn.addEventListener('click',openExplore);
-  doneBtn.addEventListener('click',closeExplore);
-
-  viewport.addEventListener('pointerdown',e=>{
-    if(e.target.closest('#stripExploreDone')) return;
-    viewport.setPointerCapture?.(e.pointerId);
-    touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
-    moved=false;
-    if(touches.size===1){
-      pan0={x:e.clientX,y:e.clientY,tx,ty};
-      pinch0=null;
-    }else if(touches.size===2){
-      const a=[...touches.values()];
-      const mx=(a[0].x+a[1].x)/2,my=(a[0].y+a[1].y)/2;
-      pinch0={d:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),s:scale,
-              wx:(mx-tx)/scale,wy:(my-ty)/scale};
-      pan0=null;
-    }
-  });
-  viewport.addEventListener('pointermove',e=>{
-    if(!touches.has(e.pointerId)) return;
-    const prev=touches.get(e.pointerId);
-    if(Math.hypot(e.clientX-prev.x,e.clientY-prev.y)>2) moved=true;
-    touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
-    if(touches.size===2 && pinch0){
-      const a=[...touches.values()];
-      const mx=(a[0].x+a[1].x)/2,my=(a[0].y+a[1].y)/2;
-      const d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);
-      scale=Math.max(MIN,Math.min(MAX,pinch0.s*d/pinch0.d));
-      tx=mx-pinch0.wx*scale; ty=my-pinch0.wy*scale; apply();
-    }else if(touches.size===1 && pan0){
-      tx=pan0.tx+e.clientX-pan0.x; ty=pan0.ty+e.clientY-pan0.y; apply();
-    }
-  });
-  function pointerEnd(e){
-    touches.delete(e.pointerId);
-    if(touches.size===1){
-      const a=[...touches.values()][0]; pan0={x:a.x,y:a.y,tx,ty}; pinch0=null;
-    }else if(touches.size===0){ pan0=null; pinch0=null; }
-  }
-  viewport.addEventListener('pointerup',pointerEnd);
-  viewport.addEventListener('pointercancel',pointerEnd);
-
-  // One job only: identify POI key, close temporary viewport, reveal proven normal card.
-  viewport.addEventListener('click',e=>{
-    if(moved){ moved=false; return; }
-    const icon=e.target.closest('.stripPoi[data-poi-key]');
-    if(icon){ e.preventDefault(); e.stopPropagation(); revealPoi(icon.dataset.poiKey); }
-  },true);
-})();
-</script>\n
-<script id="v10565StartupGpsCenter">
-(function(){
-  let centered=false;
-  function centerOnDot(){
-    if(centered) return;
-    const pane=document.getElementById('stripPane');
-    const dot=document.getElementById('stripUserDot');
-    if(!pane||!dot) return;
-    const y=Number(dot.getAttribute('cy'));
-    if(!Number.isFinite(y)) return;
-    const scale=pane.clientWidth/300;
-    pane.scrollTop=Math.max(0,y*scale-pane.clientHeight/2);
-    centered=true;
-  }
-  function initialFix(){
-    if(!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(p=>{
-      // updateStripPosition is display-only and uses the corrected 10.5.6.2 geographic mapping.
-      try{ updateStripPosition(p); }catch(e){}
-      requestAnimationFrame(centerOnDot);
-    },()=>{}, {enableHighAccuracy:true,maximumAge:30000,timeout:12000});
-  }
-  window.addEventListener('pageshow',()=>setTimeout(initialFix,120));
-})();
-</script>
-
-
+<button id="stripExploreBtn" type="button" aria-label="Expand strip map">EXPAND STRIP</button>
 <div id="stripExploreOverlay" aria-hidden="true">
   <div id="stripExploreViewport"></div>
   <div id="stripExploreHint">Pinch to zoom · drag to move · tap a POI</div>
   <button id="stripExploreDone" type="button">DONE</button>
 </div>
-
-
-<script id="v10565UpdateLifecycle">
+<script id="v1056StripExplore">
 (function(){
-  if(!('serviceWorker' in navigator)) return;
-  let reloading=false;
-  navigator.serviceWorker.addEventListener('controllerchange',()=>{
-    if(reloading) return;
-    reloading=true;
-    location.reload();
-  });
-  window.addEventListener('load',async()=>{
-    try{
-      const reg=await navigator.serviceWorker.getRegistration();
-      if(reg) await reg.update();
-    }catch(e){}
-  });
+ const livePane=document.getElementById('stripPane'), liveSvg=livePane&&livePane.querySelector('.stripSvg');
+ const openBtn=document.getElementById('stripExploreBtn'), overlay=document.getElementById('stripExploreOverlay');
+ const viewport=document.getElementById('stripExploreViewport'), doneBtn=document.getElementById('stripExploreDone');
+ if(!livePane||!liveSvg||!openBtn||!overlay||!viewport||!doneBtn){console.error('Strip Explore init failed');return;}
+ let clone=null,scale=1,tx=0,ty=0,pointers=new Map(),gesture=null,suppressClick=false;
+ const MIN=1,MAX=3;
+ function apply(){if(clone)clone.style.transform='translate('+tx+'px,'+ty+'px) scale('+scale+')';}
+ function bluePoint(){const d=liveSvg.querySelector('#stripUserDot');if(!d)return null;const x=+d.getAttribute('cx'),y=+d.getAttribute('cy');return Number.isFinite(x)&&Number.isFinite(y)?{x,y}:null;}
+ function activePoint(){const a=(window.stripAnchors||[])[window.active||0];return a?{x:+a.x,y:+a.y}:null;}
+ function center(pt){if(!pt)return;tx=viewport.clientWidth/2-pt.x*scale;ty=viewport.clientHeight/2-pt.y*scale;apply();}
+ function openExplore(){
+   viewport.innerHTML=''; clone=liveSvg.cloneNode(true); clone.id='stripExploreClone';
+   clone.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id')); viewport.appendChild(clone);
+   scale=1;tx=0;ty=0;pointers.clear();gesture=null;suppressClick=false;
+   overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');document.body.classList.add('stripExploreOpen');
+   requestAnimationFrame(()=>center(bluePoint()||activePoint()||{x:150,y:100}));
+ }
+ function closeExplore(){overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');document.body.classList.remove('stripExploreOpen');pointers.clear();gesture=null;}
+ function revealPoi(key){closeExplore();requestAnimationFrame(()=>{
+   const card=document.querySelector('#routePoiRail .routePoi[data-poi-key="'+CSS.escape(key)+'"]'), pane=document.querySelector('main.contentPane');
+   if(!card||!pane)return;document.querySelectorAll('.routePoi.poiFromMap').forEach(x=>x.classList.remove('poiFromMap'));card.classList.add('poiFromMap');
+   const pr=pane.getBoundingClientRect(),cr=card.getBoundingClientRect();pane.scrollTo({top:Math.max(0,pane.scrollTop+(cr.top-pr.top)-(pane.clientHeight-card.offsetHeight)/2),behavior:'smooth'});
+   setTimeout(()=>card.classList.remove('poiFromMap'),10000);
+ });}
+ openBtn.addEventListener('click',openExplore);doneBtn.addEventListener('click',closeExplore);
+ // Preserve the requested direct two-finger entry on the normal strip.
+ livePane.addEventListener('touchstart',e=>{if(e.touches.length===2&&!overlay.classList.contains('open')){e.preventDefault();openExplore();}},{passive:false});
+ viewport.addEventListener('pointerdown',e=>{
+   if(e.target.closest('#stripExploreDone'))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});suppressClick=false;
+   if(pointers.size===1)gesture={kind:'pan',x:e.clientX,y:e.clientY,tx,ty};
+   else if(pointers.size===2){const a=[...pointers.values()],mx=(a[0].x+a[1].x)/2,my=(a[0].y+a[1].y)/2,d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);gesture={kind:'pinch',d,scale,wx:(mx-tx)/scale,wy:(my-ty)/scale};}
+ });
+ viewport.addEventListener('pointermove',e=>{
+   if(!pointers.has(e.pointerId))return;const old=pointers.get(e.pointerId);if(Math.hypot(e.clientX-old.x,e.clientY-old.y)>3)suppressClick=true;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+   if(pointers.size===2){const a=[...pointers.values()],mx=(a[0].x+a[1].x)/2,my=(a[0].y+a[1].y)/2,d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);if(!gesture||gesture.kind!=='pinch')gesture={kind:'pinch',d,scale,wx:(mx-tx)/scale,wy:(my-ty)/scale};scale=Math.max(MIN,Math.min(MAX,gesture.scale*d/gesture.d));tx=mx-gesture.wx*scale;ty=my-gesture.wy*scale;apply();}
+   else if(pointers.size===1&&gesture&&gesture.kind==='pan'){tx=gesture.tx+e.clientX-gesture.x;ty=gesture.ty+e.clientY-gesture.y;apply();}
+ });
+ function end(e){pointers.delete(e.pointerId);if(pointers.size===1){const a=[...pointers.values()][0];gesture={kind:'pan',x:a.x,y:a.y,tx,ty};}else if(!pointers.size)gesture=null;}
+ viewport.addEventListener('pointerup',end);viewport.addEventListener('pointercancel',end);
+ viewport.addEventListener('click',e=>{if(suppressClick){suppressClick=false;return;}const poi=e.target.closest('.stripPoi[data-poi-key]');if(poi){e.preventDefault();e.stopPropagation();revealPoi(poi.dataset.poiKey);}},true);
+ window.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))closeExplore();});
+ window.__roadbookExploreTest={open:openExplore,close:closeExplore,state:()=>({open:overlay.classList.contains('open'),scale,tx,ty,clone:!!clone})};
 })();
-</script>
-
+</script>\n<script id="v10566StartupCenter">(function(){let done=false;function center(){if(done)return;const pane=document.getElementById('stripPane'),dot=document.getElementById('stripUserDot');if(!pane||!dot)return;const y=+dot.getAttribute('cy'),svg=pane.querySelector('.stripSvg');if(!Number.isFinite(y)||!svg)return;const scale=svg.getBoundingClientRect().width/300;pane.scrollTop=Math.max(0,y*scale-pane.clientHeight/2);done=true;}function fix(){if(!navigator.geolocation)return;navigator.geolocation.getCurrentPosition(p=>{try{updateStripPosition(p);}catch(e){}requestAnimationFrame(center);},()=>{}, {enableHighAccuracy:true,maximumAge:30000,timeout:12000});}window.addEventListener('pageshow',()=>setTimeout(fix,100));})();</script>
+<script id="v10566UpdateLifecycle">(function(){if(!('serviceWorker' in navigator))return;let once=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!once){once=true;location.reload();}});window.addEventListener('load',async()=>{try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.update();}catch(e){}});})();</script>
 </body>
 </html>

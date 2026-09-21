@@ -1,16 +1,10 @@
-Europe GPS Roadbook V18.9.10.5.6.5 — Clean Explore + startup/update repair
+Europe GPS Roadbook V18.9.10.5.6.6 — Tested Explore Rebuild
 
-Built from 10.5.6.2, retaining its corrected geographic blue-dot mapping.
-
-- On page open, requests one high-accuracy GPS fix for display and centers the normal strip on the blue dot.
-  Navigation does not need to be started for this initial strip positioning.
-- Explore no longer resizes or transforms the live Roadbook strip. It uses a temporary cloned SVG in a
-  dedicated full-screen viewport.
-- Explore opens at 1x centered on the live blue dot; drag pans; pinch scales proportionally around the
-  midpoint between the fingers.
-- POI tap in Explore passes only the POI key back to the normal Roadbook, closes Explore, and reveals the
-  existing real POI information card for 10 seconds.
-- Service worker update lifecycle made deterministic: new worker uses skipWaiting + clients.claim;
-  online navigation/index is network-first with no-store, offline falls back to the complete cache;
-  old Roadbook caches are removed on activation.
-- 10.5.5 field-proven warning/arrival/departure/auto-advance navigation logic remains unchanged.
+- Rebuilt from V18.9.10.5.6.2, preserving its field-proven geographic blue-dot mapping.
+- Explore overlay DOM now exists before Explore JavaScript initializes.
+- EXPAND STRIP and direct two-finger strip entry both open a separate temporary viewport; the live strip is never resized.
+- Explore opens at 1x centered on the live blue dot, supports one-finger pan and proportional 1x–3x pinch around the finger midpoint.
+- Explore POI tap closes Explore and reveals/highlights the corresponding normal Roadbook POI card for 10 seconds.
+- On page open, one display-only GPS fix positions and centers the normal strip before navigation is started.
+- Service worker remains offline-capable but uses immediate activation and no-store network-first navigation online.
+- V18.9.10.5.5 field-proven navigation/arrival/departure/auto-advance behavior is not intentionally changed.
