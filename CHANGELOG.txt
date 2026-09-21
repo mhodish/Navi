@@ -1,10 +1,6 @@
-Europe GPS Roadbook V18.9.10.5.6.6 — Tested Explore Rebuild
-
-- Rebuilt from V18.9.10.5.6.2, preserving its field-proven geographic blue-dot mapping.
-- Explore overlay DOM now exists before Explore JavaScript initializes.
-- EXPAND STRIP and direct two-finger strip entry both open a separate temporary viewport; the live strip is never resized.
-- Explore opens at 1x centered on the live blue dot, supports one-finger pan and proportional 1x–3x pinch around the finger midpoint.
-- Explore POI tap closes Explore and reveals/highlights the corresponding normal Roadbook POI card for 10 seconds.
-- On page open, one display-only GPS fix positions and centers the normal strip before navigation is started.
-- Service worker remains offline-capable but uses immediate activation and no-store network-first navigation online.
-- V18.9.10.5.5 field-proven navigation/arrival/departure/auto-advance behavior is not intentionally changed.
+Europe GPS Roadbook V18.9.10.5.6.8 — Netherlands final-base correction
+- Sep 26 after Tineke Bloemen funeral: directly to Harm Braams, Nieuwegein.
+- Stay with Harm continuously Sep 26, Sep 27 and Sep 28 nights.
+- Sep 29 morning: Harm/New Nieuwegein directly to Schiphol; return rental car; 10:45 flight.
+- No Schiphol hotel at end of trip.
+- No navigation-engine changes from 5.6.7.
