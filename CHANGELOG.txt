@@ -1,6 +1,8 @@
-Europe GPS Roadbook V18.9.10.5.6.8 — Netherlands final-base correction
-- Sep 26 after Tineke Bloemen funeral: directly to Harm Braams, Nieuwegein.
-- Stay with Harm continuously Sep 26, Sep 27 and Sep 28 nights.
-- Sep 29 morning: Harm/New Nieuwegein directly to Schiphol; return rental car; 10:45 flight.
-- No Schiphol hotel at end of trip.
-- No navigation-engine changes from 5.6.7.
+Europe GPS Roadbook V18.9.10.5.6.9 — startup-centering hardening
+
+- Keeps the 5.6.8 navigation engine and Netherlands itinerary unchanged.
+- Startup GPS remains independent of offline/service-worker readiness.
+- Startup centering now verifies that the blue GPS dot is actually visible before declaring success.
+- If iOS ignores an early scroll while layout/orientation is settling, centering retries.
+- Rotation, resize, pageshow and foreground resume can retrigger pending centering.
+- No arrival/departure/auto-advance threshold changes.

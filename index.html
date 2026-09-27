@@ -495,13 +495,13 @@ body.stripExploreOpen #stripExploreBtn{display:none}
 </style>\n</head>
 <body>
 
-<header><h1>Europe GPS Roadbook — V18.9.10.5.6.8 Netherlands + Explore Refinement</h1>
+<header><h1>Europe GPS Roadbook — V18.9.10.5.6.9 Netherlands + Explore Refinement</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.10.5.6.8</strong>
+    <strong>ROADBOOK · V18.9.10.5.6.9</strong>
     <div>50 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -2930,7 +2930,7 @@ function autoAdvance(p,currentDistance){
   const distanceGain=currentDistance-closestAfterNear;
   const now=Date.now()/1000;
 
-  // V18.9.10.5.6.8: GPS distance trend is authoritative for departure.
+  // V18.9.10.5.6.9: GPS distance trend is authoritative for departure.
   // iOS can omit/freeze coords.speed even while position updates, which prevented
   // otherwise-valid auto-advance. A sustained 35 m increase from closest approach
   // is sufficient; the existing 2.5 s confirmation still suppresses one-sample jitter.
@@ -3166,14 +3166,14 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.10.5.6.8 loaded. Expandable strip ready.');
+show('Roadbook V18.9.10.5.6.9 loaded. Expandable strip ready.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-10-5-6-8';
-  const SW_URL='./roadbook-v18-9-10-5-6-8-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10-5-6-9';
+  const SW_URL='./roadbook-v18-9-10-5-6-9-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){
@@ -3606,28 +3606,61 @@ show('Roadbook V18.9.10.5.6.8 loaded. Expandable strip ready.');
  window.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))closeExplore();});
  window.__roadbookExploreTest={open:openExplore,close:closeExplore,state:()=>({open:overlay.classList.contains('open'),scale,tx,ty,clone:!!clone})};
 })();
-</script>\n<script id="v10567StartupCenter">
+</script>\n<script id="v10569StartupCenter">
 (function(){
- let centered=false,attempts=0;
+ let centered=false, attempts=0, lastFix=null, retryTimer=null, centerAttempts=0;
+ const MAX_CENTER_ATTEMPTS=40;
+ function dotVisible(pane,dot){
+   const pr=pane.getBoundingClientRect(), dr=dot.getBoundingClientRect();
+   if(pr.width<40||pr.height<80||dr.width<1||dr.height<1)return false;
+   const cy=dr.top+dr.height/2;
+   return cy>=pr.top+Math.min(30,pr.height*.12) && cy<=pr.bottom-Math.min(30,pr.height*.12);
+ }
  function centerFromDot(){
+   if(centered)return true;
    const pane=document.getElementById('stripPane'),dot=document.getElementById('stripUserDot'),svg=pane&&pane.querySelector('.stripSvg');
-   if(!pane||!dot||!svg)return false;
+   if(!pane||!dot||!svg||pane.clientHeight<80||pane.clientWidth<40)return false;
    const y=+dot.getAttribute('cy'); if(!Number.isFinite(y))return false;
    const vb=svg.viewBox&&svg.viewBox.baseVal, rendered=svg.getBoundingClientRect();
+   if(rendered.width<40||rendered.height<100)return false;
    const sy=(vb&&vb.height)?rendered.height/vb.height:rendered.width/300;
-   pane.scrollTop=Math.max(0,y*sy-pane.clientHeight/2); centered=true; return true;
+   const desired=Math.max(0,y*sy-pane.clientHeight/2);
+   pane.scrollTop=desired;
+   // iOS may ignore a scroll issued while layout/orientation is still settling.
+   requestAnimationFrame(()=>requestAnimationFrame(()=>{
+     if(dotVisible(pane,dot)){centered=true;clearTimeout(retryTimer);}
+     else scheduleCenter();
+   }));
+   return false;
  }
- function got(p){try{updateStripPosition(p);}catch(e){} requestAnimationFrame(()=>requestAnimationFrame(centerFromDot));}
+ function scheduleCenter(delay=180){
+   if(centered||centerAttempts>=MAX_CENTER_ATTEMPTS)return;
+   clearTimeout(retryTimer);
+   retryTimer=setTimeout(()=>{centerAttempts++;centerFromDot();},delay);
+ }
+ function got(p){
+   lastFix=p;
+   try{updateStripPosition(p);}catch(e){}
+   centerAttempts=0;
+   scheduleCenter(0);
+ }
  function locate(){
    if(centered||!navigator.geolocation)return;
    attempts++;
-   navigator.geolocation.getCurrentPosition(got,()=>{if(attempts<3)setTimeout(locate,1500);},{enableHighAccuracy:true,maximumAge:15000,timeout:10000});
+   navigator.geolocation.getCurrentPosition(got,()=>{if(attempts<4)setTimeout(locate,1200);},{enableHighAccuracy:true,maximumAge:15000,timeout:10000});
  }
- // Script is at end of BODY: run now. pageshow may already have fired in a Home-Screen PWA.
- setTimeout(locate,50);
- window.addEventListener('pageshow',()=>setTimeout(locate,50));
- document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!centered)setTimeout(locate,100);});
- window.__roadbookStartupCenterTest={locate,centerFromDot,state:()=>({centered,attempts})};
+ function layoutChanged(){
+   if(centered)return;
+   if(lastFix){try{updateStripPosition(lastFix);}catch(e){} scheduleCenter(80);}
+   else locate();
+ }
+ // Cold-start GPS and strip centering are independent of service-worker/offline readiness.
+ setTimeout(locate,25);
+ window.addEventListener('pageshow',()=>setTimeout(layoutChanged,50));
+ window.addEventListener('resize',()=>setTimeout(layoutChanged,120));
+ window.addEventListener('orientationchange',()=>setTimeout(layoutChanged,250));
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout(layoutChanged,100);});
+ window.__roadbookStartupCenterTest={locate,centerFromDot,layoutChanged,state:()=>({centered,attempts,centerAttempts,hasFix:!!lastFix})};
 })();
 </script>
 <script id="v10567UpdateLifecycle">(function(){if(!('serviceWorker' in navigator))return;let once=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!once){once=true;location.reload();}});window.addEventListener('load',async()=>{try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.update();}catch(e){}});})();</script>
