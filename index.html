@@ -492,16 +492,27 @@ details.photoReveal{margin:7px 0}.photoReveal>summary{display:inline-block;curso
 body.stripExploreOpen{overflow:hidden!important}
 body.stripExploreOpen #stripExploreBtn{display:none}
 @media (min-width:701px){#stripExploreBtn{right:18px;bottom:18px}}
-</style>\n</head>
+</style>\n
+<style id="sticky-route-ahead-5-6-11">
+.routePoiHeader {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  background: #fff !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,.16);
+}
+</style>
+
+</head>
 <body>
 
-<header><h1>Europe GPS Roadbook — V18.9.10.5.6.10 Netherlands + Explore Refinement</h1>
+<header><h1>Europe GPS Roadbook — V18.9.10.5.6.11 Netherlands + Explore Refinement</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.10.5.6.10</strong>
+    <strong>ROADBOOK · V18.9.10.5.6.11</strong>
     <div>50 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -3112,7 +3123,7 @@ function autoAdvance(p,currentDistance){
   const distanceGain=currentDistance-closestAfterNear;
   const now=Date.now()/1000;
 
-  // V18.9.10.5.6.10: GPS distance trend is authoritative for departure.
+  // V18.9.10.5.6.11: GPS distance trend is authoritative for departure.
   // iOS can omit/freeze coords.speed even while position updates, which prevented
   // otherwise-valid auto-advance. A sustained 35 m increase from closest approach
   // is sufficient; the existing 2.5 s confirmation still suppresses one-sample jitter.
@@ -3348,14 +3359,14 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.10.5.6.10 loaded. Expandable strip ready.');
+show('Roadbook V18.9.10.5.6.11 loaded. Expandable strip ready.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-10-5-6-10';
-  const SW_URL='./roadbook-v18-9-10-5-6-10-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10-5-6-11';
+  const SW_URL='./roadbook-v18-9-10-5-6-11-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){
