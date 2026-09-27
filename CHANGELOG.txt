@@ -1,8 +1,9 @@
-Europe GPS Roadbook V18.9.10.5.6.9 — startup-centering hardening
+Europe GPS Roadbook V18.9.10.5.6.10 — Nieuwegein 30 km POI expansion
 
-- Keeps the 5.6.8 navigation engine and Netherlands itinerary unchanged.
-- Startup GPS remains independent of offline/service-worker readiness.
-- Startup centering now verifies that the blue GPS dot is actually visible before declaring success.
-- If iOS ignores an early scroll while layout/orientation is settling, centering retries.
-- Rotation, resize, pageshow and foreground resume can retrigger pending centering.
-- No arrival/departure/auto-advance threshold changes.
+- Built directly from field-proven 5.6.9.
+- Added 36 visitor-interest POIs within roughly 30 km of Nieuwegein:
+  local Nieuwegein/Vreeswijk sights, Utrecht city highlights, UNESCO Waterline/Limes sites,
+  castles/estates, historic towns, museums and nature areas.
+- Added matching strip-map markers and tappable information cards.
+- Existing 5.6.9 startup geolocation/centering and navigation engine are unchanged.
+- No itinerary-stop changes.
