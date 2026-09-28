@@ -493,75 +493,27 @@ body.stripExploreOpen{overflow:hidden!important}
 body.stripExploreOpen #stripExploreBtn{display:none}
 @media (min-width:701px){#stripExploreBtn{right:18px;bottom:18px}}
 </style>\n
-<style id="compact-route-ahead-5-6-12">
+<style id="sticky-route-ahead-5-6-11">
 .routePoiHeader {
   position: sticky !important;
   top: 0 !important;
   z-index: 1000 !important;
-  display:block !important;
-  padding:5px 7px !important;
-  background:#fff !important;
-  box-shadow:0 2px 5px rgba(0,0,0,.16);
-}
-.routePoiHeader .routePoiFilters{
-  display:flex !important;
-  align-items:center !important;
-  gap:5px !important;
-  flex-wrap:nowrap !important;
-  overflow-x:auto !important;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-}
-.routePoiHeader .routePoiFilters::-webkit-scrollbar{display:none}
-.routePoiHeader .routePoiFilters>button,
-.routePoiHelp>summary{
-  flex:0 0 auto;
-  padding:5px 8px;
-  border:1px solid #777;
-  border-radius:6px;
-  background:#fff;
-  color:#111;
-  font-weight:800;
-  font-size:11px;
-  line-height:1.1;
-  cursor:pointer;
-  list-style:none;
-  white-space:nowrap;
-}
-.routePoiHelp>summary::-webkit-details-marker{display:none}
-.routePoiHelp{position:relative;flex:0 0 auto}
-.routePoiHelp[open]>summary{background:#111;color:#fff}
-.routePoiHelpPanel{
-  position:absolute;
-  right:0;
-  top:calc(100% + 6px);
-  width:min(440px,calc(100vw - 34px));
-  padding:10px 12px;
-  border:1px solid #777;
-  border-radius:8px;
-  background:#fff;
-  box-shadow:0 4px 16px rgba(0,0,0,.22);
-  white-space:normal;
-}
-.routePoiHelpPanel b{font-size:13px;display:block;margin-bottom:4px}
-.routePoiHelpPanel span{font-size:12px;line-height:1.35;color:#444}
-@media(max-width:700px){
-  .routePoiHeader .routePoiFilters>button,.routePoiHelp>summary{padding:4px 6px;font-size:9px}
-  .routePoiHeader{padding:4px !important}
+  background: #fff !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,.16);
 }
 </style>
 
 </head>
 <body>
 
-<header><h1>Europe GPS Roadbook — V18.9.10.5.6.12 Compact Route Ahead Help</h1>
+<header><h1>Europe GPS Roadbook — V18.9.10.5.6.12 Netherlands + Explore Refinement</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
     <strong>ROADBOOK · V18.9.10.5.6.12</strong>
-    <div>50 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
+    <div>53 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
 <defs id="v1890PoiIconLibrary">
@@ -939,8 +891,17 @@ body.stripExploreOpen #stripExploreBtn{display:none}
 <circle id="stripStop48" class="stop-dot" cx="160.0" cy="461.2" r="8"/>
 <text class="stop-label" x="18.0" y="450.2">Nieuwegein — depart for Schiphol</text>
 <text class="map-small" x="18.0" y="466.2">Tue 29 Sep</text>
-<circle id="stripStop49" class="stop-dot" cx="138.0" cy="90.0" r="8"/>
-<text class="stop-label" x="152.0" y="79.0">Schiphol — Keddy Return</text>
+<circle id="stripStop49" class="stop-dot" cx="150.0" cy="368.4" r="8"/>
+<text class="stop-label" x="164.0" y="357.4">De Zaanse Schans</text>
+<text class="map-small" x="164.0" y="373.4">Tue 29 Sep</text>
+<circle id="stripStop50" class="stop-dot" cx="122.0" cy="275.6" r="8"/>
+<text class="stop-label" x="18.0" y="264.6">Zaandam</text>
+<text class="map-small" x="18.0" y="280.6">Tue 29 Sep</text>
+<circle id="stripStop51" class="stop-dot" cx="168.0" cy="182.8" r="8"/>
+<text class="stop-label" x="182.0" y="171.8">Vienna House Easy — Hoofddorp</text>
+<text class="map-small" x="182.0" y="187.8">Tue 29 Sep</text>
+<circle id="stripStop52" class="stop-dot" cx="138.0" cy="90.0" r="8"/>
+<text class="stop-label" x="152.0" y="79.0">Europcar Schiphol Airport</text>
 <text class="map-small" x="152.0" y="95.0">Tue 29 Sep</text>
 
 
@@ -1135,7 +1096,7 @@ body.stripExploreOpen #stripExploreBtn{display:none}
 <g class="stripMilestone" data-stop-id="gla_drivalia" transform="translate(16,1641.5)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 21</text><text class="milestoneMain" x="52" y="8">CAR RETURN TARGET 16:15–16:30</text><text class="milestoneSub" x="5" y="18">GLA FLIGHT 19:25 → AMS 22:00</text></g>
 <g class="stripMilestone" data-stop-id="ams_car" transform="translate(16,1455.9)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 22</text><text class="milestoneMain" x="52" y="8">KEDDY PICKUP 08:00</text><text class="milestoneSub" x="5" y="18">Schiphol</text></g>
 <g class="stripMilestone" data-stop-id="heinenoord_funeral" transform="translate(16,528.0)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 26</text><text class="milestoneMain" x="52" y="8">FUNERAL — 13:00</text><text class="milestoneSub" x="5" y="18">Crematorium Hoeksche Waard · Heinenoord</text></g>
-<g class="stripMilestone" data-stop-id="schiphol_return" transform="translate(16,64.0)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 29</text><text class="milestoneMain" x="52" y="8">KEDDY RETURN 07:30</text><text class="milestoneSub" x="5" y="18">AMS FLIGHT 10:45 → OSL; OSL 13:20 → JFK</text></g>
+<g class="stripMilestone" data-stop-id="schiphol_return" transform="translate(16,64.0)"><rect x="0" y="0" width="268" height="22" rx="5"/><text class="milestoneDate" x="5" y="8">SEP 29</text><text class="milestoneMain" x="52" y="8">EUROPCAR RETURN 07:30</text><text class="milestoneSub" x="5" y="18">AMS FLIGHT 10:45 → OSL; OSL 13:20 → JFK</text></g>
 </svg>
 </aside>
 
@@ -1170,23 +1131,21 @@ body.stripExploreOpen #stripExploreBtn{display:none}
   <div><strong>Sep 21:</strong> GLA car return target 16:15–16:30 · flight 19:25</div>
   <div><strong>Sep 22:</strong> Schiphol Keddy pickup 08:00</div>
   <div><strong>Sep 26:</strong> Tineke Bloemen funeral — Crematorium Hoeksche Waard, Heinenoord — 13:00</div>
-  <div><strong>Sep 29:</strong> Schiphol Keddy return 07:30 · AMS flight 10:45 · OSL connection 13:20</div>
+  <div><strong>Sep 29:</strong> Schiphol Europcar return 07:30 · AMS flight 10:45 · OSL connection 13:20</div>
 </details>
 
 <section id="routePoiRail" class="routePoiRail" aria-label="Route points of interest">
 <div class="routePoi" data-poi-key="harm-final-base"><b>FINAL NETHERLANDS BASE — HARM BRAAMS / NIEUWEGEIN</b><br>After the Tineke Bloemen funeral on Saturday 26 September, drive directly to Harm Braams in Nieuwegein. Stay with Harm continuously Saturday night, Sunday night, and Monday night. On Tuesday 29 September, leave Harm's in the morning, drive directly to Schiphol, return the rental car, and check in for the 10:45 flight. There is no Schiphol hotel at the end of the trip.</div>
   <div class="routePoiHeader">
+    <div><b>ROUTE AHEAD</b><span>Hikes, scenic stops, EV chargers, restaurants and supermarkets in TRIP DRIVING ORDER. Food, groceries and chargers appear beside the places you are approaching. Informational POIs do not change automatic navigation.</span></div>
     <div class="routePoiFilters">
       <button type="button" data-filter="ALL" class="active">ALL</button>
       <button type="button" data-filter="HIKE">HIKES</button>
       <button type="button" data-filter="SCENIC POI">SCENIC</button>
       <button type="button" data-filter="EV CHARGER">EV</button><button type="button" data-filter="RESTAURANT">RESTAURANTS</button><button type="button" data-filter="SUPERMARKET">SUPERMARKETS</button><button type="button" class="costFilter active" data-cost-filter="FREE">FREE</button><button type="button" class="costFilter active" data-cost-filter="PAID">PAID</button>
-      <details class="routePoiHelp"><summary>HELP</summary><div class="routePoiHelpPanel"><b>ROUTE AHEAD</b><span>Hikes, scenic stops, EV chargers, restaurants and supermarkets in TRIP DRIVING ORDER. Food, groceries and chargers appear beside the places you are approaching. Informational POIs do not change automatic navigation.</span></div></details>
     </div>
   </div>
   <div class="routePoiList">
-<div class="poiIntelIntro"><b>V18.9.10.5 POI INTELLIGENCE:</b> Scotland + Netherlands enrichment. Numbered POIs match the transverse markers on the strip. Priority is shape/contrast-led rather than emoji-led. Cost buttons are independent of category buttons.</div>
-
 <button class="routePoi routePoi-scenic-poi poiIntelCard" type="button" data-target="stop-pitlochry" data-poi-key="100" data-cost="FREE">
 <span class="routePoiType">SCENIC POI</span>
 <span class="routePoiText"><b><span class="poiNum">1</span>Queen’s View, Loch Tummel</b><span class="poiPriority prime">PRIME</span><small class="poiMeta">FREE · 20–40 min · ~20 min detour</small><small>Classic Loch Tummel panorama; excellent quick Highland landscape stop.</small></span>
@@ -2712,17 +2671,24 @@ These stars are <b>roadbook recommendation tiers</b>, not a copied Google/Tripad
 <section class="stop" id="stop-harm_sep27" data-stop="harm_sep27"><div class="stophead"><span class="badge">STOP 47</span><h2>Nieuwegein — day with Harm</h2></div><div class="dateCountry">Sun 27 Sep · Netherlands</div><p class="address">Nieuwegein</p><p>Day with Harm Braams; overnight with Harm.</p><div class="gps">GPS: 52.029200, 5.080700</div><div class="distance" id="distance-harm_sep27">Distance from you: waiting for GPS</div><a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.029200%2C5.080700">Navigate to this stop using Google Maps</a></section>
 <section class="stop" id="stop-harm_sep28" data-stop="harm_sep28"><div class="stophead"><span class="badge">STOP 48</span><h2>Nieuwegein — second day with Harm</h2></div><div class="dateCountry">Mon 28 Sep · Netherlands</div><p class="address">Nieuwegein</p><p>Second full day with Harm Braams; overnight with Harm.</p><div class="gps">GPS: 52.029200, 5.080700</div><div class="distance" id="distance-harm_sep28">Distance from you: waiting for GPS</div><a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.029200%2C5.080700">Navigate to this stop using Google Maps</a></section>
 <section class="stop" id="stop-harm_depart" data-stop="harm_depart"><div class="stophead"><span class="badge">STOP 49</span><h2>Nieuwegein — depart Harm for Schiphol</h2></div><div class="dateCountry">Tue 29 Sep · Netherlands</div><p class="address">Nieuwegein</p><p>Leave Harm in the morning with enough time to drive to Schiphol, return the rental car and make the 10:45 flight.</p><div class="gps">GPS: 52.029200, 5.080700</div><div class="distance" id="distance-harm_depart">Distance from you: waiting for GPS</div><a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.029200%2C5.080700">Navigate to this stop using Google Maps</a></section>
-<section class="stop" id="stop-schiphol_return" data-stop="schiphol_return"><div class="stophead"><span class="badge">STOP 50</span><h2>Schiphol — Keddy Return</h2></div><div class="dateCountry">Tue 29 Sep · Netherlands</div><p class="address">Amsterdam Schiphol Airport</p><p>Return rental car, then SAS AMS→OSL 10:45; OSL→JFK 13:20.</p><div class="gps">GPS: 52.310500, 4.768300</div><div class="distance" id="distance-schiphol_return">Distance from you: waiting for GPS</div><a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a></section>
+
+<section class="stop" id="stop-zaanse_schans" data-stop="zaanse_schans"><div class="stophead"><span class="badge">STOP 50</span><h2>De Zaanse Schans</h2></div><div class="dateCountry">Tue 29 Sep · Netherlands</div><p class="address">Schansend 7 · 1509 AW Zaandam</p><p>Added to the final Netherlands route before Zaandam.</p><div class="gps">GPS: 52.473524, 4.822378</div><div class="distance" id="distance-zaanse_schans">Distance from you: waiting for GPS</div><a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.4735241%2C4.8223781">Navigate to this stop using Google Maps</a></section>
+
+<section class="stop" id="stop-zaandam" data-stop="zaandam"><div class="stophead"><span class="badge">STOP 51</span><h2>Zaandam</h2></div><div class="dateCountry">Tue 29 Sep · Netherlands</div><p class="address">Zaandam centre · Stadhuisplein area</p><p>City-centre stop after Zaanse Schans.</p><div class="gps">GPS: 52.438048, 4.814727</div><div class="distance" id="distance-zaandam">Distance from you: waiting for GPS</div><a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.438048232358%2C4.8147272163731">Navigate to this stop using Google Maps</a></section>
+
+<section class="stop" id="stop-vienna_house_return" data-stop="vienna_house_return"><div class="stophead"><span class="badge">STOP 52</span><h2>Vienna House Easy by Wyndham Amsterdam Airport</h2></div><div class="dateCountry">Tue 29 Sep · Netherlands</div><p class="address">Kruisweg 601 · 2132 NA Hoofddorp</p><p>Added as the final intermediate stop before the rental-car return.</p><div class="gps">GPS: 52.291130, 4.720390</div><div class="distance" id="distance-vienna_house_return">Distance from you: waiting for GPS</div><a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.29113%2C4.72039">Navigate to this stop using Google Maps</a></section>
+
+<section class="stop" id="stop-schiphol_return" data-stop="schiphol_return"><div class="stophead"><span class="badge">STOP 53</span><h2>Europcar Schiphol Airport — rental return</h2></div><div class="dateCountry">Tue 29 Sep · Netherlands</div><p class="address">Amsterdam Airport Schiphol · 1118 AX Schiphol</p><p>Return rental car at Europcar, then SAS AMS→OSL 10:45; OSL→JFK 13:20.</p><div class="gps">GPS: 52.310500, 4.768300</div><div class="distance" id="distance-schiphol_return">Distance from you: waiting for GPS</div><a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=52.310500%2C4.768300">Navigate to this stop using Google Maps</a></section>
 <footer>
 V18.9.10 adds Scotland/Netherlands POI intelligence, numbered transverse strip markers, priority/cost/time/detour metadata and independent FREE/PAID filtering. It keeps the clean baseline, live offline-cache readiness monitoring, and enlarged strip-map POI icons: the proven navigation engine and route data are unchanged; superseded responsive/icon CSS patches have been consolidated into one maintained ruleset. Category filtering, Safari behavior, phone/iPad strip-map layout, trip-state persistence, and manual-scroll handling are incorporated into this clean baseline. Core V17.1 GPS/ETE/warning/near-destination/Moira thresholds remain unchanged. Flakstadtind/Nubben notes are based on current Lofoten hiking references; Leiden scenic-day note is based on official Visit Leiden tourism information.
-Netherlands route revised Sep 21: Den Haag → Vlissingen → Cuijk → Heinenoord → Nieuwegein → Schiphol. The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Tineke Bloemen funeral — Crematorium Hoeksche Waard, Heinenoord — 13:00.
+Netherlands route updated Sep 28: Den Haag → Vlissingen → Cuijk → Heinenoord → Nieuwegein → Zaanse Schans → Zaandam → Vienna House Easy → Europcar Schiphol. The strip is intentionally schematic. Netherlands Sep 26 is fixed for the Tineke Bloemen funeral — Crematorium Hoeksche Waard, Heinenoord — 13:00.
 Photo credits are shown under each image. Photos are cached for offline use when available, but a failed photo download no longer blocks READY.
 </footer>
 </main>
 </div>
 <audio id="voicePlayer" preload="auto"></audio>
 <script>
-const stops=[{"id":"eve_house","name":"House near Evenes Airport","lat":68.49,"lon":16.65},{"id":"henningsvaer","name":"Henningsv\u00e6r / Tobiasbrygga","lat":68.1533,"lon":14.2018},{"id":"haukland","name":"Haukland Beach","lat":68.199495,"lon":13.507947},{"id":"uttakleiv","name":"Uttakleiv Beach","lat":68.2095,"lon":13.503},{"id":"ramberg","name":"Ramberg Beach","lat":68.0896,"lon":13.2294},{"id":"skagsanden","name":"Flakstad Church + Skagsanden","lat":68.111,"lon":13.274},{"id":"arctic_resort","name":"Arctic Resort Lofoten","lat":68.085,"lon":13.225},{"id":"hamnoy","name":"Hamn\u00f8y Bridge Viewpoint","lat":67.9496,"lon":13.1327},{"id":"reine","name":"Sakris\u00f8y + Reine","lat":67.9324,"lon":13.0895},{"id":"aa","name":"\u00c5 Fishing Village Museum","lat":67.879,"lon":12.982},{"id":"nusfjord","name":"Nusfjord","lat":68.0344,"lon":13.3485},{"id":"fredvang","name":"Fredvang / Ytresand Coast","lat":68.089,"lon":13.163},{"id":"lofotr","name":"Lofotr Viking Museum","lat":68.2444,"lon":13.7577},{"id":"svolvaer","name":"Svolv\u00e6r / Nordis Apartments","lat":68.2343,"lon":14.568},{"id":"eve_return","name":"Evenes Airport \u2014 Avis Return","lat":68.4913,"lon":16.6781},{"id":"edi_drivalia","name":"Drivalia Edinburgh Pickup","lat":55.946,"lon":-3.407},{"id":"pitbauchlie","name":"Pitbauchlie House Hotel","lat":56.06,"lon":-3.455},{"id":"pitlochry","name":"Pitlochry","lat":56.704,"lon":-3.735},{"id":"aviemore","name":"Aviemore / High Range","lat":57.195,"lon":-3.829},{"id":"urquhart","name":"Urquhart Castle","lat":57.324,"lon":-4.442},{"id":"eilean","name":"Eilean Donan Castle","lat":57.274272,"lon":-5.513767},{"id":"uig","name":"Ferry Inn, Uig","lat":57.5855,"lon":-6.3565},{"id":"storr","name":"Old Man of Storr","lat":57.5073,"lon":-6.1838},{"id":"kiltrock","name":"Kilt Rock / Mealt Falls","lat":57.6105,"lon":-6.1728},{"id":"quiraing","name":"Quiraing","lat":57.6435,"lon":-6.273},{"id":"fairyglen","name":"Fairy Glen","lat":57.5837,"lon":-6.3265},{"id":"uig_return","name":"Ferry Inn \u2014 second night","lat":57.5855,"lon":-6.3565},{"id":"fortwilliam","name":"Fort William","lat":56.8198,"lon":-5.1052},{"id":"glenfinnan","name":"Glenfinnan Viaduct / Loch Shiel","lat":56.8707,"lon":-5.4319},{"id":"glencoe","name":"Glencoe / Three Sisters","lat":56.665,"lon":-4.986},{"id":"rocklee","name":"Rocklee B&B","lat":56.677906,"lon":-5.132715},{"id":"glencoe_vc","name":"Glencoe Visitor Centre","lat":56.6678,"lon":-5.109},{"id":"luss","name":"Luss / Loch Lomond","lat":56.101,"lon":-4.639},{"id":"hotel_indigo","name":"Hotel Indigo Glasgow","lat":55.860492,"lon":-4.263012},{"id":"glasgow","name":"Glasgow \u2014 free sightseeing day","lat":55.8609,"lon":-4.2514},{"id":"gla_drivalia","name":"Drivalia Glasgow Return","lat":55.856,"lon":-4.435},{"id":"vienna_house","name":"Vienna House Easy \u2014 Hoofddorp","lat":52.301,"lon":4.691},{"id":"ams_car","name":"Keddy Rental Pickup \u2014 Schiphol","lat":52.3105,"lon":4.7683},{"id":"denhaag","name":"Den Haag \u2014 sightseeing day","lat":52.0705,"lon":4.3007},{"id":"savarin","name":"Hotel & Spa Savarin \u2014 Rijswijk","lat":52.048731,"lon":4.349724},{"id":"vlissingen","name":"Vlissingen \u2014 Wim Bijnen","lat":51.4427,"lon":3.5736},{"id":"vlissingen_day2","name":"Vlissingen \u2014 day with Wim","lat":51.4427,"lon":3.5736},{"id":"cuijk","name":"Cuijk \u2014 Mike Birkhoff","lat":51.7306,"lon":5.8792},{"id":"cuijk_hotel","name":"Cuijk \u2014 Van der Valk overnight","lat":51.7306,"lon":5.8792},{"id":"heinenoord_funeral","name":"Crematorium Hoeksche Waard \u2014 Tineke Bloemen funeral","lat":51.817716,"lon":4.532335},{"id":"nieuwegein","name":"Nieuwegein \u2014 Harm Braams","lat":52.0292,"lon":5.0807},{"id":"harm_sep27","name":"Nieuwegein \u2014 day with Harm","lat":52.0292,"lon":5.0807},{"id":"harm_sep28","name":"Nieuwegein \u2014 second day with Harm","lat":52.0292,"lon":5.0807},{"id":"harm_depart","name":"Nieuwegein \u2014 depart Harm for Schiphol","lat":52.0292,"lon":5.0807},{"id":"schiphol_return","name":"Schiphol \u2014 Keddy Return","lat":52.3105,"lon":4.7683}];
+const stops=[{"id":"eve_house","name":"House near Evenes Airport","lat":68.49,"lon":16.65},{"id":"henningsvaer","name":"Henningsvær / Tobiasbrygga","lat":68.1533,"lon":14.2018},{"id":"haukland","name":"Haukland Beach","lat":68.199495,"lon":13.507947},{"id":"uttakleiv","name":"Uttakleiv Beach","lat":68.2095,"lon":13.503},{"id":"ramberg","name":"Ramberg Beach","lat":68.0896,"lon":13.2294},{"id":"skagsanden","name":"Flakstad Church + Skagsanden","lat":68.111,"lon":13.274},{"id":"arctic_resort","name":"Arctic Resort Lofoten","lat":68.085,"lon":13.225},{"id":"hamnoy","name":"Hamnøy Bridge Viewpoint","lat":67.9496,"lon":13.1327},{"id":"reine","name":"Sakrisøy + Reine","lat":67.9324,"lon":13.0895},{"id":"aa","name":"Å Fishing Village Museum","lat":67.879,"lon":12.982},{"id":"nusfjord","name":"Nusfjord","lat":68.0344,"lon":13.3485},{"id":"fredvang","name":"Fredvang / Ytresand Coast","lat":68.089,"lon":13.163},{"id":"lofotr","name":"Lofotr Viking Museum","lat":68.2444,"lon":13.7577},{"id":"svolvaer","name":"Svolvær / Nordis Apartments","lat":68.2343,"lon":14.568},{"id":"eve_return","name":"Evenes Airport — Avis Return","lat":68.4913,"lon":16.6781},{"id":"edi_drivalia","name":"Drivalia Edinburgh Pickup","lat":55.946,"lon":-3.407},{"id":"pitbauchlie","name":"Pitbauchlie House Hotel","lat":56.06,"lon":-3.455},{"id":"pitlochry","name":"Pitlochry","lat":56.704,"lon":-3.735},{"id":"aviemore","name":"Aviemore / High Range","lat":57.195,"lon":-3.829},{"id":"urquhart","name":"Urquhart Castle","lat":57.324,"lon":-4.442},{"id":"eilean","name":"Eilean Donan Castle","lat":57.274272,"lon":-5.513767},{"id":"uig","name":"Ferry Inn, Uig","lat":57.5855,"lon":-6.3565},{"id":"storr","name":"Old Man of Storr","lat":57.5073,"lon":-6.1838},{"id":"kiltrock","name":"Kilt Rock / Mealt Falls","lat":57.6105,"lon":-6.1728},{"id":"quiraing","name":"Quiraing","lat":57.6435,"lon":-6.273},{"id":"fairyglen","name":"Fairy Glen","lat":57.5837,"lon":-6.3265},{"id":"uig_return","name":"Ferry Inn — second night","lat":57.5855,"lon":-6.3565},{"id":"fortwilliam","name":"Fort William","lat":56.8198,"lon":-5.1052},{"id":"glenfinnan","name":"Glenfinnan Viaduct / Loch Shiel","lat":56.8707,"lon":-5.4319},{"id":"glencoe","name":"Glencoe / Three Sisters","lat":56.665,"lon":-4.986},{"id":"rocklee","name":"Rocklee B&B","lat":56.677906,"lon":-5.132715},{"id":"glencoe_vc","name":"Glencoe Visitor Centre","lat":56.6678,"lon":-5.109},{"id":"luss","name":"Luss / Loch Lomond","lat":56.101,"lon":-4.639},{"id":"hotel_indigo","name":"Hotel Indigo Glasgow","lat":55.860492,"lon":-4.263012},{"id":"glasgow","name":"Glasgow — free sightseeing day","lat":55.8609,"lon":-4.2514},{"id":"gla_drivalia","name":"Drivalia Glasgow Return","lat":55.856,"lon":-4.435},{"id":"vienna_house","name":"Vienna House Easy — Hoofddorp","lat":52.301,"lon":4.691},{"id":"ams_car","name":"Keddy Rental Pickup — Schiphol","lat":52.3105,"lon":4.7683},{"id":"denhaag","name":"Den Haag — sightseeing day","lat":52.0705,"lon":4.3007},{"id":"savarin","name":"Hotel & Spa Savarin — Rijswijk","lat":52.048731,"lon":4.349724},{"id":"vlissingen","name":"Vlissingen — Wim Bijnen","lat":51.4427,"lon":3.5736},{"id":"vlissingen_day2","name":"Vlissingen — day with Wim","lat":51.4427,"lon":3.5736},{"id":"cuijk","name":"Cuijk — Mike Birkhoff","lat":51.7306,"lon":5.8792},{"id":"cuijk_hotel","name":"Cuijk — Van der Valk overnight","lat":51.7306,"lon":5.8792},{"id":"heinenoord_funeral","name":"Crematorium Hoeksche Waard — Tineke Bloemen funeral","lat":51.817716,"lon":4.532335},{"id":"nieuwegein","name":"Nieuwegein — Harm Braams","lat":52.0292,"lon":5.0807},{"id":"harm_sep27","name":"Nieuwegein — day with Harm","lat":52.0292,"lon":5.0807},{"id":"harm_sep28","name":"Nieuwegein — second day with Harm","lat":52.0292,"lon":5.0807},{"id":"harm_depart","name":"Nieuwegein — depart Harm for Schiphol","lat":52.0292,"lon":5.0807},{"id":"zaanse_schans","name":"De Zaanse Schans","lat":52.4735241,"lon":4.8223781},{"id":"zaandam","name":"Zaandam","lat":52.438048232358,"lon":4.8147272163731},{"id":"vienna_house_return","name":"Vienna House Easy by Wyndham Amsterdam Airport","lat":52.29113,"lon":4.72039},{"id":"schiphol_return","name":"Europcar Schiphol Airport — rental return","lat":52.3105,"lon":4.7683}];
 
 const WARNING_SEC=120;
 const BASE_NEAR_M=95;
@@ -2828,7 +2794,7 @@ function speedMps(p){ const s=p?.coords?.speed; return Number.isFinite(s)&&s>=0?
 function speedKmh(p){ const s=speedMps(p); return s===null?null:s*3.6; }
 
 // ---- Europe strip-map display only. This does not participate in arrival/warning/auto-advance logic. ----
-const stripAnchors=[{"lat":68.4913,"lon":16.6781,"x":150,"y":5008},{"lat":68.49,"lon":16.65,"x":150,"y":4915.207547169812},{"lat":68.1533,"lon":14.2018,"x":122,"y":4822.415094339623},{"lat":68.199495,"lon":13.507947,"x":168,"y":4729.622641509434},{"lat":68.2095,"lon":13.503,"x":138,"y":4636.830188679245},{"lat":68.0896,"lon":13.2294,"x":182,"y":4544.037735849057},{"lat":68.111,"lon":13.274,"x":130,"y":4451.245283018868},{"lat":68.085,"lon":13.225,"x":160,"y":4358.452830188679},{"lat":67.9496,"lon":13.1327,"x":150,"y":4265.66037735849},{"lat":67.9324,"lon":13.0895,"x":122,"y":4172.867924528302},{"lat":67.879,"lon":12.982,"x":168,"y":4080.0754716981132},{"lat":68.0344,"lon":13.3485,"x":138,"y":3987.2830188679245},{"lat":68.089,"lon":13.163,"x":182,"y":3894.490566037736},{"lat":68.2444,"lon":13.7577,"x":130,"y":3801.698113207547},{"lat":68.2343,"lon":14.568,"x":160,"y":3708.905660377359},{"lat":68.4913,"lon":16.6781,"x":150,"y":3616.1132075471696},{"lat":55.946,"lon":-3.407,"x":122,"y":3523.3207547169814},{"lat":56.06,"lon":-3.455,"x":168,"y":3430.528301886792},{"lat":56.704,"lon":-3.735,"x":138,"y":3337.735849056604},{"lat":57.195,"lon":-3.829,"x":182,"y":3244.943396226415},{"lat":57.324,"lon":-4.442,"x":130,"y":3152.1509433962265},{"lat":57.274272,"lon":-5.513767,"x":160,"y":3059.3584905660377},{"lat":57.5855,"lon":-6.3565,"x":150,"y":2966.566037735849},{"lat":57.5073,"lon":-6.1838,"x":122,"y":2873.7735849056603},{"lat":57.6105,"lon":-6.1728,"x":168,"y":2780.9811320754716},{"lat":57.6435,"lon":-6.273,"x":138,"y":2688.188679245283},{"lat":57.5837,"lon":-6.3265,"x":182,"y":2595.396226415094},{"lat":57.5855,"lon":-6.3565,"x":130,"y":2502.603773584906},{"lat":56.8198,"lon":-5.1052,"x":160,"y":2409.811320754717},{"lat":56.8707,"lon":-5.4319,"x":150,"y":2317.0188679245284},{"lat":56.665,"lon":-4.986,"x":122,"y":2224.2264150943397},{"lat":56.677906,"lon":-5.132715,"x":168,"y":2131.433962264151},{"lat":56.6678,"lon":-5.109,"x":138,"y":2038.6415094339623},{"lat":56.101,"lon":-4.639,"x":182,"y":1945.8490566037735},{"lat":55.8617,"lon":-4.2646,"x":130,"y":1853.0566037735848},{"lat":55.8609,"lon":-4.2514,"x":160,"y":1760.264150943396},{"lat":55.856,"lon":-4.435,"x":150,"y":1667.4716981132074},{"lat":52.301,"lon":4.691,"x":122,"y":1574.6792452830186},{"lat":52.0705,"lon":4.3007,"x":138,"y":1389.0943396226417},{"lat":52.048731,"lon":4.349724,"x":182,"y":1296.301886792453},{"lat":51.4427,"lon":3.5736,"x":130,"y":1203.5094339622642},{"lat":51.4427,"lon":3.5736,"x":160,"y":1110.7169811320755},{"lat":51.7306,"lon":5.8792,"x":150,"y":1017.9245283018868},{"lat":51.7306,"lon":5.8792,"x":122,"y":925.132075471698},{"lat":51.817716,"lon":4.532335,"x":168,"y":832.3396226415098},{"lat":52.0292,"lon":5.0807,"x":138,"y":739.5471698113206},{"lat":52.0292,"lon":5.0807,"x":182,"y":646.7547169811323},{"lat":52.0292,"lon":5.0807,"x":130,"y":553.9622641509432},{"lat":52.0292,"lon":5.0807,"x":160,"y":461.1698113207549},{"lat":52.3105,"lon":4.7683,"x":138,"y":90.0}];
+const stripAnchors=[{"lat":68.4913,"lon":16.6781,"x":150,"y":5008},{"lat":68.49,"lon":16.65,"x":150,"y":4915.207547169812},{"lat":68.1533,"lon":14.2018,"x":122,"y":4822.415094339623},{"lat":68.199495,"lon":13.507947,"x":168,"y":4729.622641509434},{"lat":68.2095,"lon":13.503,"x":138,"y":4636.830188679245},{"lat":68.0896,"lon":13.2294,"x":182,"y":4544.037735849057},{"lat":68.111,"lon":13.274,"x":130,"y":4451.245283018868},{"lat":68.085,"lon":13.225,"x":160,"y":4358.452830188679},{"lat":67.9496,"lon":13.1327,"x":150,"y":4265.66037735849},{"lat":67.9324,"lon":13.0895,"x":122,"y":4172.867924528302},{"lat":67.879,"lon":12.982,"x":168,"y":4080.0754716981132},{"lat":68.0344,"lon":13.3485,"x":138,"y":3987.2830188679245},{"lat":68.089,"lon":13.163,"x":182,"y":3894.490566037736},{"lat":68.2444,"lon":13.7577,"x":130,"y":3801.698113207547},{"lat":68.2343,"lon":14.568,"x":160,"y":3708.905660377359},{"lat":68.4913,"lon":16.6781,"x":150,"y":3616.1132075471696},{"lat":55.946,"lon":-3.407,"x":122,"y":3523.3207547169814},{"lat":56.06,"lon":-3.455,"x":168,"y":3430.528301886792},{"lat":56.704,"lon":-3.735,"x":138,"y":3337.735849056604},{"lat":57.195,"lon":-3.829,"x":182,"y":3244.943396226415},{"lat":57.324,"lon":-4.442,"x":130,"y":3152.1509433962265},{"lat":57.274272,"lon":-5.513767,"x":160,"y":3059.3584905660377},{"lat":57.5855,"lon":-6.3565,"x":150,"y":2966.566037735849},{"lat":57.5073,"lon":-6.1838,"x":122,"y":2873.7735849056603},{"lat":57.6105,"lon":-6.1728,"x":168,"y":2780.9811320754716},{"lat":57.6435,"lon":-6.273,"x":138,"y":2688.188679245283},{"lat":57.5837,"lon":-6.3265,"x":182,"y":2595.396226415094},{"lat":57.5855,"lon":-6.3565,"x":130,"y":2502.603773584906},{"lat":56.8198,"lon":-5.1052,"x":160,"y":2409.811320754717},{"lat":56.8707,"lon":-5.4319,"x":150,"y":2317.0188679245284},{"lat":56.665,"lon":-4.986,"x":122,"y":2224.2264150943397},{"lat":56.677906,"lon":-5.132715,"x":168,"y":2131.433962264151},{"lat":56.6678,"lon":-5.109,"x":138,"y":2038.6415094339623},{"lat":56.101,"lon":-4.639,"x":182,"y":1945.8490566037735},{"lat":55.8617,"lon":-4.2646,"x":130,"y":1853.0566037735848},{"lat":55.8609,"lon":-4.2514,"x":160,"y":1760.264150943396},{"lat":55.856,"lon":-4.435,"x":150,"y":1667.4716981132074},{"lat":52.301,"lon":4.691,"x":122,"y":1574.6792452830186},{"lat":52.0705,"lon":4.3007,"x":138,"y":1389.0943396226417},{"lat":52.048731,"lon":4.349724,"x":182,"y":1296.301886792453},{"lat":51.4427,"lon":3.5736,"x":130,"y":1203.5094339622642},{"lat":51.4427,"lon":3.5736,"x":160,"y":1110.7169811320755},{"lat":51.7306,"lon":5.8792,"x":150,"y":1017.9245283018868},{"lat":51.7306,"lon":5.8792,"x":122,"y":925.132075471698},{"lat":51.817716,"lon":4.532335,"x":168,"y":832.3396226415098},{"lat":52.0292,"lon":5.0807,"x":138,"y":739.5471698113206},{"lat":52.0292,"lon":5.0807,"x":182,"y":646.7547169811323},{"lat":52.0292,"lon":5.0807,"x":130,"y":553.9622641509432},{"lat":52.0292,"lon":5.0807,"x":160,"y":461.1698113207549},{"lat":52.4735241,"lon":4.8223781,"x":150,"y":368.4},{"lat":52.438048232358,"lon":4.8147272163731,"x":122,"y":275.6},{"lat":52.29113,"lon":4.72039,"x":168,"y":182.8},{"lat":52.3105,"lon":4.7683,"x":138,"y":90.0}];
 
 function localXY(lat,lon,lat0,lon0){
   const r=Math.PI/180;
@@ -3171,7 +3137,7 @@ function autoAdvance(p,currentDistance){
   const distanceGain=currentDistance-closestAfterNear;
   const now=Date.now()/1000;
 
-  // V18.9.10.5.6.11: GPS distance trend is authoritative for departure.
+  // V18.9.10.5.6.12: GPS distance trend is authoritative for departure.
   // iOS can omit/freeze coords.speed even while position updates, which prevented
   // otherwise-valid auto-advance. A sustained 35 m increase from closest approach
   // is sufficient; the existing 2.5 s confirmation still suppresses one-sample jitter.
@@ -3407,7 +3373,7 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.10.5.6.12 loaded. Compact Route Ahead toolbar ready.');
+show('Roadbook V18.9.10.5.6.12 loaded. Expandable strip ready.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
@@ -3436,9 +3402,12 @@ show('Roadbook V18.9.10.5.6.12 loaded. Compact Route Ahead toolbar ready.');
     }
   }
 
+  let checkInFlight=false;
   async function check(){
+    if(checkInFlight) return false;
+    checkInFlight=true;
     const reg=await ensureRegistered();
-    if(!reg) return false;
+    if(!reg){ checkInFlight=false; return false; }
 
     try{
       if(reg.installing){
@@ -3478,15 +3447,22 @@ show('Roadbook V18.9.10.5.6.12 loaded. Compact Route Ahead toolbar ready.');
             'Service worker is active and all core Roadbook files are cached.');
       return true;
     }catch(err){
-      stage('check failed',err && err.message ? err.message : String(err));
+      // iOS can briefly reject cache/service-worker queries during a cold launch.
+      // Do not present that transient condition as a hard failure: the periodic
+      // checker below will retry automatically.
+      stage('preparing…','Offline check temporarily unavailable; retrying automatically.');
       return false;
+    }finally{
+      checkInFlight=false;
     }
   }
 
   let timer=null;
   async function begin(){
-    await check();
     if(timer) clearInterval(timer);
+    // Give iOS a brief moment after pageshow/cold launch before the first cache query,
+    // then continue checking until READY.
+    setTimeout(check,300);
     timer=setInterval(check,1200);
   }
 
@@ -3495,7 +3471,7 @@ show('Roadbook V18.9.10.5.6.12 loaded. Compact Route Ahead toolbar ready.');
   if('serviceWorker' in navigator){
     navigator.serviceWorker.addEventListener('controllerchange',check);
   }
-  begin();
+  setTimeout(begin,120);
 })();
 </script>
 

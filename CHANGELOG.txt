@@ -1,11 +1,11 @@
 Europe GPS Roadbook V18.9.10.5.6.12
 
-- Compact Route Ahead toolbar on iPad/desktop.
-- Moved Route Ahead explanatory text behind a HELP control.
-- Preserved sticky filter bar and all category/cost filter behavior.
-- No navigation, GPS, arrival/departure, POI ordering, or voice logic changed.
-
-Europe GPS Roadbook V18.9.10.5.6.11
-- UI-only change: ROUTE AHEAD filter bar stays visible at the top while POIs scroll.
-- Built from 5.6.10.
-- No GPS, startup-centering, itinerary, POI-data, or navigation-engine changes.
+- Added final-route stops in requested order before the existing rental-car return:
+  De Zaanse Schans -> Zaandam -> Vienna House Easy by Wyndham Amsterdam Airport -> Europcar Schiphol Airport.
+- Renamed the final rental-return stop from Keddy wording to Europcar wording.
+- Removed the obsolete V18.9.10.5 POI INTELLIGENCE on-screen note.
+- Hardened the offline-package readiness check against transient iOS cold-start races:
+  overlapping checks are suppressed, first check is slightly delayed, and a transient
+  cache/service-worker query error is retried instead of immediately showing CHECK FAILED.
+- Retains the sticky ROUTE AHEAD bar from 5.6.11.
+- No change to the field-proven GPS arrival/departure/auto-advance navigation engine.
