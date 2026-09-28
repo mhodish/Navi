@@ -493,26 +493,74 @@ body.stripExploreOpen{overflow:hidden!important}
 body.stripExploreOpen #stripExploreBtn{display:none}
 @media (min-width:701px){#stripExploreBtn{right:18px;bottom:18px}}
 </style>\n
-<style id="sticky-route-ahead-5-6-11">
+<style id="compact-route-ahead-5-6-12">
 .routePoiHeader {
   position: sticky !important;
   top: 0 !important;
   z-index: 1000 !important;
-  background: #fff !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,.16);
+  display:block !important;
+  padding:5px 7px !important;
+  background:#fff !important;
+  box-shadow:0 2px 5px rgba(0,0,0,.16);
+}
+.routePoiHeader .routePoiFilters{
+  display:flex !important;
+  align-items:center !important;
+  gap:5px !important;
+  flex-wrap:nowrap !important;
+  overflow-x:auto !important;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.routePoiHeader .routePoiFilters::-webkit-scrollbar{display:none}
+.routePoiHeader .routePoiFilters>button,
+.routePoiHelp>summary{
+  flex:0 0 auto;
+  padding:5px 8px;
+  border:1px solid #777;
+  border-radius:6px;
+  background:#fff;
+  color:#111;
+  font-weight:800;
+  font-size:11px;
+  line-height:1.1;
+  cursor:pointer;
+  list-style:none;
+  white-space:nowrap;
+}
+.routePoiHelp>summary::-webkit-details-marker{display:none}
+.routePoiHelp{position:relative;flex:0 0 auto}
+.routePoiHelp[open]>summary{background:#111;color:#fff}
+.routePoiHelpPanel{
+  position:absolute;
+  right:0;
+  top:calc(100% + 6px);
+  width:min(440px,calc(100vw - 34px));
+  padding:10px 12px;
+  border:1px solid #777;
+  border-radius:8px;
+  background:#fff;
+  box-shadow:0 4px 16px rgba(0,0,0,.22);
+  white-space:normal;
+}
+.routePoiHelpPanel b{font-size:13px;display:block;margin-bottom:4px}
+.routePoiHelpPanel span{font-size:12px;line-height:1.35;color:#444}
+@media(max-width:700px){
+  .routePoiHeader .routePoiFilters>button,.routePoiHelp>summary{padding:4px 6px;font-size:9px}
+  .routePoiHeader{padding:4px !important}
 }
 </style>
 
 </head>
 <body>
 
-<header><h1>Europe GPS Roadbook — V18.9.10.5.6.11 Netherlands + Explore Refinement</h1>
+<header><h1>Europe GPS Roadbook — V18.9.10.5.6.12 Compact Route Ahead Help</h1>
 <div class="sub">Norway · Scotland · Netherlands · frozen V17.1 driving engine · POI intelligence build 18.9.10.1</div></header>
 <div class="roadbook-shell">
 
 <aside class="stripPane" id="stripPane" aria-label="Europe route strip map">
   <div class="stripTitle">
-    <strong>ROADBOOK · V18.9.10.5.6.11</strong>
+    <strong>ROADBOOK · V18.9.10.5.6.12</strong>
     <div>50 route stops · ⚡ charger · 🍴 restaurant · 📷 sight · 🚶 hike · 🛒 market · RED = fixed-time</div>
   </div>
   <svg class="stripSvg" viewBox="0 0 300 5098" role="img" aria-label="Schematic strip map of the Europe itinerary">
@@ -1128,12 +1176,12 @@ body.stripExploreOpen #stripExploreBtn{display:none}
 <section id="routePoiRail" class="routePoiRail" aria-label="Route points of interest">
 <div class="routePoi" data-poi-key="harm-final-base"><b>FINAL NETHERLANDS BASE — HARM BRAAMS / NIEUWEGEIN</b><br>After the Tineke Bloemen funeral on Saturday 26 September, drive directly to Harm Braams in Nieuwegein. Stay with Harm continuously Saturday night, Sunday night, and Monday night. On Tuesday 29 September, leave Harm's in the morning, drive directly to Schiphol, return the rental car, and check in for the 10:45 flight. There is no Schiphol hotel at the end of the trip.</div>
   <div class="routePoiHeader">
-    <div><b>ROUTE AHEAD</b><span>Hikes, scenic stops, EV chargers, restaurants and supermarkets in TRIP DRIVING ORDER. Food, groceries and chargers appear beside the places you are approaching. Informational POIs do not change automatic navigation.</span></div>
     <div class="routePoiFilters">
       <button type="button" data-filter="ALL" class="active">ALL</button>
       <button type="button" data-filter="HIKE">HIKES</button>
       <button type="button" data-filter="SCENIC POI">SCENIC</button>
       <button type="button" data-filter="EV CHARGER">EV</button><button type="button" data-filter="RESTAURANT">RESTAURANTS</button><button type="button" data-filter="SUPERMARKET">SUPERMARKETS</button><button type="button" class="costFilter active" data-cost-filter="FREE">FREE</button><button type="button" class="costFilter active" data-cost-filter="PAID">PAID</button>
+      <details class="routePoiHelp"><summary>HELP</summary><div class="routePoiHelpPanel"><b>ROUTE AHEAD</b><span>Hikes, scenic stops, EV chargers, restaurants and supermarkets in TRIP DRIVING ORDER. Food, groceries and chargers appear beside the places you are approaching. Informational POIs do not change automatic navigation.</span></div></details>
     </div>
   </div>
   <div class="routePoiList">
@@ -3359,14 +3407,14 @@ if(jumpSelect){
 
 restoreArrivalState();
 renderActive();
-show('Roadbook V18.9.10.5.6.11 loaded. Expandable strip ready.');
+show('Roadbook V18.9.10.5.6.12 loaded. Compact Route Ahead toolbar ready.');
 </script>
 <script id="offlineDiagnostic">
 (function(){
   const title=document.getElementById('offlineTitle');
   const detail=document.getElementById('offlineDetail');
-  const CACHE_NAME='roadbook-v18-9-10-5-6-11';
-  const SW_URL='./roadbook-v18-9-10-5-6-11-sw.js';
+  const CACHE_NAME='roadbook-v18-9-10-5-6-12';
+  const SW_URL='./roadbook-v18-9-10-5-6-12-sw.js';
   const REQUIRED=['./','./index.html','./manifest.json','./roadbook-icon-192.png','./roadbook-icon-512.png'];
 
   function stage(label,msg){

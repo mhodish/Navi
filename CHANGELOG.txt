@@ -1,3 +1,10 @@
+Europe GPS Roadbook V18.9.10.5.6.12
+
+- Compact Route Ahead toolbar on iPad/desktop.
+- Moved Route Ahead explanatory text behind a HELP control.
+- Preserved sticky filter bar and all category/cost filter behavior.
+- No navigation, GPS, arrival/departure, POI ordering, or voice logic changed.
+
 Europe GPS Roadbook V18.9.10.5.6.11
 - UI-only change: ROUTE AHEAD filter bar stays visible at the top while POIs scroll.
 - Built from 5.6.10.
