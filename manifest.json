@@ -1,7 +1,7 @@
 {
   "name": "Roadbook",
   "short_name": "Roadbook",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
@@ -20,5 +20,6 @@
       "type": "image/png",
       "purpose": "any"
     }
-  ]
+  ],
+  "description": "Bethel local GPS roadbook"
 }

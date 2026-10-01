@@ -1,0 +1,26 @@
+[
+  {
+    "id": "citgo",
+    "name": "Citgo / Atlantis Fresh Market",
+    "lat": 41.371815564798,
+    "lon": -73.407492585406
+  },
+  {
+    "id": "burgerking",
+    "name": "Burger King",
+    "lat": 41.373516,
+    "lon": -73.421571
+  },
+  {
+    "id": "library",
+    "name": "Bethel Public Library",
+    "lat": 41.37111,
+    "lon": -73.41417
+  },
+  {
+    "id": "home",
+    "name": "Home",
+    "lat": 41.341606776928,
+    "lon": -73.394472241506
+  }
+]

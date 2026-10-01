@@ -1,11 +1,10 @@
-Europe GPS Roadbook V18.9.10.5.6.12
+Bethel V19.0.0
+- Replaces the completed Europe itinerary with four local test stops.
+- Packages three destination photos offline with attribution. Home photo unavailable.
+- Google Maps directions for all four stops and 24 POIs.
+- Adds entertainment filtering; category/cost controls remain independent.
+- POIs checked against one-mile routed-road corridor; includes dated ratings and source links.
+- Keeps uploaded GPS/voice navigation engine and two-minute warning.
+- New Bethel trip-state keys, cache, title and manifest.
 
-- Added final-route stops in requested order before the existing rental-car return:
-  De Zaanse Schans -> Zaandam -> Vienna House Easy by Wyndham Amsterdam Airport -> Europcar Schiphol Airport.
-- Renamed the final rental-return stop from Keddy wording to Europcar wording.
-- Removed the obsolete V18.9.10.5 POI INTELLIGENCE on-screen note.
-- Hardened the offline-package readiness check against transient iOS cold-start races:
-  overlapping checks are suppressed, first check is slightly delayed, and a transient
-  cache/service-worker query error is retried instead of immediately showing CHECK FAILED.
-- Retains the sticky ROUTE AHEAD bar from 5.6.11.
-- No change to the field-proven GPS arrival/departure/auto-advance navigation engine.
+Validation: JavaScript syntax and DOM functional checks passed. Service-worker cache lifecycle/fallback checked in a harness; packaged JPEGs and corridor limits checked. Full-browser visual/offline QA could not run because browser download failed. iOS background audio and road arrival alignment require field testing.
